@@ -1,0 +1,151 @@
+#!/bin/bash
+
+############
+# PACKAGES #
+############
+
+# CUSTOM REPOSITORY STUFF
+
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
+# VSCode
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+rm ~/packages.microsoft.gpg
+
+# Minecraft
+wget https://launcher.mojang.com/download/Minecraft.deb
+sudo apt-get install ./Minecraft.deb
+rm Minecraft.deb*
+
+# Specified packages
+filename="packages.txt"
+cd ~/Projects/backup/
+
+while read pkg_name
+do
+  sudo apt-get install $pkg_name -y
+  if [[ $? -ne 0 ]]
+  then
+    echo $pkg_name >> ~/failed_installs.txt
+  fi
+done < $filename
+
+cd
+
+sudo apt-get autoremove -y
+
+############
+#   VIM    #
+############
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+# YouCompleteMe with support for C-family languages
+cd ~/.vim/bundle/youcompleteme
+python3 install.py --clangd-completer
+
+############
+# i3-gaps  #
+############
+git clone https://www.github.com/Airblader/i3 i3-gaps
+cd i3-gaps
+
+# compile & install
+autoreconf --force --install
+rm -rf build/
+mkdir -p build && cd build/
+
+# Disabling sanitizers is important for release versions!
+# The prefix and sysconfdir are, obviously, dependent on the distribution.
+../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+make
+sudo make install
+cd ../../
+rm -rf i3-gaps/
+
+# i3lock-color
+git clone https://github.com/Raymo111/i3lock-color.git
+cd i3lock-color
+chmod +x build.sh
+./build.sh
+chmod +x install-i3lock-color.sh
+./install-i3lock-color.sh
+cd ../
+rm -rf i3lock-color
+# i3lock-fancy
+git clone https://github.com/meskarune/i3lock-fancy.git
+cd i3lock-fancy
+sudo make install
+cd ../
+rm -rf i3lock-fancy
+
+############
+# POLYBAR  #
+############
+wget https://github.com/polybar/polybar/releases/download/3.4.3/polybar-3.4.3.tar
+tar xvf polybar*
+cd polybar
+mkdir build
+cd build
+cmake ..
+make -j$(nproc)
+sudo make install
+cd ../../
+rm -rf polybar*
+
+###############
+# STEAM DMENU #
+###############
+sudo python3 -m pip install --force-reinstall pip==9.0.1
+sudo pip3 install steamfiles
+sudo python3 -m pip install --upgrade pip
+
+##############
+# VPN CLIENT #
+##############
+wget https://installers.privateinternetaccess.com/download/pia-linux-2.4-05574.run
+sh pia-linux-2.4-05574.run
+ 
+####################
+# SIGNAL MESSENGER #
+####################
+curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
+echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+sudo apt update && sudo apt install signal-desktop
+
+#################
+# CUSTOMIZATION #
+#################
+# Make login wallpaper black
+echo "Changing login wallpaper..."
+git clone https://github.com/PRATAP-KUMAR/focalgdm3.git
+cd focalgdm3/
+printf "Yes\n1\n/home/chris/.config/wallpapers/black.jpeg" | sudo /bin/bash ./focalgdm3 --set
+cd ..
+rm -rf focalgdm3/
+
+# Add non-boring GRUB theme
+echo "Adding GRUB theme..."
+git clone https://github.com/vinceliuice/grub2-themes.git
+cd grub2-themes
+sudo ./install.sh -b -w -v -4
+cd ..
+rm -rf grub2-themes/
+
+# Disables splash screen and displays startup output instead because it's cool
+sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT.*/GRUB_CMDLINE_LINUX_DEFAULT=""/g' /etc/default/grub
+sudo update-grub2
+
+# Loads terminal settings
+echo "Updating terminal settings..."
+dconf load /org/gnome/terminal/legacy/profiles:/ < ~/Projects/backup/profile.dconf
+
+# Disables auto-creation of 'Documents' folder and deletes any unnecessary folders
+sed -i 's/XDG_DOCUMENTS_DIR.*/XDG_DOCUMENTS_DIR="$HOME\/"/g' ~/.config/user-dirs.dirs
+cd
+rm -rf Desktop Documents Music Pictures Public Templates Videos
+
+# FN Buttons
+echo "If your vol up/down, play/pause, brightness up/down, etc. keys do not work, look here: https://unix.stackexchange.com/questions/526653/control-screen-brightness-in-i3"
