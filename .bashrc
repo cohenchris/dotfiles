@@ -125,3 +125,4 @@ alias mountsd="udisksctl mount -b /dev/mmcblk0p1; mkdir ~/sdcard; ln -s /media/$
 alias unmountsd="unlink ~/sdcard/disk; udisksctl unmount -b /dev/mmcblk0p1; rm -r ~/sdcard"
 alias copy-iptv="scp epg.xml root@chriscohen.dev:~/vps/nginx/config/www/chriscohen.dev; scp iptv.m3u root@chriscohen.dev:~/vps/nginx/config/www/chriscohen.dev"
 alias rename="for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done"
+test
