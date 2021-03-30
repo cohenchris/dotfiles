@@ -26,6 +26,7 @@ declare -a dotfiles=(
   ~/.config/yadm/bootstrap
   ~/Projects/backup
   ~/Projects/scripts
+  ~/Projects/an2linuxserver
 )
 
 for i in ${dotfiles[@]}
