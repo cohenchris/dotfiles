@@ -358,7 +358,7 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 0
+thermal-zone = 6
 warn-temperature = 60
 
 format = <label>
