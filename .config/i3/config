@@ -187,6 +187,9 @@ bindsym $mod+r mode "resize"
 # firefox
 bindsym $mod+w exec firefox
 
+# snipping tool
+bindsym Print exec gnome-screenshot -a
+
 # plexamp
 bindsym $mod+s exec ~/.plexamp.AppImage
 
