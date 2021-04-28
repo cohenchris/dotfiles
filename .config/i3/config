@@ -233,9 +233,6 @@ exec --no-startup-id ~/Projects/scripts/random-wallpaper.sh
 # Syncthing
 exec_always --no-startup-id syncthing
 
-# AN2Linux - Android notifications to desktop
-exec_always --no-startup-id ~/Projects/an2linuxserver/an2linuxserver.py
-
 
 
 # Pulse Audio controls
