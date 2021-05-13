@@ -22,12 +22,10 @@ declare -a dotfiles=(
   ~/.config/polybar/
   ~/.config/wallpapers/
   ~/.config/dunst/
-  ~/.config/an2linux/config
   ~/.vimrc
   ~/.config/yadm/bootstrap
   ~/Projects/backup
   ~/Projects/scripts
-  ~/Projects/an2linuxserver
 )
 
 for i in ${dotfiles[@]}

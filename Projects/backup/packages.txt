@@ -118,3 +118,4 @@ magic-wormhole
 playerctl
 syncthing
 dunst
+speedtest-cli

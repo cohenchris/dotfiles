@@ -1,26 +1,25 @@
 #!/bin/bash
 
+
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 ############
 # PACKAGES #
 ############
 
-# CUSTOM REPOSITORY STUFF
+# System Update
+echo "---------- UPDATING ----------"
+echo -e "${GREEN}This may take a while...${NC}"
 
-sudo apt-get update -y
-sudo apt-get upgrade -y
+yes | sudo apt-get update; yes | sudo apt-get --with-new-pkgs upgrade; yes | sudo apt-get autoremove;
 
-# VSCode
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
-sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-rm ~/packages.microsoft.gpg
-
-# Minecraft
-wget https://launcher.mojang.com/download/Minecraft.deb
-sudo apt-get install ./Minecraft.deb
-rm Minecraft.deb*
+echo
+echo -e "${GREEN}System updated!${NC}"
+echo
 
 # Specified packages
+echo -e "${GREEN}Installing custom packages from packages.txt...${NC}"
 filename="packages.txt"
 cd ~/Projects/backup/
 
@@ -37,18 +36,31 @@ cd
 
 sudo apt-get autoremove -y
 
+echo
+echo -e "${GREEN}Custom packages installed!${NC}"
+echo
+
 ############
 #   VIM    #
 ############
+echo -e "${GREEN}Installing VIM plugins...${NC}"
+
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 # YouCompleteMe with support for C-family languages
 cd ~/.vim/bundle/youcompleteme
 python3 install.py --clangd-completer
 
+echo
+echo -e "${GREEN}VIM Plugins installed!${NC}"
+echo
+
+
 ############
 # i3-gaps  #
 ############
+echo -e "${GREEN}Installing i3wm and i3lock...${NC}"
+
 git clone https://www.github.com/Airblader/i3 i3-gaps
 cd i3-gaps
 
@@ -81,9 +93,15 @@ sudo make install
 cd ../
 rm -rf i3lock-fancy
 
+echo
+echo -e "${GREEN}i3wm and i3lock installed!${NC}"
+echo
+
 ############
 # POLYBAR  #
 ############
+echo -e "${GREEN}Installing Polybar...${NC}"
+
 wget https://github.com/polybar/polybar/releases/download/3.4.3/polybar-3.4.3.tar
 tar xvf polybar*
 cd polybar
@@ -95,57 +113,123 @@ sudo make install
 cd ../../
 rm -rf polybar*
 
+echo
+echo -e "${GREEN}Polybar installed!${NC}"
+echo
+
 ###############
 # STEAM DMENU #
 ###############
+echo -e "${GREEN}Installing Steam DMenu...${NC}"
+
 sudo python3 -m pip install --force-reinstall pip==9.0.1
 sudo pip3 install steamfiles
 sudo python3 -m pip install --upgrade pip
 
+echo
+echo -e "${GREEN}Steam DMenu installed!${NC}"
+echo
+
 ##############
 # VPN CLIENT #
 ##############
-wget https://installers.privateinternetaccess.com/download/pia-linux-2.4-05574.run
-sh pia-linux-2.4-05574.run
+echo -e "${GREEN}Installing PrivateInternetAccess VPN...${NC}"
+
+wget https://installers.privateinternetaccess.com/download/pia-linux-2.8.1-06335.run
+sh pia-linux-2.8.1-06335.run
+
+echo
+echo -e "${GREEN}PrivateInternetAccess VPN installed!${NC}"
+echo
  
 ####################
 # SIGNAL MESSENGER #
 ####################
+echo -e "${GREEN}Installing Signal Messenger...${NC}"
+
 curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
 sudo apt update && sudo apt install signal-desktop
+
+echo
+echo -e "${GREEN}Signal Messenger installed!${NC}"
+echo
+
+##########
+# VSCODE #
+##########
+echo -e "${GREEN}Installing VSCode...${NC}"
+
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+rm ~/packages.microsoft.gpg
+
+echo
+echo -e "${GREEN}VSCode installed!${NC}"
+echo
+
+#############
+# MINECRAFT #
+#############
+echo "Installing Minecraft..."
+wget https://launcher.mojang.com/download/Minecraft.deb
+sudo apt-get install ./Minecraft.deb
+rm Minecraft.deb*
+echo
+echo -e "${GREEN}Minecraft installed!${NC}"
+echo
 
 #################
 # CUSTOMIZATION #
 #################
 # Make login wallpaper black
-echo "Changing login wallpaper..."
+echo -e "${GREEN}Changing login wallpaper...${NC}"
+
 git clone https://github.com/PRATAP-KUMAR/focalgdm3.git
 cd focalgdm3/
 printf "Yes\n1\n/home/chris/.config/wallpapers/black.jpeg" | sudo /bin/bash ./focalgdm3 --set
 cd ..
 rm -rf focalgdm3/
 
+echo
+echo -e "${GREEN}Login wallpaper color changed!${NC}"
+echo
+
 # Add non-boring GRUB theme
-echo "Adding GRUB theme..."
+echo -e "${GREEN}Adding GRUB theme...${NC}"
+
 git clone https://github.com/vinceliuice/grub2-themes.git
 cd grub2-themes
 sudo ./install.sh -b -w -v -4
 cd ..
 rm -rf grub2-themes/
 
+echo
+echo -e "${GREEN}GRUB theme added!${NC}"
+echo
+
 # Disables splash screen and displays startup output instead because it's cool
 sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT.*/GRUB_CMDLINE_LINUX_DEFAULT=""/g' /etc/default/grub
 sudo update-grub2
 
 # Loads terminal settings
-echo "Updating terminal settings..."
+echo -e "${GREEN}Updating terminal settings...${NC}"
+
 dconf load /org/gnome/terminal/legacy/profiles:/ < ~/Projects/backup/profile.dconf
+
+echo
+echo -e "${GREEN}Terminal settings updated!${NC}"
+echo
 
 # Disables auto-creation of 'Documents' folder and deletes any unnecessary folders
 sed -i 's/XDG_DOCUMENTS_DIR.*/XDG_DOCUMENTS_DIR="$HOME\/"/g' ~/.config/user-dirs.dirs
 cd
 rm -rf Desktop Documents Music Pictures Public Templates Videos
 
+
 # FN Buttons
 echo "If your vol up/down, play/pause, brightness up/down, etc. keys do not work, look here: https://unix.stackexchange.com/questions/526653/control-screen-brightness-in-i3"
+
+
+echo -e "${GREEN}INSTALLATION COMPLETED!${NC}"

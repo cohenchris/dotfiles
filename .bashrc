@@ -90,6 +90,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export ANDROID_HOME="/opt/android-sdk-linux"
+
 ###################
 ##### ALIASES #####
 ###################
@@ -123,6 +125,4 @@ alias shortcuts="~/Projects/scripts/shortcuts.sh"
 alias earbuds="~/Projects/scripts/bluetooth_connect.sh"
 alias mountsd="udisksctl mount -b /dev/mmcblk0p1; mkdir ~/sdcard; ln -s /media/${USER}/disk ~/sdcard"
 alias unmountsd="unlink ~/sdcard/disk; udisksctl unmount -b /dev/mmcblk0p1; rm -r ~/sdcard"
-alias copy-iptv="scp epg.xml root@chriscohen.dev:~/vps/nginx/config/www/chriscohen.dev; scp iptv.m3u root@chriscohen.dev:~/vps/nginx/config/www/chriscohen.dev"
-alias rename="for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done"
 alias occ="docker-compose exec --user www-data nextcloud php occ"
