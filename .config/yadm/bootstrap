@@ -4,6 +4,7 @@
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
+# Auto-accept msttcorefonts EULA
 echo msttcorefonts msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 
 ############
@@ -66,16 +67,10 @@ echo -e "${GREEN}Installing i3wm and i3lock...${NC}"
 git clone https://www.github.com/Airblader/i3 i3-gaps
 cd i3-gaps
 
-# compile & install
-autoreconf --force --install
-rm -rf build/
 mkdir -p build && cd build/
+meson ..
+ninja
 
-# Disabling sanitizers is important for release versions!
-# The prefix and sysconfdir are, obviously, dependent on the distribution.
-../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-make
-sudo make install
 cd ../../
 rm -rf i3-gaps/
 
@@ -203,7 +198,7 @@ echo -e "${GREEN}Adding GRUB theme...${NC}"
 
 git clone https://github.com/vinceliuice/grub2-themes.git
 cd grub2-themes
-sudo ./install.sh -b -w -v -4
+sudo ./install.sh -b --icon white --theme vimix --screen 4k
 cd ..
 rm -rf grub2-themes/
 

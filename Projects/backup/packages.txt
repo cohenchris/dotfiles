@@ -1,6 +1,4 @@
 firefox
-brave-browser
-brightnessctl
 cmake
 libreoffice
 make
@@ -55,8 +53,6 @@ libnl-genl-3-dev
 libiw-dev
 xfonts-terminus
 fonts-font-awesome
-spotify-client
-code
 suckless-tools
 libxcb1-dev
 libxcb-keysyms1-dev
@@ -118,3 +114,4 @@ playerctl
 syncthing
 dunst
 speedtest-cli
+meson
