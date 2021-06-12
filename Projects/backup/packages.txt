@@ -49,6 +49,7 @@ libpulse-dev
 libjsoncpp-dev
 libmpdclient-dev
 libcurl4-openssl-dev
+curl
 libnl-genl-3-dev
 libiw-dev
 xfonts-terminus
