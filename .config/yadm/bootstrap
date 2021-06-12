@@ -226,7 +226,7 @@ rm -rf Desktop Documents Music Pictures Public Templates Videos
 
 
 # FN Buttons
-echo "If your vol up/down, play/pause, brightness up/down, etc. keys do not work, look here: https://unix.stackexchange.com/questions/526653/control-screen-brightness-in-i3"
+echo -e "${GREEN}If your vol up/down, play/pause, brightness up/down, etc. keys do not work, look here: https://unix.stackexchange.com/questions/526653/control-screen-brightness-in-i3${NC}"
 
 
 echo -e "${GREEN}INSTALLATION COMPLETED!${NC}"
