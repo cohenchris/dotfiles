@@ -25,7 +25,7 @@ cd ~/Projects/backup/
 
 while read pkg_name
 do
-  sudo apt-get install $pkg_name -y
+  sudo apt-get install $pkg_name -y > /dev/null
   if [[ $? -ne 0 ]]
   then
     echo $pkg_name >> ~/failed_installs.txt

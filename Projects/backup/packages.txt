@@ -109,7 +109,6 @@ imagemagick
 util-linux
 i3lock
 keepass2
-ifconfig
 texlive-xetex
 jq
 onionshare
