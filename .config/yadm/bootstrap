@@ -194,17 +194,17 @@ echo -e "${GREEN}Login wallpaper color changed!${NC}"
 echo
 
 # Add non-boring GRUB theme
-echo -e "${GREEN}Adding GRUB theme...${NC}"
-
-git clone https://github.com/vinceliuice/grub2-themes.git
-cd grub2-themes
-sudo ./install.sh -b --icon white --theme vimix --screen 4k
-cd ..
-rm -rf grub2-themes/
-
-echo
-echo -e "${GREEN}GRUB theme added!${NC}"
-echo
+# echo -e "${GREEN}Adding GRUB theme...${NC}"
+# 
+# git clone https://github.com/vinceliuice/grub2-themes.git
+# cd grub2-themes
+# sudo ./install.sh -b --icon white --theme vimix --screen 4k
+# cd ..
+# rm -rf grub2-themes/
+# 
+# echo
+# echo -e "${GREEN}GRUB theme added!${NC}"
+# echo
 
 # Disables splash screen and displays startup output instead because it's cool
 sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT.*/GRUB_CMDLINE_LINUX_DEFAULT=""/g' /etc/default/grub
