@@ -180,7 +180,7 @@ echo -e "${GREEN}Changing login wallpaper...${NC}"
 
 git clone https://github.com/PRATAP-KUMAR/focalgdm3.git
 cd focalgdm3/
-printf "Yes\n1\n/home/$USER/.config/wallpapers/black.jpeg" | sudo /bin/bash ./focalgdm3 --set
+sudo ./focalgdm3 \#000000
 cd ..
 rm -rf focalgdm3/
 
