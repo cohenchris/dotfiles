@@ -33,12 +33,15 @@ export BACKGROUND_COLOR=#55000000
 
 # Network Interfaces
 export ETH=$(ifconfig | grep enp | cut -d : -f 1)
+export ETH_RUNNING=$(cat /sys/class/net/$ETH/operstate)
 export WLAN=$(ifconfig | grep wlp | cut -d : -f 1)
 
-if [ -z "$ETH" ]; then
-  export ETH=""
-else
+if [ "$ETH_RUNNING" == "up" ]; then
+  # disable wlan
   export WLAN=""
+else
+  # disable eth
+  export ETH=""
 fi
 
 
