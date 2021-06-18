@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 res=$(xrandr | grep 'Screen 0' | cut -d , -f 2 | cut -d ' ' -f 5)
 if [ $res -le 1080 ]; then
@@ -33,17 +33,7 @@ export BACKGROUND_COLOR=#55000000
 
 # Network Interfaces
 export ETH=$(ifconfig | grep enp | cut -d : -f 1)
-export ETH_RUNNING=$(cat /sys/class/net/$ETH/operstate)
 export WLAN=$(ifconfig | grep wlp | cut -d : -f 1)
-
-if [ "$ETH_RUNNING" == "up" ]; then
-  # disable wlan
-  export WLAN=""
-else
-  # disable eth
-  export ETH=""
-fi
-
 
 # Terminate already running bar instances
 killall -q polybar
