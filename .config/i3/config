@@ -216,7 +216,11 @@ exec_always --no-startup-id /opt/piavpn/bin/pia-client
 bindsym $mod+u exec ~/Projects/scripts/random-wallpaper.sh
 
 # blue light filter
-bindsym $mod+equal exec redshift -PO 1500   # onn
+#bindsym $mod+equal exec ~/Projects/scripts/bluelightfilter.sh up
+#bindsym $mod+minus exec ~/Projects/scripts/bluelightfilter.sh down
+#bindsym $mod+backspace exec ~/Projects/scripts/bluelightfilter.sh off
+
+bindsym $mod+equal exec redshift -PO 1500   # on
 bindsym $mod+minus exec redshift -x         # off
 
 
