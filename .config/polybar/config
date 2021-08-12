@@ -1,0 +1,375 @@
+; This config uses the new syntax (which isn't merged upstream)
+
+[settings]
+throttle-ms = 50
+throttle-limit = 3
+
+[bar/bottom]
+bottom = true
+width = 100%
+
+; HIDPI
+height = ${env:BAR_HEIGHT}
+
+;background = ${colors.background}
+background = ${env:BACKGROUND_COLOR}
+foreground = ${colors.foreground}
+linecolor = #ff416d
+
+spacing = 0
+lineheight = 16
+padding-right = 0
+padding-left = 0
+module-margin-left = 0
+module-margin-right = 0
+
+; HIDPI
+font-0 = ${env:TERMINUS}
+font-1 = ${env:UNIFONT}
+font-2 = ${env:FONTAWESOME}
+
+modules-left = vpn external_ip internal_ip
+modules-right = pulseaudio temperature cpu memory
+
+[module/vpn]
+type = custom/script
+exec = ~/.config/polybar/scripts/vpn.sh
+interval = 60
+
+[module/internal_ip]
+type = custom/script
+exec = ~/.config/polybar/scripts/internal_ip.sh
+interval = 60
+
+[module/external_ip]
+type = custom/script
+exec = ~/.config/polybar/scripts/external_ip.sh
+interval = 60
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+
+format = "<ramp-coreload>"
+format-underline = #da375b
+format-padding = 2
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 2
+ramp-coreload-0-foreground = #aaff77
+ramp-coreload-1 = ▂
+ramp-coreload-1-font = 2
+ramp-coreload-1-foreground = #aaff77
+ramp-coreload-2 = ▃
+ramp-coreload-2-font = 2
+ramp-coreload-2-foreground = #aaff77
+ramp-coreload-3 = ▄
+ramp-coreload-3-font = 2
+ramp-coreload-3-foreground = #aaff77
+ramp-coreload-4 = ▅
+ramp-coreload-4-font = 2
+ramp-coreload-4-foreground = #fba922
+ramp-coreload-5 = ▆
+ramp-coreload-5-font = 2
+ramp-coreload-5-foreground = #fba922
+ramp-coreload-6 = ▇
+ramp-coreload-6-font = 2
+ramp-coreload-6-foreground = #ff5555
+ramp-coreload-7 = █
+ramp-coreload-7-font = 2
+ramp-coreload-7-foreground = #ff5555
+
+[module/memory]
+type = internal/memory
+format = "<label> <bar-used>"
+format-underline = #da375b
+format-padding = 2
+
+label = RAM
+
+bar-used-width = 20
+bar-used-foreground-0 = #aaff77
+bar-used-foreground-1 = #aaff77
+bar-used-foreground-2 = #fba922
+bar-used-foreground-3 = #ff5555
+bar-used-indicator = 
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #ffffff
+;bar-used-fill = ─
+bar-used-fill-font = 6
+;bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = #eeeeee
+
+bar-used-fill = ▐
+bar-used-empty = ▐
+
+[module/date]
+type = internal/date
+date = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#aaff77}%S%%{F-}
+
+[bar/top]
+width = 100%
+
+; HIDPI
+height = ${env:BAR_HEIGHT}
+
+background = ${env:BACKGROUND_COLOR}
+foreground = #ccffffff
+linecolor = ${bar/bottom.background}
+
+spacing = 1
+lineheight = 16
+padding-right = 3
+padding-left = 0
+module-margin-right = 0
+module-margin-left = 0
+
+; HIDPI
+font-0 = ${env:TERMINUS}
+font-1 = ${env:MATERIALICONS}
+font-2 = ${env:FONTAWESOME}
+
+modules-left = ${env:TOP_LEFT}
+modules-center = ${env:TOP_CENTER}
+modules-right = wlan eth battery date
+
+[module/battery]
+type = internal/battery
+full-at = 99
+
+label-discharging = %percentage%% (%time% remaining)
+format-charging = "<animation-charging><label-charging>     "
+format-discharging = "<ramp-capacity><label-discharging>     "
+format-full = "<ramp-capacity><label-full>     "
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = #ffa900
+ramp-capacity-2 = 
+ramp-capacity-2-foreground = #fff000
+ramp-capacity-3 = 
+ramp-capacity-3-foreground = #fff000
+ramp-capacity-4 = 
+ramp-capacity-4-foreground = #aaff77
+
+animation-charging-0 = 
+animation-charging-0-foreground= #f53c3c
+animation-charging-1 = 
+animation-charging-1-foreground= #ffa900
+animation-charging-2 = 
+animation-charging-2-foreground= #fff000
+animation-charging-3 = 
+animation-charging-3-foreground= #fff000
+animation-charging-4 = 
+animation-charging-4-foreground= #aaff77
+animation-charging-framerate-ms = 500
+
+[module/clock]
+type = internal/date
+interval = 5
+date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+bar-used-foreground-0 = #aaff77
+
+
+[colors]
+background = #000000
+background-alt = #666
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffffff
+secondary = #e60053
+alert = #bd2c40
+
+#SPOTIFY
+[module/spotify]
+type = custom/script
+interval = 3
+format = "%{T1}<label>"
+format-padding = 3
+format-prefix = "♫ "
+exec = python3 ~/Projects/scripts/spotify/spotify_status.py
+format-underline = #1db954
+line-size = 1
+
+[module/playpause]
+type = custom/script
+format-padding = 3
+interval = 2
+format = "%{T3}<label>"
+format-offset = -24
+exec = ~/Projects/scripts/spotify/isplaying.sh
+format-underline = #1db954
+line-size = 5
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+
+[module/previous]
+type = custom/script
+interval = 86400
+format-padding = 3
+format-offset = -24
+format = "%{T3}<label>"
+exec = echo ""
+format-underline = #1db954
+line-size = 1
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+
+[module/next]
+type = custom/script
+interval = 86400
+format-padding = 3
+format = "%{T3}<label>"
+format-offset = -24
+exec = echo ""
+format-underline = #1db954
+line-size = 1
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
+#END SPOTIFY
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+; Separator in between workspaces
+label-separator = |
+
+[module/i3]
+type = internal/i3
+format = "<label-state> <label-mode>                                               "
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+; pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = ${module/bspwm.label-focused-background}
+label-focused-underline = ${module/bspwm.label-focused-underline}
+label-focused-padding = ${module/bspwm.label-focused-padding}
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-background = ${module/bspwm.label-urgent-backgroundajf;klajf
+label-urgent-padding = ${module/bspwm.label-urgent-padding}
+
+; Separator in between workspaces
+;label-separator = |
+
+; Web Browser
+ws-icon-0 = 1;
+; Music
+ws-icon-1 = 2;
+; Terminal
+ws-icon-2 = 3;
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;9
+; VPN/Keepass
+ws-icon-9 = 10;
+
+[module/wlan]
+type = internal/network
+interface = ${env:WLAN}
+interval = 3.0
+
+format-connected = " <label-connected>     "
+format-connected-underline = #9f78e1
+;label-connected = %essid% (%local_ip%)
+label-connected = %essid%
+
+[module/eth]
+type = internal/network
+interface = ${env:ETH}
+interval = 3.0
+
+format-connected = " <label-connected>     "
+format-connected-underline = #9f78e1
+format-connected-prefix-foreground = ${colors.foreground-alt}
+;label-connected = %ifname% (%local_ip%)
+label-connected = %ifname%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
+
+label-muted = muted
+label-muted-foreground = #666
+
+bar-volume-width = 20
+bar-volume-foreground-0 = #aaff77
+bar-volume-foreground-1 = #aaff77
+bar-volume-foreground-2 = #aaff77
+bar-volume-foreground-3 = #fff999
+bar-volume-foreground-4 = #fff000
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 6
+warn-temperature = 60
+
+format = <label>
+format-underline = #f50a4d
+format-warn = <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = "   CPU (%temperature-c%)"
+label-warn = %temperature-c%  (%temperature-f%)
+label-warn-foreground = ${colors.secondary}
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:45:...%
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+;vim:ft=dosini
