@@ -1,0 +1,71 @@
+# development
+########################################
+git
+make
+cmake
+python
+python-pip
+code
+curl
+npm
+gcc
+jq
+vundle
+
+
+# basic utilities
+########################################
+ranger-git
+redshift-git
+feh
+st
+net-tools
+# blueman
+
+
+# gui components
+########################################
+# xorg
+xorg-server
+xorg-xinit
+# window manager
+i3-gaps-next-git
+# lock screen
+i3lock-color
+i3lock-fancy-git
+# x compositor
+picom-git
+# status bar
+polybar
+# menu
+dmenu
+# notifications
+dunst
+
+
+# daily use
+########################################
+syncthing
+onionshare
+firefox
+signal-desktop
+mullvad-vpn
+# libreoffice
+# texlive-lang-english
+# texlive-xetex
+# biber
+
+
+# games
+########################################
+minecraft-launcher
+
+
+# other
+########################################
+neofetch
+terminus-font
+ttf-font-awesome-4
+ttf-material-design-icons
+ttf-unifont
+#xf86-video-intel

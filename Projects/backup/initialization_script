@@ -1,0 +1,84 @@
+# set up wifi
+wifi-menu
+
+# time
+timedatectl set-ntp true
+
+# partitioning / mounting
+################################################################################
+lsblk
+
+# Give boot partition (GRUB) 128M, then press "b" to set boot flag
+# Partition the rest of the hard drive space and write changes
+cfdisk /dev/sda
+
+mkfs.ext4 /dev/sda1
+mkfs.ext4 /dev/sda2
+
+mount /dev/sda2 /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+
+# double-check partitioning and mounting
+lsblk
+################################################################################
+
+# pacstrap, fstab, and chroot
+pacstrap /mnt base base-devel linux linux-firmware vim ...?
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt /bin/bash
+
+
+# Now, you're in the arch partition! Time to set everything up
+
+# Internet and GRUB
+pacman -Syu networkmanager grub
+systemctl enable NetworkManager
+grub-nstall /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+
+passwd
+
+# Uncomment en-US*
+vim /etc/locale.gen
+locale-gen
+
+# put "LANG=en-US.UTF-8"
+vim /etc/locale.conf
+
+# put "arch"
+vim /etc/hostname
+
+ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+exit
+
+# Back in the USB stick, unmount and reboot
+umount -R /mnt
+reboot
+
+
+################################################################################
+################################################################################
+
+
+# create user and password
+useradd -mg wheel chris
+passwd chris
+
+# uncomment wheel line - gives sudo access to wheel members
+vim /etc/sudoers
+
+********************************
+# Switch to newly created user #
+********************************
+
+pacman -Syu --no-confirm git
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+cd ../
+rm -rf paru/
+
+# load dotfiles (YADM)
+paru -S --noconfirm yadm
+yadm clone https://github.com/cohenchris/dotfiles

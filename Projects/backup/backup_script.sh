@@ -10,8 +10,6 @@ esac
 
 # Save terminal settings
 cd ~/Projects/backup
-#rm profile.dconf
-#dconf dump /org/gnome/terminal/legacy/profiles:/ > profile.dconf
 
 cd
 

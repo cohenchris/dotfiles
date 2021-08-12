@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# Custom packages
+################################################################################
+# install all packages in "packages" file
+# Specified packages
+filename="packages"
+cd ~/Projects/backup/
+
+total_pkgs=$(grep '^[a-zA-Z0-9]' packages | wc -l)
+curr_pkg=0
+while read pkg_name
+do
+  # Omit lines that are blank or commented out
+  if [[ -n $pkg_name ]] && ! [[ $pkg_name =~ ^#.* ]]; then
+
+    curr_pkg=$((curr_pkg+1))
+    echo -ne "($curr_pkg/$total_pkgs)\r"
+    paru -Syu --noconfirm $pkg_name -y > /dev/null 2>&1
+
+    if [[ $? -ne 0 ]]
+    then
+      echo $pkg_name >> ~/failed_installs.txt
+    fi
+
+  fi
+done < $filename
+
+cd
+
+# Xinitrc
+echo "exec i3" > .xinitrc
+ 
+# install VIM plugins
+vim +PluginInstall +qall
+# youcompleteme with support for c-family languages
+cd ~/.vim/bundle/youcompleteme
+python install.py --clangd-completer
+
+
+# Firefox extensions
+################################################################################
+# Bitwarden
+firefox https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/
+# Privacy Badger
+firefox https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/
+# uBlock Origin
+firefox https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
+# ClearURLs
+firefox https://addons.mozilla.org/en-US/firefox/addon/clearurls/
+# Multi-Account Containers
+firefox https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/
+# Floccus
+firefox https://addons.mozilla.org/en-US/firefox/addon/floccus/
+# Honey
+firefox https://addons.mozilla.org/en-US/firefox/addon/honey/
