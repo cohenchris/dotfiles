@@ -35,4 +35,4 @@ done
 
 curr_date=$(date +"%m-%d-%Y_%T")
 yadm commit -m "backup $curr_date"
-yadm push origin master
+yadm push origin main
