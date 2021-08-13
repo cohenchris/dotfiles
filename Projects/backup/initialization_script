@@ -1,3 +1,9 @@
+# https://www.youtube.com/watch?v=XNJ4oKla8B0
+
+
+# Confirm you're in UEFI mode - will be empty if not
+ls /sys/firmware/efi
+
 # set up wifi
 wifi-menu
 
@@ -8,15 +14,31 @@ timedatectl set-ntp true
 ################################################################################
 lsblk
 
-# Give boot partition (GRUB) 128M, then press "b" to set boot flag
-# Partition the rest of the hard drive space and write changes
-cfdisk /dev/sda
+gdisk /dev/sda
+# n
+# partition default
+# first sector default
+# last sector +200M
+# hex code ef00
 
-mkfs.ext4 /dev/sda1
-mkfs.ext4 /dev/sda2
+# n
+# partition default
+# first sector default
+# last sector default
+# hex code default
 
-mount /dev/sda2 /mnt
-mkdir /mnt/boot
+# w
+
+
+# encrypt disk
+cryptsetup -y -v luksFormat /dev/sda2
+cryptsetup open /dev/sda2 cryptroot
+
+mkfs.ext4 /dev/mapper/cryptroot
+mkfs.fat -F32 /dev/sda1
+
+mount /dev/mapper/cryptroot /mnt
+mkdit /mnt/boot
 mount /dev/sda1 /mnt/boot
 
 # double-check partitioning and mounting
@@ -31,48 +53,81 @@ arch-chroot /mnt /bin/bash
 
 # Now, you're in the arch partition! Time to set everything up
 
-# Internet and GRUB
-pacman -Syu networkmanager grub
-systemctl enable NetworkManager
-grub-nstall /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
-
-passwd
+# Create swap partition
+fallocate -l 2GB /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo "/swapfile none swap defaults 0 0" >> /etc/fstab
 
 # Uncomment en-US*
 vim /etc/locale.gen
 locale-gen
 
-# put "LANG=en-US.UTF-8"
-vim /etc/locale.conf
+echo "LANG=en-US.UTF-8" > /etc/locale.conf
 
-# put "arch"
-vim /etc/hostname
+echo "arch" > /etc/hostname
+
+# 127.0.0.1   localhost
+# ::1         localhost
+# 1270.1.1    arch.localdomain    arch
+
+echo """127.0.0.1  localhost
+::1 localhost
+127.0.1.1 arch.localdomain  arch""" >> /etc/hosts
 
 ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
-exit
 
-# Back in the USB stick, unmount and reboot
-umount -R /mnt
+passwd
+
+# Internet and GRUB
+pacman -S efibootmgr networkmanager network-manager-applet wireless_tools wp_supplicant dialog os-prober mtools dosfstools linux-headers git bluez bluz-utils pulseaudio-bluetooth cups xdg-utils xdg-user-dirs grub
+# internet
+systemctl enable NetworkManager
+# bluetooth
+systemctl enable bluetooth
+# printing
+systemctl enable cups
+
+# In HOOKS section, after block, put "encrypt"
+vim /etc/mkinitcpio.conf
+mkinitcpio -p linux
+
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# Find /dev/sda2 UUID
+blkid
+
+# Add the encrypted disk to GRUB
+# GRUB_CMDLINE_LINUX="cryptdevice=UUID=<<hash>>:cryptroot root=/dev/mapper/cryptroot"
+vim /etc/default/grub
+
+# Update grub
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# add user
+useradd -mg wheel chris
+passwd chris
+# uncomment wheel line - gives sudo access to wheel members
+vim /etc/sudoers
+
+
+exit
+# Back in the USB stick, reboot
 reboot
 
 
 ################################################################################
 ################################################################################
 
+*********************************
+# Log ino w/ newly created user #
+*********************************
 
-# create user and password
-useradd -mg wheel chris
-passwd chris
+# configure internet
+nmtui
 
-# uncomment wheel line - gives sudo access to wheel members
-vim /etc/sudoers
-
-********************************
-# Switch to newly created user #
-********************************
-
-pacman -Syu --no-confirm git
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
@@ -80,5 +135,7 @@ cd ../
 rm -rf paru/
 
 # load dotfiles (YADM)
-paru -S --noconfirm yadm
+paru -Syu yadm
 yadm clone https://github.com/cohenchris/dotfiles
+
+# Bootstrap!!!
