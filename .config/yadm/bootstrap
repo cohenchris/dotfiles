@@ -54,3 +54,10 @@ firefox https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/
 firefox https://addons.mozilla.org/en-US/firefox/addon/floccus/
 # Honey
 firefox https://addons.mozilla.org/en-US/firefox/addon/honey/
+
+
+
+# Disables auto-creation of 'Documents' folder and deletes any unnecessary folders
+sed -i 's/XDG_DOCUMENTS_DIR.*/XDG_DOCUMENTS_DIR="$HOME\/"/g' ~/.config/user-dirs.dirs
+cd
+rm -rf Desktop Documents Music Pictures Public Templates Videos
