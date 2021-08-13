@@ -136,6 +136,6 @@ rm -rf paru/
 
 # load dotfiles (YADM)
 paru -Syu yadm
-yadm clone https://github.com/cohenchris/dotfiles
+yadm clone https://github.com/cohenchris/arch
 
 # Bootstrap!!!
