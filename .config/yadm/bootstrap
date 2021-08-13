@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# Custom packages
-################################################################################
+###################
+# CUSTOM PACKAGES #
+###################
+
 # install all packages in "packages" file
-# Specified packages
 filename="packages"
 cd ~/Projects/backup/
 
@@ -28,9 +29,11 @@ done < $filename
 
 cd
 
-# Xinitrc
-echo "exec i3" > .xinitrc
- 
+
+#######
+# VIM #
+#######
+
 # install VIM plugins
 vim +PluginInstall +qall
 # youcompleteme with support for c-family languages
@@ -38,8 +41,27 @@ cd ~/.vim/bundle/youcompleteme
 python install.py --clangd-completer
 
 
+########
+# MISC #
+########
+
+# Disables auto-creation of 'Documents' folder and deletes any unnecessary folders
+sed -i 's/XDG_DOCUMENTS_DIR.*/XDG_DOCUMENTS_DIR="$HOME\/"/g' ~/.config/user-dirs.dirs
+cd
+rm -rf Desktop Documents Music Pictures Public Templates Videos
+
+echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx' >> ~/.bash_profile
+
+
+#######
+# GUI #
+#######
+
+# x server config
+echo "exec i3" > .xinitrc
+startx
+
 # Firefox extensions
-################################################################################
 # Bitwarden
 firefox https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/
 # Privacy Badger
@@ -55,9 +77,3 @@ firefox https://addons.mozilla.org/en-US/firefox/addon/floccus/
 # Honey
 firefox https://addons.mozilla.org/en-US/firefox/addon/honey/
 
-
-
-# Disables auto-creation of 'Documents' folder and deletes any unnecessary folders
-sed -i 's/XDG_DOCUMENTS_DIR.*/XDG_DOCUMENTS_DIR="$HOME\/"/g' ~/.config/user-dirs.dirs
-cd
-rm -rf Desktop Documents Music Pictures Public Templates Videos
