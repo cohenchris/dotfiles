@@ -226,8 +226,8 @@ bindsym $mod+minus exec redshift -x         # off
 # Polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
-# Compton - Transparency
-exec_always --no-startup-id compton
+# Picomp - Transparency
+exec_always --no-startup-id picomp
 
 # Wallpaper
 exec --no-startup-id ~/Projects/scripts/random-wallpaper.sh
