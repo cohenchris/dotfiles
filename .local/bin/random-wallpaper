@@ -2,6 +2,6 @@
 
 cd ~/.local/wallpapers
 
-WALLPAPER=$(find -type f | shuf -n 1)
+WALLPAPER=$(find . -type f | grep -v '/\.' | shuf -n 1)
 
 feh --bg-scale "${WALLPAPER}"
