@@ -14,6 +14,7 @@ declare -a dotfiles=(
   ~/.config/dunst/
   ~/.config/i3/
   ~/.config/polybar/
+  ~/.config/ranger/
   ~/.config/yadm/
   ~/.local/backup
   ~/.local/bin
