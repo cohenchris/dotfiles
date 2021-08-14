@@ -71,7 +71,7 @@ systemctl enable cups
 vim /etc/mkinitcpio.conf
 mkinitcpio -p linux
 
-grub-install /dev/s/da
+grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Find /dev/sda2 UUID
