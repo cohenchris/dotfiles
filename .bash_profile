@@ -1,5 +1,5 @@
 # add custom scripts/backup scripts to PATH
-PATH=$PATH:/home/chris/.config/backup:/home/chris/.local/bin
+PATH=$PATH:/home/chris/.local/backup:/home/chris/.local/bin
 
 # Source bashrc
 [[ -f ~/.bashrc ]] && . ~/.bashrc

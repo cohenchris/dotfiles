@@ -13,7 +13,7 @@ if [ $HIDPI -eq 1 ]; then
   export BAR_HEIGHT=65
   export UNIFONT="Unifont:size=20:style=Bold;0"
   export FONTAWESOME="FontAwesome:size=30:style=Bold;0"
-  export TERMINUS="Terminus:size=30:style=Bold;0"
+  export TERMINUS="Terminus (TTF):size=30:style=Bold;0"
   export MATERIALICONS="MaterialIcons:size=30:style=Bold;0"
   export TOP_LEFT="i3 xwindow"
   export TOP_CENTER=" "
@@ -22,7 +22,7 @@ else
   export BAR_HEIGHT=33
   export UNIFONT="Unifont:size=10:style=Bold;0"
   export FONTAWESOME="FontAwesome:size=15:style=Bold;0"
-  export TERMINUS="Terminus:size=15:style=Bold;0"
+  export TERMINUS="Terminus (TTF):size=15:style=Bold;0"
   export MATERIALICONS="MaterialIcons:size=15:style=Bold;0"
   export TOP_LEFT="i3"
   export TOP_CENTER="xwindow"
