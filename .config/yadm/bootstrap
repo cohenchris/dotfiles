@@ -65,8 +65,7 @@ git remote set-url origin git@github.com:cohenchris/wallpapers.git
 # GUI #
 #######
 
-# x server config
-echo "exec i3" > .xinitrc
+# start x server
 startx
 
 # Firefox extensions
