@@ -13,6 +13,7 @@ timedatectl set-ntp true
 lsblk     # look for main disk
 
 cfdisk
+# choose dos
 # 1st partition - boot - give 128M
 # 2nd partition - root - give rest
 
