@@ -190,7 +190,7 @@ exec --no-startup-id random-wallpaper                     # random wallpaper
 bindsym $mod+w exec firefox                               # web browser
 bindsym Print exec gnome-screenshot -a                    # snipping tool
 bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"   # i3lock
-bindsym $mod+n exec st ranger                             # ranger file browser
+bindsym $mod+n exec alacritty -e ranger                   # ranger file browser
 bindsym $mod+p exec mullvad-vpn                           # mullvad vpn
 bindsym $mod+u exec random-wallpaper                      # random wallpaper
 bindsym $mod+equal exec redshift -PO 1500                 # blue light filter on

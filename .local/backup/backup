@@ -16,6 +16,7 @@ declare -a dotfiles=(
   ~/.config/polybar/
   ~/.config/ranger/
   ~/.config/yadm/
+  ~/.config/alacritty/
   ~/.local/backup
   ~/.local/bin
   ~/.bashrc

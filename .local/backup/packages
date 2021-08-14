@@ -17,7 +17,7 @@ git                       # version control
 ranger-git                # file browser
 redshift-git              # blue light filter
 feh                       # image viewer
-st                        # terminal emulator
+alacritty                 # terminal emulator
 net-tools                 # network tools
 pulseaudio                # sound
 pavucontrol               # pulseaudio GUI
