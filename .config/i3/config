@@ -227,7 +227,7 @@ bindsym $mod+minus exec redshift -x         # off
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Picomp - Transparency
-exec_always --no-startup-id picomp
+exec_always --no-startup-id picom
 
 # Wallpaper
 exec --no-startup-id ~/Projects/scripts/random-wallpaper.sh

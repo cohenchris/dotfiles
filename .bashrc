@@ -114,10 +114,10 @@ alias updatevim="vim +PluginInstall +qall"
 alias backup="~/Projects/backup/backup_script.sh"
 
 # Misc
-alias wifi="~/Projects/scripts/wificonnect.sh"
+alias wifi="~/Projects/scripts/wifi.sh"
 alias val="valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes"
 alias shortcuts="~/Projects/scripts/shortcuts.sh"
-alias earbuds="~/Projects/scripts/bluetooth_connect.sh"
+alias earbuds="~/Projects/scripts/earbuds.sh"
 alias mountsd="udisksctl mount -b /dev/mmcblk0; mkdir ~/sdcard; ln -s /media/${USER}/disk ~/sdcard"
 alias unmountsd="unlink ~/sdcard/disk; udisksctl unmount -b /dev/mmcblk0p1; rm -r ~/sdcard"
 alias occ="docker-compose exec --user www-data nextcloud php occ"

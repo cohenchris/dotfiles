@@ -14,7 +14,6 @@ DEFAULT=1500
 type=$1
 
 if [[ "$type" == "up" ]]; then
-  echo "up"
   redshift_on
   if [[ $? == 0 ]]; then
     REDSHIFT_VAL="$DEFAULT"
@@ -25,7 +24,6 @@ if [[ "$type" == "up" ]]; then
   fi
   echo $?
 elif [[ "$type" == "down" ]]; then
-  echo "down"
   redshift_on
   echo $?
 elif [[ "$type" == "off" ]]; then

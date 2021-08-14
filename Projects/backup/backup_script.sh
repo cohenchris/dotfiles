@@ -15,10 +15,10 @@ cd
 
 declare -a dotfiles=(
   ~/.bashrc
+  ~/.bash_profile
   ~/.gitconfig
   ~/.config/i3/
   ~/.config/polybar/
-  ~/.config/wallpapers/
   ~/.config/dunst/
   ~/.vimrc
   ~/.config/yadm/bootstrap
