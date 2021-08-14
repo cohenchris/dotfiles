@@ -1,73 +1,57 @@
 # development
-########################################
-git
-make
-cmake
-python
-python-pip
-code
-curl
-npm
-gcc
-jq
-vundle
+################################################################################
+make                      # makefile executor
+cmake                     # cross-platform makefile executor
+gcc                       # GNU Compiler Collections
+valgrind                  # Memory leak detector
+python                    # Python programming language
+python-pip                # Python package manager - "pip installs packages"
+npm                       # Node package manager
+code                      # Microsoft Visual Studio Code
+curl                      # web requests
+jq                        # json parser
+git                       # version control
 
+# system utilities
+################################################################################
+ranger-git                # file browser
+redshift-git              # blue light filter
+feh                       # image viewer
+st                        # terminal emulator
+net-tools                 # network tools
+pulseaudio                # sound
+pavucontrol               # pulseaudio GUI
+vundle                    # vim plugin manager
+neofetch                  # neofetch
+terminus-font-ttf         # Terminus Font
+ttf-font-awesome-4        # FontAwesome Font
+ttf-material-design-icons # Material Design Icons
+ttf-unifont               # Unifont
 
-# basic utilities
-########################################
-ranger-git
-redshift-git
-feh
-st
-net-tools
-pulseaudio
-pavucontrol
-# blueman
-
-
-# gui components
-########################################
-# xorg
-xorg-server
-xorg-xinit
-# window manager
-i3-gaps-next-git
-# lock screen
-i3lock-color
-i3lock-fancy-git
-# x compositor
-picom-git
-# status bar
-polybar
-# menu
-dmenu
-# notifications
-dunst
-
+# gui
+################################################################################
+xorg-server               # x display server
+xorg-xinit                # tool to start xorg servers
+picom-git                 # x compositor
+i3-gaps-next-git          # window manager
+i3lock-color              # lock screen
+i3lock-fancy-git          # lock screen colors
+polybar                   # status bar
+dmenu                     # menu
+dunst                     # notifications
 
 # daily use
-########################################
-syncthing
-onionshare
-firefox
-signal-desktop
-mullvad-vpn
-# libreoffice
-# texlive-lang-english
-# texlive-xetex
-# biber
-
+################################################################################
+syncthing                 # P2P encrypted file syncing
+onionshare                # Tor file sharing
+firefox                   # Mozilla Firefox
+signal-desktop            # Signal Messenger
+mullvad-vpn               # Mullvad VPN
+# libreoffice             # open-source office suite
+# texlive-lang-english    # LaTeX
+# texlive-xetex           # XeTeX
+# biber                   # LaTeX/XeTeX bibliographies
 
 # games
-########################################
-minecraft-launcher
-
-
-# other
-########################################
-neofetch
-terminus-font-ttf
-ttf-font-awesome-4
-ttf-material-design-icons
-ttf-unifont
-#xf86-video-intel
+################################################################################
+minecraft-launcher        # Minecraft

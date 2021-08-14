@@ -1,9 +1,8 @@
-#
-# ~/.bash_profile
-#
+# add custom scripts/backup scripts to PATH
+PATH=$PATH:/home/chris/.config/backup:/home/chris/.local/bin
 
-PATH=$PATH:/home/chris/.config/backup:/home/chris/.config/bin
-
+# Source bashrc
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
+# Start x server
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx

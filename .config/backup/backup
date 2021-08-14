@@ -8,9 +8,6 @@ case $yn in
   *     ) exit;;
 esac
 
-# Save terminal settings
-cd ~/.config/backup
-
 cd
 
 declare -a dotfiles=(
