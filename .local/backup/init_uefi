@@ -71,17 +71,14 @@ echo "arch" > /etc/hostname
 # 127.0.0.1   localhost
 # ::1         localhost
 # 1270.1.1    arch.localdomain    arch
-
-echo """127.0.0.1  localhost
-::1 localhost
-127.0.1.1 arch.localdomain  arch""" >> /etc/hosts
+vim /etc/hosts
 
 ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 
 passwd
 
 # Internet and GRUB
-pacman -S efibootmgr networkmanager network-manager-applet wireless_tools wp_supplicant dialog os-prober mtools dosfstools linux-headers git bluez bluz-utils pulseaudio-bluetooth cups xdg-utils xdg-user-dirs grub
+pacman -S efibootmgr networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools linux-headers git bluez bluez-utils pulseaudio-bluetooth cups xdg-utils xdg-user-dirs grub
 # internet
 systemctl enable NetworkManager
 # bluetooth
