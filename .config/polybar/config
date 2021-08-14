@@ -1,29 +1,68 @@
-; This config uses the new syntax (which isn't merged upstream)
+[global/wm]
+margin-top = 5
+margin-bottom = 5
 
-[settings]
-throttle-ms = 50
-throttle-limit = 3
+; ##############################################################################
+
+[colors]
+background = #000000
+background-alt = #666
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffffff
+secondary = #e60053
+alert = #bd2c40
+
+; ##############################################################################
+
+
+
+
+
+[bar/top]
+width = 100%
+height = ${env:BAR_HEIGHT}
+
+background = ${env:BACKGROUND_COLOR}
+foreground = #ccffffff
+
+spacing = 1
+lineheight = 16
+
+padding-right = 3
+padding-left = 0
+
+module-margin-right = 0
+module-margin-left = 0
+
+font-0 = ${env:TERMINUS}
+font-1 = ${env:MATERIALICONS}
+font-2 = ${env:FONTAWESOME}
+
+modules-left = ${env:TOP_LEFT}
+modules-center = ${env:TOP_CENTER}
+modules-right = wlan eth battery date
+
+; ##############################################################################
 
 [bar/bottom]
 bottom = true
-width = 100%
 
-; HIDPI
+width = 100%
 height = ${env:BAR_HEIGHT}
 
-;background = ${colors.background}
 background = ${env:BACKGROUND_COLOR}
 foreground = ${colors.foreground}
-linecolor = #ff416d
 
 spacing = 0
 lineheight = 16
+
 padding-right = 0
 padding-left = 0
+
 module-margin-left = 0
 module-margin-right = 0
 
-; HIDPI
 font-0 = ${env:TERMINUS}
 font-1 = ${env:UNIFONT}
 font-2 = ${env:FONTAWESOME}
@@ -31,20 +70,39 @@ font-2 = ${env:FONTAWESOME}
 modules-left = vpn external_ip internal_ip
 modules-right = pulseaudio temperature cpu memory
 
+; ##############################################################################
+
+[module/xwindow]
+type = internal/xwindow
+
+; ##############################################################################
+
 [module/vpn]
 type = custom/script
 exec = ~/.config/polybar/scripts/vpn.sh
 interval = 60
+
+; ##############################################################################
 
 [module/internal_ip]
 type = custom/script
 exec = ~/.config/polybar/scripts/internal_ip.sh
 interval = 60
 
+; ##############################################################################
+
 [module/external_ip]
 type = custom/script
 exec = ~/.config/polybar/scripts/external_ip.sh
 interval = 60
+
+; ##############################################################################
+
+[module/date]
+type = internal/date
+date = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#aaff77}%S%%{F-}
+
+; ##############################################################################
 
 [module/cpu]
 type = internal/cpu
@@ -79,6 +137,8 @@ ramp-coreload-7 = █
 ramp-coreload-7-font = 2
 ramp-coreload-7-foreground = #ff5555
 
+; ##############################################################################
+
 [module/memory]
 type = internal/memory
 format = "<label> <bar-used>"
@@ -95,44 +155,14 @@ bar-used-foreground-3 = #ff5555
 bar-used-indicator = 
 bar-used-indicator-font = 6
 bar-used-indicator-foreground = #ffffff
-;bar-used-fill = ─
 bar-used-fill-font = 6
-;bar-used-empty = ─
 bar-used-empty-font = 6
 bar-used-empty-foreground = #eeeeee
 
 bar-used-fill = ▐
 bar-used-empty = ▐
 
-[module/date]
-type = internal/date
-date = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#aaff77}%S%%{F-}
-
-[bar/top]
-width = 100%
-
-; HIDPI
-height = ${env:BAR_HEIGHT}
-
-background = ${env:BACKGROUND_COLOR}
-foreground = #ccffffff
-linecolor = ${bar/bottom.background}
-
-spacing = 1
-lineheight = 16
-padding-right = 3
-padding-left = 0
-module-margin-right = 0
-module-margin-left = 0
-
-; HIDPI
-font-0 = ${env:TERMINUS}
-font-1 = ${env:MATERIALICONS}
-font-2 = ${env:FONTAWESOME}
-
-modules-left = ${env:TOP_LEFT}
-modules-center = ${env:TOP_CENTER}
-modules-right = wlan eth battery date
+; ##############################################################################
 
 [module/battery]
 type = internal/battery
@@ -166,89 +196,15 @@ animation-charging-4 = 
 animation-charging-4-foreground= #aaff77
 animation-charging-framerate-ms = 500
 
+; ##############################################################################
+
 [module/clock]
 type = internal/date
 interval = 5
 date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
 bar-used-foreground-0 = #aaff77
 
-
-[colors]
-background = #000000
-background-alt = #666
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #ffffff
-secondary = #e60053
-alert = #bd2c40
-
-#SPOTIFY
-[module/spotify]
-type = custom/script
-interval = 3
-format = "%{T1}<label>"
-format-padding = 3
-format-prefix = "♫ "
-exec = python3 ~/Projects/scripts/spotify/spotify_status.py
-format-underline = #1db954
-line-size = 1
-
-[module/playpause]
-type = custom/script
-format-padding = 3
-interval = 2
-format = "%{T3}<label>"
-format-offset = -24
-exec = ~/Projects/scripts/spotify/isplaying.sh
-format-underline = #1db954
-line-size = 5
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-
-[module/previous]
-type = custom/script
-interval = 86400
-format-padding = 3
-format-offset = -24
-format = "%{T3}<label>"
-exec = echo ""
-format-underline = #1db954
-line-size = 1
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
-
-[module/next]
-type = custom/script
-interval = 86400
-format-padding = 3
-format = "%{T3}<label>"
-format-offset = -24
-exec = echo ""
-format-underline = #1db954
-line-size = 1
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-
-#END SPOTIFY
-
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
-
-; Separator in between workspaces
-label-separator = |
+; ##############################################################################
 
 [module/i3]
 type = internal/i3
@@ -265,13 +221,13 @@ label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
@@ -281,17 +237,11 @@ label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %icon%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
 
-; Separator in between workspaces
-;label-separator = |
-
-; Web Browser
 ws-icon-0 = 1;
-; Music
 ws-icon-1 = 2;
-; Terminal
 ws-icon-2 = 3;
 ws-icon-3 = 4;4
 ws-icon-4 = 5;5
@@ -299,8 +249,9 @@ ws-icon-5 = 6;6
 ws-icon-6 = 7;7
 ws-icon-7 = 8;8
 ws-icon-8 = 9;9
-; VPN/Keepass
 ws-icon-9 = 10;
+
+; ##############################################################################
 
 [module/wlan]
 type = internal/network
@@ -309,8 +260,9 @@ interval = 3.0
 
 format-connected = " <label-connected>     "
 format-connected-underline = #9f78e1
-;label-connected = %essid% (%local_ip%)
 label-connected = %essid%
+
+; ##############################################################################
 
 [module/eth]
 type = internal/network
@@ -320,8 +272,9 @@ interval = 3.0
 format-connected = " <label-connected>     "
 format-connected-underline = #9f78e1
 format-connected-prefix-foreground = ${colors.foreground-alt}
-;label-connected = %ifname% (%local_ip%)
 label-connected = %ifname%
+
+; ##############################################################################
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -350,6 +303,8 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
+; ##############################################################################
+
 [module/temperature]
 type = internal/temperature
 thermal-zone = 6
@@ -363,13 +318,3 @@ format-warn-underline = ${self.format-underline}
 label = "   CPU (%temperature-c%)"
 label-warn = %temperature-c%  (%temperature-f%)
 label-warn-foreground = ${colors.secondary}
-
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:45:...%
-
-[global/wm]
-margin-top = 5
-margin-bottom = 5
-
-;vim:ft=dosini

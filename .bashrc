@@ -10,7 +10,6 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
 
@@ -20,11 +19,6 @@ shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -86,38 +80,16 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export ANDROID_HOME="/usr/lib/android-sdk"
 
 ###################
 ##### ALIASES #####
 ###################
-
-# LaTeX
-alias texcreate="~/Projects/scripts/tex/texcreate.sh"
-alias texedit="~/Projects/scripts/tex/texedit.sh"
-
 # SSH
 alias pihole="ssh pi@192.168.24.1"                # pi-hold dns adblocker   192.168.24.1
 alias sd="ssh pi@192.168.24.2"                    # sd pi vpn               192.168.24.2
 alias mediaserver="ssh phrog@192.168.24.3"        # media server            192.168.24.3
 alias cloud="ssh chris@192.168.24.4"              # nextcloud server        192.168.24.4
 alias stl="ssh pi@192.168.2.1"                    # stl pi vpn              192.168.2.1
-alias vps="ssh root@chriscohen.dev"               # virtual private server  chriscohen.dev
-
-# Maintenance
-alias update="yes | sudo apt-get update; yes | sudo apt-get --with-new-pkgs upgrade; yes | sudo apt-get autoremove;"
-alias updatevim="vim +PluginInstall +qall"
-alias backup="~/Projects/backup/backup_script.sh"
 
 # Misc
-alias wifi="~/Projects/scripts/wifi.sh"
 alias val="valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes"
-alias shortcuts="~/Projects/scripts/shortcuts.sh"
-alias earbuds="~/Projects/scripts/earbuds.sh"
-alias mountsd="udisksctl mount -b /dev/mmcblk0; mkdir ~/sdcard; ln -s /media/${USER}/disk ~/sdcard"
-alias unmountsd="unlink ~/sdcard/disk; udisksctl unmount -b /dev/mmcblk0p1; rm -r ~/sdcard"
-alias occ="docker-compose exec --user www-data nextcloud php occ"

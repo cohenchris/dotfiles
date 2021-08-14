@@ -9,21 +9,22 @@ case $yn in
 esac
 
 # Save terminal settings
-cd ~/Projects/backup
+cd ~/.config/backup
 
 cd
 
 declare -a dotfiles=(
+  ~/.config/backup
+  ~/.config/bin
+  ~/.config/dunst/
+  ~/.config/i3/
+  ~/.config/polybar/
+  ~/.config/yadm/
   ~/.bashrc
   ~/.bash_profile
   ~/.gitconfig
-  ~/.config/i3/
-  ~/.config/polybar/
-  ~/.config/dunst/
   ~/.vimrc
-  ~/.config/yadm/bootstrap
-  ~/Projects/backup
-  ~/Projects/scripts
+  ~/Projects
 )
 
 for i in ${dotfiles[@]}

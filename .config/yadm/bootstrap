@@ -6,7 +6,7 @@
 
 # install all packages in "packages" file
 filename="packages"
-cd ~/Projects/backup/
+cd ~.config/backup/
 
 total_pkgs=$(grep '^[a-zA-Z0-9]' packages | wc -l)
 curr_pkg=0
@@ -44,6 +44,9 @@ python install.py --clangd-completer
 ########
 # MISC #
 ########
+
+# Get wallpapers
+git clone https://github.com/cohenchris/wallpapers ~/.config/wallpapers
 
 # Disables auto-creation of 'Documents' folder and deletes any unnecessary folders
 sed -i 's/XDG_DOCUMENTS_DIR.*/XDG_DOCUMENTS_DIR="$HOME\/"/g' ~/.config/user-dirs.dirs
