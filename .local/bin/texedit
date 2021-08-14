@@ -15,7 +15,7 @@ FILENAME=$1
 
 pdf=$(ls | grep *.pdf | wc -l)
 if [ $pdf -ne 1 ]; then
-  ~/Projects/scripts/tex/texcompile.sh $FILENAME>> /dev/null
+  texcompile $FILENAME >> /dev/null     # texcompile is a custom script in ~/.local/bin
   exit
 fi
 

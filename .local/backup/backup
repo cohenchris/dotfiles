@@ -11,12 +11,12 @@ esac
 cd
 
 declare -a dotfiles=(
-  ~/.config/backup
-  ~/.config/bin
   ~/.config/dunst/
   ~/.config/i3/
   ~/.config/polybar/
   ~/.config/yadm/
+  ~/.local/backup
+  ~/.local/bin
   ~/.bashrc
   ~/.bash_profile
   ~/.gitconfig

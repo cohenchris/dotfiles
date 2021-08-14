@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/.config/wallpapers
+cd ~/.local/wallpapers
 
 WALLPAPER=$(find -type f | shuf -n 1)
 

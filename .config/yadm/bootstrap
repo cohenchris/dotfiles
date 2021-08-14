@@ -6,7 +6,7 @@
 
 # install all packages in "packages" file
 filename="packages"
-cd ~/.config/backup/
+cd ~/.local/backup/
 
 total_pkgs=$(grep '^[a-zA-Z0-9]' packages | wc -l)
 curr_pkg=0
@@ -48,7 +48,7 @@ python install.py --clangd-completer
 ########
 
 # Get wallpapers
-git clone https://github.com/cohenchris/wallpapers ~/.config/wallpapers
+git clone https://github.com/cohenchris/wallpapers ~/.local/wallpapers
 
 # Disables auto-creation of 'Documents' folder and deletes any unnecessary folders
 sed -i 's/XDG_DOCUMENTS_DIR.*/XDG_DOCUMENTS_DIR="$HOME\/"/g' ~/.config/user-dirs.dirs
@@ -57,7 +57,7 @@ rm -rf Desktop Documents Music Pictures Public Templates Videos
 
 # Change yadm and git to use ssh
 yadm remote set-url origin git@github.com:cohenchris/arch.git
-cd ~/.config/wallpapers
+cd ~/.local/wallpapers
 git remote set-url origin git@github.com:cohenchris/wallpapers.git
 
 
