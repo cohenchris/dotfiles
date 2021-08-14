@@ -1,0 +1,117 @@
+# https://www.youtube.com/watch?v=XNJ4oKla8B0 - UEFI w/ LUKS
+# https://www.youtube.com/watch?v=rUEnS1zj1DM - BIOS
+################################################################################
+
+# set up wifi
+wifi-menu
+
+# time
+timedatectl set-ntp true
+
+# partitioning / mounting
+################################################################################
+lsblk     # look for main disk
+
+cfdisk
+# 1st partition - boot - give 128M
+# 2nd partition - root - give rest
+
+# encrypt disk
+cryptsetup -y -v luksFormat /dev/sda2
+cryptsetup open /dev/sda2 cryptroot
+
+mkfs.ext4 /dev/mapper/cryptroot
+mkfs.ext4 /dev/sda1
+
+mount /dev/mapper/cryptroot /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+
+# double-check partitioning and mounting
+lsblk
+################################################################################
+
+# pacstrap, fstab, and chroot
+pacstrap /mnt base base-devel linux linux-firmware vim
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt /bin/bash
+
+
+# Now, you're in the arch partition! Time to set everything up
+
+# Uncomment en-US*
+vim /etc/locale.gen
+locale-gen
+
+echo "LANG=en-US.UTF-8" > /etc/locale.conf
+
+echo "arch" > /etc/hostname
+
+# Put the following in /etc/hosts:
+# 127.0.0.1   localhost
+# ::1         localhost
+# 127.0.1.1    arch.localdomain    arch
+vim /etc/hosts
+
+ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+
+passwd
+
+# Internet and GRUB
+pacman -S networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools linux-headers git bluez bluez-utils pulseaudio-bluetooth cups xdg-utils xdg-user-dirs grub
+# internet
+systemctl enable NetworkManager
+# bluetooth
+systemctl enable bluetooth
+# printing
+systemctl enable cups
+
+# In HOOKS section, after block, put "encrypt"
+vim /etc/mkinitcpio.conf
+mkinitcpio -p linux
+
+grub-install /dev/s/da
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# Find /dev/sda2 UUID
+blkid
+# Add the encrypted disk (/dev/sda2) to GRUB
+# GRUB_CMDLINE_LINUX="cryptdevice=UUID=<<hash>>:cryptroot root=/dev/mapper/cryptroot"
+vim /etc/default/grub
+
+# Update grub
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# add user
+useradd -mg wheel chris
+passwd chris
+# uncomment wheel line - gives sudo access to wheel members
+vim /etc/sudoers
+
+
+exit
+# Back in the USB stick, reboot
+reboot
+
+
+################################################################################
+################################################################################
+
+*********************************
+# Log ino w/ newly created user #
+*********************************
+
+# configure internet
+nmtui
+
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+cd ../
+rm -rf paru/
+
+# load dotfiles (YADM)
+paru -Syu yadm
+yadm clone https://github.com/cohenchris/arch
+
+# Bootstrap!!!
