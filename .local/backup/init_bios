@@ -44,7 +44,7 @@ arch-chroot /mnt /bin/bash
 vim /etc/locale.gen
 locale-gen
 
-echo "LANG=en-US.UTF-8" > /etc/locale.conf
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 echo "arch" > /etc/hostname
 
