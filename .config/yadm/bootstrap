@@ -53,7 +53,11 @@ sed -i 's/XDG_DOCUMENTS_DIR.*/XDG_DOCUMENTS_DIR="$HOME\/"/g' ~/.config/user-dirs
 cd
 rm -rf Desktop Documents Music Pictures Public Templates Videos
 
-echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx' >> ~/.bash_profile
+# SSH Keys and Git
+ssh-keygen
+yadm remote set-url origin git@github.com:cohenchris/arch.git
+cd ~/.config/wallpapers
+git remote set-url origin git@github.com:cohenchris/wallpapers.git
 
 
 #######
@@ -80,5 +84,6 @@ firefox https://addons.mozilla.org/en-US/firefox/addon/floccus/
 # Honey
 firefox https://addons.mozilla.org/en-US/firefox/addon/honey/
 
-
-echo "ssh-keygen\nupload ssh key to github\nyadm remote set-url origin git@github.com:cohenchris/arch.git\n" > ~/TODO
+echo
+echo
+echo "upload ssh key to github!!!"
