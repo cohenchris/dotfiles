@@ -6,7 +6,7 @@
 
 # install all packages in "packages" file
 filename="packages"
-cd ~.config/backup/
+cd ~/.config/backup/
 
 total_pkgs=$(grep '^[a-zA-Z0-9]' packages | wc -l)
 curr_pkg=0
