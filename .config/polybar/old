@@ -4,7 +4,7 @@ res=$(xrandr | grep 'Screen 0' | cut -d , -f 2 | cut -d ' ' -f 5)
 if [ $res -le 1080 ]; then
   HIDPI=0
 else
-  HIDPI=1
+  HIDPI=1;
 fi
 
 # Change settings based on whether or not the screen is HIDPI 4k

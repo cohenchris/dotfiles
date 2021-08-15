@@ -94,7 +94,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -189,6 +189,7 @@ exec --no-startup-id random-wallpaper                     # random wallpaper
 # SHORTCUTS
 bindsym $mod+w exec firefox                               # web browser
 bindsym Print exec gnome-screenshot -a                    # snipping tool
+bindsym $mod+a exec firefox https://archlinux.org/        # Arch Linux wiki
 bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"   # i3lock
 bindsym $mod+n exec alacritty -e ranger                   # ranger file browser
 bindsym $mod+p exec mullvad-vpn                           # mullvad vpn
