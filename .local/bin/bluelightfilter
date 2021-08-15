@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEFAULT=1500
+DEFAULT=2000
 REDSHIFT_FILE="$HOME/.redshift_temp"
 
 LOW=1000
@@ -14,7 +14,7 @@ function temp_up () {
     if [[ $new -gt $HIGH ]]; then
       # don't let value surpass high boundary
       notify-send "redshift already at highest value"
-      $new=$old
+      new=$old
     fi
     echo $new > $REDSHIFT_FILE
     redshift -PO $new
@@ -33,7 +33,7 @@ function temp_down () {
     if [[ $new -lt $LOW ]]; then
       # don't let value go under lower boundary
       notify-send "redshift already at lowest value"
-      $new=$old
+      new=$old
     fi
     echo $new > $REDSHIFT_FILE
     redshift -PO $new

@@ -14,6 +14,7 @@ git                       # version control
 
 # system utilities
 ################################################################################
+man                       # man pages
 ranger-git                # file browser
 redshift-git              # blue light filter
 feh                       # image viewer
