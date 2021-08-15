@@ -1,0 +1,60 @@
+#!/bin/bash
+
+DEFAULT=1500
+REDSHIFT_FILE="$HOME/.redshift_temp"
+
+LOW=1000
+HIGH=25000
+
+function temp_up () {
+  if [[ -f $REDSHIFT_FILE ]]; then
+    # Read existing value
+    old=$(cat $REDSHIFT_FILE)
+    new=$(($old + 25 ))
+    if [[ $new -gt $HIGH ]]; then
+      # don't let value surpass high boundary
+      notify-send "redshift already at highest value"
+      $new=$old
+    fi
+    echo $new > $REDSHIFT_FILE
+    redshift -PO $new
+  else
+    # Default value
+    echo $DEFAULT > $REDSHIFT_FILE
+    redshift -PO $DEFAULT
+  fi
+}
+
+function temp_down () {
+  if [[ -f $REDSHIFT_FILE ]]; then
+    # Read existing value
+    old=$(cat $REDSHIFT_FILE)
+    new=$(($old - 25 ))
+    if [[ $new -lt $LOW ]]; then
+      # don't let value go under lower boundary
+      notify-send "redshift already at lowest value"
+      $new=$old
+    fi
+    echo $new > $REDSHIFT_FILE
+    redshift -PO $new
+  else
+    # Default value
+    echo $DEFAULT > $REDSHIFT_FILE
+    redshift -PO $DEFAULT
+  fi
+}
+
+
+option=$1
+
+if [[ "$option" == "up" ]]; then
+  temp_up 
+elif [[ "$option" == "down" ]]; then
+  temp_down
+elif [[ "$option" == "off" ]]; then
+  rm ~/.redshift_temp
+  redshift -x
+else
+  # function not supported
+  exit
+fi

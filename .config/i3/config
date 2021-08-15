@@ -184,6 +184,7 @@ exec_always --no-startup-id mullvad-vpn                   # mullvad vpn
 exec_always --no-startup-id ~/.config/polybar/launch.sh   # polybar
 exec_always --no-startup-id picom                         # compositor (transparency)
 exec_always --no-startup-id syncthing                     # syncthing
+exec_always --no-startup-id dunst                         # notification daemon
 exec --no-startup-id random-wallpaper                     # random wallpaper
 
 # SHORTCUTS
@@ -194,19 +195,18 @@ bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"   # i3lock
 bindsym $mod+n exec alacritty -e ranger                   # ranger file browser
 bindsym $mod+p exec mullvad-vpn                           # mullvad vpn
 bindsym $mod+u exec random-wallpaper                      # random wallpaper
-bindsym $mod+equal exec redshift -PO 1500                 # blue light filter on
-bindsym $mod+minus exec redshift -x                       # blue light filter off
-#bindsym $mod+equal exec ~/Projects/scripts/bluelightfilter.sh up
-#bindsym $mod+minus exec ~/Projects/scripts/bluelightfilter.sh down
-#bindsym $mod+backspace exec ~/Projects/scripts/bluelightfilter.sh off
-
 
 # SYSTEM
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
-bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-#bindsym XF86MonBrightnessUp exec xbacklight -inc 5
-#bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym $mod+equal exec bluelightfilter up                # blue light filter increase
+bindsym $mod+minus exec bluelightfilter down              # blue light filter decrease
+bindsym $mod+BackSpace exec bluelightfilter off           # blue light filter off
+
+bindsym XF86AudioPlay exec playerctl play-pause           # play/pause
+bindsym XF86AudioNext exec playerctl next                 # next
+bindsym XF86AudioPrev exec playerctl previous             # previous
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 5        # backlight increase
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 5      # backlight decrease
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+   # raise volume
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-   # lower volume
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle    # mute
