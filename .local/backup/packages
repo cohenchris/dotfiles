@@ -18,7 +18,6 @@ man                       # man pages
 ranger-git                # file browser
 redshift-git              # blue light filter
 feh                       # image viewer
-alacritty                 # terminal emulator
 net-tools                 # network tools
 pulseaudio                # sound
 pavucontrol               # pulseaudio GUI
@@ -28,7 +27,6 @@ terminus-font-ttf         # Terminus Font
 ttf-font-awesome-4        # FontAwesome Font
 ttf-material-design-icons # Material Design Icons
 ttf-unifont               # Unifont
-ueberzug                  # image viewer (for ranger)
 
 # gui
 ################################################################################

@@ -60,6 +60,12 @@ yadm remote set-url origin git@github.com:cohenchris/arch.git
 cd ~/.local/wallpapers
 git remote set-url origin git@github.com:cohenchris/wallpapers.git
 
+# Personal suckless terminal emulator
+git clone https://github.com/cohenchris/st
+cd st
+sudo make clean install
+cd ../
+rm -rf st/
 
 #######
 # GUI #
