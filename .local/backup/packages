@@ -28,6 +28,7 @@ terminus-font-ttf         # Terminus Font
 ttf-font-awesome-4        # FontAwesome Font
 ttf-material-design-icons # Material Design Icons
 ttf-unifont               # Unifont
+ueberzug                  # image viewer (for ranger)
 
 # gui
 ################################################################################
