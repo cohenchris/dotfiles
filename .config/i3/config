@@ -36,7 +36,7 @@ client.unfocused	$grey	$grey	$white
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec st
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -190,7 +190,6 @@ exec --no-startup-id random-wallpaper                     # random wallpaper
 # SHORTCUTS
 bindsym $mod+w exec firefox                               # web browser
 bindsym Print exec gnome-screenshot -a                    # snipping tool
-bindsym $mod+a exec firefox https://archlinux.org/        # Arch Linux wiki
 bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"   # i3lock
 bindsym $mod+n exec alacritty -e ranger                   # ranger file browser
 bindsym $mod+p exec mullvad-vpn                           # mullvad vpn
