@@ -316,5 +316,5 @@ format-warn = <label-warn>
 format-warn-underline = ${self.format-underline}
 
 label = "   CPU (%temperature-c%)"
-label-warn = %temperature-c%  (%temperature-f%)
+label-warn = "   CPU (%temperature-c%)"
 label-warn-foreground = ${colors.secondary}
