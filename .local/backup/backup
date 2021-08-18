@@ -29,7 +29,6 @@ for i in ${dotfiles[@]}
 do
   echo "----- UPLOADING $i -----"
   yadm add $i
-  echo
 done
 
 curr_date=$(date +"%m-%d-%Y_%T")
