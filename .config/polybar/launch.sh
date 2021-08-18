@@ -19,13 +19,13 @@ if [ $HIDPI -eq 1 ]; then
   export TOP_CENTER=" "
 else
   # Normal
-  export BAR_HEIGHT=33
+  export BAR_HEIGHT=25
   export UNIFONT="Unifont:size=8:style=Bold;0"
   export FONTAWESOME="FontAwesome:size=12:style=Bold;0"
   export TERMINUS="Terminus (TTF):size=12:style=Bold;0"
   export MATERIALICONS="MaterialIcons:size=12:style=Bold;0"
   export TOP_LEFT="i3 xwindow"
-  export TOP_CENTER=" "
+  export TOP_CENTER=""
 fi
 
 # Background color (ARGB)

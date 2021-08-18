@@ -169,9 +169,9 @@ type = internal/battery
 full-at = 99
 
 label-discharging = %percentage%% (%time% remaining)
-format-charging = "<animation-charging><label-charging>     "
-format-discharging = "<ramp-capacity><label-discharging>     "
-format-full = "<ramp-capacity><label-full>     "
+format-charging = "<animation-charging><label-charging>   "
+format-discharging = "<ramp-capacity><label-discharging>   "
+format-full = "<ramp-capacity><label-full> |"
 
 ramp-capacity-0 = 
 ramp-capacity-0-foreground = #f53c3c
@@ -208,7 +208,7 @@ bar-used-foreground-0 = #aaff77
 
 [module/i3]
 type = internal/i3
-format = "<label-state> <label-mode>                                               "
+format = "<label-state> <label-mode>    "
 index-sort = true
 wrapping-scroll = false
 
@@ -258,7 +258,7 @@ type = internal/network
 interface = ${env:WLAN}
 interval = 3.0
 
-format-connected = " <label-connected>     "
+format-connected = " <label-connected>   "
 format-connected-underline = #9f78e1
 label-connected = %essid%
 
@@ -269,7 +269,7 @@ type = internal/network
 interface = ${env:ETH}
 interval = 3.0
 
-format-connected = " <label-connected>     "
+format-connected = " <label-connected>   "
 format-connected-underline = #9f78e1
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %ifname%
@@ -307,7 +307,7 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 6
+thermal-zone = 0
 warn-temperature = 60
 
 format = <label>
