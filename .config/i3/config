@@ -185,11 +185,11 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh   # polybar
 exec_always --no-startup-id picom                         # compositor (transparency)
 exec_always --no-startup-id syncthing                     # syncthing
 exec_always --no-startup-id dunst                         # notification daemon
-exec --no-startup-id random-wallpaper                     # random wallpaper
+exec_always --no-startup-id random-wallpaper                     # random wallpaper
 
 # SHORTCUTS
 bindsym $mod+w exec firefox                               # web browser
-bindsym Print exec gnome-screenshot -a                    # snipping tool
+bindsym Print exec flameshot gui                          # snipping tool
 bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"   # i3lock
 bindsym $mod+n exec st ranger                             # ranger file browser
 bindsym $mod+p exec mullvad-vpn                           # mullvad vpn
@@ -200,12 +200,14 @@ bindsym $mod+equal exec bluelightfilter up                # blue light filter in
 bindsym $mod+minus exec bluelightfilter down              # blue light filter decrease
 bindsym $mod+BackSpace exec bluelightfilter off           # blue light filter off
 
-bindsym XF86AudioPlay exec playerctl play-pause           # play/pause
-bindsym XF86AudioNext exec playerctl next                 # next
-bindsym XF86AudioPrev exec playerctl previous             # previous
-#bindsym XF86MonBrightnessUp exec xbacklight -inc 5        # backlight increase
-#bindsym XF86MonBrightnessDown exec xbacklight -dec 5      # backlight decrease
+#bindsym XF86AudioPlay exec playerctl play-pause           # play/pause
+#bindsym XF86AudioNext exec playerctl next                 # next
+#bindsym XF86AudioPrev exec playerctl previous             # previous
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+   # raise volume
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-   # lower volume
-bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle    # mute
+bindsym XF86MonBrightnessUp exec brightnessctl set +75    # backlight increase
+bindsym XF86MonBrightnessDown exec brightnessctl set 75-  # backlight decrease
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%       # raise volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%       # lower volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle             # mute/unmute speakers
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle        # mute/unmute microphone

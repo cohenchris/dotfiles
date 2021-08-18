@@ -28,6 +28,9 @@ ttf-font-awesome-4        # FontAwesome Font
 ttf-material-design-icons # Material Design Icons
 ttf-unifont               # Unifont
 ueberzug                  # image preview for ranger
+acpi                      # acpi info
+brightnessctl             # backlight control
+flameshot                 # screenshot utility
 
 # gui
 ################################################################################
