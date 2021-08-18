@@ -56,7 +56,7 @@ cd
 rm -rf Desktop Documents Music Pictures Public Templates Videos
 
 # Change yadm and git to use ssh
-yadm remote set-url origin git@github.com:cohenchris/arch.git
+yadm remote set-url origin git@github.com:cohenchris/dotfiles.git
 cd ~/.local/wallpapers
 git remote set-url origin git@github.com:cohenchris/wallpapers.git
 
