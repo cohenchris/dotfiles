@@ -47,7 +47,7 @@ bindsym $mod+d exec dmenu_run -nb '#1e1e1e' -sf '$highlight_green' -sb '#1e1e1e'
 
 # gaps
 gaps inner 10
-gaps outer 10
+gaps outer 0 
 
 # change focus
 bindsym $mod+j focus left
