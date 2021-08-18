@@ -22,6 +22,7 @@ declare -a dotfiles=(
   ~/.bash_profile
   ~/.gitconfig
   ~/.vimrc
+  ~/.xinitrc
 )
 
 for i in ${dotfiles[@]}
