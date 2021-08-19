@@ -83,7 +83,9 @@ firefox https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/
 # Floccus
 firefox https://addons.mozilla.org/en-US/firefox/addon/floccus/
 # Honey
-firefox https://addons.mozilla.org/en-US/firefox/addon/honey/" > post-install.sh
+firefox https://addons.mozilla.org/en-US/firefox/addon/honey/
+# Terms of Service; Didn't Read
+firefox https://addons.mozilla.org/en-US/firefox/addon/terms-of-service-didnt-read/" > post-install.sh
 
 chmod +x post-install.sh
 
