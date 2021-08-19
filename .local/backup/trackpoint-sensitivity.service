@@ -1,0 +1,8 @@
+[Unit]
+Description=Script
+
+[Service]
+ExecStart=/home/chris/.local/bin/trackpoint-adjust
+
+[Install]
+WantedBy=multi-user.target 

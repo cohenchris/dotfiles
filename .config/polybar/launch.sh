@@ -25,7 +25,7 @@ else
   export TERMINUS="Terminus (TTF):size=12:style=Bold;0"
   export MATERIALICONS="MaterialIcons:size=12:style=Bold;0"
   export TOP_LEFT="i3 xwindow"
-  export TOP_CENTER=""
+  export TOP_CENTER=" "
 fi
 
 # Background color (ARGB)
