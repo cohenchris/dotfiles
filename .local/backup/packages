@@ -32,6 +32,7 @@ acpi                      # acpi info
 brightnessctl             # backlight control
 flameshot                 # screenshot utility
 wget                      # web request tool
+transmission-gtk          # torrenting client
 
 # gui
 ################################################################################
