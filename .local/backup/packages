@@ -37,6 +37,7 @@ wget                      # web request tool
 ################################################################################
 xorg-server               # x display server
 xorg-xinit                # tool to start xorg servers
+xorg-xrandr               # tool to manage display settings
 picom-git                 # x compositor
 i3-gaps-next-git          # window manager
 i3lock-color              # lock screen
@@ -56,7 +57,3 @@ mullvad-vpn               # Mullvad VPN
 # texlive-lang-english    # LaTeX
 # texlive-xetex           # XeTeX
 # biber                   # LaTeX/XeTeX bibliographies
-
-# games
-################################################################################
-minecraft-launcher        # Minecraft
