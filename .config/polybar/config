@@ -74,6 +74,7 @@ modules-right = pulseaudio temperature cpu memory
 
 [module/xwindow]
 type = internal/xwindow
+label-maxlen = 60
 
 ; ##############################################################################
 
