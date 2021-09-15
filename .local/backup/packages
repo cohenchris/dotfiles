@@ -39,6 +39,7 @@ transmission-gtk          # torrenting client
 xorg-server               # x display server
 xorg-xinit                # tool to start xorg servers
 xorg-xrandr               # tool to manage display settings
+autorandr                 # tool to automatically manage x configs
 picom-git                 # x compositor
 i3-gaps-next-git          # window manager
 i3lock-color              # lock screen
@@ -50,6 +51,7 @@ dunst                     # notifications
 # daily use
 ################################################################################
 syncthing                 # P2P encrypted file syncing
+croc                      # CLI file-sharing application
 onionshare                # Tor file sharing
 firefox                   # Mozilla Firefox
 signal-desktop            # Signal Messenger
