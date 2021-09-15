@@ -14,10 +14,12 @@ function temp_up () {
     if [[ $new -gt $HIGH ]]; then
       # don't let value surpass high boundary
       notify-send "redshift already at highest value"
-      new=$old
+      echo $old > $REDSHIFT_FILE
+    else
+      # update saved redshift value
+      echo $new > $REDSHIFT_FILE
+      redshift -PO $new
     fi
-    echo $new > $REDSHIFT_FILE
-    redshift -PO $new
   else
     # Default value
     echo $DEFAULT > $REDSHIFT_FILE
@@ -33,10 +35,12 @@ function temp_down () {
     if [[ $new -lt $LOW ]]; then
       # don't let value go under lower boundary
       notify-send "redshift already at lowest value"
-      new=$old
+      echo $old > $REDSHIFT_FILE
+    else
+      # update saved redshift value
+      echo $new > $REDSHIFT_FILE
+      redshift -PO $new
     fi
-    echo $new > $REDSHIFT_FILE
-    redshift -PO $new
   else
     # Default value
     echo $DEFAULT > $REDSHIFT_FILE

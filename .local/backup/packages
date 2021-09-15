@@ -56,6 +56,7 @@ onionshare                # Tor file sharing
 firefox                   # Mozilla Firefox
 signal-desktop            # Signal Messenger
 mullvad-vpn               # Mullvad VPN
+calibre                   # eBook manager
 # libreoffice             # open-source office suite
 # texlive-lang-english    # LaTeX
 # texlive-xetex           # XeTeX
