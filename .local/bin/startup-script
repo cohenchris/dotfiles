@@ -1,5 +1,7 @@
 #!/bin/bash
 
+##### Adjust trackpoint #####
+
 # Wait until you find the trackpoint sensitivity file
 until [ -f /sys/devices/platform/i8042/serio1/serio2/sensitivity ]; do
   sleep 1
