@@ -6,3 +6,6 @@ PATH=$PATH:/home/chris/.local/backup:/home/chris/.local/bin
 
 # Start x server
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+
+# Autorandr
+autorandr -c
