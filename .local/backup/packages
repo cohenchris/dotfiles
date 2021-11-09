@@ -50,7 +50,6 @@ dunst                     # notifications
 
 # daily use
 ################################################################################
-syncthing                 # P2P encrypted file syncing
 croc                      # CLI file-sharing application
 onionshare                # Tor file sharing
 firefox                   # Mozilla Firefox

@@ -183,7 +183,6 @@ bindsym $mod+r mode "resize"
 exec_always --no-startup-id mullvad-vpn                   # mullvad vpn
 exec_always --no-startup-id ~/.config/polybar/launch.sh   # polybar
 exec_always --no-startup-id picom                         # compositor (transparency)
-exec_always --no-startup-id syncthing --no-browser        # syncthing
 exec_always --no-startup-id dunst                         # notification daemon
 exec_always --no-startup-id random-wallpaper                     # random wallpaper
 
