@@ -1,4 +1,0 @@
-#!/bin/bash
-
-autorandr -c
-i3 restart
