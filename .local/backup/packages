@@ -33,6 +33,7 @@ brightnessctl             # backlight control
 flameshot                 # screenshot utility
 wget                      # web request tool
 transmission-gtk          # torrenting client
+trash-cli                 # trash command line utility
 
 # gui
 ################################################################################
@@ -57,6 +58,8 @@ signal-desktop            # Signal Messenger
 mullvad-vpn               # Mullvad VPN
 calibre                   # eBook manager
 vlc                       # Video player
+thunderbird               # Email client
+plexamp                   # Music player
 # libreoffice             # open-source office suite
 # texlive-lang-english    # LaTeX
 # texlive-xetex           # XeTeX

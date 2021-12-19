@@ -39,9 +39,10 @@ alias grep='grep --color=auto'
 # SSH
 alias pihole="ssh pi@192.168.24.1"                # pi-hold dns adblocker   192.168.24.1
 alias sd="ssh pi@192.168.24.2"                    # sd pi vpn               192.168.24.2
-alias mediaserver="ssh phrog@192.168.24.3"        # media server            192.168.24.3
-alias cloud="ssh chris@192.168.24.4"              # nextcloud server        192.168.24.4
+alias phrog="ssh phrog@192.168.24.3"              # homelab server          192.168.24.3
+alias backups="ssh pi@192.168.24.4"               # backup server           192.168.24.4
 alias stl="ssh pi@192.168.2.1"                    # stl pi vpn              192.168.2.1
 
 # Misc
 alias val="valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes"
+alias rm="trash"
