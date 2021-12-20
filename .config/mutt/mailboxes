@@ -1,19 +1,19 @@
 mailboxes \
-+'INBOX' \
-+'INBOX.Admin' \
-+'INBOX.Burner' \
-+'INBOX.ChangeMe' \
-+'INBOX.Finance' \
-+'INBOX.Media' \
-+'INBOX.Shopping' \
-+'INBOX.Social' \
-+'INBOX.Tech' \
-+'INBOX.Travel' \
++'Inbox' \
++'Inbox/Admin' \
++'Inbox/Burner' \
++'Inbox/ChangeMe' \
++'Inbox/Finance' \
++'Inbox/Media' \
++'Inbox/Shopping' \
++'Inbox/Social' \
++'Inbox/Tech' \
++'Inbox/Travel' \
 +'Sent' \
 +'Trash' \
 +'Drafts' \
 +'Junk' \
 +'Archive' \
-+'Archive.2019' \
-+'Archive.2020' \
-+'Archive.2021'
++'Archive/2019' \
++'Archive/2020' \
++'Archive/2021'

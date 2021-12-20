@@ -140,7 +140,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r exec autorandr -c && i3 restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -199,6 +199,7 @@ bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"   # i3lock
 bindsym $mod+n exec st ranger                             # ranger file browser
 bindsym $mod+p exec mullvad-vpn                           # mullvad vpn
 bindsym $mod+u exec random-wallpaper                      # random wallpaper
+bindsym $mod+Shift+e exec emailsync                       # email sync
 bindsym $mod+e exec st neomutt                            # neomutt
 
 # SYSTEM

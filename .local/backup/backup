@@ -17,6 +17,8 @@ declare -a dotfiles=(
   ~/.config/ranger/
   ~/.config/yadm/
   ~/.config/mutt/
+  ~/.config/isync/
+  ~/.config/notmuch/
   ~/.local/backup
   ~/.local/bin
   ~/.bashrc

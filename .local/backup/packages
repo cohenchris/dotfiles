@@ -34,6 +34,13 @@ flameshot                 # screenshot utility
 wget                      # web request tool
 transmission-gtk          # torrenting client
 trash-cli                 # trash command line utility
+cronie                    # crontab
+
+# email
+################################################################################
+neomutt
+isync
+notmuch
 lynx                      # neomutt html viewer
 
 # gui
@@ -60,6 +67,7 @@ mullvad-vpn               # Mullvad VPN
 calibre                   # eBook manager
 vlc                       # Video player
 thunderbird               # Email client
+bitwarden                 # Password Manager
 # libreoffice             # open-source office suite
 # texlive-lang-english    # LaTeX
 # texlive-xetex           # XeTeX

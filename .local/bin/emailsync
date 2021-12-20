@@ -1,0 +1,7 @@
+#!/bin/bash
+
+notify-send "Checking email..."
+
+mbsync -c /home/chris/.config/isync/mbsyncrc mail
+notmuch new
+notifymuch

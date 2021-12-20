@@ -1,0 +1,28 @@
+# https://jonathanh.co.uk/blog/mutt-setup/#downloading-emails---mbsync
+
+IMAPAccount mail
+# Address to connect to
+Host imap.chriscohen.dev
+Port 993
+User chris@chriscohen.dev
+PassCmd "pass email"
+SSLType IMAPS
+AuthMechs LOGIN
+
+# Remote store for mail
+IMAPStore mail-remote
+Account mail
+
+# Local store for mail
+MaildirStore mail-local
+Subfolders Verbatim
+Path ~/.mail/
+Inbox ~/.mail/Inbox
+
+# Channel to join two stores
+Channel mail
+Far :mail-remote:
+Near :mail-local:
+Patterns *
+Create Both
+SyncState *

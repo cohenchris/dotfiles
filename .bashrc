@@ -29,12 +29,16 @@ if ! shopt -oq posix; then
 fi
 
 
+export NOTMUCH_CONFIG=~/.config/notmuch/config
+export VISUAL=/usr/bin/vim
+
 ###################
 ##### ALIASES #####
 ###################
 # Basics
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias mbsync="mbsync -c \"/home/chris/.config/isync/mbsyncrc\""
 
 # SSH
 alias pihole="ssh pi@192.168.24.1"                # pi-hold dns adblocker   192.168.24.1
