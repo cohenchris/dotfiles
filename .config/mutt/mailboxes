@@ -1,0 +1,19 @@
+mailboxes \
++'INBOX' \
++'INBOX.Admin' \
++'INBOX.Burner' \
++'INBOX.ChangeMe' \
++'INBOX.Finance' \
++'INBOX.Media' \
++'INBOX.Shopping' \
++'INBOX.Social' \
++'INBOX.Tech' \
++'INBOX.Travel' \
++'Sent' \
++'Trash' \
++'Drafts' \
++'Junk' \
++'Archive' \
++'Archive.2019' \
++'Archive.2020' \
++'Archive.2021'

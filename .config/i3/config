@@ -85,7 +85,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
 #bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -179,12 +179,18 @@ bindsym $mod+r mode "resize"
 #                                                              |___/      #
 ###########################################################################
 
-# STARTUP
-exec_always --no-startup-id mullvad-vpn                   # mullvad vpn
+
+
+# Startup System Apps
 exec_always --no-startup-id ~/.config/polybar/launch.sh   # polybar
 exec_always --no-startup-id picom                         # compositor (transparency)
 exec_always --no-startup-id dunst                         # notification daemon
-exec_always --no-startup-id random-wallpaper                     # random wallpaper
+exec_always --no-startup-id random-wallpaper              # random wallpaper
+
+# Startup Apps
+exec --no-startup-id mullvad-vpn
+for_window [class="Mullvad VPN"] move to workspace $ws10
+
 
 # SHORTCUTS
 bindsym $mod+w exec firefox                               # web browser
@@ -193,6 +199,7 @@ bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"   # i3lock
 bindsym $mod+n exec st ranger                             # ranger file browser
 bindsym $mod+p exec mullvad-vpn                           # mullvad vpn
 bindsym $mod+u exec random-wallpaper                      # random wallpaper
+bindsym $mod+e exec st neomutt                            # neomutt
 
 # SYSTEM
 bindsym $mod+equal exec bluelightfilter up                # blue light filter increase

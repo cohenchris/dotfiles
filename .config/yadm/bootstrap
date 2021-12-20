@@ -29,6 +29,8 @@ do
   fi
 done < $filename
 
+sudo mv /usr/bin/Plexamp.AppImage /usr/bin/plexamp
+
 cd
 
 
