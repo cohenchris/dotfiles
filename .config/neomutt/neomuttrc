@@ -57,6 +57,7 @@ set crypt_replysign = yes
 set pgp_check_gpg_decrypt_status_fd
 set crypt_autosign = yes          # Automatically enable signing
 set postpone_encrypt = yes        # ???
+bind index,pager \Cx extract-keys
 
 # Always attach public key to emails
 macro compose y "<attach-key>`echo 9DDDFA986706906D3B6A71454FD2B0C6902FA1CD`<enter><enter><send-message>"
