@@ -2,6 +2,11 @@
 
 notify-send "Checking email..."
 
-mbsync -c /home/chris/.config/isync/mbsyncrc mail
+# Sync all emails 
+mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc mail
+# Index new emails
 notmuch new
+# Notifications for any new emails
 notifymuch
+# Sync contacts
+vdirsyncer sync

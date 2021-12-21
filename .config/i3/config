@@ -203,9 +203,9 @@ for_window [class="Plexamp"] move to workspace $ws2
 
 # SHORTCUTS
 bindsym $mod+w exec firefox                               # web browser
-bindsym Print exec flameshot gui                          # snipping tool
+#bindsym Print exec flameshot gui                          # snipping tool
 bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"   # i3lock
-bindsym $mod+n exec st ranger                             # ranger file browser
+bindsym $mod+n exec st lf                                 # file browser
 bindsym $mod+p exec mullvad-vpn                           # mullvad vpn
 bindsym $mod+u exec random-wallpaper                      # random wallpaper
 bindsym $mod+Shift+e exec emailsync                       # email sync

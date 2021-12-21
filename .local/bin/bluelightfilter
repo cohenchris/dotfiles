@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DEFAULT=2000
-REDSHIFT_FILE="$HOME/.redshift_temp"
+REDSHIFT_FILE="$XDG_CONFIG_HOME/.redshift_temp"
 
 LOW=1000
 HIGH=25000
@@ -56,7 +56,7 @@ if [[ "$option" == "up" ]]; then
 elif [[ "$option" == "down" ]]; then
   temp_down
 elif [[ "$option" == "off" ]]; then
-  rm ~/.redshift_temp
+  rm $REDSHIFT_FILE
   redshift -x
 else
   # function not supported

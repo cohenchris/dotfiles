@@ -14,17 +14,13 @@ declare -a dotfiles=(
   ~/.config/dunst/
   ~/.config/i3/
   ~/.config/polybar/
-  ~/.config/ranger/
   ~/.config/yadm/
-  ~/.config/neomutt/neomuttrc
-  ~/.config/neomutt/mailcap
-  ~/.config/neomutt/mailboxes
-  ~/.config/neomutt/colors
-  ~/.config/isync/mbsyncrc
-  ~/.config/notmuch/config
+  ~/.config/neomutt/
+  ~/.config/isync/
+  ~/.config/notmuch/
+  ~/.config/khard/
   ~/.config/vdirsyncer/config
-  ~/.config/khard/khard.conf
-  ~/.pam_environment
+  ~/.gnupg/gpg-agent.conf
   ~/.local/backup
   ~/.local/bin
   ~/.bashrc

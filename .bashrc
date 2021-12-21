@@ -29,9 +29,6 @@ if ! shopt -oq posix; then
 fi
 
 
-export NOTMUCH_CONFIG=~/.config/notmuch/config
-export VISUAL=/usr/bin/vim
-
 ###################
 ##### ALIASES #####
 ###################

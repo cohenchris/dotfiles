@@ -3,11 +3,11 @@
 make                      # makefile executor
 cmake                     # cross-platform makefile executor
 gcc                       # GNU Compiler Collections
-valgrind                  # Memory leak detector
+#valgrind                  # Memory leak detector
 python                    # Python programming language
 python-pip                # Python package manager - "pip installs packages"
-npm                       # Node package manager
-code                      # Microsoft Visual Studio Code
+#npm                       # Node package manager
+#code                      # Microsoft Visual Studio Code
 curl                      # web requests
 jq                        # json parser
 git                       # version control
@@ -15,31 +15,29 @@ git                       # version control
 # system utilities
 ################################################################################
 man                       # man pages
-ranger-git                # file browser
+lf                        # file browser
 redshift-git              # blue light filter
 feh                       # image viewer
 net-tools                 # network tools
 pulseaudio                # sound
 pavucontrol               # pulseaudio GUI
 vundle                    # vim plugin manager
-neofetch                  # neofetch
+#neofetch                  # neofetch
 terminus-font-ttf         # Terminus Font
 ttf-font-awesome-4        # FontAwesome Font
 ttf-material-design-icons # Material Design Icons
 ttf-unifont               # Unifont
-ueberzug                  # image preview for ranger
 acpi                      # acpi info
 brightnessctl             # backlight control
-flameshot                 # screenshot utility
+#flameshot                 # screenshot utility
 wget                      # web request tool
-transmission-gtk          # torrenting client
 trash-cli                 # trash command line utility
 cronie                    # crontab
+gnupg                     # GPG
 
 # email
 ################################################################################
 neomutt                   # cli email
-gnupg                     # GPG for encryption and singing
 pass                      # for keystore
 isync                     # Offline IMAP Sync
 notmuch                   # Full-body email search DB
@@ -66,15 +64,13 @@ dunst                     # notifications
 
 # daily use
 ################################################################################
-croc                      # CLI file-sharing application
-onionshare                # Tor file sharing
+#croc                      # CLI file-sharing application
+#onionshare                # Tor file sharing
 firefox                   # Mozilla Firefox
-signal-desktop            # Signal Messenger
+#signal-desktop            # Signal Messenger
 mullvad-vpn               # Mullvad VPN
 calibre                   # eBook manager
 vlc                       # Video player
-thunderbird               # Email client
-bitwarden                 # Password Manager
 # libreoffice             # open-source office suite
 # texlive-lang-english    # LaTeX
 # texlive-xetex           # XeTeX
