@@ -191,6 +191,15 @@ exec_always --no-startup-id random-wallpaper              # random wallpaper
 exec --no-startup-id mullvad-vpn
 for_window [class="Mullvad VPN"] move to workspace $ws10
 
+exec --no-startup-id Plexamp.AppImage
+for_window [class="Plexamp"] move to workspace $ws2
+
+# TODO:
+#   st -> 3
+#   neomutt -> 9
+#   firefox -> 1
+
+
 
 # SHORTCUTS
 bindsym $mod+w exec firefox                               # web browser

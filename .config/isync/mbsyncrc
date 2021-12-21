@@ -16,8 +16,8 @@ Account mail
 # Local store for mail
 MaildirStore mail-local
 Subfolders Verbatim
-Path ~/.mail/
-Inbox ~/.mail/Inbox
+Path ~/.local/share/mail/
+Inbox ~/.local/share/mail/Inbox
 
 # Channel to join two stores
 Channel mail

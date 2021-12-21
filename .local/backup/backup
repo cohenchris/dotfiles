@@ -16,9 +16,15 @@ declare -a dotfiles=(
   ~/.config/polybar/
   ~/.config/ranger/
   ~/.config/yadm/
-  ~/.config/mutt/
-  ~/.config/isync/
-  ~/.config/notmuch/
+  ~/.config/neomutt/neomuttrc
+  ~/.config/neomutt/mailcap
+  ~/.config/neomutt/mailboxes
+  ~/.config/neomutt/colors
+  ~/.config/isync/mbsyncrc
+  ~/.config/notmuch/config
+  ~/.config/vdirsyncer/config
+  ~/.config/khard/khard.conf
+  ~/.pam_environment
   ~/.local/backup
   ~/.local/bin
   ~/.bashrc

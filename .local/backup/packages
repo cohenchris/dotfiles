@@ -38,10 +38,17 @@ cronie                    # crontab
 
 # email
 ################################################################################
-neomutt
-isync
-notmuch
-lynx                      # neomutt html viewer
+neomutt                   # cli email
+gnupg                     # GPG for encryption and singing
+pass                      # for keystore
+isync                     # Offline IMAP Sync
+notmuch                   # Full-body email search DB
+notifymuch                # notification daemon for notmuch DB
+urlscan                   # URL scanner for neomutt emails
+w3m                       # neomutt html viewer
+pam-gnupg                 # GPG auto unlock
+khard                     # Local address book for neomutt
+vdirsyncer                # CardDav syncer
 
 # gui
 ################################################################################
