@@ -13,22 +13,21 @@ cd
 declare -a dotfiles=(
   ~/.config/dunst/
   ~/.config/i3/
+  ~/.config/git/config/
   ~/.config/polybar/
   ~/.config/yadm/
   ~/.config/neomutt/
   ~/.config/isync/
   ~/.config/notmuch/
   ~/.config/khard/
+  ~/.config/shell/
   ~/.config/vdirsyncer/config
-  ~/.gnupg/gpg-agent.conf
-  ~/.gnupg/gpg.conf
   ~/.local/backup
   ~/.local/bin
-  ~/.bashrc
-  ~/.bash_profile
-  ~/.gitconfig
+  ~/.local/share/gnupg/gpg.conf
   ~/.vimrc
   ~/.xinitrc
+  ~/.zprofile
 )
 
 for i in ${dotfiles[@]}
