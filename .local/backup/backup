@@ -21,6 +21,7 @@ declare -a dotfiles=(
   ~/.config/khard/
   ~/.config/vdirsyncer/config
   ~/.gnupg/gpg-agent.conf
+  ~/.gnupg/gpg.conf
   ~/.local/backup
   ~/.local/bin
   ~/.bashrc

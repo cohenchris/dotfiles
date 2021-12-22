@@ -188,18 +188,8 @@ exec_always --no-startup-id dunst                         # notification daemon
 exec_always --no-startup-id random-wallpaper              # random wallpaper
 
 # Startup Apps
-exec --no-startup-id mullvad-vpn
+exec --no-startup-id mullvad-vpn -title mullvad_startup
 for_window [class="Mullvad VPN"] move to workspace $ws10
-
-exec --no-startup-id Plexamp.AppImage
-for_window [class="Plexamp"] move to workspace $ws2
-
-# TODO:
-#   st -> 3
-#   neomutt -> 9
-#   firefox -> 1
-
-
 
 # SHORTCUTS
 bindsym $mod+w exec firefox                               # web browser
@@ -210,6 +200,7 @@ bindsym $mod+p exec mullvad-vpn                           # mullvad vpn
 bindsym $mod+u exec random-wallpaper                      # random wallpaper
 bindsym $mod+Shift+e exec emailsync                       # email sync
 bindsym $mod+e exec st neomutt                            # neomutt
+bindsym $mod+b exec st bt                                 # bluetooth menu
 
 # SYSTEM
 bindsym $mod+equal exec bluelightfilter up                # blue light filter increase
