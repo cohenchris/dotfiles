@@ -12,21 +12,23 @@ cd
 
 declare -a dotfiles=(
   ~/.config/dunst/
-  ~/.config/i3/
   ~/.config/git/
-  ~/.config/polybar/
-  ~/.config/yadm/
-  ~/.config/neomutt/
+  ~/.config/i3/
   ~/.config/isync/
-  ~/.config/notmuch/
   ~/.config/khard/
+  ~/.config/lf/
+  ~/.config/neomutt/
+  ~/.config/notifymuch/
+  ~/.config/notmuch/
+  ~/.config/polybar/
   ~/.config/shell/
   ~/.config/vdirsyncer/config
+  ~/.config/vim/
+  ~/.config/xinitrc
+  ~/.config/yadm/
   ~/.local/backup
   ~/.local/bin
   ~/.local/share/gnupg/gpg.conf
-  ~/.vimrc
-  ~/.xinitrc
   ~/.zprofile
 )
 
