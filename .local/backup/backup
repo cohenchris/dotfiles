@@ -13,7 +13,7 @@ cd
 declare -a dotfiles=(
   ~/.config/dunst/
   ~/.config/i3/
-  ~/.config/git/config/
+  ~/.config/git/
   ~/.config/polybar/
   ~/.config/yadm/
   ~/.config/neomutt/
