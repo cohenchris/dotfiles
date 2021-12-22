@@ -3,7 +3,7 @@
 notify-send "Checking email..."
 
 # Sync all emails 
-mbsync -c $XDG_CONFIG_HOME/isync/mbsyncrc mail
+mbsync mail
 # Index new emails
 notmuch new
 # Notifications for any new emails

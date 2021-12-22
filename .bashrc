@@ -46,4 +46,4 @@ alias stl="ssh pi@192.168.2.1"                    # stl pi vpn              192.
 
 # Misc
 alias val="valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes"
-alias rm="trash"
+alias rm="trash --trash-dir $XDG_DATA_HOME/trash"
