@@ -1,6 +1,7 @@
 # Basics
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias vim="nvim"
 
 # SSH
 alias pihole="ssh pi@192.168.24.1"                # pi-hold dns adblocker   192.168.24.1

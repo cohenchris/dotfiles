@@ -1,19 +1,21 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+let mapleader = " "
 
-set viminfo+=n${XDG_DATA_HOME}/vim/viminfo
-set rtp+=${XDG_DATA_HOME}/vim/bundle/Vundle.vim
-call vundle#begin()
+" Install vim-plug if not found
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+endif
 
-Plugin 'VundleVim/Vundle.vim'         " let Vundle manage Vundle, required
-Plugin 'frazrepo/vim-rainbow'         " Vim-Rainbow - Paranthesis Color Coordination
-Plugin 'lilydjwg/colorizer'           " Colorizer - Hex Color Visualization
-Plugin 'itchyny/lightline.vim'        " Lightline - Status Bar
-"Plugin 'valloric/youcompleteme'       " YouCompleteMe - Code Completion
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#begin('~/.config/nvim/plugged')
+Plug 'frazrepo/vim-rainbow'         " Vim-Rainbow - Paranthesis Color Coordination
+Plug 'lilydjwg/colorizer'           " Colorizer - Hex Color Visualization
+Plug 'itchyny/lightline.vim'        " Lightline - Status Bar
+" Plugin 'valloric/youcompleteme'       " YouCompleteMe - Code Completion
+call plug#end()
 
 " For vim-rainbow plugin
 let g:rainbow_active = 1
@@ -26,14 +28,13 @@ let g:rainbow_load_separately = [
 let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
 let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
-if has("syntax")
-  syntax on
-endif
-
-set background=dark
+" if has('nvim') | let &viminfo .= '.nvim' | endif
 
 filetype plugin indent on
-
+syntax on
+filetype off            " required
+set nocompatible        " be iMproved, required
+set background=dark	" dark background
 set showcmd             " Show (partial) command in status line.
 set showmatch           " Show matching brackets.
 set ignorecase          " Do case insensitive matching
@@ -55,15 +56,8 @@ set tabstop=2
 set softtabstop=0 expandtab
 set shiftwidth=2 smarttab
 
-
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o    " disable auto-commenting on newline
 
-" set Vim-specific sequences for RGB colors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-
-let mapleader = " "
 " <leader> + s   -->   spellchecker
 :map <leader>s :setlocal spell!<CR>
 " <leader> + c   -->   LaTeX compiler

@@ -3,7 +3,7 @@
 notify-send "Checking email..."
 
 # Sync all emails 
-mbsync mail
+mbsync -c ~/.config/isync/mbsyncrc mail
 # Index new emails
 notmuch new
 # Notifications for any new emails

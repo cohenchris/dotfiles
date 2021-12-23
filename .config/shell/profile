@@ -4,7 +4,7 @@
 PATH=$PATH:/home/chris/.local/backup:/home/chris/.local/bin
 
 # Defaults
-export EDITOR="vim"
+export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
 export SHELL="zsh"
@@ -14,7 +14,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/xinitrc"
+#export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/xinitrc"
 export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/1000}/Xauthority" # This line will break some DMs.
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch/config"
 export PASSWORD_STORE_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/password-store"
@@ -26,7 +26,7 @@ export MBSYNCRC="${XDG_CONFIG_HOME:-$HOME/.config}/isync/mbsyncrc"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
-export VIMINIT="source ${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
+#export MYVIMRC="${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
 
 # Source bashrc
 [[ -f ~/.config/shell/.zshrc ]] && . ~/.config/shell/.zshrc

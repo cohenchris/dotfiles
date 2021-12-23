@@ -16,12 +16,13 @@ git                       # version control
 ################################################################################
 man                       # man pages
 lf                        # file browser
+zsh                       # zshell
 redshift-git              # blue light filter
 feh                       # image viewer
 net-tools                 # network tools
 pulseaudio                # sound
 pavucontrol               # pulseaudio GUI
-vundle                    # vim plugin manager
+#vundle                    # vim plugin manager
 #neofetch                  # neofetch
 terminus-font-ttf         # Terminus Font
 ttf-font-awesome-4        # FontAwesome Font
