@@ -1,9 +1,5 @@
 #!/bin/bash
 
-###################
-# CUSTOM PACKAGES #
-###################
-
 # install all packages in "packages" file
 filename="packages"
 cd ~/.local/backup/
@@ -33,13 +29,16 @@ sudo mv /usr/bin/Plexamp.AppImage /usr/bin/plexamp
 
 cd
 
-
-########
-# MISC #
-########
-
 # Change default shell to zsh
 chsh -s $(which zsh)
+
+# Install zsh plugins
+mkdir -p $XDG_DATA_HOME/zsh/plugins
+cd $XDG_DATA_HOME/zsh/plugins
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-completions
+git clone https://github.com/zsh-users/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-history-substring-search
 
 # Get wallpapers
 git clone https://github.com/cohenchris/wallpapers ~/.local/wallpapers
@@ -50,7 +49,7 @@ echo 'XDG_CONFIG_DIR="$HOME/.config"' >> ~/.config/user-dirs.dirs
 cd
 rm -rf Desktop Documents Music Pictures Public Templates Videos
 
-# Change yadm and git to use ssh
+# Change yadm and wallpapers git to use ssh
 yadm remote set-url origin git@github.com:cohenchris/dotfiles.git
 cd ~/.local/wallpapers
 git remote set-url origin git@github.com:cohenchris/wallpapers.git
@@ -85,6 +84,7 @@ firefox https://addons.mozilla.org/en-US/firefox/addon/terms-of-service-didnt-re
 # TODO:
 #   - install extensions
 #   - import gpg private key
+#   - import and/or upload ssh key to github
 " > post-install.sh
 
 chmod +x post-install.sh

@@ -178,39 +178,36 @@ bindsym $mod+r mode "resize"
 # \____/\__,_|___/\__\___/|_| |_| |_| \__/\___|\__|\__|_|_| |_|\__, |___/ #
 #                                                              |___/      #
 ###########################################################################
-# Startup System Apps
-exec_always --no-startup-id ~/.config/polybar/launch.sh   # polybar
-exec_always --no-startup-id picom                         # compositor (transparency)
-exec_always --no-startup-id dunst                         # notification daemon
-exec_always --no-startup-id random-wallpaper              # random wallpaper
+# Startup
+exec --no-startup-id ~/.config/polybar/launch.sh                                    # polybar
+exec --no-startup-id picom                                                          # compositor (transparency)
+exec --no-startup-id dunst                                                          # notification daemon
+exec --no-startup-id random-wallpaper                                               # random wallpaper
+exec --no-startup-id firefox                                                        # firefox
+assign [class="Firefox"] → $ws1                                                     # firefox to workspace 1
+exec --no-startup-id mullvad-vpn                                                    # mullvad vpn
+assign [class="Mullvad VPN"] → $ws10                                                # mullvad vpn to workspace 10
 
-# Startup Apps
-exec --no-startup-id mullvad-vpn
-for_window [class="Mullvad VPN"] move to workspace $ws10
+# Shortcuts
+bindsym $mod+b exec st bt                                                           # bluetooth menu
+bindsym $mod+e exec st neomutt                                                      # neomutt
+bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"                             # i3lock
+bindsym $mod+n exec st lf                                                           # file browser
+bindsym $mod+p exec mullvad-vpn                                                     # mullvad vpn
+bindsym $mod+s exec Plexamp.AppImage                                                # PlexAmp
+bindsym $mod+u exec random-wallpaper                                                # random wallpaper
+bindsym $mod+w exec firefox                                                         # web browser
+bindsym $mod+equal exec bluelightfilter up                                          # blue light filter increase
+bindsym $mod+minus exec bluelightfilter down                                        # blue light filter decrease
+bindsym $mod+BackSpace exec bluelightfilter off                                     # blue light filter off
+bindsym $mod+Shift+e exec emailsync                                                 # email sync
 
-# SHORTCUTS
-bindsym $mod+w exec firefox                               # web browser
-#bindsym Print exec flameshot gui                          # snipping tool
-bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"   # i3lock
-bindsym $mod+n exec st lf                                 # file browser
-bindsym $mod+p exec mullvad-vpn                           # mullvad vpn
-bindsym $mod+u exec random-wallpaper                      # random wallpaper
-bindsym $mod+Shift+e exec emailsync                       # email sync
-bindsym $mod+e exec st neomutt                            # neomutt
-bindsym $mod+b exec st bt                                 # bluetooth menu
-
-# SYSTEM
-bindsym $mod+equal exec bluelightfilter up                # blue light filter increase
-bindsym $mod+minus exec bluelightfilter down              # blue light filter decrease
-bindsym $mod+BackSpace exec bluelightfilter off           # blue light filter off
-
-#bindsym XF86AudioPlay exec playerctl play-pause           # play/pause
-#bindsym XF86AudioNext exec playerctl next                 # next
-#bindsym XF86AudioPrev exec playerctl previous             # previous
-
-bindsym XF86MonBrightnessUp exec brightnessctl set +75    # backlight increase
-bindsym XF86MonBrightnessDown exec brightnessctl set 75-  # backlight decrease
-
+# System
+bindsym XF86AudioPlay exec playerctl play-pause                                     # play/pause
+bindsym XF86AudioNext exec playerctl next                                           # next
+bindsym XF86AudioPrev exec playerctl previous                                       # previous
+bindsym XF86MonBrightnessUp exec brightnessctl set +75                              # backlight increase
+bindsym XF86MonBrightnessDown exec brightnessctl set 75-                            # backlight decrease
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%       # raise volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%       # lower volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle             # mute/unmute speakers

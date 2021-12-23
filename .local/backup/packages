@@ -22,15 +22,12 @@ feh                       # image viewer
 net-tools                 # network tools
 pulseaudio                # sound
 pavucontrol               # pulseaudio GUI
-#vundle                    # vim plugin manager
-#neofetch                  # neofetch
 terminus-font-ttf         # Terminus Font
 ttf-font-awesome-4        # FontAwesome Font
 ttf-material-design-icons # Material Design Icons
 ttf-unifont               # Unifont
 acpi                      # acpi info
 brightnessctl             # backlight control
-#flameshot                 # screenshot utility
 wget                      # web request tool
 trash-cli                 # trash command line utility
 cronie                    # crontab
@@ -64,10 +61,7 @@ dunst                     # notifications
 
 # daily use
 ################################################################################
-#croc                      # CLI file-sharing application
-#onionshare                # Tor file sharing
 firefox                   # Mozilla Firefox
-#signal-desktop            # Signal Messenger
 mullvad-vpn               # Mullvad VPN
 calibre                   # eBook manager
 vlc                       # Video player

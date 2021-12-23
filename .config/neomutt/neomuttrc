@@ -1,117 +1,103 @@
-#==========================================================
-# Main Settings
-#==========================================================
-set folder = "~/.local/share/mail"
-set mbox_type = Maildir
-set spoolfile = "+Inbox"
-set record = "+Sent"
-set postponed = "+Drafts"
-set header_cache = "~/.cache/neomutt"
-
-set from = "chris@chriscohen.dev"
-set realname = "Chris Cohen"
-
-set smtp_url = "smtps://chris@chriscohen.dev@smtp.chriscohen.dev:465"
-set smtp_pass = "`pass email`"
-
-set record = "+Sent"
-set trash = "+Trash"
-set postponed = "+Drafts"
-
-set editor = "vim"
-set sort = "threads"
-set sort_aux = "reverse-last-date-received"
-set date_format="%m/%d/%y %I:%M%p"
-set mime_type_query_command = "file --mime-type -b %s"
-set index_format="%2C %Z %?X?A& ? %D %-15.15F %s (%-4.4c)"
-set mark_old = no   # Unread mail stay unread until read
-set markers = no    # Disables the `+` displayed at line wraps
-set fast_reply      # skip to compose when replying
-set forward_format = "Fwd: %s"  # format of subject when forwarding
-set forward_quote   # include message in forwards
-set reverse_name    # reply as whomever it was to
-set include     # include message in replies
-
-auto_view text/html   # automatically show html (mailcap uses lynx)
-auto_view application/pgp-encrypted
-alternative_order text/plain text/enriched text/html
-
-# KHard Contact Book
+#=================================================================#
+# Main Settings                                                   #
+#=================================================================#
+set folder = "~/.local/share/mail"                                # folder where mail is located
+set smtp_url = "smtps://$from@smtp.chriscohen.dev:465"            # url to smtp server
+set smtp_pass = "`pass email`"                                    # get smtp server password from pass
+set mbox_type = Maildir                                           # how should the mail be stored
+set from = "chris@chriscohen.dev"                                 # email to send from
+set realname = "Chris Cohen"                                      # name to set when emailing
+                                                                  #
+set spoolfile = "+Inbox"                                          # inbox file
+set record = "+Sent"                                              # send any sent emails to "Sent" box
+set trash = "+Trash"                                              # send any deleted emails to "Trash" box
+set postponed = "+Drafts"                                         # send any incomplete emails to "Drafts" box
+                                                                  #
+set header_cache = "~/.cache/neomutt"                             # header cache
+set editor = "nvim"                                               # use nvim as editor
+set sort = "threads"                                              # ???
+set sort_aux = "reverse-last-date-received"                       # sort by most recent first
+set date_format="%m/%d/%y %I:%M%p"                                # date format
+set mime_type_query_command = "file --mime-type -b %s"            # how the mime type is read
+set index_format="%2C %Z %?X?A& ? %D %-15.15F %s (%-4.4c)"        # how emails in folders are read
+set mark_old = no                                                 # Unread mail stay unread until read
+set markers = no                                                  # Disables the `+` displayed at line wraps
+set fast_reply                                                    # skip to compose when replying
+set forward_format = "Fwd: %s"                                    # format of subject when forwarding
+set forward_quote                                                 # include message in forwards
+set reverse_name                                                  # reply as whomever it was to
+set include                                                       # include message in replies
+                                                                  #
+# non-plaintext email                                             #
+set mailcap_path = "$XDG_CONFIG_HOME/neomutt/mailcap"             # viewer/parser for non-plaintext email
+auto_view text/html                                               # automatically parse html
+auto_view application/pgp-encrypted                               # automatically parse pgp encrypted mail
+alternative_order text/plain text/enriched text/html              # prefer viewing email in plaintext, then enriched, then html
+                                                                  #
+# khard contact book                                              #
 set query_command = "echo %s | xargs khard email --parsable --"   # address search
 bind editor <Tab> complete-query                                  # TAB to autocomplete email
-bind editor ^T complete
-
-source mailboxes
-source colors
-set mailcap_path = "~/.config/neomutt/mailcap"
-
-#==========================================================
-# GPG
-#==========================================================
-set crypt_use_gpgme = yes         # Use GPGME crypto backend
-set crypt_use_pka = yes           # Use PKA during signature verification
-set pgp_default_key = 0x902FA1CD  # My key identity (last 8 digits)
-set pgp_self_encrypt = yes        # PGP messages encrypted using the pgp_default_key
-set crypt_autoencrypt = no        # Automatically enable encryption -- disable, we don't always have the recipient's key
-set crypt_autopgp = yes           # Automatically enable PGP encryption/signing
-set crypt_verify_sig = yes        # Verify incoming signatures?
-set crypt_replysign = yes
-#set crypt_replyencrypt = no
-#set crypt_replysignencrypted = no
-set pgp_check_gpg_decrypt_status_fd
-set crypt_autosign = yes          # Automatically enable signing
-set postpone_encrypt = yes        # ???
-bind index,pager \Cx extract-keys
-
-# Always attach public key to emails
-macro compose y "<attach-key>`echo 9DDDFA986706906D3B6A71454FD2B0C6902FA1CD`<enter><enter><send-message>"
-
-
-#==========================================================
-# General Bindings
-#==========================================================
-bind index g noop
-bind index h noop
-
-bind pager,attach h exit
-bind index j next-entry
-bind index k previous-entry
-bind index l display-message
-bind index gg first-entry
-bind index G last-entry
-
-bind index N search-opposite
-
-#==========================================================
-# Sidebar
-#==========================================================
-set sidebar_visible = yes
-set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
-set mail_check_stats
-set sidebar_width = 25
-set sidebar_divider_char = '│'
-set sidebar_short_path
-set sidebar_delim_chars = "/"
-set sidebar_folder_indent
-set sidebar_indent_string = "  "
-
-bind index,pager \Ck sidebar-prev
-bind index,pager \Cj sidebar-next
-bind index,pager \Cl sidebar-open
-
-macro index,pager \cu "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
-
-macro attach,compose \cu "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
-
-#==========================================================
-# NotMuch Settings
-#==========================================================
-# All the notmuch settings are documented here: https://neomutt.org/feature/notmuch
-
-# Points to the notmuch directory
-set nm_default_url = "notmuch://$HOME/.mail"
-# Makes notmuch return threads rather than messages
-set nm_query_type = "threads"
-# Binding for notmuch search
-bind index \\ vfolder-from-query
-
+bind editor ^T complete                                           # 
+                                                                  #
+macro index,pager \cu "<pipe-message> urlscan<Enter>"             # ctrl+u to view list of selectable URLs - in mailbox view list
+macro attach,compose \cu "<pipe-entry> urlscan<Enter>"            # ctrl+u to view list of selectable URLs - in compose message or attach file screen
+                                                                  #
+# External config files                                           #
+source mailboxes                                                  # mailboxes config
+source colors                                                     # custom colors config
+                                                                  #
+#=================================================================#
+# GPG                                                             #
+#=================================================================#
+set crypt_use_gpgme = yes                                         # Use GPGME crypto backend
+set crypt_use_pka = yes                                           # Use PKA during signature verification
+set pgp_self_encrypt = yes                                        # PGP encrypted messages will also be encrypted using the pgp_default_key
+set crypt_autosign = yes                                          # Attempt to sign all outgoing messages
+set crypt_autoencrypt = yes                                       # Automatically try to encrypt outgoing messages
+set crypt_autopgp = yes                                           # Whether or not neomutt may automatically enable pgp encryption/signing
+set crypt_verify_sig = yes                                        # Verify incoming signatures?
+set crypt_replysign = yes                                         # Automatically PGP sign replies to messages which are signed
+set crypt_replyencrypt = yes                                      # Automatically PGP encrypt replies to messages which are encrypted
+set crypt_replysignencrypted = yes                                # Automatically PGP sign replies to messages which are encrypted
+set pgp_check_gpg_decrypt_status_fd                               # Automatically checks fd output of pgp_decrypt command to verify success
+set postpone_encrypt = yes                                        # When set, postponed messages that are marked for encryption will be self-encrypted
+set pgp_default_key = 9DDDFA986706906D3B6A71454FD2B0C6902FA1CD    # my default pgp key
+bind index,pager \Cx extract-keys                                 # extract pub keys from email with ctrl-x
+macro compose y "<attach-key>`echo $pgp_default_key`<enter><enter><send-message>" # automatically attach PGP pub key to every message
+                                                                  #
+#=================================================================#
+# General Bindings                                                #
+#=================================================================#
+bind index g noop                                                 # unbind g
+bind index h noop                                                 # unbind h
+bind pager,attach h exit                                          # when viewing an email, press h (vim left) to exit
+bind index j next-entry                                           # when viewing a box, use j (vim down) to scroll down
+bind index k previous-entry                                       # when viewing a box, use k (vim up) to scroll up
+bind index l display-message                                      # when viewing a box, use l (vim right) to view the highlighted email
+bind index gg first-entry                                         # when viewing a box, use gg to skip to the first entry
+bind index G last-entry                                           # when viewing a box, use G to skip to the last entry
+bind index N search-opposite                                      # when searching in a box, press N to go to the previous found entry
+                                                                  #
+#=================================================================#
+# Sidebar	                                                        #
+#=================================================================#
+set sidebar_visible = yes                                         # sidebar visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"                  # format of the boxes in the sidebar
+set mail_check_stats                                              # check the stats of mail to display on sidebar
+set sidebar_width = 25                                            # width of sidebar in characters
+set sidebar_divider_char = '│'                                    # char that separates sidebar from inbox
+set sidebar_short_path                                            # only view last part of full mailbox path
+set sidebar_delim_chars = "/"                                     # mailbox characters to split on when shortening
+set sidebar_folder_indent                                         # indent subfolders
+set sidebar_indent_string = "  "                                  # string to indent subfolders with
+                                                                  #
+bind index,pager \Ck sidebar-prev                                 # ctrl+k (vim up) to scroll up on sidebar mailbox list
+bind index,pager \Cj sidebar-next                                 # ctrl+j (vim down) to scroll down on sidebar mailbox list
+bind index,pager \Cl sidebar-open                                 # ctrl+l (vim right) to enter selected sidebar mailbox
+	                                                                #
+#=================================================================#
+# NotMuch	                                                        #
+#=================================================================#
+set nm_default_url = "notmuch://$XDG_DATA_HOME/.mail"             # Points to the notmuch directory
+set nm_query_type = "threads"                                     # Makes notmuch return threads rather than messages
+bind index \\ vfolder-from-query                                  # Binding for notmuch search
