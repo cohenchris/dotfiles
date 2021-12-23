@@ -27,7 +27,6 @@ declare -a dotfiles=(
   ~/.config/yadm/
   ~/.local/backup
   ~/.local/bin
-  ~/.local/share/gnupg/gpg.conf
   ~/.xinitrc
   ~/.zprofile
 )

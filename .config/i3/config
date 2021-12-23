@@ -178,9 +178,6 @@ bindsym $mod+r mode "resize"
 # \____/\__,_|___/\__\___/|_| |_| |_| \__/\___|\__|\__|_|_| |_|\__, |___/ #
 #                                                              |___/      #
 ###########################################################################
-
-
-
 # Startup System Apps
 exec_always --no-startup-id ~/.config/polybar/launch.sh   # polybar
 exec_always --no-startup-id picom                         # compositor (transparency)
@@ -188,7 +185,7 @@ exec_always --no-startup-id dunst                         # notification daemon
 exec_always --no-startup-id random-wallpaper              # random wallpaper
 
 # Startup Apps
-exec --no-startup-id mullvad-vpn -title mullvad_startup
+exec --no-startup-id mullvad-vpn
 for_window [class="Mullvad VPN"] move to workspace $ws10
 
 # SHORTCUTS

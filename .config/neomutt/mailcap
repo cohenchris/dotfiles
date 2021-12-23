@@ -1,2 +1,2 @@
 text/html; firefox %s
-text/html; w3m -I %{charset} -T text/html -dump; copiousoutput;
+text/html; lynx -dump %s | more
