@@ -24,11 +24,11 @@ declare -a dotfiles=(
   ~/.config/shell/
   ~/.config/vdirsyncer/config
   ~/.config/nvim/init.vim
-  ~/.config/xinitrc
   ~/.config/yadm/
   ~/.local/backup
   ~/.local/bin
   ~/.local/share/gnupg/gpg.conf
+  ~/.xinitrc
   ~/.zprofile
 )
 
