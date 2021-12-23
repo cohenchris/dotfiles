@@ -28,7 +28,7 @@ export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
 #export MYVIMRC="${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
 
-# Source bashrc
+# Source zshrc
 [[ -f ~/.config/shell/.zshrc ]] && . ~/.config/shell/.zshrc
 
 # Start x server

@@ -34,20 +34,12 @@ sudo mv /usr/bin/Plexamp.AppImage /usr/bin/plexamp
 cd
 
 
-#######
-# VIM #
-#######
-
-# install VIM plugins
-vim +PluginInstall +qall
-# youcompleteme with support for c-family languages
-cd ~/.vim/bundle/youcompleteme
-python install.py --clangd-completer
-
-
 ########
 # MISC #
 ########
+
+# Change default shell to zsh
+chsh -s $(which zsh)
 
 # Get wallpapers
 git clone https://github.com/cohenchris/wallpapers ~/.local/wallpapers
@@ -88,10 +80,14 @@ firefox https://addons.mozilla.org/en-US/firefox/addon/floccus/
 # Honey
 firefox https://addons.mozilla.org/en-US/firefox/addon/honey/
 # Terms of Service; Didn't Read
-firefox https://addons.mozilla.org/en-US/firefox/addon/terms-of-service-didnt-read/" > post-install.sh
+firefox https://addons.mozilla.org/en-US/firefox/addon/terms-of-service-didnt-read/
+
+# TODO:
+#   - install extensions
+#   - import gpg private key
+" > post-install.sh
 
 chmod +x post-install.sh
-
 
 # start x server
 startx

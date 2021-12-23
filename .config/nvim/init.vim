@@ -7,7 +7,7 @@ endif
 
 " Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \| PlugInstall --sync | source $MYVIMRC
+  \| PlugInstall --sync
 \| endif
 
 call plug#begin('~/.config/nvim/plugged')
@@ -32,7 +32,7 @@ let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
 filetype plugin indent on
 syntax on
-filetype off            " required
+filetype on             " required
 set nocompatible        " be iMproved, required
 set background=dark	" dark background
 set showcmd             " Show (partial) command in status line.
