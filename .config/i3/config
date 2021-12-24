@@ -200,7 +200,7 @@ bindsym $mod+w exec firefox                                                     
 bindsym $mod+equal exec bluelightfilter up                                          # blue light filter increase
 bindsym $mod+minus exec bluelightfilter down                                        # blue light filter decrease
 bindsym $mod+BackSpace exec bluelightfilter off                                     # blue light filter off
-bindsym $mod+Shift+e exec emailsync                                                 # email sync
+bindsym $mod+Shift+e exec mailsync                                                 # email sync
 
 # System
 bindsym XF86AudioPlay exec playerctl play-pause                                     # play/pause

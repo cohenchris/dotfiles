@@ -98,6 +98,6 @@ bind index,pager \Cl sidebar-open                                     # ctrl+l (
 #=====================================================================#
 # NotMuch                                                             #
 #=====================================================================#
-set nm_default_url = "notmuch://$XDG_DATA_HOME/.mail"                 # Points to the notmuch directory
+set nm_default_url = "notmuch://$XDG_DATA_HOME/mail"                  # Points to the notmuch directory
 set nm_query_type = "threads"                                         # Makes notmuch return threads rather than messages
 bind index \\ vfolder-from-query                                      # Binding for notmuch search
