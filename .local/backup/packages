@@ -55,7 +55,7 @@ isync                     # Offline IMAP Sync
 notmuch                   # Full-body email search DB
 notifymuch                # notification daemon for notmuch DB
 urlscan                   # URL scanner for neomutt emails
-w3m                       # neomutt html viewer
+lynx                      # neomutt/lf html viewer
 khard                     # Local address book for neomutt
 vdirsyncer                # CardDav syncer
 
