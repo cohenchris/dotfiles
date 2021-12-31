@@ -77,7 +77,7 @@ dunst                     # notifications
 ################################################################################
 firefox                   # Mozilla Firefox
 mullvad-vpn               # Mullvad VPN
-calibre                   # eBook manager
+#calibre                   # eBook manager
 vlc                       # Video player
 # libreoffice             # open-source office suite
 # texlive-lang-english    # LaTeX
