@@ -26,6 +26,7 @@ declare -a dotfiles=(
   ~/.config/nvim/init.vim
   ~/.config/wget/
   ~/.config/yadm/
+  ~/.config/zathura/
   ~/.local/backup
   ~/.local/bin
   ~/.xinitrc

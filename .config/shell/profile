@@ -32,7 +32,7 @@ export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
 [[ -f ~/.config/shell/.zshrc ]] && . ~/.config/shell/.zshrc
 
 # Start x server
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx /usr/bin/i3
 
 # Autorandr
 autorandr -c

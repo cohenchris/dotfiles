@@ -15,7 +15,6 @@ git                       # version control
 # system utilities
 ################################################################################
 man                       # man pages
-lf                        # file browser
 zsh                       # zshell
 redshift-git              # blue light filter
 feh                       # image viewer
@@ -32,6 +31,21 @@ wget                      # web request tool
 trash-cli                 # trash command line utility
 cronie                    # crontab
 gnupg                     # GPG
+
+# file browser
+################################################################################
+lf                        # file browser
+sxiv                      # image viewer
+zathura                   # pdf viewer
+zathura-pdf-mupdf         # zathuda pdf plugin
+mpv                       # audio handler
+# previews
+highlight                 # text highlight preview
+atool                     # zip preview
+mediainfo                 # audio preview
+odt2txt                   # odt to txt converter
+chafa                     # terminal image viewer
+poppler                   # pdf preview
 
 # email
 ################################################################################
