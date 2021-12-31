@@ -29,7 +29,6 @@ declare -a dotfiles=(
   ~/.config/zathura/
   ~/.local/backup
   ~/.local/bin
-  ~/.xinitrc
   ~/.zprofile
 )
 
