@@ -1,0 +1,33 @@
+#!/bin/bash
+
+notify-send "Checking email..."
+
+# Sync all emails 
+mbsync -c ~/.config/isync/mbsyncrc mail
+if ! [[ $? -eq 0 ]]; then
+  notify-send --urgency critical "Email syncing error" "mbsync failed"
+  exit
+fi
+
+# Index new emails
+notmuch new
+if ! [[ $? -eq 0 ]]; then
+  notify-send --urgency critical "Email syncing error" "notmuch new failed"
+  exit
+fi
+
+# Notifications for any new emails
+notifymuch
+if ! [[ $? -eq 0 ]]; then
+  notify-send --urgency critical "Email syncing error" "notifymuch failed"
+  exit
+fi
+
+# Sync contacts
+vdirsyncer sync
+if ! [[ $? -eq 0 ]]; then
+  notify-send --urgency critical "Email syncing error" "vdirsyncer failed"
+  exit
+fi
+
+notify-send "Email checked successfully"

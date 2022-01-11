@@ -28,7 +28,7 @@ declare -a dotfiles=(
   ~/.config/yadm/
   ~/.config/zathura/
   ~/.local/backup
-  ~/.local/bin
+  ~/.local/bin/personal
   ~/.zprofile
 )
 
