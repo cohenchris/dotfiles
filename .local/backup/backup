@@ -24,6 +24,7 @@ declare -a dotfiles=(
   ~/.config/shell/
   ~/.config/vdirsyncer/config
   ~/.config/nvim/init.vim
+  ~/.config/python/
   ~/.config/wget/
   ~/.config/yadm/
   ~/.config/zathura/

@@ -13,6 +13,7 @@ export SHELL="zsh"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/pythonrc"
 
 #export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/xinitrc"
 export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/1000}/Xauthority" # This line will break some DMs.
