@@ -78,8 +78,6 @@ firefox https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/
 firefox https://addons.mozilla.org/en-US/firefox/addon/floccus/
 # Honey
 firefox https://addons.mozilla.org/en-US/firefox/addon/honey/
-# Terms of Service; Didn't Read
-firefox https://addons.mozilla.org/en-US/firefox/addon/terms-of-service-didnt-read/
 
 # TODO:
 #   - install extensions
