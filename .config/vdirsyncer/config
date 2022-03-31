@@ -25,6 +25,5 @@ username = "chris"
 # Shell command which calls the external command pass and reads the password nextcloud
 password.fetch = ["command", "pass", "nextcloud"]
 # SSL certificate fingerprint
-verify_fingerprint = "1E:58:76:02:B1:38:91:1D:00:0B:10:C6:48:6B:00:E4:42:26:C4:95"
 #Verify ssl certificate. Set to false if it is self signed and not installed on local machine
 verify = true
