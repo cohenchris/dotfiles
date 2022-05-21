@@ -197,6 +197,7 @@ bindsym $mod+p exec mullvad-vpn                                                 
 bindsym $mod+s exec Plexamp.AppImage                                                # PlexAmp
 bindsym $mod+u exec random-wallpaper                                                # random wallpaper
 bindsym $mod+w exec firefox                                                         # web browser
+bindsym Print exec flameshot gui                                                    # screenshot
 bindsym $mod+equal exec bluelightfilter up                                          # blue light filter increase
 bindsym $mod+minus exec bluelightfilter down                                        # blue light filter decrease
 bindsym $mod+BackSpace exec bluelightfilter off                                     # blue light filter off
