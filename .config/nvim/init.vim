@@ -1,4 +1,4 @@
-let mapleader = " "
+let mapleader = "\<Space>"
 
 " Install vim-plug if not found
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -61,4 +61,4 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o  
 " <leader> + s   -->   spellchecker
 :map <leader>s :setlocal spell!<CR>
 " <leader> + c   -->   LaTeX compiler
-:map <leader>c :!texcompile % & fg<CR><CR>
+:map <leader>c :execute '!texcompile %'<CR><CR>

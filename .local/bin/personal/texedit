@@ -20,4 +20,4 @@ if [ $pdf -ne 1 ]; then
 fi
 
 zathura *.pdf &
-vim $FILENAME
+nvim $FILENAME
