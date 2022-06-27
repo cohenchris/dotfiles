@@ -19,5 +19,5 @@ if [ $pdf -ne 1 ]; then
   exit
 fi
 
-okular *.pdf &
+zathura *.pdf &
 vim $FILENAME
