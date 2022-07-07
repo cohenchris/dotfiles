@@ -11,6 +11,7 @@ esac
 cd
 
 declare -a dotfiles=(
+  ~/.config/autorandr/
   ~/.config/dunst/
   ~/.config/git/
   ~/.config/i3/
