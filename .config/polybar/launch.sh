@@ -10,11 +10,11 @@ fi
 # Change settings based on whether or not the screen is HIDPI 4k
 if [ $HIDPI -eq 1 ]; then
   # HIDPI
-  export BAR_HEIGHT=65
-  export UNIFONT="Unifont:size=20:style=Bold;0"
-  export FONTAWESOME="FontAwesome:size=30:style=Bold;0"
-  export TERMINUS="Terminus (TTF):size=30:style=Bold;0"
-  export MATERIALICONS="MaterialIcons:size=30:style=Bold;0"
+  export BAR_HEIGHT=40
+  export UNIFONT="Unifont:size=12:style=Bold;0"
+  export FONTAWESOME="FontAwesome:size=18:style=Bold;0"
+  export TERMINUS="Terminus (TTF):size=18:style=Bold;0"
+  export MATERIALICONS="MaterialIcons:size=18:style=Bold;0"
   export TOP_LEFT="i3 xwindow"
   export TOP_CENTER=" "
 else
