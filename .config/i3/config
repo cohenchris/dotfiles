@@ -183,8 +183,6 @@ exec --no-startup-id ~/.config/polybar/launch.sh                                
 exec --no-startup-id picom                                                          # compositor (transparency)
 exec --no-startup-id dunst                                                          # notification daemon
 exec --no-startup-id random-wallpaper                                               # random wallpaper
-exec --no-startup-id firefox                                                        # firefox
-assign [class="Firefox"] → $ws1                                                     # firefox to workspace 1
 exec --no-startup-id mullvad-vpn                                                    # mullvad vpn
 assign [class="Mullvad VPN"] → $ws10                                                # mullvad vpn to workspace 10
 
