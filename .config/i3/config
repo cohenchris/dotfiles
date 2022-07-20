@@ -187,7 +187,7 @@ exec --no-startup-id mullvad-vpn                                                
 assign [class="Mullvad VPN"] → $ws10                                                # mullvad vpn to workspace 10
 
 # Shortcuts
-bindsym $mod+b exec st bt                                                           # bluetooth menu
+bindsym $mod+b exec bt                                                           # bluetooth menu
 bindsym $mod+e exec st neomutt                                                      # neomutt
 bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"                             # i3lock
 bindsym $mod+n exec st lf                                                           # file browser
