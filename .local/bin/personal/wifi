@@ -1,14 +1,35 @@
 #!/bin/bash
 
-nmcli device wifi list
+notify-send "Loading available wireless connections..." "Please wait..."
 
-read -p "Which network to connect? "
-network=$REPLY
+availableNetworks="$(nmcli -f SSID device wifi list | tail -n +2 | awk '$1 != "--" {print}' | uniq)"
+numAvailableNetworks=$(echo "$availableNetworks" | wc -l)
 
-read -sp "Password for $network: "
-pass=$REPLY
 
-echo
-nmcli device wifi connect "$network" password "$pass"
+networkChoice=$(echo "$availableNetworks" | awk '{$1=$1};1' | dmenu -p "Select wireless network: " -l $numAvailableNetworks -nb "#1e1e1e" -sf "#aaff77" -sb "#333333" -nf "#ffffff")
 
-unset pass network
+echo $networkChoice
+
+if [[ -z $networkChoice ]]; then
+  notify-send --urgency critical "Must select a wireless network"
+  exit
+fi
+
+echo $networkChoice
+
+networkPassword=$(dmenu -p "Enter password for wireless network \"$networkChoice\": " -nb "#1e1e1e" -sf "#aaff77" -sb "#333333" -nf "#1e1e1e" <&-)
+
+notify-send "Attempting to connect to wireless network \"$networkChoice\""
+
+echo $networkChoice
+echo $networkPassword
+
+errorCode=$(nmcli device wifi connect "$networkChoice" password "$networkPassword")
+
+if echo $errorCode | grep -q "successfully activated"; then
+  notify-send "Connection to wireless network \"$networkChoice\" succeeded."
+else
+  notify-send --urgency critical "Connection to wireless network \"$networkChoice\" failed." "$errorCode"
+fi
+
+unset networkPassword

@@ -12,7 +12,7 @@ declare -a deviceMACs=(
   FB:58:C7:BD:78:D2   # BT60
 )
 
-choice=$(printf "%s\n" "${deviceNames[@]}" | dmenu -p "Select a bluetooth device: " -nb "#1e1e1e" -sf "#aaff77" -sb "#1e1e1e" -nf "#ffffff")
+choice=$(printf "%s\n" "${deviceNames[@]}" | dmenu -p "Select a bluetooth device: " -nb "#1e1e1e" -sf "#aaff77" -sb "#333333" -nf "#ffffff")
 
 DEVICE=
 for i in "${!deviceNames[@]}"; do
@@ -21,13 +21,13 @@ for i in "${!deviceNames[@]}"; do
   fi
 done
 
-notify-send "Attempting to connect to device ${choice}..."
+notify-send "Attempting to connect to bluetooth device \"$choice\"..."
 
 bluetoothctl -- power on > /dev/null
 bluetoothctl -- connect $DEVICE > /dev/null
 
 if [[ $? -eq 0 ]]; then
-  notify-send "Connection to device ${choice} succeeded."
+  notify-send "Connection to bluetooth device \"$choice\" succeeded."
 else
-  notify-send --urgency critical "Bluetooth connection to device ${choice} failed."
+  notify-send --urgency critical "Connection to bluetooth device \"$choice\" failed." "Error $?"
 fi

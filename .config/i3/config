@@ -43,7 +43,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 # colors have been customized to green, rather than the default blue
-bindsym $mod+d exec dmenu_run -nb '#1e1e1e' -sf '$highlight_green' -sb '#1e1e1e' -nf '#ffffff'
+bindsym $mod+d exec dmenu_run -nb '#1e1e1e' -sf '$highlight_green' -sb '#333333' -nf '#ffffff'
 
 # gaps
 gaps inner 10
