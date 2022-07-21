@@ -27,11 +27,7 @@ export BACKGROUND_COLOR=#55000000
 
 # Network Interfaces
 export ETH=$(ifconfig | grep enp -m 1 | cut -d : -f 1)
-
-# Only show WiFi if there is no ethernet connection
-if [ -z "${ETH}" ]; then
-  export WLAN=$(ifconfig | grep wlp -m 1 | cut -d : -f 1)
-fi
+export WLAN=$(ifconfig | grep wlp -m 1 | cut -d : -f 1)
 
 # Terminate already running bar instances
 killall -q polybar
