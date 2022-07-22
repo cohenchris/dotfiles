@@ -187,8 +187,7 @@ exec --no-startup-id mullvad-vpn                                                
 assign [class="Mullvad VPN"] → $ws10                                                # mullvad vpn to workspace 10
 
 # Shortcuts
-bindsym $mod+b exec bt                                                              # bluetooth menu
-bindsym $mod+Shift+w exec wifi                                                      # wifi menu
+bindsym $mod+b exec dmenu-bluetooth -l 20 -nb '#1e1e1e' -sf '$highlight_green' -sb '#333333' -nf '#ffffff' # bluetooth dmenu
 bindsym $mod+e exec st neomutt                                                      # neomutt
 bindsym $mod+Shift+e exec mailsync                                                  # email sync
 bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"                             # i3lock
@@ -196,6 +195,7 @@ bindsym $mod+n exec st lf                                                       
 bindsym $mod+p exec mullvad-vpn                                                     # mullvad vpn
 bindsym $mod+u exec random-wallpaper                                                # random wallpaper
 bindsym $mod+w exec firefox                                                         # web browser
+bindsym $mod+Shift+w exec wifi                                                      # wifi menu
 bindsym Print exec flameshot gui                                                    # screenshot
 bindsym $mod+equal exec bluelightfilter up                                          # blue light filter increase
 bindsym $mod+minus exec bluelightfilter down                                        # blue light filter decrease
