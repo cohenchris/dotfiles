@@ -194,7 +194,7 @@ bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"                         
 bindsym $mod+n exec st lf                                                           # file browser
 bindsym $mod+p exec mullvad-vpn                                                     # mullvad vpn
 bindsym $mod+u exec random-wallpaper                                                # random wallpaper
-bindsym $mod+w exec firefox                                                         # web browser
+bindsym $mod+w exec brave                                                           # web browser
 bindsym $mod+Shift+w exec wifi                                                      # wifi menu
 bindsym Print exec flameshot gui                                                    # screenshot
 bindsym $mod+equal exec bluelightfilter up                                          # blue light filter increase

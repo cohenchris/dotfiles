@@ -14,7 +14,7 @@ do
     pkg_name=$(echo $pkg_name | cut -d "#" -f 1)
 
     curr_pkg=$((curr_pkg+1))
-    echo -ne "($curr_pkg/$total_pkgs)\r"
+    echo -ne "Installing package $curr_pkg/$total_pkgs\r"
     paru -Syu --noconfirm $pkg_name -y > /dev/null 2>&1
 
     if [[ $? -ne 0 ]]
@@ -24,8 +24,6 @@ do
 
   fi
 done < $filename
-
-sudo mv /usr/bin/Plexamp.AppImage /usr/bin/plexamp
 
 cd
 
@@ -63,21 +61,17 @@ rm -rf st/
 
 # Post-install script
 echo "#!/bin/bash
-# Firefox extensions
+# Brave extensions
 # Bitwarden
-firefox https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/
-# Privacy Badger
-firefox https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/
+brave https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb?hl=en
 # uBlock Origin
-firefox https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
-# ClearURLs
-firefox https://addons.mozilla.org/en-US/firefox/addon/clearurls/
-# Multi-Account Containers
-firefox https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/
+brave https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en-GB
 # Floccus
-firefox https://addons.mozilla.org/en-US/firefox/addon/floccus/
+brave https://chrome.google.com/webstore/detail/floccus-bookmarks-sync/fnaicdffflnofjppbagibeoednhnbjhg
 # Honey
-firefox https://addons.mozilla.org/en-US/firefox/addon/honey/
+brave https://chrome.google.com/webstore/detail/honey-automatic-coupons-r/bmnlcjabgnpnenekpadlanbbkooimhnj?hl=en-GB
+# Recommended Settings
+brave https://www.privacyguides.org/browsers/#brave
 
 # TODO:
 #   - install extensions
@@ -87,5 +81,4 @@ firefox https://addons.mozilla.org/en-US/firefox/addon/honey/
 
 chmod +x post-install.sh
 
-# start x server
-startx
+sudo reboot

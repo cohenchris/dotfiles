@@ -6,7 +6,7 @@ PATH=$PATH:/home/chris/.local/backup:/home/chris/.local/bin/personal
 # Defaults
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="firefox"
+export BROWSER="brave"
 export SHELL="zsh"
 
 # Clean up ~
@@ -27,6 +27,7 @@ export MBSYNCRC="${XDG_CONFIG_HOME:-$HOME/.config}/isync/mbsyncrc"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 #export MYVIMRC="${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
 
 # Source zshrc
