@@ -1,8 +1,0 @@
-[Unit]
-Description=Script
-
-[Service]
-ExecStart=/home/chris/.local/bin/startup-script
-
-[Install]
-WantedBy=multi-user.target 

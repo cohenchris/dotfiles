@@ -1,9 +1,9 @@
 # development
 ################################################################################
-make                      # makefile executor
-cmake                     # cross-platform makefile executor
-gcc                       # GNU Compiler Collections
-valgrind                  # Memory leak detector
+# make                      # makefile executor
+# cmake                     # cross-platform makefile executor
+# gcc                       # GNU Compiler Collections
+# valgrind                  # Memory leak detector
 python                    # Python programming language
 python-pip                # Python package manager - "pip installs packages"
 npm                       # Node package manager
@@ -77,7 +77,7 @@ dunst                     # notifications
 ################################################################################
 brave-bin                 # Brave Browser
 mullvad-vpn               # Mullvad VPN
-vlc                       # Video player
+# vlc                       # Video player
 # libreoffice             # open-source office suite
 # texlive-lang-english    # LaTeX
 # texlive-xetex           # XeTeX
