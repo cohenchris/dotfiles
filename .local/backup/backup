@@ -32,7 +32,6 @@ declare -a dotfiles=(
   ~/.local/backup
   ~/.local/bin/personal
   ~/.zprofile
-  /usr/etc/npmrc
 )
 
 for i in ${dotfiles[@]}
