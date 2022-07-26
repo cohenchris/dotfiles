@@ -41,6 +41,9 @@ sudo mkdir /etc/zsh
 echo "ZDOTDIR=$HOME/.config/shell" > zshenv
 sudo mv zshenv /etc/zsh/
 
+# pacman features - Add a PacMan visual and enable parallel downloads
+sudo sed '/ParallelDownloads/s/^#/ILoveCandy\n/g' -i /etc/pacman.conf
+
 # Change default shell to zsh
 chsh -s $(which zsh)
 
