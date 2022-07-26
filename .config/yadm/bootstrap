@@ -1,5 +1,7 @@
 #!/bin/bash
 
+yadm decrypt
+
 # install all packages in "packages" file
 filename="packages"
 cd ~/.local/backup/
