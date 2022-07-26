@@ -10,6 +10,10 @@ esac
 
 cd
 
+GPG_TTY=$(tty)
+yadm encrypt
+unset GPG_TTY
+
 declare -a dotfiles=(
   ~/.config/autorandr/
   ~/.config/dunst/
