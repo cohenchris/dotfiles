@@ -31,7 +31,6 @@ declare -a dotfiles=(
   ~/.config/zathura/
   ~/.local/backup
   ~/.local/bin/personal
-  ~/.zprofile
 )
 
 for i in ${dotfiles[@]}

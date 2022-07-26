@@ -27,11 +27,17 @@ done < $filename
 
 cd
 
-# Special case for NPM to clean up home dir
+# Special case dotfiles to clean up home dir
+# npm
 sudo mkdir /usr/etc
-sudo echo "prefix=${XDG_DATA_HOME}/npm
+echo "prefix=${XDG_DATA_HOME}/npm
 cache=${XDG_CACHE_HOME}/npm
-init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js" > /usr/etc/npmrc
+init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js" > npmrc
+sudo mv npmrc /usr/etc/
+# zsh
+sudo mkdir /etc/zsh
+echo "ZDOTDIR=$HOME/.config/shell" > zshenv
+sudo mv zshenv /etc/zsh/
 
 # Change default shell to zsh
 chsh -s $(which zsh)
