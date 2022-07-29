@@ -28,6 +28,7 @@ export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export DOCKER_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/docker"
 #export MYVIMRC="${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
 
 # Source zshrc
