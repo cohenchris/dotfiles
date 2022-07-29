@@ -89,11 +89,6 @@ brave https://chrome.google.com/webstore/detail/floccus-bookmarks-sync/fnaicdfff
 brave https://chrome.google.com/webstore/detail/honey-automatic-coupons-r/bmnlcjabgnpnenekpadlanbbkooimhnj?hl=en-GB
 # Recommended Settings
 brave https://www.privacyguides.org/browsers/#brave
-
-# TODO:
-#   - install extensions
-#   - import gpg private key
-#   - import and/or upload ssh key to github
 " > post-install.sh
 
 chmod +x post-install.sh
