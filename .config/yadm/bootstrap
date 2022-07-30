@@ -58,8 +58,7 @@ git clone https://github.com/zsh-users/zsh-history-substring-search
 # Get wallpapers
 git clone https://github.com/cohenchris/wallpapers ~/.local/wallpapers
 
-# Disables auto-creation of 'Documents' folder and deletes any unnecessary folders
-sed -i 's/XDG_DOCUMENTS_DIR.*/XDG_DOCUMENTS_DIR="$HOME\/"/g' ~/.config/user-dirs.dirs
+# Delete unnecessary XDG folders
 echo 'XDG_CONFIG_DIR="$HOME/.config"' >> ~/.config/user-dirs.dirs
 cd
 rm -rf Desktop Documents Music Pictures Public Templates Videos
