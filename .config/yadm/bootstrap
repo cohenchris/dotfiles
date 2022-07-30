@@ -85,8 +85,6 @@ brave https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngcec
 brave https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en-GB
 # Floccus
 brave https://chrome.google.com/webstore/detail/floccus-bookmarks-sync/fnaicdffflnofjppbagibeoednhnbjhg
-# Honey
-brave https://chrome.google.com/webstore/detail/honey-automatic-coupons-r/bmnlcjabgnpnenekpadlanbbkooimhnj?hl=en-GB
 # Recommended Settings
 brave https://www.privacyguides.org/browsers/#brave
 " > post-install.sh

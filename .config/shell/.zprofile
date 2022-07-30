@@ -15,7 +15,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/pythonrc"
 
-#export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/xinitrc"
 export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/1000}/Xauthority" # This line will break some DMs.
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch/config"
 export PASSWORD_STORE_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/password-store"
@@ -29,7 +28,6 @@ export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export DOCKER_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/docker"
-#export MYVIMRC="${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
 
 # Source zshrc
 [[ -f ~/.config/shell/.zshrc ]] && . ~/.config/shell/.zshrc

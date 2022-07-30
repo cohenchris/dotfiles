@@ -11,12 +11,14 @@ code                      # Microsoft Visual Studio Code
 curl                      # web requests
 jq                        # json parser
 git                       # version control
+nvim                      # neovim
+vim-plug                  # nvim plugins
 
 # system utilities
 ################################################################################
 man                       # man pages
 zsh                       # zshell
-redshift-git              # blue light filter
+redshift                  # blue light filter
 feh                       # image viewer
 net-tools                 # network tools
 pulseaudio                # sound
@@ -31,6 +33,7 @@ wget                      # web request tool
 trash-cli                 # trash command line utility
 cronie                    # crontab
 gnupg                     # GPG
+dmenu-bluetooth           # bluetooth dmenu
 
 # file browser
 ################################################################################
