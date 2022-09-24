@@ -48,8 +48,8 @@ sudo sed '/ParallelDownloads/s/^#/ILoveCandy\n/g' -i /etc/pacman.conf
 chsh -s $(which zsh)
 
 # Install zsh plugins
-mkdir -p $XDG_DATA_HOME/zsh/plugins
-cd $XDG_DATA_HOME/zsh/plugins
+mkdir -p ~/.local/share/zsh/plugins
+cd ~/.local/share/zsh/plugins
 git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions

@@ -11,7 +11,7 @@ code                      # Microsoft Visual Studio Code
 curl                      # web requests
 jq                        # json parser
 git                       # version control
-nvim                      # neovim
+neovim                    # neovim
 vim-plug                  # nvim plugins
 
 # system utilities

@@ -16,6 +16,7 @@ font pango:monospace 8
 # Window Colors
 new_window 1pixel
 smart_borders on
+for_window [class="^.*"] border pixel 1
 
 
 set $white #ffffff
