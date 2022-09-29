@@ -12,7 +12,7 @@
 #
 
 [database]
-path=/home/chris/.local/share/mail
+path=/home/phrog/.local/share/mail
 
 # User configuration
 #

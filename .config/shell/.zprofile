@@ -1,7 +1,7 @@
 # profile file. Runs on login. Environmental variables are set here.
 
 # add custom scripts/backup scripts to PATH
-PATH=$PATH:/home/chris/.local/backup:/home/chris/.local/bin/personal
+PATH=$PATH:/home/phrog/.local/backup:/home/phrog/.local/bin/personal
 
 # Defaults
 export EDITOR="nvim"
