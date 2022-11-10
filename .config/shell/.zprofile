@@ -28,6 +28,8 @@ export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export DOCKER_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/docker"
+export CUDA_CACHE_PATH="${XDG_CACHE_HOME:-$HOME/.cache}/nv"
+export VSCODE_PORTABLE="${XDG_DATA_HOME:-$HOME/.local/share}/vscode"
 
 # Source zshrc
 [[ -f ~/.config/shell/.zshrc ]] && . ~/.config/shell/.zshrc

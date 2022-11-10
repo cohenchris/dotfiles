@@ -14,3 +14,4 @@ alias val="valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --tr
 alias rm="trash --trash-dir $XDG_DATA_HOME/trash"
 
 alias restart="/home/phrog/scripts/restart.sh"
+alias update="/home/phrog/scripts/update.sh"

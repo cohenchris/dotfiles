@@ -79,9 +79,10 @@ dunst                     # notifications
 # daily use
 ################################################################################
 brave-bin                 # Brave Browser
+tor-browser               # Tor Onion Browser
 mullvad-vpn               # Mullvad VPN
 # vlc                       # Video player
-# libreoffice             # open-source office suite
-# texlive-lang-english    # LaTeX
-# texlive-xetex           # XeTeX
-# biber                   # LaTeX/XeTeX bibliographies
+# libreoffice               # open-source office suite
+# texlive-lang-english      # LaTeX
+# texlive-xetex             # XeTeX
+# biber                     # LaTeX/XeTeX bibliographies
