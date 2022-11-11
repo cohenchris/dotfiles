@@ -33,6 +33,7 @@ declare -a dotfiles=(
   ~/.config/wget/
   ~/.config/yadm/
   ~/.config/zathura/
+  ~/.config/qutebrowser/
   ~/.local/backup
   ~/.local/bin/personal
   ~/.local/share/yadm/archive

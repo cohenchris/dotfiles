@@ -75,19 +75,4 @@ sudo make clean install
 cd ../
 rm -rf st/
 
-# Post-install script
-echo "#!/bin/bash
-# Brave extensions
-# Bitwarden
-brave https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb?hl=en
-# uBlock Origin
-brave https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en-GB
-# Floccus
-brave https://chrome.google.com/webstore/detail/floccus-bookmarks-sync/fnaicdffflnofjppbagibeoednhnbjhg
-# Recommended Settings
-brave https://www.privacyguides.org/browsers/#brave
-" > post-install.sh
-
-chmod +x post-install.sh
-
 sudo reboot

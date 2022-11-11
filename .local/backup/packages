@@ -1,9 +1,9 @@
 # development
 ################################################################################
-# make                      # makefile executor
-# cmake                     # cross-platform makefile executor
-# gcc                       # GNU Compiler Collections
-# valgrind                  # Memory leak detector
+make                      # makefile executor
+cmake                     # cross-platform makefile executor
+gcc                       # GNU Compiler Collections
+valgrind                  # Memory leak detector
 python                    # Python programming language
 python-pip                # Python package manager - "pip installs packages"
 npm                       # Node package manager
@@ -34,6 +34,7 @@ trash-cli                 # trash command line utility
 cronie                    # crontab
 gnupg                     # GPG
 dmenu-bluetooth           # bluetooth dmenu
+bitwarden-cli             # bitwarden CLI
 
 # file browser
 ################################################################################
@@ -78,10 +79,9 @@ dunst                     # notifications
 
 # daily use
 ################################################################################
-brave-bin                 # Brave Browser
-tor-browser               # Tor Onion Browser
+qutebrowser               # QuteBrowser
 mullvad-vpn               # Mullvad VPN
-# vlc                       # Video player
+vlc                       # Video player
 # libreoffice               # open-source office suite
 # texlive-lang-english      # LaTeX
 # texlive-xetex             # XeTeX
