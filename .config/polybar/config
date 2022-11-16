@@ -67,7 +67,8 @@ font-0 = ${env:TERMINUS}
 font-1 = ${env:UNIFONT}
 font-2 = ${env:FONTAWESOME}
 
-modules-left = vpn external_ip internal_ip
+;modules-left = vpn external_ip internal_ip
+modules-left = external_ip internal_ip
 modules-right = pulseaudio temperature cpu memory
 
 ; ##############################################################################

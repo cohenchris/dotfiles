@@ -185,8 +185,8 @@ exec --no-startup-id ~/.config/polybar/launch.sh                                
 exec --no-startup-id picom                                                          # compositor (transparency)
 exec --no-startup-id dunst                                                          # notification daemon
 exec --no-startup-id random-wallpaper                                               # random wallpaper
-exec --no-startup-id mullvad-vpn                                                    # mullvad vpn
-assign [class="Mullvad VPN"] → $ws10                                                # mullvad vpn to workspace 10
+#exec --no-startup-id mullvad-vpn                                                    # mullvad vpn
+#assign [class="Mullvad VPN"] → $ws10                                                # mullvad vpn to workspace 10
 
 # Shortcuts
 bindsym $mod+b exec dmenu-bluetooth -l 20 -nb '#1e1e1e' -sf '$highlight_green' -sb '#333333' -nf '#ffffff' # bluetooth dmenu
@@ -194,7 +194,7 @@ bindsym $mod+e exec st neomutt                                                  
 bindsym $mod+Shift+e exec mailsync                                                  # email sync
 bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"                             # i3lock
 bindsym $mod+n exec st lf                                                           # file browser
-bindsym $mod+p exec mullvad-vpn                                                     # mullvad vpn
+#bindsym $mod+p exec mullvad-vpn                                                     # mullvad vpn
 bindsym $mod+u exec random-wallpaper                                                # random wallpaper
 bindsym $mod+w exec qutebrowser                                                     # web browser
 bindsym $mod+Shift+w exec wifi                                                      # wifi menu

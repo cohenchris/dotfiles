@@ -15,8 +15,5 @@ settings:
     - filesystem
   url.default_page:
     global: http://192.168.24.3:2450
-  url.searchengines:
-    global:
-      DEFAULT: https://searx.chriscohen.dev/searx/search?q={}&categories=general&language=en-US
   url.start_pages:
     global: http://192.168.24.3:2450

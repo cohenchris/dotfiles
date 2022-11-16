@@ -70,7 +70,7 @@ xorg-xinit                # tool to start xorg servers
 xorg-xrandr               # tool to manage display settings
 autorandr                 # tool to automatically manage x configs
 picom-git                 # x compositor
-i3-gaps-next-git          # window manager
+i3-gaps                   # window manager
 i3lock-color              # lock screen
 i3lock-fancy-git          # lock screen colors
 polybar                   # status bar
@@ -80,7 +80,7 @@ dunst                     # notifications
 # daily use
 ################################################################################
 qutebrowser               # QuteBrowser
-mullvad-vpn               # Mullvad VPN
+#mullvad-vpn               # Mullvad VPN
 vlc                       # Video player
 # libreoffice               # open-source office suite
 # texlive-lang-english      # LaTeX

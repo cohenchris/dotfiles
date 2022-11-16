@@ -4,6 +4,8 @@ notify-send "Loading available wireless connections..." "Please wait..."
 
 availableNetworks="$(nmcli -f SSID device wifi list | tail -n +2 | awk '$1 != "--" {print}' | uniq)"
 
+echo $availableNetworks
+
 networkChoice=$(echo "$availableNetworks" | awk '{$1=$1};1' | dmenu -p "Select wireless network:" -l 20 -nb "#1e1e1e" -sf "#aaff77" -sb "#333333" -nf "#ffffff")
 
 echo $networkChoice
