@@ -77,12 +77,7 @@ polybar                   # status bar
 dmenu                     # menu
 dunst                     # notifications
 
-# daily use
+# daily use applications
 ################################################################################
 qutebrowser               # QuteBrowser
-#mullvad-vpn               # Mullvad VPN
 vlc                       # Video player
-# libreoffice               # open-source office suite
-# texlive-lang-english      # LaTeX
-# texlive-xetex             # XeTeX
-# biber                     # LaTeX/XeTeX bibliographies
