@@ -3,17 +3,22 @@
 DEFAULT=2000
 REDSHIFT_FILE="$XDG_CONFIG_HOME/.redshift_temp"
 
-LOW=1000
-HIGH=25000
+HIGH=1000
+LOW=5000
 
-function temp_up () {
+# We say that, to "increase" the temperature, we make the screen more orange.
+# This is why we subtract in the temp_up function, and add in the temp_down function.
+# This makes the script more confusing, but makes more sense to me.
+
+
+function temp_down() {
   if [[ -f $REDSHIFT_FILE ]]; then
     # Read existing value
     old=$(cat $REDSHIFT_FILE)
     new=$(($old + 25 ))
-    if [[ $new -gt $HIGH ]]; then
-      # don't let value surpass high boundary
-      notify-send "redshift already at highest value"
+    if [[ $new -gt $LOW ]]; then
+      # don't let value go over boundary
+      notify-send "redshift already at lowest value"
       echo $old > $REDSHIFT_FILE
     else
       # update saved redshift value
@@ -27,14 +32,14 @@ function temp_up () {
   fi
 }
 
-function temp_down () {
+function temp_up () {
   if [[ -f $REDSHIFT_FILE ]]; then
     # Read existing value
     old=$(cat $REDSHIFT_FILE)
     new=$(($old - 25 ))
-    if [[ $new -lt $LOW ]]; then
-      # don't let value go under lower boundary
-      notify-send "redshift already at lowest value"
+    if [[ $new -lt $HIGH ]]; then
+      # don't let value surpass lower boundary
+      notify-send "redshift already at highest value"
       echo $old > $REDSHIFT_FILE
     else
       # update saved redshift value
