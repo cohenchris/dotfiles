@@ -13,5 +13,7 @@ alias backups="ssh pi@192.168.24.4"               # backup server           192.
 alias val="valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes"
 alias rm="trash --trash-dir $XDG_DATA_HOME/trash"
 
+alias m4b-tool='docker run -it --rm -u $(id -u):$(id -g) -v "$(pwd)":/mnt sandreas/m4b-tool:latest'
+
 alias restart="/home/phrog/scripts/restart.sh"
 alias update="/home/phrog/scripts/update.sh"

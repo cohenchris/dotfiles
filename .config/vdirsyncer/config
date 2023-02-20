@@ -26,4 +26,4 @@ username = "chris"
 password.fetch = ["command", "pass", "nextcloud"]
 # SSL certificate fingerprint
 #Verify ssl certificate. Set to false if it is self signed and not installed on local machine
-verify = true
+#verify = true

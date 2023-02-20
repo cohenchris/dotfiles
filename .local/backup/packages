@@ -35,6 +35,10 @@ cronie                    # crontab
 gnupg                     # GPG
 dmenu-bluetooth           # bluetooth dmenu
 bitwarden-cli             # bitwarden CLI
+7-zip                     # 7-Zip
+unrar                     # Unrar
+unzip                     # Unzip
+gzip                      # Gzip
 
 # file browser
 ################################################################################
