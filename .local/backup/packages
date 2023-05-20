@@ -80,6 +80,8 @@ i3lock-fancy-git          # lock screen colors
 polybar                   # status bar
 dmenu                     # menu
 dunst                     # notifications
+xrdp                      # remote desktop
+xorgxrdp-nvidia           # nvidia drivers for remote desktop
 
 # daily use applications
 ################################################################################
