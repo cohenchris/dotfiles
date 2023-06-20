@@ -22,7 +22,7 @@ cmd open ${{
   case $(file --mime-type "$(readlink -f $f)" -b) in
     text/*) $EDITOR $fx;;
     image/svg+xml) display -- $f ;;
-    image/*) setsid -f sxiv -ao $f ;;
+    image/*) setsid -f sxiv -ao ./* ;;
     audio/*) mpv --audio-display=no $f ;;
     video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
     application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;

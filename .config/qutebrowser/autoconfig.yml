@@ -17,6 +17,6 @@ settings:
     https://calendar.google.com: false
     https://nextcloud.chriscohen.dev: true
   url.default_page:
-    global: http://192.168.24.3:2450
+    global: https://homeassistant.chriscohen.dev
   url.start_pages:
-    global: http://192.168.24.3:2450
+    global: https://homeassistant.chriscohen.dev

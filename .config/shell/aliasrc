@@ -12,6 +12,7 @@ alias backups="ssh pi@192.168.24.4"               # backup server           192.
 # Misc
 alias val="valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes"
 alias rm="trash --trash-dir $XDG_DATA_HOME/trash"
+alias occ="docker exec -it -u www-data nextcloud php occ"
 
 alias m4b-tool='docker run -it --rm -u $(id -u):$(id -g) -v "$(pwd)":/mnt sandreas/m4b-tool:latest'
 
