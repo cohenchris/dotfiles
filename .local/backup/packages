@@ -7,7 +7,7 @@ valgrind                  # Memory leak detector
 python                    # Python programming language
 python-pip                # Python package manager - "pip installs packages"
 npm                       # Node package manager
-code                      # Microsoft Visual Studio Code
+#vscodium                  # Open-Source Version of VSCode
 curl                      # web requests
 jq                        # json parser
 git                       # version control
