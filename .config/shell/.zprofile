@@ -34,6 +34,3 @@ export VSCODE_PORTABLE="${XDG_DATA_HOME:-$HOME/.local/share}/vscode"
 
 # Start x server
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx /usr/bin/i3
-
-# Autorandr
-autorandr -c

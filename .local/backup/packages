@@ -72,7 +72,6 @@ vdirsyncer                # CardDav syncer
 xorg-server               # x display server
 xorg-xinit                # tool to start xorg servers
 xorg-xrandr               # tool to manage display settings
-autorandr                 # tool to automatically manage x configs
 picom-git                 # x compositor
 i3-gaps                   # window manager
 i3lock-color              # lock screen
