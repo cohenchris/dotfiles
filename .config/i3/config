@@ -185,6 +185,8 @@ exec --no-startup-id ~/.config/polybar/launch.sh                                
 exec --no-startup-id picom                                                          # compositor (transparency)
 exec --no-startup-id dunst                                                          # notification daemon
 exec --no-startup-id random-wallpaper                                               # random wallpaper
+exec --no-startup-id xscreensaver -nosplash                                         # screensaver
+exec --no-startup-id bluetoothctl select 00:E0:4C:2D:10:30                          # default bluetooth dongle
 #exec --no-startup-id mullvad-vpn                                                    # mullvad vpn
 #assign [class="Mullvad VPN"] → $ws10                                                # mullvad vpn to workspace 10
 
@@ -196,7 +198,7 @@ bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"                         
 bindsym $mod+n exec st lf                                                           # file browser
 #bindsym $mod+p exec mullvad-vpn                                                     # mullvad vpn
 bindsym $mod+u exec random-wallpaper                                                # random wallpaper
-bindsym $mod+w exec qutebrowser                                                     # web browser
+bindsym $mod+w exec google-chrome-stable                                            # web browser
 bindsym $mod+Shift+w exec wifi                                                      # wifi menu
 bindsym Print exec flameshot gui                                                    # screenshot
 bindsym $mod+equal exec bluelightfilter up                                          # blue light filter increase

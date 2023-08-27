@@ -84,5 +84,5 @@ xorgxrdp-nvidia           # nvidia drivers for remote desktop
 
 # daily use applications
 ################################################################################
-qutebrowser               # QuteBrowser
+ungoogled-chromium        # Ungoogled Chromium
 vlc                       # Video player
