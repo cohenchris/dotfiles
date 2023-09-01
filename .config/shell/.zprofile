@@ -4,7 +4,7 @@ PATH=$PATH:/home/phrog/.local/backup:/home/phrog/.local/bin/personal:/home/phrog
 # Defaults
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="google-chrome-stable"
+export BROWSER="brave"
 export SHELL="zsh"
 
 # Clean up ~
