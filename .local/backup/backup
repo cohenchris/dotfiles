@@ -15,7 +15,6 @@ yadm encrypt
 unset GPG_TTY
 
 declare -a dotfiles=(
-  ~/.config/autorandr/
   ~/.config/dunst/
   ~/.config/git/
   ~/.config/i3/
