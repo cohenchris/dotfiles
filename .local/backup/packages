@@ -84,5 +84,5 @@ xorgxrdp-nvidia           # nvidia drivers for remote desktop
 
 # daily use applications
 ################################################################################
-ungoogled-chromium        # Ungoogled Chromium
+brave-browser             # Brave Web Browser
 vlc                       # Video player
