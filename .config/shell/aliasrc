@@ -4,11 +4,11 @@ alias grep='grep --color=auto'
 alias vim="nvim"
 
 # SSH
-alias router="ssh root@24.0.0.1"                  # router                  24.0.0.1
-alias pihole="ssh pi@24.0.0.2"                    # pi-hole dns adblocker   24.0.0.2
-alias sd="ssh pi@24.0.0.3"                        # sd pi vpn               24.0.0.3
-alias phrog="ssh phrog@24.0.0.4"                  # homelab server          24.0.0.4
-alias backups="ssh pi@24.0.0.5"                   # backup server           24.0.0.5
+alias opnsense="ssh root@opnsense.lan"         # router
+alias pihole="ssh pi@pihole.lan"               # pi-hole dns adblocker
+alias pivpn="ssh pi@pivpn.lan"                 # sd pi vpn
+alias lab="ssh phrog@lab.lan"                  # homelab server
+alias backups="ssh pi@backups.lan"             # backup server
 
 # Misc
 alias val="valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes"

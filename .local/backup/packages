@@ -39,7 +39,8 @@ bitwarden-cli             # bitwarden CLI
 unrar                     # Unrar
 unzip                     # Unzip
 gzip                      # Gzip
-
+python-dotenv             # Python - Dotenv
+python-openpyxl           # Python - OpenPyXL
 # file browser
 ################################################################################
 lf                        # file browser
