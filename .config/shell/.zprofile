@@ -1,5 +1,5 @@
 # add custom scripts/backup scripts to PATH
-PATH=$PATH:/home/phrog/.local/backup:/home/phrog/.local/bin/personal:/home/phrog/.local/bin
+PATH=/home/phrog/.local/backup:/home/phrog/.local/bin/personal:/home/phrog/.local/bin:$PATH
 
 # Defaults
 export EDITOR="nvim"

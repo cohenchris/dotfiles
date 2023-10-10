@@ -87,3 +87,4 @@ xorgxrdp-nvidia           # nvidia drivers for remote desktop
 ################################################################################
 brave-bin                 # Brave Web Browser
 vlc                       # Video player
+glances                   # Task Manager and Resource Monitor

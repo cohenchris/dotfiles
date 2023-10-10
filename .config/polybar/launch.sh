@@ -5,10 +5,10 @@ res=$(xrandr | grep 'Screen 0' | cut -d , -f 2 | cut -d ' ' -f 5)
 if [ $res -gt 1080 ]; then
   # 1440p
   export BAR_HEIGHT=30
-  export UNIFONT="Unifont:size=9:style=Bold;0"
-  export FONTAWESOME="FontAwesome:size=14:style=Bold;0"
-  export TERMINUS="Terminus (TTF):size=14:style=Bold;0"
-  export MATERIALICONS="MaterialIcons:size=14:style=Bold;0"
+  export UNIFONT="Unifont:size=9:style=Bold;3"
+  export FONTAWESOME="FontAwesome:size=14:style=Bold;3"
+  export TERMINUS="Terminus (TTF):size=14:style=Bold;3"
+  export MATERIALICONS="MaterialIcons:size=14:style=Bold;3"
   export TOP_LEFT="i3 xwindow"
   export TOP_CENTER=" "
 else
