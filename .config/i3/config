@@ -204,7 +204,7 @@ bindsym Print exec flameshot gui                                                
 bindsym $mod+equal exec bluelightfilter up                                          # blue light filter increase
 bindsym $mod+minus exec bluelightfilter down                                        # blue light filter decrease
 bindsym $mod+BackSpace exec bluelightfilter off                                     # blue light filter off
-bindsym $mod+t exec st htop                                                         # htop (task manager)
+bindsym $mod+t exec st glances                                                      # glances (task manager)
 
 # System
 bindsym XF86AudioPlay exec playerctl play-pause                                     # play/pause

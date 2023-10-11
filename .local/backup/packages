@@ -3,11 +3,8 @@
 make                      # makefile executor
 cmake                     # cross-platform makefile executor
 gcc                       # GNU Compiler Collections
-valgrind                  # Memory leak detector
 python                    # Python programming language
 python-pip                # Python package manager - "pip installs packages"
-npm                       # Node package manager
-#vscodium                  # Open-Source Version of VSCode
 curl                      # web requests
 jq                        # json parser
 git                       # version control
@@ -40,7 +37,7 @@ unrar                     # Unrar
 unzip                     # Unzip
 gzip                      # Gzip
 python-dotenv             # Python - Dotenv
-python-openpyxl           # Python - OpenPyXL
+
 # file browser
 ################################################################################
 lf                        # file browser
@@ -80,8 +77,6 @@ i3lock-fancy-git          # lock screen colors
 polybar                   # status bar
 dmenu                     # menu
 dunst                     # notifications
-xrdp                      # remote desktop
-xorgxrdp-nvidia           # nvidia drivers for remote desktop
 
 # daily use applications
 ################################################################################
