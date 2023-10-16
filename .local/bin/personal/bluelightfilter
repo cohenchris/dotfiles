@@ -15,7 +15,7 @@ function temp_down() {
   if [[ -f $REDSHIFT_FILE ]]; then
     # Read existing value
     old=$(cat $REDSHIFT_FILE)
-    new=$(($old + 25 ))
+    new=$(($old + 75 ))
     if [[ $new -gt $LOW ]]; then
       # don't let value go over boundary
       notify-send "redshift already at lowest value"
@@ -36,7 +36,7 @@ function temp_up () {
   if [[ -f $REDSHIFT_FILE ]]; then
     # Read existing value
     old=$(cat $REDSHIFT_FILE)
-    new=$(($old - 25 ))
+    new=$(($old - 75 ))
     if [[ $new -lt $HIGH ]]; then
       # don't let value surpass lower boundary
       notify-send "redshift already at highest value"
