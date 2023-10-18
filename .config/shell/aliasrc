@@ -12,7 +12,6 @@ alias backups="ssh pi@backups.lan"             # backup server
 
 # Misc
 alias val="valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes"
-alias rm="trash --trash-dir $XDG_DATA_HOME/trash"
 alias occ="docker exec -it -u www-data nextcloud php occ"
 alias scan="sudo chown -R http:http /home/phrog/files; occ files:scan --all"
 

@@ -25,3 +25,6 @@ source $XDG_DATA_HOME/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlight
 source $XDG_DATA_HOME/zsh/plugins/zsh-completions/zsh-completions.plugin.zsh
 source $XDG_DATA_HOME/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $XDG_DATA_HOME/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+
+# Screen Time Notification
+/home/phrog/.local/bin/personal/screen-time

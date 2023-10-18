@@ -41,17 +41,15 @@ python-dotenv             # Python - Dotenv
 # file browser
 ################################################################################
 lf                        # file browser
-sxiv                      # image viewer
+localc                    # xml spreadsheet viewer
 zathura                   # pdf viewer
-zathura-pdf-mupdf         # zathuda pdf plugin
+gimp                      # xcf viewer
 mpv                       # audio handler
-# previews
-highlight                 # text highlight preview
-atool                     # zip preview
-mediainfo                 # audio preview
-odt2txt                   # odt to txt converter
-chafa                     # terminal image viewer
-poppler                   # pdf preview
+ueberzug                  # image previewer
+nsxiv                     # image handler
+lynx                      # html previewer
+gnome-epub-thumbnailer    # epub previewer
+odt2txt                   # doc thumbnailer
 
 # email
 ################################################################################

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+day_of_week=$(date +"%w")
+current_hour=$(date +"%H")
+
+if [[ $day_of_week -eq 5 && $current_hour -ge 17 ]] || [[ $day_of_week -eq 0 || $day_of_week -eq 6 && $current_hour -lt 8 ]]; then
+  notify-send --urgency critical "Please do not log in between 5pm on Friday and 8am on Monday"
+fi
