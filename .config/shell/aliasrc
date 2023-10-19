@@ -14,6 +14,7 @@ alias backups="ssh pi@backups.lan"             # backup server
 alias val="valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes"
 alias occ="docker exec -it -u www-data nextcloud php occ"
 alias scan="sudo chown -R http:http /home/phrog/files; occ files:scan --all"
+alias lf="lfub"
 
 alias m4b-tool='docker run -it --rm -u $(id -u):$(id -g) -v "$(pwd)":/mnt sandreas/m4b-tool:latest'
 
