@@ -4,7 +4,7 @@ alias grep='grep --color=auto'
 alias vim="nvim"
 
 # SSH
-alias opnsense="ssh root@opnsense.lan"         # router
+alias router="ssh root@router.lan"             # router
 alias pihole="ssh pi@pihole.lan"               # pi-hole dns adblocker
 alias pivpn="ssh pi@pivpn.lan"                 # sd pi vpn
 alias lab="ssh phrog@lab.lan"                  # homelab server

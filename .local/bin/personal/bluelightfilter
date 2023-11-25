@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEFAULT=2000
+DEFAULT=2500
 REDSHIFT_FILE="$XDG_CONFIG_HOME/.redshift_temp"
 
 HIGH=1000
