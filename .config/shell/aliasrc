@@ -3,20 +3,9 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vim="nvim"
 
-# SSH
-alias router="ssh root@router.lan"             # router
-alias pihole="ssh pi@pihole.lan"               # pi-hole dns adblocker
-alias pivpn="ssh pi@pivpn.lan"                 # sd pi vpn
-alias lab="ssh phrog@lab.lan"                  # homelab server
-alias backups="ssh pi@backups.lan"             # backup server
-
 # Misc
-alias val="valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes"
 alias occ="docker exec -it -u www-data nextcloud php occ"
-alias scan="sudo chown -R http:http /home/phrog/files; occ files:scan --all"
+alias scan="/home/phrog/scripts/scan-nextcloud-files.sh"
 alias lf="lfub"
-
-alias m4b-tool='docker run -it --rm -u $(id -u):$(id -g) -v "$(pwd)":/mnt sandreas/m4b-tool:latest'
-
 alias restart="/home/phrog/scripts/restart.sh"
 alias update="/home/phrog/scripts/update.sh"
