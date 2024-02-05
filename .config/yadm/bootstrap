@@ -44,6 +44,9 @@ sudo mv zshenv /etc/zsh/
 # pacman features - Add a PacMan visual and enable parallel downloads
 sudo sed '/ParallelDownloads/s/^#/ILoveCandy\n/g' -i /etc/pacman.conf
 
+# Replace notmuch config database path with whoever the $USER is
+sed -i "s/phrog/$USER/g" $XDG_CONFIG_HOME/notmuch/config
+
 # Change default shell to zsh
 chsh -s $(which zsh)
 
@@ -59,7 +62,6 @@ git clone https://github.com/zsh-users/zsh-history-substring-search
 git clone https://github.com/cohenchris/wallpapers ~/.local/wallpapers
 
 # Delete unnecessary XDG folders
-echo 'XDG_CONFIG_HOME="$HOME/.config"' >> ~/.config/user-dirs.dirs
 cd
 rm -rf Desktop Documents Music Pictures Public Templates Videos
 
