@@ -5,7 +5,7 @@ alias vim="nvim"
 
 # Misc
 alias occ="docker exec -it -u www-data nextcloud php occ"
-alias scan="/home/phrog/scripts/scan-nextcloud-files.sh"
+alias scan="/home/$USER/scripts/scan-nextcloud-files.sh"
 alias lf="lfub"
-alias restart="/home/phrog/scripts/restart.sh"
-alias update="/home/phrog/scripts/update.sh"
+alias restart="/home/$USER/scripts/restart.sh"
+alias update="/home/$USER/scripts/update.sh"

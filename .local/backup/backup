@@ -16,7 +16,6 @@ unset GPG_TTY
 
 declare -a dotfiles=(
   ~/.config/dunst/
-  ~/.config/flameshot/
   ~/.config/git/
   ~/.config/i3/
   ~/.config/isync/

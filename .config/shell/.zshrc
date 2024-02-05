@@ -11,7 +11,7 @@ bindkey -v
 bindkey '^R' history-incremental-search-backward
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/phrog/.config/shell/.zshrc'
+zstyle :compinstall filename '/home/$USER/.config/shell/.zshrc'
 
 autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION

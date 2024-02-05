@@ -1,5 +1,5 @@
 # add custom scripts/backup scripts to PATH
-PATH=/home/phrog/.local/backup:/home/phrog/.local/bin/personal:/home/phrog/.local/bin:$PATH
+PATH=/home/$USER/.local/backup:/home/$USER/.local/bin/personal:/home/$USER/.local/bin:$PATH
 
 # Defaults
 export EDITOR="nvim"
@@ -11,9 +11,11 @@ export SHELL="zsh"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DOWNLOAD_HOME="$HOME/Downloads"
+export XDG_RUNTIME_HOME="/run/user/1000"
 export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/pythonrc"
 
-export XAUTHORITY="${XDG_RUNTIME_DIR:-/run/user/1000}/Xauthority" # This line will break some DMs.
+export XAUTHORITY="${XDG_RUNTIME_HOME:-/run/user/1000}/Xauthority" # This line will break some DMs.
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch/config"
 export PASSWORD_STORE_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/password-store"
 export LESSHISTFILE=/dev/null
