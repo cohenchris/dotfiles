@@ -16,6 +16,7 @@ unset GPG_TTY
 
 declare -a dotfiles=(
   ~/.config/dunst/
+  ~/.config/flameshot/
   ~/.config/git/
   ~/.config/i3/
   ~/.config/isync/
@@ -24,10 +25,10 @@ declare -a dotfiles=(
   ~/.config/neomutt/
   ~/.config/notifymuch/
   ~/.config/notmuch/
+  ~/.config/nvim/init.vim
   ~/.config/polybar/
   ~/.config/shell/
   ~/.config/vdirsyncer/config
-  ~/.config/nvim/init.vim
   ~/.config/python/
   ~/.config/wget/
   ~/.config/yadm/

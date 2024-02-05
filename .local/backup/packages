@@ -81,3 +81,5 @@ dunst                     # notifications
 brave-bin                 # Brave Web Browser
 vlc                       # Video player
 glances                   # Task Manager and Resource Monitor
+neofetch                  # Neofetch System Info
+nicotine                  # Soulseek Client
