@@ -35,6 +35,7 @@ declare -a dotfiles=(
   ~/.local/backup
   ~/.local/bin/personal
   ~/.local/share/yadm/archive
+  ~/.config/user-dirs.dirs
 )
 
 for i in ${dotfiles[@]}
