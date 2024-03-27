@@ -26,16 +26,16 @@ declare -a dotfiles=(
   ~/.config/notmuch/
   ~/.config/nvim/init.vim
   ~/.config/polybar/
-  ~/.config/shell/
-  ~/.config/vdirsyncer/config
   ~/.config/python/
+  ~/.config/shell/
+  ~/.config/user-dirs.dirs
+  ~/.config/vdirsyncer/config
   ~/.config/wget/
   ~/.config/yadm/
   ~/.config/zathura/
   ~/.local/backup
   ~/.local/bin/personal
   ~/.local/share/yadm/archive
-  ~/.config/user-dirs.dirs
 )
 
 for i in ${dotfiles[@]}
