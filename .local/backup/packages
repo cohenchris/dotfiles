@@ -71,14 +71,14 @@ imagemagick               # Image Manipulation Suite
 ################################################################################
 #                                     EMAIL                                    #
 ################################################################################
-neomutt                   # cli email
-pass                      # for keystore
+neomutt                   # cli email client
+pass                      # keystore
 isync                     # Offline IMAP Sync
 notmuch                   # Full-body email search DB
 notifymuch                # notification daemon for notmuch DB
 urlscan                   # URL scanner for neomutt emails
 lynx                      # neomutt/lf html viewer
-khard                     # Local address book for neomutt
+khard                     # Local address book
 vdirsyncer                # CardDav syncing
 
 
