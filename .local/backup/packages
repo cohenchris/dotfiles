@@ -1,58 +1,75 @@
-# development
 ################################################################################
-make                      # makefile executor
-cmake                     # cross-platform makefile executor
-gcc                       # GNU Compiler Collections
-python                    # Python programming language
-python-pip                # Python package manager - "pip installs packages"
-curl                      # web requests
-jq                        # json parser
-git                       # version control
-neovim                    # neovim
-vim-plug                  # nvim plugins
-
-# system utilities
+#                                 SYSTEM UTILITIES                             #
 ################################################################################
-man                       # man pages
-zsh                       # zshell
-redshift                  # blue light filter
-feh                       # image viewer
-net-tools                 # network tools
+# ------------------------------------ CORE ------------------------------------
+zsh                       # shell
 pulseaudio                # sound
-pavucontrol               # pulseaudio GUI
+man                       # manual pages
+git                       # version control
+cronie                    # cron jobs
+gnupg                     # GPG
+curl                      # web requests
+wget                      # web requests
+jq                        # json parser
+
+# ----------------------------------- CORE++ -----------------------------------
+net-tools                 # network tools
+dunst                     # notification daemon
+nut                       # network ups tools
+dmenu                     # multi-purpose quick menu
+redshift                  # blue light filter
+bat                       # syntax highlighting
+acpi                      # acpi info
+
+# --------------------------------- COMPRESSION --------------------------------
+atool                     # Archive Management
+7-zip                     # 7-zip utility suite
+tar                       # tar utility suite
+unrar                     # rar algorithm
+unzip                     # zip algorithm
+gzip                      # gzip algorithm
+bzip2                     # bzip2 algorithm
+
+# ----------------------------------- FONTS ------------------------------------
 terminus-font-ttf         # Terminus Font
 ttf-font-awesome-4        # FontAwesome Font
 ttf-material-design-icons # Material Design Icons
 ttf-unifont               # Unifont
-acpi                      # acpi info
-brightnessctl             # backlight control
-wget                      # web request tool
-trash-cli                 # trash command line utility
-cronie                    # crontab
-gnupg                     # GPG
-dmenu-bluetooth           # bluetooth dmenu
-bitwarden-cli             # bitwarden CLI
-7-zip                     # 7-Zip
-unrar                     # Unrar
-unzip                     # Unzip
-gzip                      # Gzip
-python-dotenv             # Python - Dotenv
-nut                       # Network UPS Tools
 
-# file browser
+# ------------------------------------ GUI -------------------------------------
+xorg-server               # x display server
+xorg-xinit                # start x server
+xorg-xrandr               # x display settings
+picom-git                 # x compositor
+i3-gaps                   # window manager
+i3lock-fancy-git          # lock screen
+polybar                   # status bar
+feh                       # set wallpaper
+
 ################################################################################
-lf                        # file browser
-localc                    # xml spreadsheet viewer
-zathura                   # pdf viewer
-gimp                      # xcf viewer
-mpv                       # audio handler
-ueberzug                  # image previewer
-nsxiv                     # image handler
-lynx                      # html previewer
-gnome-epub-thumbnailer    # epub previewer
-odt2txt                   # doc thumbnailer
+#                                     FILES                                    #
+################################################################################
+lf                        # File Browser
 
-# email
+# ---------------------------------- DOCUMENTS ---------------------------------
+neovim vim-plug           # Text
+odt2txt                   # OpenDocument preview
+localc                    # OpenOffice XML
+lynx                      # HTML
+zathura                   # PDF
+pdftoppm                  # PDF Preview
+gnome-epub-thumbnailer    # EPUB Preview
+
+# ----------------------------- IMAGES/AUDIO/VIDEO -----------------------------
+ueberzug                  # Multimedia Preview
+mpv                       # Video/Audio
+mediainfo                 # Video/Audio Metadata
+nsxiv                     # Images
+imagemagick               # Image Manipulation Suite
+
+
+################################################################################
+#                                     EMAIL                                    #
 ################################################################################
 neomutt                   # cli email
 pass                      # for keystore
@@ -62,25 +79,30 @@ notifymuch                # notification daemon for notmuch DB
 urlscan                   # URL scanner for neomutt emails
 lynx                      # neomutt/lf html viewer
 khard                     # Local address book for neomutt
-vdirsyncer                # CardDav syncer
+vdirsyncer                # CardDav syncing
 
-# gui
+
 ################################################################################
-xorg-server               # x display server
-xorg-xinit                # tool to start xorg servers
-xorg-xrandr               # tool to manage display settings
-picom-git                 # x compositor
-i3-gaps                   # window manager
-i3lock-color              # lock screen
-i3lock-fancy-git          # lock screen colors
-polybar                   # status bar
-dmenu                     # menu
-dunst                     # notifications
+#                                  DEVELOPMENT                                 #
+################################################################################
+# -------------------------------- COMPILATION ---------------------------------
+make                      # makefile executor
+cmake                     # cross-platform makefile executor
+gcc                       # GNU Compiler Collections
 
-# daily use applications
+# ----------------------------------- PYTHON -----------------------------------
+python3                   # Python programming language
+python3-pip               # Python package manager - "pip installs packages"
+python-dotenv             # Python - Dotenv
+
+
+################################################################################
+#                              GENERAL APPLICATIONS                            #
 ################################################################################
 brave-bin                 # Brave Web Browser
-vlc                       # Video player
-glances                   # Task Manager and Resource Monitor
-neofetch                  # Neofetch System Info
+bitwarden-cli             # Bitwarden CLI
+backblaze-b2-bin          # Backblaze B2 CLI
 nicotine                  # Soulseek Client
+gimp                      # image editor
+dmenu-bluetooth           # bluetooth dmenu
+glances                   # Task Manager and Resource Monitor
