@@ -8,9 +8,11 @@ man                       # manual pages
 git                       # version control
 cronie                    # cron jobs
 gnupg                     # GPG
-curl                      # web requests
 wget                      # web requests
 jq                        # json parser
+atool                     # Archive Management
+cmake                     # cross-platform makefile executor
+gcc                       # GNU Compiler Collections
 
 # ----------------------------------- CORE++ -----------------------------------
 net-tools                 # network tools
@@ -19,15 +21,9 @@ nut                       # network ups tools
 dmenu                     # multi-purpose quick menu
 redshift                  # blue light filter
 bat                       # syntax highlighting
-
-# --------------------------------- COMPRESSION --------------------------------
-atool                     # Archive Management
-7-zip                     # 7-zip utility suite
-tar                       # tar utility suite
-unrar                     # rar algorithm
-unzip                     # zip algorithm
-gzip                      # gzip algorithm
-bzip2                     # bzip2 algorithm
+python3                   # Python programming language
+python-pip                # Python package manager - "pip installs packages"
+python-dotenv             # Python - Dotenv
 
 # ----------------------------------- FONTS ------------------------------------
 terminus-font-ttf         # Terminus Font
@@ -78,20 +74,6 @@ urlscan                   # URL scanner for neomutt emails
 lynx                      # neomutt/lf html viewer
 khard                     # Local address book
 vdirsyncer                # CardDav syncing
-
-
-################################################################################
-#                                  DEVELOPMENT                                 #
-################################################################################
-# -------------------------------- COMPILATION ---------------------------------
-make                      # makefile executor
-cmake                     # cross-platform makefile executor
-gcc                       # GNU Compiler Collections
-
-# ----------------------------------- PYTHON -----------------------------------
-python3                   # Python programming language
-python-pip                # Python package manager - "pip installs packages"
-python-dotenv             # Python - Dotenv
 
 
 ################################################################################

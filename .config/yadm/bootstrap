@@ -2,7 +2,7 @@
 
 yadm decrypt
 
-paru -Syu
+paru -Syu --noconfirm
 
 # install all packages in "packages" file
 filename="packages"
