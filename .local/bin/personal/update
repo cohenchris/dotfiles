@@ -10,4 +10,4 @@ cd /home/$USER/server
 docker-compose pull
 docker-compose up -d
 
-yes | docker system prune
+docker system prune -a -f

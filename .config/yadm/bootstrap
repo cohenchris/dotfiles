@@ -2,6 +2,8 @@
 
 yadm decrypt
 
+paru -Syu
+
 # install all packages in "packages" file
 filename="packages"
 cd ~/.local/backup/
@@ -17,7 +19,7 @@ do
 
     curr_pkg=$((curr_pkg+1))
     echo -ne "Installing package $curr_pkg/$total_pkgs\r"
-    paru -Syu --noconfirm $pkg_name -y > /dev/null 2>&1
+    paru -S --noconfirm $pkg_name > /dev/null 2>&1
 
     if [[ $? -ne 0 ]]
     then

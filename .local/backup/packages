@@ -19,7 +19,6 @@ nut                       # network ups tools
 dmenu                     # multi-purpose quick menu
 redshift                  # blue light filter
 bat                       # syntax highlighting
-acpi                      # acpi info
 
 # --------------------------------- COMPRESSION --------------------------------
 atool                     # Archive Management
@@ -54,10 +53,9 @@ lf                        # File Browser
 # ---------------------------------- DOCUMENTS ---------------------------------
 neovim vim-plug           # Text
 odt2txt                   # OpenDocument preview
-localc                    # OpenOffice XML
 lynx                      # HTML
 zathura                   # PDF
-pdftoppm                  # PDF Preview
+poppler                   # PDF Preview
 gnome-epub-thumbnailer    # EPUB Preview
 
 # ----------------------------- IMAGES/AUDIO/VIDEO -----------------------------
@@ -92,7 +90,7 @@ gcc                       # GNU Compiler Collections
 
 # ----------------------------------- PYTHON -----------------------------------
 python3                   # Python programming language
-python3-pip               # Python package manager - "pip installs packages"
+python-pip                # Python package manager - "pip installs packages"
 python-dotenv             # Python - Dotenv
 
 
@@ -102,7 +100,7 @@ python-dotenv             # Python - Dotenv
 brave-bin                 # Brave Web Browser
 bitwarden-cli             # Bitwarden CLI
 backblaze-b2-bin          # Backblaze B2 CLI
-nicotine                  # Soulseek Client
+nicotine+                 # Soulseek Client
 gimp                      # image editor
 dmenu-bluetooth           # bluetooth dmenu
 glances                   # Task Manager and Resource Monitor
