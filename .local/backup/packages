@@ -37,6 +37,7 @@ unrar                     # Unrar
 unzip                     # Unzip
 gzip                      # Gzip
 python-dotenv             # Python - Dotenv
+nut                       # Network UPS Tools
 
 # file browser
 ################################################################################
