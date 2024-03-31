@@ -25,10 +25,8 @@ do
     pkg_name=$(echo $pkg_name | cut -d "#" -f 1)
 
     curr_pkg=$((curr_pkg+1))
-    # Hacky, but it prevents one line not being able to fully overwrite the characters from the previous line
-    echo -ne "                                                                                     \r"
-    echo -ne "Installing package $curr_pkg/$total_pkgs - $pkg_name\r"
-    paru -S --noconfirm $pkg_name > /dev/null 2>&1
+    echo "Installing package $curr_pkg/$total_pkgs - $pkg_name"
+    paru -S --noconfirm $pkg_name
 
     if [[ $? -ne 0 ]]
     then
