@@ -100,6 +100,8 @@ reboot
 # Log in w/ newly created user #
 ********************************
 
+pacman -Syu
+
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
@@ -108,7 +110,6 @@ rm -rf paru/
 
 # load dotfiles (YADM)
 paru -Syu yadm
-rm .bashrc .bash_profile # these will fail to pull if you don't do this. git refuses to overwrite
 yadm clone https://github.com/cohenchris/dotfiles
 
 # Bootstrap!!!
