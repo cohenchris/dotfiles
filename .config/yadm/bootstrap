@@ -1,6 +1,13 @@
 #!/bin/bash
 
+yadm remote set-url origin git@github.com:cohenchris/dotfiles.git
 yadm decrypt
+
+################################################################################
+#                        INSTALL PERSONAL PACKAGES                             #
+################################################################################
+# Add a PacMan visual + enable parallel downloads
+sudo sed '/ParallelDownloads/s/^#/ILoveCandy\n/g' -i /etc/pacman.conf
 
 paru -Syu --noconfirm
 
@@ -18,7 +25,9 @@ do
     pkg_name=$(echo $pkg_name | cut -d "#" -f 1)
 
     curr_pkg=$((curr_pkg+1))
-    echo -ne "Installing package $curr_pkg/$total_pkgs\r"
+    # Hacky, but it prevents one line not being able to fully overwrite the characters from the previous line
+    echo -ne "                                                                                     \r"
+    echo -ne "Installing package $curr_pkg/$total_pkgs - $pkg_name\r"
     paru -S --noconfirm $pkg_name > /dev/null 2>&1
 
     if [[ $? -ne 0 ]]
@@ -31,23 +40,12 @@ done < $filename
 
 cd
 
-# Special case dotfiles to clean up home dir
-# npm
-sudo mkdir /usr/etc
-echo "prefix=${XDG_DATA_HOME}/npm
-cache=${XDG_CACHE_HOME}/npm
-init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js" > npmrc
-sudo mv npmrc /usr/etc/
-# zsh
+################################################################################
+#                             SHELL + TERMINAL                                 #
+################################################################################
 sudo mkdir /etc/zsh
 echo "ZDOTDIR=$HOME/.config/shell" > zshenv
 sudo mv zshenv /etc/zsh/
-
-# pacman features - Add a PacMan visual and enable parallel downloads
-sudo sed '/ParallelDownloads/s/^#/ILoveCandy\n/g' -i /etc/pacman.conf
-
-# Replace notmuch config database path with whoever the $USER is
-sed -i "s/phrog/$USER/g" $XDG_CONFIG_HOME/notmuch/config
 
 # Change default shell to zsh
 chsh -s $(which zsh)
@@ -60,23 +58,35 @@ git clone https://github.com/zsh-users/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-history-substring-search
 
-# Get wallpapers
-git clone https://github.com/cohenchris/wallpapers ~/.local/wallpapers
+# Personal suckless terminal config
+git clone git@github.com:cohenchris/st
+cd st
+sudo make clean install
+cd ../
+rm -rf st/
+
+################################################################################
+#                                   MISC                                       #
+################################################################################
+# Download wallpapers
+git clone git@github.com:cohenchris/wallpapers ~/.local/wallpapers
 
 # Delete unnecessary XDG folders
 cd
 rm -rf Desktop Documents Music Pictures Public Templates Videos
 
-# Change yadm and wallpapers git to use ssh
-yadm remote set-url origin git@github.com:cohenchris/dotfiles.git
-cd ~/.local/wallpapers
-git remote set-url origin git@github.com:cohenchris/wallpapers.git
+# npm config
+sudo mkdir /usr/etc
+echo "prefix=${XDG_DATA_HOME}/npm
+cache=${XDG_CACHE_HOME}/npm
+init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js" > npmrc
+sudo mv npmrc /usr/etc/
 
-# Personal suckless terminal emulator
-git clone https://github.com/cohenchris/st
-cd st
-sudo make clean install
-cd ../
-rm -rf st/
+# Replace notmuch config database path with whoever the $USER is
+sed -i "s/phrog/$USER/g" $XDG_CONFIG_HOME/notmuch/config
+
+
+
+
 
 sudo reboot

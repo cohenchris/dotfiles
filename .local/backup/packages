@@ -3,33 +3,28 @@
 ################################################################################
 # ------------------------------------ CORE ------------------------------------
 zsh                       # shell
-pulseaudio                # sound
-man                       # manual pages
-git                       # version control
+man                       # manual
 cronie                    # cron jobs
-gnupg                     # GPG
 wget                      # web requests
 jq                        # json parser
-atool                     # Archive Management
-cmake                     # cross-platform makefile executor
-gcc                       # GNU Compiler Collections
+atool                     # archive/compression multitool
 
 # ----------------------------------- CORE++ -----------------------------------
-net-tools                 # network tools
+net-tools                 # networking multitool
 dunst                     # notification daemon
 nut                       # network ups tools
-dmenu                     # multi-purpose quick menu
+dmenu                     # multipurpose menu
 redshift                  # blue light filter
 bat                       # syntax highlighting
-python3                   # Python programming language
-python-pip                # Python package manager - "pip installs packages"
-python-dotenv             # Python - Dotenv
+python3                   # python
+python-pip                # python package manager
+python-dotenv             # python support for dotenv
 
 # ----------------------------------- FONTS ------------------------------------
-terminus-font-ttf         # Terminus Font
-ttf-font-awesome-4        # FontAwesome Font
-ttf-material-design-icons # Material Design Icons
-ttf-unifont               # Unifont
+terminus-font-ttf         # terminus font
+ttf-font-awesome-4        # fontawesome font
+ttf-material-design-icons # material design icons
+ttf-unifont               # unifont
 
 # ------------------------------------ GUI -------------------------------------
 xorg-server               # x display server
@@ -44,45 +39,43 @@ feh                       # set wallpaper
 ################################################################################
 #                                     FILES                                    #
 ################################################################################
-lf                        # File Browser
+lf                        # file browser
 
 # ---------------------------------- DOCUMENTS ---------------------------------
-neovim vim-plug           # Text
-odt2txt                   # OpenDocument preview
-lynx                      # HTML
-zathura                   # PDF
-poppler                   # PDF Preview
-gnome-epub-thumbnailer    # EPUB Preview
+neovim vim-plug           # text
+odt2txt                   # opendocument preview
+lynx                      # html
+zathura                   # pdf
+gnome-epub-thumbnailer    # epub preview
 
 # ----------------------------- IMAGES/AUDIO/VIDEO -----------------------------
-ueberzug                  # Multimedia Preview
-mpv                       # Video/Audio
-mediainfo                 # Video/Audio Metadata
-nsxiv                     # Images
-imagemagick               # Image Manipulation Suite
+ueberzug                  # multimedia preview
+mpv                       # video/audio
+mediainfo                 # video/audio metadata
+nsxiv                     # images
 
 
 ################################################################################
 #                                     EMAIL                                    #
 ################################################################################
-neomutt                   # cli email client
+neomutt                   # cli email
 pass                      # keystore
-isync                     # Offline IMAP Sync
-notmuch                   # Full-body email search DB
-notifymuch                # notification daemon for notmuch DB
-urlscan                   # URL scanner for neomutt emails
-lynx                      # neomutt/lf html viewer
-khard                     # Local address book
-vdirsyncer                # CardDav syncing
+isync                     # offline imap sync
+notmuch                   # full-body email search db
+notifymuch                # notification daemon for notmuch db
+urlscan                   # url scanner for neomutt emails
+khard                     # local address book
+vdirsyncer                # carddav syncing
 
 
 ################################################################################
 #                              GENERAL APPLICATIONS                            #
 ################################################################################
-brave-bin                 # Brave Web Browser
-bitwarden-cli             # Bitwarden CLI
-backblaze-b2-bin          # Backblaze B2 CLI
-nicotine+                 # Soulseek Client
+brave-bin                 # brave web browser
+bitwarden-cli             # bitwarden cli
+backblaze-b2-bin          # backblaze b2 cli
+nicotine+                 # soulseek client
 gimp                      # image editor
 dmenu-bluetooth           # bluetooth dmenu
-glances                   # Task Manager and Resource Monitor
+glances                   # task manager and resource monitor
+flameshot                 # screenshots

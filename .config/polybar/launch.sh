@@ -26,8 +26,8 @@ fi
 export BACKGROUND_COLOR=#55000000
 
 # Network Interfaces
-export ETH=$(ifconfig | grep enp -m 1 | cut -d : -f 1)
-export WLAN=$(ifconfig | grep wlp -m 1 | cut -d : -f 1)
+export ETH=$(ip -o addr show up scope global | grep enp | awk '{print $2}')
+export WLAN=$(ip -o addr show up scope global | grep wlan | awk '{print $2}')
 
 # Terminate already running bar instances
 killall -q polybar
