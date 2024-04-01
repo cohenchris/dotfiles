@@ -31,8 +31,8 @@ mkfs.ext4 /dev/sda2 # Main partition
 
 # Mount boot partition into a directory on the main partition
 mount /dev/sda2 /mnt
-mkdir /mnt/boot
-mount /dev/sda1 /mnt/boot
+mkdir /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
 
 ################################################################################
 #                 drives, booting, and basic functionality                     #
@@ -80,8 +80,8 @@ systemctl enable bluetooth
 mkinitcpio -p linux
 
 # Install GRUB
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 
 # add your personal user
 useradd -mg wheel <username>
