@@ -31,7 +31,7 @@ mkfs.ext4 /dev/sda2 # Main partition
 
 # Mount boot partition into a directory on the main partition
 mount /dev/sda2 /mnt
-mkdir /mnt/boot/efi
+mkdir -p /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi
 
 ################################################################################
