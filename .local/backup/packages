@@ -1,7 +1,7 @@
 ################################################################################
-#                                 SYSTEM UTILITIES                             #
+#                                 system utilities                             #
 ################################################################################
-# ------------------------------------ CORE ------------------------------------
+# ------------------------------------ core ------------------------------------
 zsh                       # shell
 man                       # manual
 cronie                    # cron jobs
@@ -9,7 +9,7 @@ wget                      # web requests
 jq                        # json parser
 atool                     # archive/compression multitool
 
-# ----------------------------------- CORE++ -----------------------------------
+# ----------------------------------- core++ -----------------------------------
 net-tools                 # networking multitool
 dunst                     # notification daemon
 nut                       # network ups tools
@@ -20,13 +20,13 @@ python3                   # python
 python-pip                # python package manager
 python-dotenv             # python support for dotenv
 
-# ----------------------------------- FONTS ------------------------------------
+# ----------------------------------- fonts ------------------------------------
 terminus-font-ttf         # terminus font
 ttf-font-awesome-4        # fontawesome font
 ttf-material-design-icons # material design icons
 ttf-unifont               # unifont
 
-# ------------------------------------ GUI -------------------------------------
+# ------------------------------------ gui -------------------------------------
 xorg-server               # x display server
 xorg-xinit                # start x server
 xorg-xrandr               # x display settings
@@ -37,18 +37,18 @@ polybar                   # status bar
 feh                       # set wallpaper
 
 ################################################################################
-#                                     FILES                                    #
+#                                     files                                    #
 ################################################################################
 lf                        # file browser
 
-# ---------------------------------- DOCUMENTS ---------------------------------
+# ---------------------------------- documents ---------------------------------
 neovim vim-plug           # text
 odt2txt                   # opendocument preview
 lynx                      # html
 zathura                   # pdf
 gnome-epub-thumbnailer    # epub preview
 
-# ----------------------------- IMAGES/AUDIO/VIDEO -----------------------------
+# ----------------------------- images/audio/video -----------------------------
 ueberzug                  # multimedia preview
 mpv                       # video/audio
 mediainfo                 # video/audio metadata
@@ -56,7 +56,7 @@ nsxiv                     # images
 
 
 ################################################################################
-#                                     EMAIL                                    #
+#                                     email                                    #
 ################################################################################
 neomutt                   # cli email
 pass                      # keystore
@@ -69,7 +69,7 @@ vdirsyncer                # carddav syncing
 
 
 ################################################################################
-#                              GENERAL APPLICATIONS                            #
+#                              general applications                            #
 ################################################################################
 brave-bin                 # brave web browser
 bitwarden-cli             # bitwarden cli
