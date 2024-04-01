@@ -42,7 +42,7 @@ pacstrap /mnt base base-devel linux linux-firmware vim
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 # Go into your new Arch partition
-arch-chroot /mnt /bin/bash
+arch-chroot /mnt
 
 # Create swap partition - general rule of thumb is to make it the same size as your RAM
 fallocate -l 32GB /swapfile
