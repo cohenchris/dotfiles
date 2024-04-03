@@ -10,6 +10,8 @@ yadm decrypt
 sudo sed '/ParallelDownloads/s/^#/ILoveCandy\n/g' -i /etc/pacman.conf
 
 paru -Syu --noconfirm
+filename="packages"
+cd ~/.local/backup/
 
 # install all personal packages
 total_pkgs=$(grep '^[a-zA-Z0-9]' packages | wc -l)
@@ -32,7 +34,8 @@ do
     fi
 
   fi
-done < "~/.local/backup/packages"
+done < $filename
+cd
 
 ################################################################################
 #                             SHELL + TERMINAL                                 #

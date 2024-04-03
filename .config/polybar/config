@@ -32,11 +32,9 @@ module-margin-right = 0
 module-margin-left = 0
 
 font-0 = ${env:TERMINUS}
-font-1 = ${env:MATERIALICONS}
-font-2 = ${env:FONTAWESOME}
 
-modules-left = ${env:TOP_LEFT}
-modules-center = ${env:TOP_CENTER}
+modules-left = i3
+modules-center = xwindow
 modules-right = wlan eth date
 
 ; ##############################################################################
@@ -60,8 +58,6 @@ module-margin-left = 0
 module-margin-right = 0
 
 font-0 = ${env:TERMINUS}
-font-1 = ${env:UNIFONT}
-font-2 = ${env:FONTAWESOME}
 
 ;modules-left = external_ip internal_ip
 modules-left = external_ip internal_ip

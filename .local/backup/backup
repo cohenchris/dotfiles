@@ -30,7 +30,6 @@ declare -a dotfiles=(
   ~/.config/shell/
   ~/.config/user-dirs.dirs
   ~/.config/vdirsyncer/config
-  ~/.config/wget/
   ~/.config/yadm/
   ~/.config/zathura/
   ~/.local/backup
