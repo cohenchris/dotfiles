@@ -15,7 +15,7 @@ cd ~/.local/backup/
 
 # install all personal packages
 total_pkgs=$(grep '^[a-zA-Z0-9]' packages | wc -l)
-echo "Downloading $total_pkgs personal packages..."
+echo -e "\n\nDownloading $total_pkgs personal packages..."
 curr_pkg=0
 
 while read pkg_name
