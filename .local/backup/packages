@@ -11,6 +11,7 @@ atool                     # archive/compression multitool
 
 # ----------------------------------- core++ -----------------------------------
 net-tools                 # networking multitool
+libnotify                 # notification library
 dunst                     # notification daemon
 nut                       # network ups tools
 dmenu                     # multipurpose menu
@@ -19,6 +20,8 @@ bat                       # syntax highlighting
 python3                   # python
 python-pip                # python package manager
 python-dotenv             # python support for dotenv
+docker                    # docker containerization
+docker-compose            # docker-compose
 
 # ------------------------------------ gui -------------------------------------
 xorg-server               # x display server

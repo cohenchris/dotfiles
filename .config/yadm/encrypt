@@ -1,5 +1,5 @@
 .ssh/*
 .local/share/gnupg/*
 .config/password-store/*
-/root/.b2_account_info
+b2_account_info
 .config/docker/config.json

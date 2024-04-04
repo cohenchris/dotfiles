@@ -21,7 +21,7 @@ export XDG_DOWNLOAD_HOME="$HOME/Downloads"
 export XDG_RUNTIME_HOME="/run/user/1000"
 
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
-export XAUTHORITY="${XDG_RUNTIME_HOME}/Xauthority"
+#export XAUTHORITY="${XDG_RUNTIME_HOME}/Xauthority"
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME}/notmuch/config"
 export PASSWORD_STORE_DIR="${XDG_CONFIG_HOME}/password-store"
 export LESSHISTFILE=/dev/null

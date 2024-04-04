@@ -10,9 +10,11 @@ esac
 
 cd
 
+sudo cp /root/.b2_account_info $HOME/b2_account_info
 export GPG_TTY=$(tty)
 yadm encrypt
 unset GPG_TTY
+sudo rm $HOME/b2_account_info
 
 declare -a dotfiles=(
   ~/.config/dunst/
