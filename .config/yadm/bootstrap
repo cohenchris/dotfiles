@@ -15,6 +15,7 @@ cd ~/.local/backup/
 
 # install all personal packages
 total_pkgs=$(grep '^[a-zA-Z0-9]' packages | wc -l)
+echo "Downloading $total_pkgs personal packages..."
 curr_pkg=0
 
 while read pkg_name
@@ -40,6 +41,7 @@ cd
 ################################################################################
 #                             SHELL + TERMINAL                                 #
 ################################################################################
+echo -e "\n\nConfiguring zsh..."
 sudo mkdir /etc/zsh
 echo "ZDOTDIR=$HOME/.config/shell" > zshenv
 sudo mv zshenv /etc/zsh/
@@ -56,6 +58,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-history-substring-search
 
 # Personal suckless terminal
+echo -e "\n\nInstalling personal st..."
 cd
 git clone git@github.com:cohenchris/st
 cd st
@@ -67,13 +70,16 @@ rm -rf st/
 #                                   MISC                                       #
 ################################################################################
 # Download wallpapers
+echo -e "\n\nDownloading wallpapers..."
 git clone git@github.com:cohenchris/wallpapers ~/.local/wallpapers
 
-# Delete unnecessary XDG folders
+# Delete extraneous XDG directories
+echo -e "\n\nDeleting extraneous XDG directories..."
 cd
 rm -rf Desktop Documents Music Pictures Public Templates Videos
 
 # npm config
+echo -e "\n\nConfiguring NPM..."
 sudo mkdir /usr/etc
 echo "prefix=$HOME/.local/share/npm
 cache=$HOME/.cache/npm
@@ -81,6 +87,7 @@ init-module=$HOME/.config/npm/config/npm-init.js" > npmrc
 sudo mv npmrc /usr/etc/
 
 # Replace notmuch config database path with whoever the $USER is
+echo -e "\n\nConfiguring notmuch..."
 sed -i "s/phrog/$USER/g" $HOME/.config/notmuch/config
 
 echo -e "\n\nTime to reboot!"
