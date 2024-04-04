@@ -18,10 +18,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DOWNLOAD_HOME="$HOME/Downloads"
-export XDG_RUNTIME_HOME="/run/user/1000"
+
+export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority" # This breaks some DMs
 
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
-#export XAUTHORITY="${XDG_RUNTIME_HOME}/Xauthority"
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME}/notmuch/config"
 export PASSWORD_STORE_DIR="${XDG_CONFIG_HOME}/password-store"
 export LESSHISTFILE=/dev/null
