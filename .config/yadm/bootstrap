@@ -46,7 +46,6 @@ sudo mv zshenv /etc/zsh/
 
 # Change default shell to zsh
 chsh -s $(which zsh)
-source .config/shell/.zprofile
 
 # Install zsh plugins
 mkdir -p ~/.local/share/zsh/plugins
@@ -56,7 +55,7 @@ git clone https://github.com/zsh-users/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-history-substring-search
 
-# Personal suckless terminal config
+# Personal suckless terminal
 cd
 git clone git@github.com:cohenchris/st
 cd st
@@ -76,16 +75,12 @@ rm -rf Desktop Documents Music Pictures Public Templates Videos
 
 # npm config
 sudo mkdir /usr/etc
-echo "prefix=${XDG_DATA_HOME}/npm
-cache=${XDG_CACHE_HOME}/npm
-init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js" > npmrc
+echo "prefix=$HOME/.local/share/npm
+cache=$HOME/.cache/npm
+init-module=$HOME/.config/npm/config/npm-init.js" > npmrc
 sudo mv npmrc /usr/etc/
 
 # Replace notmuch config database path with whoever the $USER is
-sed -i "s/phrog/$USER/g" $XDG_CONFIG_HOME/notmuch/config
+sed -i "s/phrog/$USER/g" $HOME/.config/notmuch/config
 
-
-
-
-
-sudo reboot
+echo -e "\n\nTime to reboot!"

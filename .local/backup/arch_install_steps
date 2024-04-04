@@ -109,8 +109,5 @@ rm -rf paru/
 paru -Syu yadm
 yadm clone https://github.com/cohenchris/dotfiles
 
-# DO NOT RUN BOOTSTRAP BEFORE REBOOT
-sudo reboot
-
 # Bootstrap!!!
 yadm bootstrap
