@@ -57,7 +57,7 @@ neomutt                   # cli email
 pass                      # keystore
 isync                     # offline imap sync
 notmuch                   # full-body email search db
-notifymuch                # notification daemon for notmuch db
+notifymuch-git            # notification daemon for notmuch db
 urlscan                   # url scanner for neomutt emails
 khard                     # local address book
 vdirsyncer                # carddav syncing
