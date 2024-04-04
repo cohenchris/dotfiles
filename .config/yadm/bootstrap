@@ -3,9 +3,6 @@
 yadm remote set-url origin git@github.com:cohenchris/dotfiles.git
 yadm decrypt
 
-# Special case for B2 account info
-sudo mv $HOME/b2_account_info /root/.b2_account_info
-
 ################################################################################
 #                        INSTALL PERSONAL PACKAGES                             #
 ################################################################################
