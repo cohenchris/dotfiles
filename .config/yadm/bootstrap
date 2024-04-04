@@ -70,16 +70,16 @@ rm -rf st/
 #                                   MISC                                       #
 ################################################################################
 # Download wallpapers
-echo "\nDownloading wallpapers..."
+echo -e "\nDownloading wallpapers..."
 git clone git@github.com:cohenchris/wallpapers ~/.local/wallpapers
 
 # Delete extraneous XDG directories
-echo "\nDeleting extraneous XDG directories..."
+echo -e "\nDeleting extraneous XDG directories..."
 cd
 rm -rf Desktop Documents Music Pictures Public Templates Videos
 
 # npm config
-echo "\nConfiguring NPM..."
+echo -e "\nConfiguring NPM..."
 sudo mkdir /usr/etc
 echo "prefix=$HOME/.local/share/npm
 cache=$HOME/.cache/npm
@@ -87,16 +87,16 @@ init-module=$HOME/.config/npm/config/npm-init.js" > npmrc
 sudo mv npmrc /usr/etc/
 
 # Replace notmuch config database path with whoever the $USER is
-echo "\nConfiguring notmuch..."
+echo -e "\nConfiguring notmuch..."
 sed -i "s/phrog/$USER/g" $HOME/.config/notmuch/config
 
 # Start SSHD
-echo "\nStarting SSHD..."
+echo -e "\nStarting SSHD..."
 sudo systemctl enable sshd
 sudo systemctl start sshd
 
 # Start Docker
-echo "\nStarting and Configuring Docker..."
+echo -e "\nStarting and Configuring Docker..."
 sudo usermod -aG docker $USER
 sudo systemctl enable docker
 sudo systemctl start docker
