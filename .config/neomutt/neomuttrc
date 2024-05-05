@@ -57,7 +57,7 @@ set crypt_autoencrypt = no                                            # Automati
 set crypt_autopgp = yes                                               # Whether or not neomutt may automatically enable pgp encryption/signing
 set crypt_verify_sig = yes                                            # Verify incoming signatures?
 set crypt_replysign = yes                                             # Automatically PGP sign replies to messages which are signed
-set crypt_replyencrypt = no                                           # Automatically PGP encrypt replies to messages which are encrypted
+set crypt_replyencrypt = yes                                          # Automatically PGP encrypt replies to messages which are encrypted
 set crypt_replysignencrypted = yes                                    # Automatically PGP sign replies to messages which are encrypted
 set pgp_check_gpg_decrypt_status_fd                                   # Automatically checks fd output of pgp_decrypt command to verify success
 set postpone_encrypt = yes                                            # When set, postponed messages that are marked for encryption will be self-encrypted

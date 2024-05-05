@@ -52,7 +52,6 @@ mpv                       # video/audio
 mediainfo                 # video/audio metadata
 nsxiv                     # images
 
-
 ################################################################################
 #                                     email                                    #
 ################################################################################
@@ -72,7 +71,6 @@ vdirsyncer                # carddav syncing
 brave-bin                 # brave web browser
 bitwarden-cli             # bitwarden cli
 backblaze-b2-bin          # backblaze b2 cli
-nicotine+                 # soulseek client
 gimp                      # image editor
 dmenu-bluetooth           # bluetooth dmenu
 glances                   # task manager and resource monitor
