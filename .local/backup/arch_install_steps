@@ -109,5 +109,9 @@ rm -rf paru/
 paru -Syu yadm
 yadm clone https://github.com/cohenchris/dotfiles
 
+# ZFS stuff
+paru -Syu zfs-dkms
+sudo systemctl enable zfs-import-cache.service zfs-import.target zfs.target zfs-zed zfs-mount.service
+
 # Bootstrap!!!
 yadm bootstrap
