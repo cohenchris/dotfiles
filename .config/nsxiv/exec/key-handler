@@ -9,7 +9,7 @@ do
     "R")
       convert -rotate -90 "$file" "$file" ;;
     "d")
-      [ "$(echo -e "No\\nYes" | dmenu -l 2 -nb "#1e1e1e" -sf "#aaff77" -sb "#333333" -nf "#ffffff" -i -p "Really delete $file?")" = "Yes" ] && mkdir deleted && mv "$file" ./deleted && notify-send "$file deleted." ;;
+      mkdir -p deleted && mv "$file" ./deleted && notify-send "$file deleted." ;;
   esac
 
 done
