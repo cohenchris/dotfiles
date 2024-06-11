@@ -22,7 +22,6 @@ declare -a dotfiles=(
   ~/.config/khard/
   ~/.config/lf/
   ~/.config/neomutt/
-  ~/.config/nicotine/
   ~/.config/notifymuch/
   ~/.config/notmuch/
   ~/.config/nsxiv/
