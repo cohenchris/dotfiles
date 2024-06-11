@@ -27,7 +27,7 @@ docker-compose            # docker-compose
 xorg-server               # x display server
 xorg-xinit                # start x server
 xorg-xrandr               # x display settings
-picom-git                 # x compositor
+picom                     # x compositor
 i3-gaps                   # window manager
 i3lock-fancy-git          # lock screen
 polybar                   # status bar

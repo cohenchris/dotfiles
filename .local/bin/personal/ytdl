@@ -64,8 +64,30 @@ function clean_music_video_title()
     exit
   fi
 
-  # Extract title after '-' and before first '[' or '('
-  cleaned="$(echo "$name_to_clean" | sed -E 's/^[^-]*- ([^[(]*)[[(].*/\1/')"
+  # Take an educated guess where the track name starts, and cut out everything before it
+  if [[ "${name_to_clean}" == *-* ]]; then
+    # If there's a '-', cut out a substring after that.
+    cleaned="${name_to_clean#*-}"
+  elif [[ "${name_to_clean}" == *\"* ]]; then
+    # Else, if there's a double quote, cut out a substring after that
+    cleaned="${name_to_clean#*\"}"
+  elif [[ "${name_to_clean}" == *\＂* ]]; then
+    # Another type of double quote
+    cleaned="${name_to_clean#*\＂}"
+  elif [[ "${name_to_clean}" == *\'* ]]; then
+    # Else, if there's a single quote, cut out a substring after that
+    cleaned="${name_to_clean#*\'}"
+  else
+    # The rest of the cleaning relies on the 'cleaned' variable, so make sure it's set
+    cleaned="${name_to_clean}"
+  fi
+
+  # Take an educated guess where the track ends by truncating after either the first '(' or '['
+  cleaned=${cleaned%%\(*}
+  cleaned=${cleaned%%\[*}
+
+  # Remove "Official Music Video" or "Official Video"
+  cleaned=$(echo "$cleaned" | sed -E 's/official music video|official video//I')
 
   # Remove leading and trailing whitespace
   cleaned="${cleaned#"${cleaned%%[![:space:]]*}"}"
@@ -175,7 +197,7 @@ function find_match()
     # Clean the track file, then check if the track_to_find matches
     cleaned_track_title=$(clean_track_file "${track_file}")
 
-    if [[ "${track_to_find}" == *"${cleaned_track_title}"* ]]; then
+    if [[ "${track_to_find}" == *"${cleaned_track_title}"* || *"${track_to_find}"* == "${cleaned_track_title}" ]]; then
       match="${track_file}"
       ((num_matches++))
     fi
@@ -238,17 +260,26 @@ echo
 
 # Download each video
 while IFS= read -r line; do
-  yt-dlp "$line"
+  LOG INFO "Downloading ${line}...\n"
+  yt-dlp "$line" >/dev/null 2>&1
+
+  if [[ $? -ne 0 ]]; then
+    LOG ERROR "Invalid YouTube URL: ${$line}\n"
+    exit
+  fi
 done < $1
+
+rm $1
 
 echo
 
 # For each downloaded video, look for matches in the ARTIST_MUSIC_DIR
-for VIDEO_TITLE in "${ARTIST_MUSICVIDEOS_DIR}"/*; do
-  LOG INFO "Trying to find a match for \"$(basename "${VIDEO_TITLE}")\"...\n"
+for VIDEO_PATH in "${ARTIST_MUSICVIDEOS_DIR}"/*; do
 
-  # Save extension for later
+  VIDEO_TITLE=$(basename "${VIDEO_PATH}")
   VIDEO_EXTENSION="${VIDEO_TITLE##*.}"
+
+  LOG INFO "Trying to find a match for \"${VIDEO_TITLE}\"...\n"
 
   # Normalize input video file name
   CLEAN_VIDEO_TITLE=$(clean_music_video_title "${VIDEO_TITLE}")
@@ -259,11 +290,11 @@ for VIDEO_TITLE in "${ARTIST_MUSICVIDEOS_DIR}"/*; do
   if [[ -z "${MATCH_NAME}" ]]; then
     # No match found... Rename in a generic manner
     LOG ERROR "Match not found :(\n"
-    mv "${VIDEO_TITLE}" "${CLEAN_VIDEO_TITLE}.${VIDEO_EXTENSION}"
+    #mv "${VIDEO_PATH}" "${CLEAN_VIDEO_TITLE}.${VIDEO_EXTENSION}"
   else
     # Match found! Rename the video to mirror the match
     LOG SUCCESS "Successful match with \"${MATCH_NAME}\"\n"
-    mv "${VIDEO_TITLE}" "${MATCH_NAME}.${VIDEO_EXTENSION}"
+    mv "${VIDEO_PATH}" "${MATCH_NAME}.${VIDEO_EXTENSION}"
   fi
 
   echo

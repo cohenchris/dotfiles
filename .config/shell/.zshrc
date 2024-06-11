@@ -20,6 +20,9 @@ compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 # Aliases
 source $XDG_CONFIG_HOME/shell/aliasrc
 
+# Keyboard fixes
+source $XDG_CONFIG_HOME/shell/keyboardrc
+
 # Plugins
 source $XDG_DATA_HOME/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $XDG_DATA_HOME/zsh/plugins/zsh-completions/zsh-completions.plugin.zsh

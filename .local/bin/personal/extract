@@ -1,19 +1,22 @@
-if [ -f $1 ] ; then
-  case $1 in
-    *.tar.bz2)  tar xvjf $1;;
-    *.tar.gz)   tar xvzf $1;;
-    *.tar.xz)   tar xf $1;;
-    *.bz2)      bunzip2 $1;;
-    *.rar)      unrar x $1;;
-    *.gz)       gunzip $1;;
-    *.tar)      tar xvf $1;;
-    *.tbz2)     tar xvjf $1;;
-    *.tgz)      tar xvzf $1;;
-    *.zip)      unzip $1;;
-    *.Z)        uncompress $1;;
-    *.7z)       7z x $1;;
-    *)          echo "don't know how to extract '$1'..." ;;
+
+file_to_extract="$1"
+
+if [ -f "$file_to_extract" ] ; then
+  case "$file_to_extract" in
+    *.tar.bz2)  tar xvjf "$file_to_extract";;
+    *.tar.gz)   tar xvzf "$file_to_extract";;
+    *.tar.xz)   tar xf "$file_to_extract";;
+    *.bz2)      bunzip2 "$file_to_extract";;
+    *.rar)      unrar x "$file_to_extract";;
+    *.gz)       gunzip "$file_to_extract";;
+    *.tar)      tar xvf "$file_to_extract";;
+    *.tbz2)     tar xvjf "$file_to_extract";;
+    *.tgz)      tar xvzf "$file_to_extract";;
+    *.zip)      unzip "$file_to_extract";;
+    *.Z)        uncompress "$file_to_extract";;
+    *.7z)       7z x "$file_to_extract";;
+    *)          echo "don't know how to extract '$file_to_extract'..." ;;
   esac
 else
-  echo "'$1' is not a valid file!"
+  echo "'$file_to_extract' is not a valid file!"
 fi
