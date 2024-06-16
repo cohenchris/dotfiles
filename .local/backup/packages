@@ -13,7 +13,6 @@ atool                     # archive/compression multitool
 net-tools                 # networking multitool
 libnotify                 # notification library
 dunst                     # notification daemon
-nut                       # network ups tools
 dmenu                     # multipurpose menu
 redshift                  # blue light filter
 bat                       # syntax highlighting
