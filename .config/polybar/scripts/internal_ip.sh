@@ -1,7 +1,5 @@
 #!/bin/sh
 
-local_interface=$(route | awk '/^default/{print $NF}')
-local_interface=$(echo $local_interface | cut -d ' ' -f 1)
-local_ip=$(ip addr show "$local_interface" | grep -w "inet" | awk '{ print $2; }' | sed 's/\/.*$//')
+local_ip=$(hostname -i | awk '{print $1}')
 
 echo "  /  $local_ip    "

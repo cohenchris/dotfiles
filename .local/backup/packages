@@ -13,6 +13,7 @@ atool                     # archive/compression multitool
 net-tools                 # networking multitool
 libnotify                 # notification library
 dunst                     # notification daemon
+nut                       # network ups tools
 dmenu                     # multipurpose menu
 redshift                  # blue light filter
 bat                       # syntax highlighting
@@ -67,7 +68,7 @@ vdirsyncer                # carddav syncing
 ################################################################################
 #                              general applications                            #
 ################################################################################
-brave-bin                 # brave web browser
+mullvad-browser-bin       # mullvad web browser
 bitwarden-cli             # bitwarden cli
 backblaze-b2-bin          # backblaze b2 cli
 gimp                      # image editor
