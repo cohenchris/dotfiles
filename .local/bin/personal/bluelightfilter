@@ -1,69 +1,65 @@
 #!/bin/bash
 
-DEFAULT=2500
+# Location of temperature storage file
 REDSHIFT_FILE="$XDG_CONFIG_HOME/.redshift_temp"
 
-HIGH=1000
-LOW=5000
+# Max/min/default temperatures
+MAX=5000
+MIN=1000
+DEFAULT=2500
 
-# We say that, to "increase" the temperature, we make the screen more orange.
-# This is why we subtract in the temp_up function, and add in the temp_down function.
-# This makes the script more confusing, but makes more sense to me.
+# Current temperature
+CURRENT=$(cat $REDSHIFT_FILE)
+CURRENT=${CURRENT:-DEFAULT}
+
+# Amount to decrease/increase per invocation
+STEP=75
 
 
-function temp_down() {
-  if [[ -f $REDSHIFT_FILE ]]; then
-    # Read existing value
-    old=$(cat $REDSHIFT_FILE)
-    new=$(($old + 75 ))
-    if [[ $new -gt $LOW ]]; then
-      # don't let value go over boundary
-      notify-send "redshift already at lowest value"
-      echo $old > $REDSHIFT_FILE
-    else
-      # update saved redshift value
-      echo $new > $REDSHIFT_FILE
-      redshift -PO $new
-    fi
+# Increase screen temperature (more blue)
+function temp_up() {
+  new=$(( $CURRENT + $STEP ))
+
+  if [[ $new -gt $MAX ]]; then
+    # upper boundary check
+    notify-send "redshift already at highest value"
   else
-    # Default value
-    echo $DEFAULT > $REDSHIFT_FILE
-    redshift -PO $DEFAULT
+    # update new redshift value to file
+    echo $new > $REDSHIFT_FILE
+    redshift -PO $new
   fi
+
 }
 
-function temp_up () {
-  if [[ -f $REDSHIFT_FILE ]]; then
-    # Read existing value
-    old=$(cat $REDSHIFT_FILE)
-    new=$(($old - 75 ))
-    if [[ $new -lt $HIGH ]]; then
-      # don't let value surpass lower boundary
-      notify-send "redshift already at highest value"
-      echo $old > $REDSHIFT_FILE
-    else
-      # update saved redshift value
-      echo $new > $REDSHIFT_FILE
-      redshift -PO $new
-    fi
+
+# Decrease screen temperature (more red)
+function temp_down () {
+  new=$(( $CURRENT - $STEP ))
+
+  if [[ $new -lt $MIN ]]; then
+    # lower boundary check
+    notify-send "redshift already at lowest value"
   else
-    # Default value
-    echo $DEFAULT > $REDSHIFT_FILE
-    redshift -PO $DEFAULT
+    # update new redshift value to file
+    echo $new > $REDSHIFT_FILE
+    redshift -PO $new
   fi
 }
 
 
-option=$1
-
-if [[ "$option" == "up" ]]; then
-  temp_up 
-elif [[ "$option" == "down" ]]; then
-  temp_down
-elif [[ "$option" == "off" ]]; then
-  rm $REDSHIFT_FILE
-  redshift -x
-else
-  # function not supported
-  exit
-fi
+# main()
+case $1 in
+  up)
+    temp_up 
+    ;;
+  down)
+    temp_down
+    ;;
+  off)
+    rm $REDSHIFT_FILE
+    redshift -x
+    ;;
+  *)
+    # Invalid argument
+    exit
+esac
