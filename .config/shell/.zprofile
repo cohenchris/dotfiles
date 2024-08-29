@@ -10,7 +10,7 @@ export PATH="$CUSTOM_PATHS:$PATH"
 # Default programs
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="mullvad-browser"
+export BROWSER="brave"
 export SHELL="zsh"
 
 # Clean up ~

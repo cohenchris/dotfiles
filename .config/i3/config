@@ -195,7 +195,7 @@ bindsym $mod+Shift+e exec mailsync                                              
 bindsym $mod+l exec i3lock-fancy -p -f "Terminus-(TTF)"                             # i3lock
 bindsym $mod+n exec st lfub                                                         # file browser
 bindsym $mod+u exec random-wallpaper                                                # random wallpaper
-bindsym $mod+w exec mullvad-browser 
+bindsym $mod+w exec brave                                                           # web browser 
 bindsym $mod+Shift+w exec wifi                                                      # wifi menu
 bindsym $mod+Shift+p exec flameshot gui                                             # screenshot
 bindsym $mod+equal exec bluelightfilter up                                          # blue light filter increase

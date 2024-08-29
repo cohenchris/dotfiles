@@ -6,7 +6,7 @@ if [ -f "$extractme" ] ; then
   case "$extractme" in
     *.tar.bz2)
       tar xvjf "$extractme"
-      ;
+      ;;
     *.tar.gz)
       tar xvzf "$extractme"
       ;;

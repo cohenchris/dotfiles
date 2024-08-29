@@ -68,7 +68,7 @@ vdirsyncer                # carddav syncing
 ################################################################################
 #                              general applications                            #
 ################################################################################
-mullvad-browser-bin       # mullvad web browser
+brave-browser             # brave web browser
 bitwarden-cli             # bitwarden cli
 backblaze-b2-bin          # backblaze b2 cli
 gimp                      # image editor
