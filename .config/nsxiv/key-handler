@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Press ctrl-x to use hotkeys
 while read -r file
 do
 
