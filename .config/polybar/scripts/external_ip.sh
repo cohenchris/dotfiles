@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo " $(wget -4 -qO - icanhazip.com)"
+echo " $(wget -4 -qO - http://icanhazip.com)"
