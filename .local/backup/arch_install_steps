@@ -64,7 +64,7 @@ echo "arch" > /etc/hostname
 vim /etc/hosts
               # 127.0.0.1   localhost
               # ::1         localhost
-              # 1270.1.1    arch.localdomain    arch
+              # 127.0.1.1    arch.localdomain    arch
 
 # Set a root password
 passwd

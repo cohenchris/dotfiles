@@ -6,6 +6,8 @@ if [ $? -ne 0 ]; then
   exit
 fi
 
+yes | paru -Scc
+
 cd /home/$USER/server
 docker-compose pull
 docker-compose up -d
