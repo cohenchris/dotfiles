@@ -22,6 +22,7 @@ python-pip                # python package manager
 python-dotenv             # python support for dotenv
 docker                    # docker containerization
 docker-compose            # docker-compose
+python-nvidia-ml-py       # glances nvidia GPU sensor reading
 
 # ------------------------------------ gui -------------------------------------
 xorg-server               # x display server
