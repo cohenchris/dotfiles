@@ -89,7 +89,7 @@ git clone git@github.com:cohenchris/wallpapers ~/.local/wallpapers
 echo
 echo "Deleting extraneous XDG directories..."
 cd
-rm -rf Desktop Documents Music Pictures Public Templates Videos
+rm -rfv Desktop Documents Music Pictures Public Templates Videos
 
 # Replace notmuch config database path with whoever the $USER is
 echo
