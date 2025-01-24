@@ -52,7 +52,6 @@ cd
 # Set location for zsh configuration files
 echo
 echo "Configuring zsh..."
-sudo mkdir /etc/zsh
 echo "ZDOTDIR=$HOME/.config/shell" > zshenv
 sudo mv zshenv /etc/zsh/
 
