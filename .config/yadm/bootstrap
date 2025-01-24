@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Get sudo privileges
+sudo ls
+
 yadm remote set-url origin git@github.com:cohenchris/dotfiles.git
 yadm decrypt
 
