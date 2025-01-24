@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Get sudo privileges
+# Get sudo privileges for later
 sudo ls
 
 yadm remote set-url origin git@github.com:cohenchris/dotfiles.git
@@ -10,41 +10,48 @@ yadm decrypt
 #                        INSTALL PERSONAL PACKAGES                             #
 ################################################################################
 # Add a PacMan visual + enable parallel downloads
+echo
+echo "I Love Candy!"
 sudo sed '/ParallelDownloads/s/^#/ILoveCandy\n/g' -i /etc/pacman.conf
 
 paru -Syu --noconfirm
-filename="packages"
-cd ~/.local/backup/
+packages_list=~/.local/backup/packages
 
 # install all personal packages
-total_pkgs=$(grep '^[a-zA-Z0-9]' packages | wc -l)
-echo -e "\nDownloading $total_pkgs personal packages..."
-curr_pkg=0
+total_pkgs=$(grep '^[a-zA-Z0-9]' ${packages_list} | wc -l)
+echo
+echo "Downloading ${total_pkgs} personal packages..."
+curr_pkg=1
 
 while read pkg_name
 do
   # Omit lines that are blank or commented out
-  if [[ -n $pkg_name ]] && ! [[ $pkg_name =~ ^#.* ]]; then
+  if [[ -n ${pkg_name} ]] && ! [[ ${pkg_name} =~ ^#.* ]]; then
 
-    pkg_name=$(echo $pkg_name | cut -d "#" -f 1)
+    # Chop off descriptive comment, now left with only the name of the package
+    pkg_name=$(echo ${pkg_name} | cut -d "#" -f 1)
 
-    curr_pkg=$((curr_pkg+1))
-    echo "Installing package $curr_pkg/$total_pkgs - $pkg_name"
-    paru -S --noconfirm $pkg_name > /dev/null 2>&1
+    # Install package
+    echo "Installing package ${curr_pkg}/${total_pkgs} - ${pkg_name}"
+    paru -S --noconfirm ${pkg_name} > /dev/null 2>&1
 
     if [[ $? -ne 0 ]]
     then
-      echo $pkg_name >> ~/failed_installs.txt
+      echo ${pkg_name} >> ~/FAILED_INSTALLS.TXT
     fi
 
+    # Increment counter
+    curr_pkg=$((curr_pkg+1))
   fi
-done < $filename
+done < ${packages_list}
 cd
 
 ################################################################################
 #                             SHELL + TERMINAL                                 #
 ################################################################################
-echo -e "\nConfiguring zsh..."
+# Set location for zsh configuration files
+echo
+echo "Configuring zsh..."
 sudo mkdir /etc/zsh
 echo "ZDOTDIR=$HOME/.config/shell" > zshenv
 sudo mv zshenv /etc/zsh/
@@ -61,7 +68,8 @@ git clone https://github.com/zsh-users/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-history-substring-search
 
 # Personal suckless terminal
-echo -e "\nInstalling personal st..."
+echo
+echo "Installing personal suckless terminal fork..."
 cd
 git clone git@github.com:cohenchris/st
 cd st
@@ -73,34 +81,41 @@ rm -rf st/
 #                                   MISC                                       #
 ################################################################################
 # Download wallpapers
-echo -e "\nDownloading wallpapers..."
+echo
+echo "Downloading wallpapers..."
 git clone git@github.com:cohenchris/wallpapers ~/.local/wallpapers
 
 # Delete extraneous XDG directories
-echo -e "\nDeleting extraneous XDG directories..."
+echo
+echo "Deleting extraneous XDG directories..."
 cd
 rm -rf Desktop Documents Music Pictures Public Templates Videos
 
-# npm config
-echo -e "\nConfiguring NPM..."
-echo "prefix=$HOME/.local/share/npm
-cache=$HOME/.cache/npm
-init-module=$HOME/.config/npm/config/npm-init.js" > npmrc
-sudo mv npmrc /usr/etc/
-
 # Replace notmuch config database path with whoever the $USER is
-echo -e "\nConfiguring notmuch..."
+echo
+echo "Configuring notmuch..."
 sed -i "s/phrog/$USER/g" $HOME/.config/notmuch/config
 
 # Start SSHD
-echo -e "\nStarting SSHD..."
+echo
+echo "Starting SSHD..."
 sudo systemctl enable sshd
 sudo systemctl start sshd
 
 # Start Docker
-echo -e "\nStarting and Configuring Docker..."
+echo
+echo "Starting and Configuring Docker..."
 sudo usermod -aG docker $USER
 sudo systemctl enable docker
 sudo systemctl start docker
 
-echo -e "\n\nTime to reboot!"
+if [ -f "~/FAILED_INSTALLS.TXT" ]
+  echo
+  echo "**************************************************"
+  echo "** INSTALLATION FAILED FOR ONE OR MORE PACKAGES **"
+  echo "**       PLEASE SEE ~/FAILED_INSTALLS.TXT       **"
+  echo "**************************************************"
+  echo
+fi
+
+echo "Time to reboot!"
