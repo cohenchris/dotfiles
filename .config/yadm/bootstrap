@@ -50,7 +50,7 @@ echo "ZDOTDIR=$HOME/.config/shell" > zshenv
 sudo mv zshenv /etc/zsh/
 
 # Change default shell to zsh
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
 
 # Install zsh plugins
 mkdir -p ~/.local/share/zsh/plugins
@@ -83,7 +83,6 @@ rm -rf Desktop Documents Music Pictures Public Templates Videos
 
 # npm config
 echo -e "\nConfiguring NPM..."
-sudo mkdir /usr/etc
 echo "prefix=$HOME/.local/share/npm
 cache=$HOME/.cache/npm
 init-module=$HOME/.config/npm/config/npm-init.js" > npmrc

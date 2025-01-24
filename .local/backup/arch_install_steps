@@ -62,7 +62,6 @@ echo "arch" > /etc/hostname
 
 # Set local machine addresses
 echo -e "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 arch.localdomain arch" > /etc/hosts
-y
 # Set a root password
 passwd
 
