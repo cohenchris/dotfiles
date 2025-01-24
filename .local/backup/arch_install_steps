@@ -105,19 +105,6 @@ rm -rf paru/
 paru -Syu yadm
 yadm clone https://github.com/cohenchris/dotfiles
 
-# If you see this message:
-#
-# **NOTE**
-#   Local files with content that differs from the ones just
-#   cloned were found in /home/<user>. They have been left
-#   unmodified.
-# 
-#   Please review and resolve any differences appropriately.
-#   If you know what you're doing, and want to overwrite the
-#   tracked files, consider 'yadm checkout "/home/<user>".
-# 
-# Simply run 'yadm checkout "/home/<user>"'
-
 # ZFS stuff
 paru -Syu zfs-dkms
 sudo modprobe zfs

@@ -57,8 +57,8 @@ echo "Configuring zsh..."
 echo "ZDOTDIR=$HOME/.config/shell" > zshenv
 sudo mv zshenv /etc/zsh/
 
-# Change default shell to zsh
-sudo chsh -s $(which zsh)
+# Change default shell to zsh for ${USER}
+sudo chsh -s $(which zsh) ${USER}
 
 # Install zsh plugins
 mkdir -p ~/.local/share/zsh/plugins
