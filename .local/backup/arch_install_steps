@@ -52,7 +52,7 @@ swapon /swapfile
 echo "/swapfile none swap defaults 0 0" >> /etc/fstab
 
 # Set language and time zone
-vim /etc/locale.gen
+sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
@@ -61,11 +61,8 @@ ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 echo "arch" > /etc/hostname
 
 # Set local machine addresses
-vim /etc/hosts
-              # 127.0.0.1   localhost
-              # ::1         localhost
-              # 127.0.1.1    arch.localdomain    arch
-
+echo -e "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 arch.localdomain arch" > /etc/hosts
+y
 # Set a root password
 passwd
 
@@ -84,7 +81,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 useradd -mg wheel <username>
 passwd <username>
 # uncomment wheel line - gives sudo access to wheel members
-vim /etc/sudoers
+sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL' /etc/sudoers
 
 # Go back to the USB stick and reboot
 exit

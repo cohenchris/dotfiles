@@ -23,6 +23,9 @@ python-dotenv             # python support for dotenv
 docker                    # docker containerization
 docker-compose            # docker-compose
 python-nvidia-ml-py       # glances nvidia GPU sensor reading
+inetutils                 # hostname command
+noto-fonts                # noto fonts base for noto-fonts-emoji
+noto-fonts-emoji          # emoji rendering for lf
 
 # ------------------------------------ gui -------------------------------------
 xorg-server               # x display server
