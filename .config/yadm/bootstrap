@@ -1,5 +1,7 @@
 #!/bin/bash
 
+yadm checkout /home/${USER}
+
 # Get sudo privileges for later
 sudo ls > /dev/null
 
@@ -90,10 +92,10 @@ echo "Deleting extraneous XDG directories..."
 cd
 rm -rfv Desktop Documents Music Pictures Public Templates Videos
 
-# Replace notmuch config database path with whoever the $USER is
+# Replace notmuch config database path with whoever the ${USER} is
 echo
 echo "Configuring notmuch..."
-sed -i "s/phrog/$USER/g" $HOME/.config/notmuch/config
+sed -i "s/phrog/${USER}/g" ${HOME}/.config/notmuch/config
 
 # Start SSHD
 echo
@@ -104,7 +106,7 @@ sudo systemctl start sshd
 # Start Docker
 echo
 echo "Starting and Configuring Docker..."
-sudo usermod -aG docker $USER
+sudo usermod -aG docker ${USER}
 sudo systemctl enable docker
 sudo systemctl start docker
 
