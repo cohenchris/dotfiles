@@ -101,13 +101,6 @@ cd ../
 rm -rf paru/
 cd
 
-# ZFS packages and services
-echo
-echo "Setting up ZFS..."
-sudo -u ${USERNAME} paru -Syu --noconfirm zfs-dkms
-sudo modprobe zfs
-sudo systemctl enable zfs-import-cache.service zfs-import.target zfs.target zfs-zed zfs-mount.service
-
 # YADM
 echo
 echo "Installing YADM dotfiles manager..."
