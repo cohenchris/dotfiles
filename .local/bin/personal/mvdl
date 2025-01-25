@@ -290,7 +290,7 @@ for VIDEO_PATH in "${ARTIST_MUSICVIDEOS_DIR}"/*; do
   if [[ -z "${MATCH_NAME}" ]]; then
     # No match found... Rename in a generic manner
     LOG ERROR "Match not found :(\n"
-    #mv "${VIDEO_PATH}" "${CLEAN_VIDEO_TITLE}.${VIDEO_EXTENSION}"
+    mv "${VIDEO_PATH}" "${CLEAN_VIDEO_TITLE}.${VIDEO_EXTENSION}"
   else
     # Match found! Rename the video to mirror the match
     LOG SUCCESS "Successful match with \"${MATCH_NAME}\"\n"
