@@ -101,6 +101,17 @@ cd ../
 rm -rf paru/
 cd
 
+# ZFS
+echo
+echo "Installing and enabling ZFS utilities and services..."
+paru -Syu zfs-dkms
+sudo modprobe zfs
+sudo systemctl enable zfs.target \
+                      zfs-import.target \
+                      zfs-volumes.target \
+                      zfs-import-scan.service \
+                      zfs-volume-wait.service \
+
 # YADM
 echo
 echo "Installing YADM dotfiles manager..."

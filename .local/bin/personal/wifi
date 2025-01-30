@@ -6,23 +6,15 @@ availableNetworks="$(nmcli -f SSID device wifi list | tail -n +2 | awk '$1 != "-
 
 echo $availableNetworks
 
-networkChoice=$(echo "$availableNetworks" | awk '{$1=$1};1' | dmenu -p "Select wireless network:" -l 20 -nb "#1e1e1e" -sf "#aaff77" -sb "#333333" -nf "#ffffff")
-
-echo $networkChoice
+networkChoice=$(echo "$availableNetworks" | awk '{$1=$1};1' | fuzzel --dmenu -p "Select wireless network: ")
 
 if [[ -z $networkChoice ]]; then
   notify-send --urgency critical "Must select a wireless network"
   exit
 fi
 
-echo $networkChoice
-
-networkPassword=$(dmenu -p "Enter password for wireless network \"$networkChoice\": " -nb "#1e1e1e" -sf "#aaff77" -sb "#333333" -nf "#1e1e1e" <&-)
-
+networkPassword=$(fuzzel --password --dmenu -p "Enter password for wireless network \"$networkChoice\": ")
 notify-send "Attempting to connect to wireless network \"$networkChoice\""
-
-echo $networkChoice
-echo $networkPassword
 
 errorCode=$(nmcli device wifi connect "$networkChoice" password "$networkPassword")
 

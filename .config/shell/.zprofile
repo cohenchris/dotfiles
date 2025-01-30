@@ -1,3 +1,4 @@
+
 # add custom scripts/backup scripts to PATH
 declare -a paths=(
   "$HOME/.local/backup"
@@ -12,14 +13,13 @@ export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="brave"
 export SHELL="zsh"
+export LAUNCHER="fuzzel"
 
 # Clean up ~
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DOWNLOAD_HOME="$HOME/Downloads"
-
-export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority" # This breaks some DMs
 
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME}/notmuch/config"
@@ -35,9 +35,10 @@ export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"
 export VSCODE_PORTABLE="${XDG_DATA_HOME}/vscode"
+export DMENU_BLUETOOTH_LAUNCHER="${LAUNCHER}"
 
 # Source zshrc
 [[ -f ~/.config/shell/.zshrc ]] && . ~/.config/shell/.zshrc
 
 # Start x server
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx /usr/bin/i3
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec /usr/bin/hyprland

@@ -16,26 +16,26 @@ unset GPG_TTY
 
 declare -a dotfiles=(
   ~/.config/dunst/
+  ~/.config/fuzzel/
   ~/.config/git/
-  ~/.config/i3/
+  ~/.config/hypr/
   ~/.config/isync/
   ~/.config/khard/
   ~/.config/lf/
   ~/.config/neomutt/
   ~/.config/notifymuch/
   ~/.config/notmuch/
-  ~/.config/nsxiv/
   ~/.config/nvim/init.vim
-  ~/.config/polybar/
   ~/.config/python/
   ~/.config/shell/
   ~/.config/user-dirs.dirs
   ~/.config/vdirsyncer/config
-  ~/.config/wget
+  ~/.config/waybar/
+  ~/.config/wget/
   ~/.config/yadm/
   ~/.config/zathura/
-  ~/.local/backup
-  ~/.local/bin/personal
+  ~/.local/backup/
+  ~/.local/bin/personal/
   ~/.local/share/yadm/archive
 )
 

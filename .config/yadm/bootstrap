@@ -120,3 +120,5 @@ if [ -f "~/FAILED_INSTALLS.TXT" ]; then
 fi
 
 echo "Time to reboot!"
+echo "If you have more ZFS drives to add to the root pool, attach them after reboot."
+echo "Once resilvering is done, ensure that you make the second disk bootable by adding boot blocks: https://docs.oracle.com/cd/E19253-01/819-5461/gkdep/index.html"

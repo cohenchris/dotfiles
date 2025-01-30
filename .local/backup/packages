@@ -1,4 +1,4 @@
-################################################################################
+e###############################################################################
 #                                 system utilities                             #
 ################################################################################
 # ------------------------------------ core ------------------------------------
@@ -11,11 +11,10 @@ atool                     # archive/compression multitool
 
 # ----------------------------------- core++ -----------------------------------
 net-tools                 # networking multitool
-libnotify                 # notification library
 dunst                     # notification daemon
 nut                       # network ups tools
-dmenu                     # multipurpose menu
-redshift                  # blue light filter
+fuzzel                    # multipurpose menu / launcher
+wl-gammarelay             # blue light filter
 bat                       # syntax highlighting
 python3                   # python
 python-pip                # python package manager
@@ -24,19 +23,14 @@ docker                    # docker containerization
 docker-compose            # docker-compose
 python-nvidia-ml-py       # glances nvidia GPU sensor reading
 inetutils                 # hostname command
-noto-fonts                # noto fonts base for noto-fonts-emoji
-noto-fonts-emoji          # emoji rendering for lf
 
 # ------------------------------------ gui -------------------------------------
-xorg-server               # x display server
-xorg-xinit                # start x server
-xorg-xrandr               # x display settings
-picom                     # x compositor
-i3-gaps                   # window manager
-i3lock-fancy-git          # lock screen
-polybar                   # status bar
-feh                       # set wallpaper
-terminus-font-ttf         # terminus font
+hyprland                  # window manager
+hyprlock                  # lock screen
+hyprpaper                 # wallpaper
+waybar                    # status bar
+nerd-fonts-git            # plenty of fonts
+papirus-icon-theme        # nice icon theme
 
 ################################################################################
 #                                     files                                    #
@@ -48,13 +42,13 @@ neovim vim-plug           # text
 odt2txt                   # opendocument preview
 lynx                      # html
 zathura                   # pdf
-gnome-epub-thumbnailer    # epub preview
+epub-thumbnailer-git      # epub preview
 
 # ----------------------------- images/audio/video -----------------------------
-ueberzug                  # multimedia preview
+ueberzugpp                # multimedia preview in terminal
 mpv                       # video/audio
 mediainfo                 # video/audio metadata
-nsxiv                     # images
+imv                       # images
 
 ################################################################################
 #                                     email                                    #
@@ -68,7 +62,6 @@ urlscan                   # url scanner for neomutt emails
 khard                     # local address book
 vdirsyncer                # carddav syncing
 
-
 ################################################################################
 #                              general applications                            #
 ################################################################################
@@ -78,4 +71,4 @@ backblaze-b2-bin          # backblaze b2 cli
 gimp                      # image editor
 dmenu-bluetooth           # bluetooth dmenu
 glances                   # task manager and resource monitor
-flameshot                 # screenshots
+grim slurp                # screenshots

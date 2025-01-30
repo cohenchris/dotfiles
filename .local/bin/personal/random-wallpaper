@@ -2,6 +2,15 @@
 
 cd ~/.local/wallpapers
 
-WALLPAPER=$(find . -type f | grep -v '/\.' | shuf -n 1)
+WALLPAPER=$(find $(pwd) -type f | grep -v '.git' | shuf -n 1)
+WALLPAPER=$(readlink -f ${WALLPAPER})
 
-feh --bg-fill --no-fehbg "${WALLPAPER}"
+MONITOR=$(hyprctl monitors | grep "Monitor" | awk '{print $2}')
+
+# Preload wallpaper file
+hyprctl hyprpaper preload "${WALLPAPER}"
+
+# Display wallpaper
+hyprctl hyprpaper wallpaper "${MONITOR},${WALLPAPER}"
+
+#feh --bg-fill --no-fehbg "${WALLPAPER}"
