@@ -86,11 +86,16 @@ echo
 echo "Downloading wallpapers..."
 git clone git@github.com:cohenchris/wallpapers ~/.local/wallpapers
 
-# Delete extraneous XDG directories
+# Delete extraneous files in ~/
 echo
 echo "Deleting extraneous XDG directories..."
 cd
 rm -rfv Desktop Documents Music Pictures Public Templates Videos
+echo "Deleting extraneous files in ~/..."
+rm -rfv ~/.bash*
+rm -rf ~/.cargo
+rm -rfv ~/.gnupg
+rm -rfv ~/.viminfo
 
 # Replace notmuch config database path with whoever the ${USER} is
 echo
@@ -110,15 +115,17 @@ sudo usermod -aG docker ${USER}
 sudo systemctl enable docker
 sudo systemctl start docker
 
-if [ -f "~/FAILED_INSTALLS.TXT" ]; then
+if [ -f "/home/${USER}/FAILED_INSTALLS.TXT" ]; then
   echo
   echo "**************************************************"
-  echo "** INSTALLATION FAILED FOR ONE OR MORE PACKAGES **"
-  echo "**       PLEASE SEE ~/FAILED_INSTALLS.TXT       **"
+  echo "**                  WARNING!!!                  **"
+  echo "** INSTALLATION FAILED THE FOLLOWING PACKAGES   **"
+  echo "**************************************************"
+  echo
+  cat "/home/${USER}/FAILED_INSTALLS.TXT"
+  echo
   echo "**************************************************"
   echo
 fi
 
 echo "Time to reboot!"
-echo "If you have more ZFS drives to add to the root pool, attach them after reboot."
-echo "Once resilvering is done, ensure that you make the second disk bootable by adding boot blocks: https://docs.oracle.com/cd/E19253-01/819-5461/gkdep/index.html"

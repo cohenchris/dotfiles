@@ -29,7 +29,7 @@ hyprland                  # window manager
 hyprlock                  # lock screen
 hyprpaper                 # wallpaper
 waybar                    # status bar
-nerd-fonts-git            # plenty of fonts
+noto-fonts-emoji          # emojis for lf
 papirus-icon-theme        # nice icon theme
 
 ################################################################################
