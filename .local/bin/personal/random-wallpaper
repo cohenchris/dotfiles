@@ -12,5 +12,3 @@ hyprctl hyprpaper preload "${WALLPAPER}"
 
 # Display wallpaper
 hyprctl hyprpaper wallpaper "${MONITOR},${WALLPAPER}"
-
-#feh --bg-fill --no-fehbg "${WALLPAPER}"
