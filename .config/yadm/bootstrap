@@ -93,9 +93,10 @@ cd
 rm -rfv Desktop Documents Music Pictures Public Templates Videos
 echo "Deleting extraneous files in ~/..."
 rm -rfv ~/.bash*
-rm -rf ~/.cargo
 rm -rfv ~/.gnupg
 rm -rfv ~/.viminfo
+rm -rf ~/.cargo
+rm -rf ~/go
 
 # Replace notmuch config database path with whoever the ${USER} is
 echo
