@@ -157,7 +157,8 @@ function pre_chroot_setup()
   fi
 
   # Copy ZFS automatic mounting cache to target drive
-  cp -r /etc/zfs/zfs-list.cache /mnt/etc/zfs
+  mkdir -p /mnt/etc/zfs/zfs-list.cache
+  cp /etc/zfs/zfs-list.cache/zroot /mnt/etc/zfs/zfs-list.cache/zroot
 
   # Delete the altroot '/mnt', otherwise datasets will be mounted at /mnt
   sed -i 's|/mnt||g' /mnt/etc/zfs/zfs-list.cache/zroot
