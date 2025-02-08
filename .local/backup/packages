@@ -8,6 +8,8 @@ cronie                    # cron jobs
 wget                      # web requests
 jq                        # json parser
 atool                     # archive/compression multitool
+neovim                    # text editor
+vim-plug                  # neovim plugin manager
 
 # ----------------------------------- core++ -----------------------------------
 net-tools                 # networking multitool
@@ -38,7 +40,6 @@ papirus-icon-theme        # nice icon theme
 lf                        # file browser
 
 # ---------------------------------- documents ---------------------------------
-neovim vim-plug           # text
 odt2txt                   # opendocument preview
 lynx                      # html
 zathura                   # pdf

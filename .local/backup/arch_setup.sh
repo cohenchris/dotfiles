@@ -304,7 +304,7 @@ function post_chroot_setup() {
 EOF
   
   # Enable systemd auto-mounting for boot drive by default
-  systemctl enable --now boot.mount
+  systemctl enable boot.mount
 
   ##############
   # BOOTLOADER #
