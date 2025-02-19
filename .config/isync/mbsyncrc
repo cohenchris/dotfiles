@@ -23,6 +23,6 @@ Inbox ~/.local/share/mail/Inbox
 Channel mail
 Far :mail-remote:
 Near :mail-local:
-Patterns *
+Patterns INBOX*
 Create Both
 SyncState *

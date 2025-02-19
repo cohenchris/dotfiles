@@ -35,7 +35,7 @@ notify()
 
 notify noturgent "Checking email..."
 
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx /usr/bin/i3
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec /usr/bin/hyprland
 
 # Sync all emails 
 mbsync -c ~/.config/isync/mbsyncrc mail
@@ -61,8 +61,19 @@ fi
 # Sync contacts
 vdirsyncer sync
 if ! [[ $? -eq 0 ]]; then
-  notify urgent "Email syncing error" "vdirsyncer failed"
-  exit
+  # Maybe contacts aren't initialized, try discover
+  vdirsyncer discover nextcloud_contacts
+  if ! [[ $? -eq 0 ]]; then
+    notify urgent "Email syncing error" "vdirsyncer failed"
+    exit
+  fi
+
+  # Try sync again
+  vdirsyncer sync
+  if ! [[ $? -eq 0 ]]; then
+    notify urgent "Email syncing error" "vdirsyncer failed"
+    exit
+  fi
 fi
 
 notify noturgent "Email checked successfully"

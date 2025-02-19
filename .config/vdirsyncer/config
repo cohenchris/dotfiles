@@ -1,6 +1,6 @@
 [general]
 #A cache path where the current status of vdirsyncer will be stored
-status_path = "~/.config/vdirsyncer/status/"
+status_path = "~/.local/share/vdirsyncer/status/"
 
 #Create a new sync connection between two storages we will define
 [pair nextcloud_contacts]
