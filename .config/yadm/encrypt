@@ -2,3 +2,4 @@
 .local/share/gnupg/*
 .config/password-store/*
 .config/docker/config.json
+.config/Bitwarden\ CLI
