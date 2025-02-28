@@ -8,7 +8,7 @@ set mbox_type = Maildir                                               # how shou
 set from = "`pass email/user`"                                        # email to send from
 set realname = "`pass email/realname`"                                # name to set when emailing
                                                                       #
-set spoolfile = "+Inbox"                                              # inbox file
+set spoolfile = "+INBOX"                                              # inbox file
 set record = "+Sent"                                                  # send any sent emails to "Sent" box
 set trash = "+Trash"                                                  # send any deleted emails to "Trash" box
 set postponed = "+Drafts"                                             # send any incomplete emails to "Drafts" box
@@ -98,7 +98,7 @@ bind index,pager \Cl sidebar-open                                     # ctrl+l (
 #=====================================================================#
 # NotMuch                                                             #
 #=====================================================================#
-set nm_default_url = "notmuch://$XDG_DATA_HOME/mail"                  # Points to the notmuch directory
+set nm_default_url = "notmuch://${XDG_DATA_HOME}/mail"                # Points to the notmuch directory
 set nm_query_type = "threads"                                         # Makes notmuch return threads rather than messages
 bind index / noop                                                     # Unbind default '/' search
 bind index / vfolder-from-query                                       # Binding for notmuch search

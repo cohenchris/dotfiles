@@ -24,7 +24,7 @@ declare -a dotfiles=(
   ~/.config/neomutt/
   ~/.config/notifymuch/
   ~/.config/notmuch/
-  ~/.config/nvim/init.vim
+  ~/.config/nvim/
   ~/.config/python/
   ~/.config/shell/
   ~/.config/user-dirs.dirs

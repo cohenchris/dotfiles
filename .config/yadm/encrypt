@@ -4,4 +4,4 @@
 .config/docker/config.json
 .config/Bitwarden\ CLI
 .config/git
-
+.config/rclone

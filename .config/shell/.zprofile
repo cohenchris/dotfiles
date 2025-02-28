@@ -6,7 +6,7 @@ declare -a paths=(
   "$HOME/.local/bin"
 )
 CUSTOM_PATHS=$(IFS=:; echo "${paths[*]}")
-export PATH="$CUSTOM_PATHS:$PATH"
+export PATH="${CUSTOM_PATHS}:${PATH}"
 
 # Default programs
 export EDITOR="nvim"

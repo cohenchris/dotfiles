@@ -3,21 +3,21 @@
 status_path = "~/.local/share/vdirsyncer/status/"
 
 #Create a new sync connection between two storages we will define
-[pair nextcloud_contacts]
-a = "nextcloud_contacts_local"
-b = "nextcloud_contacts_remote"
+[pair contacts]
+a = "contacts_local"
+b = "contacts_remote"
 collections = ["from a", "from b"]
 metadata = ["chris"]
 
 # A local storage to store the contacts
-[storage nextcloud_contacts_local]
+[storage contacts_local]
 type = "filesystem"
 # Path to where to store the vcards
 path = "~/.local/share/contacts/"
 fileext = ".vcf"
 
 # A remote storage to nextcloud
-[storage nextcloud_contacts_remote]
+[storage contacts_remote]
 type = "carddav"
 # Can be obtained from nextcloud
 url = "https://nextcloud.chriscohen.dev/remote.php/dav/addressbooks/users/chris/"
