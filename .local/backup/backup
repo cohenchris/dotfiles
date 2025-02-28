@@ -34,7 +34,6 @@ declare -a dotfiles=(
   ~/.config/yadm/
   ~/.config/zathura/
   ~/.local/backup/
-  ~/.local/bin/personal/
   ~/.local/share/yadm/archive
 )
 

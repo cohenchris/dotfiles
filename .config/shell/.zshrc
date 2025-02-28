@@ -19,10 +19,10 @@ compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 # End of lines added by compinstall
 
 # Aliases
-[ -f "${XDG_CONFIG_HOME}/shall/aliasrc" ] && source ${XDG_CONFIG_HOME}/shell/aliasrc
+[ -f "${XDG_CONFIG_HOME}/shell/aliasrc" ] && source ${XDG_CONFIG_HOME}/shell/aliasrc
 
 # Keyboard fixes
-[ -f "${XDG_CONFIG_HOME}/shall/keyboardrc" ] && source ${XDG_CONFIG_HOME}/shell/keyboardrc
+[ -f "${XDG_CONFIG_HOME}/shell/keyboardrc" ] && source ${XDG_CONFIG_HOME}/shell/keyboardrc
 
 # Plugins
 source $XDG_DATA_HOME/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
