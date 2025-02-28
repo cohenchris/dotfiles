@@ -84,7 +84,7 @@ rm -rf st/
 # Download wallpapers
 echo
 echo "Downloading wallpapers..."
-git clone git@github.com:cohenchris/wallpapers ~/.local/wallpapers
+git clone git@github.com:cohenchris/wallpapers ~/.local/share/wallpapers
 
 # Delete extraneous files in ~/
 echo
@@ -115,6 +115,11 @@ echo "Starting and Configuring Docker..."
 sudo usermod -aG docker ${USER}
 sudo systemctl enable docker
 sudo systemctl start docker
+
+# Initializing password store...
+echo
+echo "Initializing password store..."
+pass init $(gpg --list-secret-keys | grep -oE '[A-F0-9]{40}')
 
 if [ -f "/home/${USER}/FAILED_INSTALLS.TXT" ]; then
   echo

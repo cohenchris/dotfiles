@@ -14,14 +14,15 @@ bindkey '^R' history-incremental-search-backward
 zstyle :compinstall filename '/home/$USER/.config/shell/.zshrc'
 
 autoload -Uz compinit
+zutoload -Uz tetriscurses # :)
 compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 # End of lines added by compinstall
 
 # Aliases
-source $XDG_CONFIG_HOME/shell/aliasrc
+[ -f "${XDG_CONFIG_HOME}/shall/aliasrc" ] && source ${XDG_CONFIG_HOME}/shell/aliasrc
 
 # Keyboard fixes
-source $XDG_CONFIG_HOME/shell/keyboardrc
+[ -f "${XDG_CONFIG_HOME}/shall/keyboardrc" ] && source ${XDG_CONFIG_HOME}/shell/keyboardrc
 
 # Plugins
 source $XDG_DATA_HOME/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh

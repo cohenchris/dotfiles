@@ -29,6 +29,8 @@ docker-compose            # docker-compose
 inetutils                 # hostname command
 ssmtp                     # sendmail util
 nmap-netcat               # nmap and netcat
+smartmontools             # drive SMART monitoring
+sshfs                     # Mount a filesystem over SSH
 
 # ------------------------------------ gui -------------------------------------
 hyprland                  # window manager

@@ -17,7 +17,6 @@ unset GPG_TTY
 declare -a dotfiles=(
   ~/.config/dunst/
   ~/.config/fuzzel/
-  ~/.config/git/
   ~/.config/hypr/
   ~/.config/isync/
   ~/.config/khard/

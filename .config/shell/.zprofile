@@ -2,7 +2,7 @@
 # add custom scripts/backup scripts to PATH
 declare -a paths=(
   "$HOME/.local/backup"
-  "$HOME/.local/bin/personal/"
+  "$HOME/scripts/bin"
   "$HOME/.local/bin"
 )
 CUSTOM_PATHS=$(IFS=:; echo "${paths[*]}")
