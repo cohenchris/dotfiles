@@ -1,9 +1,8 @@
-
 # add custom scripts/backup scripts to PATH
 declare -a paths=(
-  "$HOME/.local/backup"
-  "$HOME/scripts/bin"
-  "$HOME/.local/bin"
+  "${HOME}/.local/backup"
+  "${HOME}/scripts/bin"
+  "${HOME}/.local/bin"
 )
 CUSTOM_PATHS=$(IFS=:; echo "${paths[*]}")
 export PATH="${CUSTOM_PATHS}:${PATH}"
@@ -16,10 +15,10 @@ export SHELL="zsh"
 export LAUNCHER="fuzzel"
 
 # Clean up ~
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DOWNLOAD_HOME="$HOME/Downloads"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DOWNLOAD_HOME="${HOME}/Downloads"
 
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME}/notmuch/config"

@@ -6,6 +6,6 @@ alias vim="nvim"
 # Misc
 alias occ="docker exec -it -u www-data nextcloud php occ"
 alias scan="/home/${USER}/scripts/scan-nextcloud-files.sh"
-alias lf="lfub"
+alias lf="source lfub"
 alias restart="/home/${USER}/scripts/system/server/restart.sh"
 alias tetris="tetriscurses"

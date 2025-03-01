@@ -1,3 +1,5 @@
+# https://github.com/gokcehan/lf/blob/master/doc.md
+
 # Note on Image Previews
 #
 #  lf should be started through a wrapper script (~/.local/bin/lfub for me)
@@ -13,114 +15,28 @@ set icons
 set period 1
 set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 set cleaner '~/.config/lf/cleaner'
-set previewer '~/.config/lf/scope'
+set previewer '~/.config/lf/previewer'
 set autoquit true
 
 ################################################################################
 ############################### HANDLER FUNCTIONS ##############################
 ################################################################################
-# file open handler
-cmd open ${{
-    case $(file --mime-type "$(readlink -f $f)" -b) in
-
-  # Documents (including PDF, EPUB, etc.)
-	application/pdf|application/epub*|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-  
-  # HTML
-	text/html) ${BROWSER} $fx;;
-  
-  # Text files (including plaintext, JSON, etc.)
-  text/*|application/json|inode/x-empty|application/x-subrip) $EDITOR $fx;;
-  
-  # XCF Image
-	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
-  
-  # SVG + XML Images
-	image/svg+xml) display -- $f ;;
-  
-  # Image
-	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|avif\|tif\|ico\)\(_large\)*$" |
-		       setsid -f imv 2>/dev/null | while read -r file; do
-             # Highlight selected image on lf
-             [ -z "$file" ] && continue
-             lf -remote "send select \"$file\""
-             lf -remote "send toggle"
-           done &
-           ;;
-  
-  # Audio
-	audio/*|video/x-ms-asf) mpv --audio-display=no $f ;;
-  
-  # Video
-	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-  
-  # PGP-encrypted items
-	application/pgp-encrypted) $EDITOR $fx ;;
-  
-  # Office documents
-	application/vnd.openxmlformats-officedocument.wordprocessingml.document|application/vnd.oasis.opendocument.text|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|application/octet-stream|application/vnd.oasis.opendocument.spreadsheet|application/vnd.oasis.opendocument.spreadsheet-template|application/vnd.openxmlformats-officedocument.presentationml.presentation|application/vnd.oasis.opendocument.presentation-template|application/vnd.oasis.opendocument.presentation|application/vnd.ms-powerpoint|application/vnd.oasis.opendocument.graphics|application/vnd.oasis.opendocument.graphics-template|application/vnd.oasis.opendocument.formula|application/vnd.oasis.opendocument.database) setsid -f libreoffice $fx >/dev/null 2>&1 ;;
-  
-  # Compressed archives
-  application/x-bzip-compressed-tar|application/gzip|application/x-xz|application/x-bzip2|application/vnd.rar|application/gzip|application/x-tar|application/x-bzip-compressed-tar|application/zip|application/x-compress|application/x-7z-compressed) extract $f ;;
-  
-  # Default case to handle everything else
-  *) for f in $fx; do setsid -f ${OPENER} $f >/dev/null 2>&1; done;;
-    esac
-}}
-
-
 # mkdir handler
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
-
-
-# archive extraction handler
-cmd extract ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
-	set -f
-	printf "%s\n\t" "$fx"
-	printf "extract?[y/N]"
-	read ans
-	[ $ans = "y" ] && extract $fx
-}}
 
 
 # rm handler
 cmd delete ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
-	printf "%s\n\t" "$fx"
-	printf "delete?[y/N]"
+	printf "%s\n\t" "${fx}"
+	printf "delete? [y/N] "
 	read ans
-	[ $ans = "y" ] && rm -rf -- $fx
+	[ $ans = "y" ] && rm -rf -- ${fx}
 }}
 
 
-# mv handler
-cmd moveto ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
-	set -f
-	clear; echo "Move to where?"
-	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME}/shell/bm-dirs | fzf | sed 's|~|${HOME}|')" &&
-	for x in $fx; do
-		eval mv -iv \"$x\" \"$dest\"
-	done &&
-	notify-send "🚚 File(s) moved." "File(s) moved to $dest."
-}}
-
-
-# cp handler
-cmd copyto ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
-	set -f
-	clear; echo "Copy to where?"
-	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME}/shell/bm-dirs | fzf | sed 's|~|${HOME}|')" &&
-	for x in $fx; do
-		eval cp -ivr \"$x\" \"$dest\"
-	done &&
-	notify-send "📋 File(s) copied." "File(s) copies to $dest."
-}}
-
-
+# rename multiple files at once
 cmd bulkrename ${{
     tmpfile_old="$(mktemp)"
     tmpfile_new="$(mktemp)"
@@ -129,7 +45,7 @@ cmd bulkrename ${{
 
     echo "${fs}" > "${tmpfile_old}"
     echo "${fs}" > "${tmpfile_new}"
-    $EDITOR "${tmpfile_new}"
+    ${EDITOR} "${tmpfile_new}"
 
     [ "$(wc -l < "${tmpfile_old}")" -eq "$(wc -l < "${tmpfile_new}")" ] || { rm -f "${tmpfile_old}" "${tmpfile_new}"; exit 1; }
 
@@ -143,36 +59,133 @@ cmd bulkrename ${{
 }}
 
 
+# file open handler
+cmd open ${{
+  case $(file --mime-type "$(readlink -f ${f})" -b) in
+
+    # Documents (including PDF, EPUB, etc.)
+    application/pdf|application/epub*|application/octet-stream|application/postscript)
+      setsid -f zathura ${fx} >/dev/null 2>&1
+    ;;
+    
+    # HTML
+    text/html)
+      ${BROWSER} ${fx}
+    ;;
+    
+    # Text files (including plaintext, JSON, etc.)
+    text/*|application/json|inode/x-empty|application/x-subrip)
+      ${EDITOR} ${fx}
+    ;;
+    
+    # XCF Image
+    image/x-xcf)
+      setsid -f gimp ${f} >/dev/null 2>&1
+    ;;
+    
+    # SVG + XML Images
+    image/svg+xml)
+      display -- ${f}
+    ;;
+    
+    # Image
+    image/*)
+      rotdir ${f} |
+      grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|avif\|tif\|ico\)\(_large\)*$" |
+      setsid -f imv 2>/dev/null |
+      while read -r file; do
+        # Highlight selected image on lf
+        [ -z "${f}ile" ] && continue
+        lf -remote "send select \"${f}ile\""
+        lf -remote "send toggle"
+      done &
+    ;;
+    
+    # Audio
+    audio/*|video/x-ms-asf)
+      mpv --audio-display=no ${f}
+    ;;
+    
+    # Video
+    video/*)
+      setsid -f mpv ${f} -quiet >/dev/null 2>&1
+    ;;
+    
+    # PGP-encrypted items
+    application/pgp-encrypted)
+      ${EDITOR} ${fx}
+    ;;
+    
+    # Office documents
+    application/vnd.openxmlformats-officedocument.wordprocessingml.document|application/vnd.oasis.opendocument.text|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|application/vnd.oasis.opendocument.spreadsheet|application/vnd.oasis.opendocument.spreadsheet-template|application/vnd.openxmlformats-officedocument.presentationml.presentation|application/vnd.oasis.opendocument.presentation-template|application/vnd.oasis.opendocument.presentation|application/vnd.ms-powerpoint|application/vnd.oasis.opendocument.graphics|application/vnd.oasis.opendocument.graphics-template|application/vnd.oasis.opendocument.formula|application/vnd.oasis.opendocument.database)
+      setsid -f libreoffice ${fx} >/dev/null 2>&1
+    ;;
+    
+    # Compressed archives
+    application/x-bzip-compressed-tar|application/gzip|application/x-xz|application/x-bzip2|application/vnd.rar|application/gzip|application/x-tar|application/x-bzip-compressed-tar|application/zip|application/x-compress|application/x-7z-compressed)
+      extract ${f}
+    ;;
+
+    # Binary files
+    application/octet-stream)
+      case ${f##*.} in
+
+        # Office documents
+        doc|docx|xls|xlsx|odt|ppt|pptx)
+          setsid -f libreoffice ${fx} >/dev/null 2>&1
+        ;;
+
+      esac
+    ;;
+
+    # If no configured opener, throw an error
+    *)
+      clear; tput cup $(($(tput lines)/3)); tput bold
+      set -f
+      printf "ERROR: No configured opener\n"
+      printf "\nFile: \t\t%s\n" "${f}"
+      printf "Mime Type: \t%s\n" $(file --mime-type "$(readlink -f ${f})" -b)
+      printf "\nPress enter to continue..."
+      read ans
+    ;;
+
+  esac
+}}
+
+
 ################################################################################
 #################################### BINDINGS ##################################
 ################################################################################
-map <c-f> $lf -remote "send ${id} select \"$(fzf)\""
-map J $lf -remote "send ${id} cd $(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME}/shell/bm-dirs | fzf)"
-map gh
-map g top
+# Delete a file or directory
 map D delete
-map E extract
-map C copyto
-map M moveto
+
+# Make a new directory in the cwd
 map <c-n> push :mkdir<space>
+
+# Reload cwd and previews
 map <c-r> reload
+
+# Simple shell prompt in the file manager
 map <enter> shell
-map x $$f
-map X !$f
-map o &mimeopen "$f"
-map O $mimeopen --ask "$f"
 
-map A :rename; cmd-end # at the very end
-map c push A<c-u> # new rename
-map I :rename; cmd-home # at the very beginning
-map i :rename # before extension
-map a :rename; cmd-right # after extension
-map B bulkrename
+# Execute file in the the shell
+map x $${f}
+map X !${f}
 
-map <c-e> down
-map <c-y> up
-map V push :!nvim<space>
+# Open file or directory
+map o open "${f}"
 
+# Renaming files
+map r :rename; # rename before extension
+map B bulkrename # rename in bulk
+map A :rename; cmd-end # rename at very end
+map R push A<c-u> # blank rename
+
+# Open terminal in path
 map W $setsid -f ${TERMINAL} >/dev/null 2>&1
 
-map Y $printf "%s" "$fx" | waycopy
+# Copy file path
+map Y $printf "%s" "${fx}" | waycopy
+
+# Go to cwd when quitting lf
+map Q &{{lf -remote "send $env:id cd $($env:OLDPWD.Replace('\','/'))"; lf -remote "send $env:id quit"}}
