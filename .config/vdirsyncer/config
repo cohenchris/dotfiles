@@ -1,29 +1,26 @@
 [general]
-#A cache path where the current status of vdirsyncer will be stored
+# vdirsyncer cache path for status
 status_path = "~/.local/share/vdirsyncer/status/"
 
-#Create a new sync connection between two storages we will define
+# Create a new sync connection between two storages we will define
 [pair contacts]
 a = "contacts_local"
 b = "contacts_remote"
 collections = ["from a", "from b"]
-metadata = ["chris"]
 
-# A local storage to store the contacts
+
+# Local storage
 [storage contacts_local]
 type = "filesystem"
 # Path to where to store the vcards
 path = "~/.local/share/contacts/"
 fileext = ".vcf"
 
-# A remote storage to nextcloud
+
+# Remote storage
 [storage contacts_remote]
 type = "carddav"
-# Can be obtained from nextcloud
-url = "https://nextcloud.chriscohen.dev/remote.php/dav/addressbooks/users/chris/"
-username = "chris"
-# Shell command which calls the external command pass and reads the password nextcloud
-password.fetch = ["command", "pass", "nextcloud"]
-# SSL certificate fingerprint
-#Verify ssl certificate. Set to false if it is self signed and not installed on local machine
-#verify = true
+# Nextcloud CardDav URL/Username/Password
+url.fetch = ["command", "pass", "nextcloud/contacts"]
+username.fetch = ["command", "pass", "nextcloud/username"]
+password.fetch = ["command", "pass", "nextcloud/password"]

@@ -37,6 +37,7 @@ hyprland                  # window manager
 hyprlock                  # lock screen
 hyprpaper                 # wallpaper
 waybar                    # status bar
+wayclip                   # clipboard manager
 noto-fonts-emoji          # emojis for lf
 papirus-icon-theme        # nice icon theme
 terminus-font-ttf         # Terminus monospace system font
@@ -51,6 +52,9 @@ odt2txt                   # opendocument preview
 lynx                      # html
 zathura-pdf-mupdf         # pdf, epub, and XPS
 epub-thumbnailer-git      # epub preview
+sox                       # audio file quality preview
+libmad                    # sox mp3 handling part 1
+twolame                   # sox mp3 handling part 2
 
 # ----------------------------- images/audio/video -----------------------------
 ueberzugpp                # multimedia preview

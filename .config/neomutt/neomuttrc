@@ -3,9 +3,9 @@
 #=====================================================================#
 set folder = "~/.local/share/mail"                                    # folder where mail is located
 set smtp_url = "`pass email/smtp_url`"                                # url to smtp server
-set smtp_pass = "`pass email/pass`"                                   # get smtp server password from pass
+set smtp_pass = "`pass email/password`"                               # get smtp server password from pass
 set mbox_type = Maildir                                               # how should the mail be stored
-set from = "`pass email/user`"                                        # email to send from
+set from = "`pass email/username`"                                    # email to send from
 set realname = "`pass email/realname`"                                # name to set when emailing
                                                                       #
 set spoolfile = "+INBOX"                                              # inbox file

@@ -1,18 +1,11 @@
 # Note on Image Previews
-# For those wanting image previews, like this system, there are four steps to
-# set it up. These are done automatically for LARBS users, but I will state
-# them here for others doing it manually.
 #
-# 1. ueberzug must be installed.
-# 2. The scope file (~/.config/lf/scope for me), must have a command similar to
-#    mine to generate ueberzug images.
-# 3. A `set cleaner` line as below is a cleaner script.
-# 4. lf should be started through a wrapper script (~/.local/bin/lfub for me)
-#    that creates the environment for ueberzug. This command can be be aliased
-#    in your shellrc (`alias lf="lfub") or if set to a binding, should be
-#    called directly instead of normal lf.
+#  lf should be started through a wrapper script (~/.local/bin/lfub for me)
+#  that creates the environment for ueberzug. This command can be be aliased
+#  in your shellrc (`alias lf="lfub") or if set to a binding, should be
+#  called directly instead of normal lf.
 
-# Basic vars
+# Basic variables
 set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
@@ -23,15 +16,29 @@ set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/scope'
 set autoquit true
 
-# cmds/functions
+################################################################################
+############################### HANDLER FUNCTIONS ##############################
+################################################################################
+# file open handler
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
-	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
-	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+
+  # Documents (including PDF, EPUB, etc.)
+	application/pdf|application/epub*|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+  
+  # HTML
 	text/html) ${BROWSER} $fx;;
+  
+  # Text files (including plaintext, JSON, etc.)
   text/*|application/json|inode/x-empty|application/x-subrip) $EDITOR $fx;;
+  
+  # XCF Image
 	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+  
+  # SVG + XML Images
 	image/svg+xml) display -- $f ;;
+  
+  # Image
 	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|avif\|tif\|ico\)\(_large\)*$" |
 		       setsid -f imv 2>/dev/null | while read -r file; do
              # Highlight selected image on lf
@@ -40,18 +47,33 @@ cmd open ${{
              lf -remote "send toggle"
            done &
            ;;
+  
+  # Audio
 	audio/*|video/x-ms-asf) mpv --audio-display=no $f ;;
+  
+  # Video
 	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-	application/pdf|application/vnd.djvu|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+  
+  # PGP-encrypted items
 	application/pgp-encrypted) $EDITOR $fx ;;
+  
+  # Office documents
 	application/vnd.openxmlformats-officedocument.wordprocessingml.document|application/vnd.oasis.opendocument.text|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|application/octet-stream|application/vnd.oasis.opendocument.spreadsheet|application/vnd.oasis.opendocument.spreadsheet-template|application/vnd.openxmlformats-officedocument.presentationml.presentation|application/vnd.oasis.opendocument.presentation-template|application/vnd.oasis.opendocument.presentation|application/vnd.ms-powerpoint|application/vnd.oasis.opendocument.graphics|application/vnd.oasis.opendocument.graphics-template|application/vnd.oasis.opendocument.formula|application/vnd.oasis.opendocument.database) setsid -f libreoffice $fx >/dev/null 2>&1 ;;
+  
+  # Compressed archives
   application/x-bzip-compressed-tar|application/gzip|application/x-xz|application/x-bzip2|application/vnd.rar|application/gzip|application/x-tar|application/x-bzip-compressed-tar|application/zip|application/x-compress|application/x-7z-compressed) extract $f ;;
-        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+  
+  # Default case to handle everything else
+  *) for f in $fx; do setsid -f ${OPENER} $f >/dev/null 2>&1; done;;
     esac
 }}
 
+
+# mkdir handler
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
+
+# archive extraction handler
 cmd extract ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
@@ -61,6 +83,8 @@ cmd extract ${{
 	[ $ans = "y" ] && extract $fx
 }}
 
+
+# rm handler
 cmd delete ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
@@ -70,54 +94,60 @@ cmd delete ${{
 	[ $ans = "y" ] && rm -rf -- $fx
 }}
 
+
+# mv handler
 cmd moveto ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
 	clear; echo "Move to where?"
-	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf | sed 's|~|$HOME|')" &&
+	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME}/shell/bm-dirs | fzf | sed 's|~|${HOME}|')" &&
 	for x in $fx; do
 		eval mv -iv \"$x\" \"$dest\"
 	done &&
 	notify-send "🚚 File(s) moved." "File(s) moved to $dest."
 }}
 
+
+# cp handler
 cmd copyto ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
 	clear; echo "Copy to where?"
-	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf | sed 's|~|$HOME|')" &&
+	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME}/shell/bm-dirs | fzf | sed 's|~|${HOME}|')" &&
 	for x in $fx; do
 		eval cp -ivr \"$x\" \"$dest\"
 	done &&
 	notify-send "📋 File(s) copied." "File(s) copies to $dest."
 }}
 
-cmd setbg "$1"
 
 cmd bulkrename ${{
     tmpfile_old="$(mktemp)"
     tmpfile_new="$(mktemp)"
 
-    [ -n "$fs" ] && fs=$(basename -a $fs) || fs=$(ls)
+    [ -n "${fs}" ] && fs=$(basename -a ${fs}) || fs=$(ls)
 
-    echo "$fs" > "$tmpfile_old"
-    echo "$fs" > "$tmpfile_new"
-    $EDITOR "$tmpfile_new"
+    echo "${fs}" > "${tmpfile_old}"
+    echo "${fs}" > "${tmpfile_new}"
+    $EDITOR "${tmpfile_new}"
 
-    [ "$(wc -l < "$tmpfile_old")" -eq "$(wc -l < "$tmpfile_new")" ] || { rm -f "$tmpfile_old" "$tmpfile_new"; exit 1; }
+    [ "$(wc -l < "${tmpfile_old}")" -eq "$(wc -l < "${tmpfile_new}")" ] || { rm -f "${tmpfile_old}" "${tmpfile_new}"; exit 1; }
 
-    paste "$tmpfile_old" "$tmpfile_new" | while IFS="$(printf '\t')" read -r src dst
+    paste "${tmpfile_old}" "${tmpfile_new}" | while IFS="$(printf '\t')" read -r src dst
     do
-        [ "$src" = "$dst" ] || [ -e "$dst" ] || mv -- "$src" "$dst"
+        [ "${src}" = "${dst}" ] || [ -e "${dst}" ] || mv -- "${src}" "${dst}"
     done
 
-    rm -f "$tmpfile_old" "$tmpfile_new"
-    lf -remote "send $id unselect"
+    rm -f "${tmpfile_old}" "${tmpfile_new}"
+    lf -remote "send ${id} unselect"
 }}
 
-# Bindings
-map <c-f> $lf -remote "send $id select \"$(fzf)\""
-map J $lf -remote "send $id cd $(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf)"
+
+################################################################################
+#################################### BINDINGS ##################################
+################################################################################
+map <c-f> $lf -remote "send ${id} select \"$(fzf)\""
+map J $lf -remote "send ${id} cd $(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME}/shell/bm-dirs | fzf)"
 map gh
 map g top
 map D delete
@@ -138,12 +168,11 @@ map I :rename; cmd-home # at the very beginning
 map i :rename # before extension
 map a :rename; cmd-right # after extension
 map B bulkrename
-map b $setbg $f
 
 map <c-e> down
 map <c-y> up
 map V push :!nvim<space>
 
-map W $setsid -f $TERMINAL >/dev/null 2>&1
+map W $setsid -f ${TERMINAL} >/dev/null 2>&1
 
-map Y $printf "%s" "$fx" | xclip -selection clipboard
+map Y $printf "%s" "$fx" | waycopy
