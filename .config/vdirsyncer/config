@@ -1,6 +1,6 @@
 [general]
 # vdirsyncer cache path for status
-status_path = "~/.local/share/vdirsyncer/status/"
+status_path = "${XDG_DATA_HOME}/vdirsyncer/status/"
 
 # Create a new sync connection between two storages we will define
 [pair contacts]
@@ -13,7 +13,7 @@ collections = ["from a", "from b"]
 [storage contacts_local]
 type = "filesystem"
 # Path to where to store the vcards
-path = "~/.local/share/contacts/"
+path = "${XDG_DATA_HOME}/contacts/"
 fileext = ".vcf"
 
 

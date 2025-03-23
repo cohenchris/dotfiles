@@ -12,11 +12,11 @@ bindkey -v
 bindkey '^R' history-incremental-search-backward
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/$USER/.config/shell/.zshrc'
+zstyle :compinstall filename '${XDG_CONFIG_HOME}/shell/.zshrc'
 
 autoload -Uz compinit
 autoload -Uz tetriscurses # :)
-compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
+compinit -d ${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}
 # End of lines added by compinstall
 
 # Aliases

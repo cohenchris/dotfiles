@@ -1,11 +1,14 @@
 #!/bin/bash
 
+# Ensure that all yadm files are present where they should be
 yadm checkout /home/${USER}
 
 # Get sudo privileges for later
 sudo ls > /dev/null
 
+# Change yadm URL from HTTPS to SSH
 yadm remote set-url origin git@github.com:cohenchris/dotfiles.git
+# Decrypt the sensitive files encrypted by YADM
 yadm decrypt
 
 ################################################################################
@@ -20,7 +23,9 @@ paru -Syu --noconfirm
 packages_list=~/.local/backup/packages
 
 # install all personal packages
-total_pkgs=$(grep '^[a-zA-Z0-9]' ${packages_list} | wc -l)
+
+# Count all lines that start with a letter (baically, omit commented lines)
+total_pkgs=$(grep '^[a-zA-Z]' ${packages_list} | wc -l)
 echo
 echo "Downloading ${total_pkgs} personal packages..."
 curr_pkg=1
@@ -49,12 +54,12 @@ done < ${packages_list}
 cd
 
 ################################################################################
-#                             SHELL + TERMINAL                                 #
+#                             SHELL                                            #
 ################################################################################
 # Set location for zsh configuration files
 echo
 echo "Configuring zsh..."
-echo "ZDOTDIR=$HOME/.config/shell" > zshenv
+echo "ZDOTDIR=${HOME}/.config/shell" > zshenv
 sudo mv zshenv /etc/zsh/
 
 # Change default shell to zsh for ${USER}
@@ -67,16 +72,6 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-history-substring-search
-
-# Personal suckless terminal
-echo
-echo "Installing personal suckless terminal fork..."
-cd
-git clone git@github.com:cohenchris/st
-cd st
-sudo make clean install
-cd ../
-rm -rf st/
 
 ################################################################################
 #                                   MISC                                       #
@@ -96,7 +91,7 @@ rm -rfv ~/.bash*
 rm -rfv ~/.gnupg
 rm -rfv ~/.viminfo
 rm -rf ~/.cargo
-rm -rf ~/go
+sudo rm -rf ~/go # Don't know why this is created or why it's owned by root
 
 # Replace notmuch config database path with whoever the ${USER} is
 echo
@@ -116,10 +111,15 @@ sudo usermod -aG docker ${USER}
 sudo systemctl enable docker
 sudo systemctl start docker
 
-# Initializing password store...
+# Initialize password store
 echo
 echo "Initializing password store..."
-pass init $(gpg --list-secret-keys | grep -oE '[A-F0-9]{40}')
+GPG_ID=$(gpg --list-secret-keys | grep -oE '[A-F0-9]{40}')
+if [ -z "${GPG_ID}" ]; then
+  echo "ERROR: no GPG key present, cannot initialize password store..."
+else
+  pass init ${GPG_ID}
+fi
 
 if [ -f "/home/${USER}/FAILED_INSTALLS.TXT" ]; then
   echo

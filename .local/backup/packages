@@ -13,6 +13,7 @@ unzip                     # zip compression tool
 7zip                      # 7zip compression tool
 neovim                    # text editor
 vim-plug                  # neovim plugin manager
+foot                      # terminal
 
 # ----------------------------------- core++ -----------------------------------
 net-tools                 # networking multitool
@@ -27,20 +28,28 @@ python-dotenv             # python support for dotenv
 docker                    # docker containerization
 docker-compose            # docker-compose
 inetutils                 # hostname command
-ssmtp                     # sendmail util
 nmap-netcat               # nmap and netcat
 smartmontools             # drive SMART monitoring
 sshfs                     # Mount a filesystem over SSH
+msmtp                     # SMTP client
+msmtp-mta                 # creates sendmail alias for msmtp
 
 # ------------------------------------ gui -------------------------------------
+# applications
 hyprland                  # window manager
 hyprlock                  # lock screen
 hyprpaper                 # wallpaper
+hyprcursor                # cursor theme
+hypridle                  # idle management daemon
 waybar                    # status bar
 wayclip                   # clipboard manager
+
+# icons/themes
 noto-fonts-emoji          # emojis for lf
 papirus-icon-theme        # nice icon theme
 terminus-font-ttf         # Terminus monospace system font
+rose-pine-cursor          # xcursor theme
+rose-pine-hyprcursor      # hyprcursor theme
 
 ################################################################################
 #                                     files                                    #
@@ -77,11 +86,12 @@ vdirsyncer                # carddav syncing
 ################################################################################
 #                              general applications                            #
 ################################################################################
-brave-browser             # brave web browser
+zen-browser-bin           # web browser
 bitwarden-cli             # bitwarden cli
 backblaze-b2-bin          # backblaze b2 cli
 gimp                      # image editor
 dmenu-bluetooth           # bluetooth dmenu
 glances                   # task manager and resource monitor
-grim slurp                # screenshots
+grim                      # screenshot capture
+slurp                     # screenshot area selection
 borg                      # borg backups

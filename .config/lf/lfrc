@@ -1,11 +1,9 @@
 # https://github.com/gokcehan/lf/blob/master/doc.md
 
 # Note on Image Previews
-#
-#  lf should be started through a wrapper script (~/.local/bin/lfub for me)
-#  that creates the environment for ueberzug. This command can be be aliased
-#  in your shellrc (`alias lf="lfub") or if set to a binding, should be
-#  called directly instead of normal lf.
+#  lf should be started through a wrapper script that creates a new
+#  environment for ueberzug. This command can be aliased in your
+#  aliasrc.
 
 # Basic variables
 set shellopts '-eu'
@@ -19,7 +17,7 @@ set previewer '~/.config/lf/previewer'
 set autoquit true
 
 ################################################################################
-############################### HANDLER FUNCTIONS ##############################
+############################### COMMAND HANDLERS ###############################
 ################################################################################
 # mkdir handler
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
@@ -61,11 +59,27 @@ cmd bulkrename ${{
 
 # file open handler
 cmd open ${{
+
+  # image_scrolling(image_name)
+  #   image_name - image currently being viewed
+  #
+  # When I open an image from the file manager in my image viewer, I want
+  # to be able to press the next/previous keys to key through the rest of the
+  # images in the same directory. This script "rotates" the content of a
+  # directory based on the first chosen file, so that if I open the 15th image,
+  # if I press next, it will go to the 16th etc.
+  function image_scrolling() {
+    [ -z "$1" ] && echo "usage: image_scrolling [regex] 2>&1" && exit 1
+    base="$(basename "$1")"
+    ls "$PWD" | awk -v BASE="$base" 'BEGIN { lines = ""; m = 0; } { if ($0 == BASE) { m = 1; } } { if (!m) { if (lines) { lines = lines"\n"; } lines = lines""$0; } else { print $0; } } END { print lines; }'
+  }
+
+  # File handlers
   case $(file --mime-type "$(readlink -f ${f})" -b) in
 
     # Documents (including PDF, EPUB, etc.)
     application/pdf|application/epub*|application/octet-stream|application/postscript)
-      setsid -f zathura ${fx} >/dev/null 2>&1
+      setsid -f ${PDF_VIEWER} ${fx} >/dev/null 2>&1
     ;;
     
     # HTML
@@ -90,14 +104,13 @@ cmd open ${{
     
     # Image
     image/*)
-      rotdir ${f} |
+      image_scrolling ${f} |
       grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|avif\|tif\|ico\)\(_large\)*$" |
-      setsid -f imv 2>/dev/null |
-      while read -r file; do
+      setsid -f ${IMAGE_VIEWER} -l | while read file; do
         # Highlight selected image on lf
-        [ -z "${f}ile" ] && continue
-        lf -remote "send select \"${f}ile\""
-        lf -remote "send toggle"
+        [ -z "${file}" ] && continue
+        #lf -remote "send select \"${file}\""
+        #lf -remote "send toggle"
       done &
     ;;
     
@@ -186,6 +199,3 @@ map W $setsid -f ${TERMINAL} >/dev/null 2>&1
 
 # Copy file path
 map Y $printf "%s" "${fx}" | waycopy
-
-# Go to cwd when quitting lf
-map Q &{{lf -remote "send $env:id cd $($env:OLDPWD.Replace('\','/'))"; lf -remote "send $env:id quit"}}

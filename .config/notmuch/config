@@ -4,7 +4,8 @@
 
 # Database configuration
 [database]
-path=/home/phrog/.local/share/mail
+# automatically uses MAILDIR environment variable, set in .zprofile
+#path=/path/to/mail
 
 # User configuration
 [user]
