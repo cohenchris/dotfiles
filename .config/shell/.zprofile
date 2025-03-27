@@ -8,6 +8,9 @@ declare -a paths=(
 CUSTOM_PATHS=$(IFS=:; echo "${paths[*]}")
 export PATH="${CUSTOM_PATHS}:${PATH}"
 
+# User description (for lock screen)
+export DESC="𓆏"
+
 # Default programs
 export EDITOR="nvim"
 export TERMINAL="foot"
