@@ -49,7 +49,7 @@
 
   // audio
   "wireplumber": {
-    "format": "{icon}  {volume:3}%",
+    "format": "{icon} {volume:5}%",
     "format-icons": ["", "", ""],
     "format-muted": "  MUTED",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
