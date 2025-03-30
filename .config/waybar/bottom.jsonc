@@ -49,7 +49,7 @@
 
   // audio
   "wireplumber": {
-    "format": "{icon}  {volume}%",
+    "format": "{icon}  {volume:3}%",
     "format-icons": ["", "", ""],
     "format-muted": "  MUTED",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
@@ -70,7 +70,7 @@
   // root disk
   "disk#root": {
     "path": "/",
-    "format": "󰣇  {specific_used:0.1f}GB / {specific_total:0.1f}GB",
+    "format": "󰣇  {specific_used:5.1f}GB / {specific_total:5.1f}GB",
     "tooltip-format": "{specific_used:0.1f}GB used out of {specific_total:0.1f}GB on / ({percentage_used}%)",
     "unit": "GB",
   },
@@ -78,7 +78,7 @@
   // backups disk
   "disk#backups": {
     "path": "/backups",
-    "format": "󰁯  {specific_used:0.1f}TB / {specific_total:0.1f}TB",
+    "format": "󰁯  {specific_used:3.1f}TB / {specific_total:3.1f}TB",
     "tooltip-format": "{specific_used:0.1f}TB used out of {specific_total:0.1f}TB on /backups ({percentage_used}%)",
     "unit": "TB",
   },
@@ -86,7 +86,7 @@
   // files disk
   "disk#files": {
     "path": "/files",
-    "format": "  {specific_used:0.1f}GB / {specific_total:0.1f}GB",
+    "format": "  {specific_used:5.1f}GB / {specific_total:5.1f}GB",
     "tooltip-format": "{specific_used:0.1f}GB used out of {specific_total:0.1f}GB on /files ({percentage_used}%)",
     "unit": "GB",
   },
@@ -94,7 +94,7 @@
   // media disk
   "disk#media": {
     "path": "/media",
-    "format": "󰚺  {specific_used:0.1f}TB / {specific_total:0.1f}TB",
+    "format": "󰚺  {specific_used:4.1f}TB / {specific_total:4.1f}TB",
     "tooltip-format": "{specific_used:0.1f}TB used out of {specific_total:0.1f}TB on /media ({percentage_used}%)",
     "unit": "TB",
   },

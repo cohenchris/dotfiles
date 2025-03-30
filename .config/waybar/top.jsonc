@@ -41,12 +41,13 @@
   "hyprland/window": {
     "format": "{title}",                  // how information should be displayed
     "icon": true,                         // whether or not the icon should be present
-    "icon-size": 20                       // size of the icon
+    "icon-size": 20,                      // size of the icon
+    "max-length": 100,
   },
 
   // cpu usage
   "cpu": {
-    "format": "  {usage}%",            // how information should be displayed
+    "format": "  {usage:3}%",            // how information should be displayed
     "tooltip": true                       // Enable tooltip on hover
   },
 
