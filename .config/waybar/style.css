@@ -105,7 +105,6 @@ modules-left > widget:first-child > #workspaces {
 
 }
 
-
 /********** CPU TEMPERATURE **********/
 #temperature {
 }
@@ -152,7 +151,8 @@ modules-left > widget:first-child > #workspaces {
 }
 
 /********** WIREPLUMBER **********/
-#wireplumber {
+#wireplumber.muted {
+  background-color: @alert-color;
 }
 
 /********** BLUETOOTH **********/
