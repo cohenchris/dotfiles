@@ -1,0 +1,101 @@
+// -*- mode: jsonc -*-
+{
+  /***********
+   * GENERAL *
+   ***********/
+
+  "layer": "top",                         // waybar at top layer
+  "position": "bottom",                   // waybar position (top|bottom|left|right)
+  "height": 35,                           // waybar height (to be removed for auto height)
+  "spacing": 4,                           // gaps between modules in px
+
+  // left modules
+  "modules-left": [
+    "custom/ip",
+    "custom/speedtest",
+  ],
+
+  // center modules
+  "modules-center": [
+    "disk#root",
+    "disk#backups",
+    "disk#files",
+    "disk#media",
+  ],
+
+  // right modules
+  "modules-right": [
+    "wireplumber",
+    "bluetooth",
+  ],
+
+  /***********
+   * MODULES *
+   ***********/
+
+  // internal + external IP
+  "custom/ip": {
+    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/ip.sh",
+    "interval": 3600,
+    "tooltip-format": "External IP / Internal IP",
+  },
+
+  // upload + download speeds
+  "custom/speedtest": {
+    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh",
+    "interval": 3600,
+    "tooltip-format": "Upload Speed / Download Speed",
+  },
+
+  // audio
+  "wireplumber": {
+    "format": "{icon}  {volume}%",
+    "format-icons": ["", "", ""],
+    "format-muted": "  MUTED",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "max-volume": 100,
+  },
+
+  // bluetooth
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "", // an empty format will hide the module
+    "format-connected": " {num_connections} connected",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "${BLUETOOTH_DEVICE_SELECTOR}",
+  },
+
+  // root disk
+  "disk#root": {
+    "path": "/",
+    "format": "󰣇  {specific_used:0.1f}GB / {specific_total:0.1f}GB",
+    "tooltip-format": "{specific_used:0.1f}GB used out of {specific_total:0.1f}GB on / ({percentage_used}%)",
+    "unit": "GB",
+  },
+
+  // backups disk
+  "disk#backups": {
+    "path": "/backups",
+    "format": "󰁯  {specific_used:0.1f}TB / {specific_total:0.1f}TB",
+    "tooltip-format": "{specific_used:0.1f}TB used out of {specific_total:0.1f}TB on /backups ({percentage_used}%)",
+    "unit": "TB",
+  },
+
+  // files disk
+  "disk#files": {
+    "path": "/files",
+    "format": "  {specific_used:0.1f}GB / {specific_total:0.1f}GB",
+    "tooltip-format": "{specific_used:0.1f}GB used out of {specific_total:0.1f}GB on /files ({percentage_used}%)",
+    "unit": "GB",
+  },
+
+  // media disk
+  "disk#media": {
+    "path": "/media",
+    "format": "󰚺  {specific_used:0.1f}TB / {specific_total:0.1f}TB",
+    "tooltip-format": "{specific_used:0.1f}TB used out of {specific_total:0.1f}TB on /media ({percentage_used}%)",
+    "unit": "TB",
+  },
+}

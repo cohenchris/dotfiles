@@ -47,7 +47,7 @@ wayclip                   # clipboard manager
 # icons/themes
 noto-fonts-emoji          # emojis for lf
 papirus-icon-theme        # nice icon theme
-terminus-font-ttf         # Terminus monospace system font
+nerd-fonts                # many fonts
 rose-pine-cursor          # xcursor theme
 rose-pine-hyprcursor      # hyprcursor theme
 
