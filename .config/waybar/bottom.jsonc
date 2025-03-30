@@ -43,8 +43,9 @@
   // upload + download speeds
   "custom/speedtest": {
     "exec": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh",
-    "interval": 600,
-    "tooltip-format": "Upload Speed / Download Speed",
+    "interval": 10,
+    "tooltip-format": "Download Speed / Upload Speed (middle mouse to refresh)",
+    "on-click-middle": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh refresh",
   },
 
   // audio

@@ -3,7 +3,6 @@
 @define-color accent-color              rgba(255, 255, 255, 1);
 @define-color pill-color                rgba(0, 0, 0, 0.7);
 @define-color pill-color-hover          rgba(255, 255, 255, 0.3);
-@define-color power-button-color-hover  rgba(255, 0,  0, 0.3);
 @define-color workspace-color-active    rgba(150, 150, 150, 0.6);
 @define-color workspace-color-hover     rgba(0, 0, 0, 0.2);
 @define-color alert-color               rgba(200, 75, 75, 1);
@@ -128,13 +127,13 @@ modules-left > widget:first-child > #workspaces {
 
 /********** POWER **********/
 #custom-power {
-  padding-left: 12px;
-  padding-right: 16px;
+  margin-left: 10px;
+  margin-right: 20px;
   font-size: 20px;
 }
 
 #custom-power:hover {
-  background-color: @power-button-color-hover;
+  color: @alert-color;
 }
 
 
