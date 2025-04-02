@@ -13,7 +13,7 @@ set record = "+Sent"                                                  # send any
 set trash = "+Trash"                                                  # send any deleted emails to "Trash" box
 set postponed = "+Drafts"                                             # send any incomplete emails to "Drafts" box
                                                                       #
-set header_cache = "~/.cache/neomutt"                                 # header cache
+set header_cache = "${XDG_CACHE_HOME}/neomutt"                        # header cache
 set editor = "${EDITOR}"                                              # use ${EDITOR} env var as default editor
 set sort = "threads"                                                  # ???
 set sort_aux = "reverse-last-date-received"                           # sort by most recent first
@@ -35,7 +35,7 @@ auto_view application/pgp-encrypted                                   # automati
 alternative_order text/plain text/enriched text/html                  # prefer viewing email in plaintext, then enriched, then html
                                                                       #
 # khard contact book                                                  #
-set query_command = "echo %s | xargs khard email --parsable --"       # address search
+set query_command = "notify NORMAL 'khard' 'searching for matching contact...' && echo %s | xargs khard email --parsable --"  # address book search
 bind editor <Tab> complete-query                                      # TAB to autocomplete email
 bind editor ^T complete                                               # 
                                                                       #
