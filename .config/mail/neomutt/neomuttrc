@@ -2,11 +2,11 @@
 # Main Settings                                                       #
 #=====================================================================#
 set folder = "${MAILDIR}"                                             # folder where mail is located
-set smtp_url = "`pass neomutt/smtp_url`"                              # url to smtp server
-set smtp_pass = "`pass neomutt/password`"                             # get smtp server password from pass
+set smtp_url = "`pass email/smtp_url`"                                # url to smtp server
+set smtp_pass = "`pass email/password`"                               # get smtp server password from pass
 set mbox_type = Maildir                                               # how should the mail be stored
-set from = "`pass neomutt/username`"                                  # email to send from
-set realname = "`pass neomutt/realname`"                              # name to set when emailing
+set from = "`pass email/username`"                                    # email to send from
+set realname = "`pass email/realname`"                                # name to set when emailing
                                                                       #
 set spoolfile = "+INBOX"                                              # inbox file
 set record = "+Sent"                                                  # send any sent emails to "Sent" box
@@ -61,9 +61,9 @@ set crypt_replyencrypt = yes                                          # Automati
 set crypt_replysignencrypted = yes                                    # Automatically PGP sign replies to messages which are encrypted
 set pgp_check_gpg_decrypt_status_fd                                   # Automatically checks fd output of pgp_decrypt command to verify success
 set postpone_encrypt = yes                                            # When set, postponed messages that are marked for encryption will be self-encrypted
-set pgp_default_key = "`pass neomutt/pgp_pubkey`"                     # Default PGP Key
+set pgp_default_key = "`pass email/pgp_pubkey`"                       # Default PGP Key
 bind index,pager \Cx extract-keys                                     # extract pub keys from email with ctrl-x
-macro compose y "<attach-key>`pass neomutt/pgp_pubkey`<enter><enter><send-message>" # automatically attach PGP pub key to every message
+macro compose y "<attach-key>`pass email/pgp_pubkey`<enter><enter><send-message>"   # automatically attach PGP pub key to every message
                                                                       #
 #=====================================================================#
 # General Bindings                                                    #

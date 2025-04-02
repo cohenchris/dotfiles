@@ -4,9 +4,9 @@ IMAPAccount mail
 # Address to connect to
 Host imap.chriscohen.dev
 Port 993
-User chris@chriscohen.dev
+UserCmd "pass email/username"
 PassCmd "pass email/password"
-SSLType IMAPS
+TLSType IMAPS
 AuthMechs LOGIN
 
 # Remote store for mail

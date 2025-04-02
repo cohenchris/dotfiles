@@ -21,7 +21,6 @@ declare -a dotfiles=(
   ~/.config/hypr/
   ~/.config/lf/
   ~/.config/mail/
-  ~/.config/notifymuch/
   ~/.config/nvim/
   ~/.config/python/
   ~/.config/shell/

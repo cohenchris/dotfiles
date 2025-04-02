@@ -78,10 +78,10 @@ neomutt                   # cli email
 pass                      # keystore
 isync                     # offline imap sync
 notmuch                   # full-body email search db
-notifymuch-git            # notification daemon for notmuch db
 urlscan                   # url scanner for neomutt emails
 khard                     # local address book
-vdirsyncer                # carddav syncing
+khal                      # local calendar
+vdirsyncer                # caldav/carddav syncing
 
 ################################################################################
 #                              general applications                            #
