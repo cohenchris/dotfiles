@@ -20,7 +20,6 @@ net-tools                 # networking multitool
 dunst                     # notification daemon
 nut                       # network ups tools
 fuzzel                    # multipurpose menu / launcher
-wl-gammarelay-rs          # blue light filter
 bat                       # syntax highlighting
 python3                   # python
 python-pip                # python package manager
@@ -41,6 +40,7 @@ hyprlock                  # lock screen
 hyprpaper                 # wallpaper
 hyprcursor                # cursor theme
 hypridle                  # idle management daemon
+hyprsunset                # blue light filter
 waybar                    # status bar
 wayclip                   # clipboard manager
 

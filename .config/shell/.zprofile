@@ -39,11 +39,15 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 
 # Configs
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
-export NOTMUCH_CONFIG="${XDG_CONFIG_HOME}/notmuch/config"
 export PASSWORD_STORE_DIR="${XDG_CONFIG_HOME}/password-store"
-export MBSYNCRC="${XDG_CONFIG_HOME}/isync/mbsyncrc"
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
+# Email
+export NEOMUTT_CONFIG="{XDG_CONFIG_HOME}/mail/neomutt/neomuttrc"
+export MBSYNCRC="${XDG_CONFIG_HOME}/mail/mbsyncrc"
+export KHARD_CONFIG="${XDG_CONFIG_HOME}/mail/khard.conf"
+export VDIRSYNCER_CONFIG="${XDG_CONFIG_HOME}/mail/vdirsyncer.conf"
+export NOTMUCH_CONFIG="${XDG_CONFIG_HOME}/mail/notmuch.conf"
 
 # Cache
 export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"
