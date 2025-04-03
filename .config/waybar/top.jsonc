@@ -84,10 +84,7 @@
     "format": "{}",
     "tooltip": true,
     "interval": 300,
-    "format-icons": {
-        "default": ""
-    },
-    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/calendar.sh",
+    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/calendar.py",
     "return-type": "json"
   },
 

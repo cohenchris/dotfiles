@@ -8,4 +8,4 @@ else
   email_icon="󰛏"
 fi
 
-printf "%s  %03s unread messages" "${email_icon}" "${unread_messages_count}"
+printf "%s  %s unread messages" "${email_icon}" "${unread_messages_count}"
