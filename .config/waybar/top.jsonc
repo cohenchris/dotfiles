@@ -24,8 +24,8 @@
     "wireplumber",
     "bluetooth",
     "custom/email",
-    "custom/calendar",
     "clock",
+    "custom/clock",
     "custom/power",
   ],
 
@@ -79,21 +79,40 @@
     "on-click": "${MAIL_CLIENT}"
   },
 
-  // calendar
-  "custom/calendar": {
-    "format": "{}",
-    "tooltip": true,
-    "interval": 300,
-    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/calendar.py",
-    "return-type": "json"
-  },
-
-  // clock
+  // clock module but I'm only using the calendar
   "clock": {
     "interval": 1,
-    "format": "󰥔  {:%I:%M:%S %p}",
+    "format": "󰸘  {:%b %d %Y}",
     "timezone": "America/Los_Angeles",
-    "tooltip": false,
+    "tooltip": true,
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "mode"          : "month",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "format": {
+        "months": "<span color='#c84b4b'><b>{}</b></span>",
+        "days": "<span color='#ffffff'>{}</span>",
+        "weeks": "<span color='#c84b4b'>W{}</span>",
+        "weekdays": "<span color='#ffcc66'>{}</span>",
+        "today": "<span color='#ffffff'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+
+  // clock + appointments
+  "custom/clock": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 60,
+    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/clock.py",
+    "return-type": "json"
   },
 
   // power menu

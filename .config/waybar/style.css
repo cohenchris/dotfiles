@@ -47,7 +47,7 @@ menu {
 #bluetooth,
 #disk,
 #network,
-#custom-calendar,
+#custom-clock,
 #custom-email,
 #custom-speedtest {
   background-color: @pill-color;
@@ -67,7 +67,7 @@ menu {
 #bluetooth:hover,
 #disk:hover,
 #network:hover,
-#custom-calendar:hover,
+#custom-clock:hover,
 #custom-email:hover,
 #custom-speedtest:hover {
   background-color: @pill-color-hover;
