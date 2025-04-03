@@ -4,10 +4,10 @@
    * GENERAL *
    ***********/
 
-  "layer": "top",                         // waybar at top layer
-  "position": "bottom",                   // waybar position (top|bottom|left|right)
-  "height": 35,                           // waybar height (to be removed for auto height)
-  "spacing": 4,                           // gaps between modules in px
+  "layer": "top",                                                             // waybar at top layer
+  "position": "bottom",                                                       // waybar position (top|bottom|left|right)
+  "height": 35,                                                               // waybar height (to be removed for auto height)
+  "spacing": 4,                                                               // gaps between modules in px
 
   // left modules
   "modules-left": [
@@ -25,8 +25,10 @@
 
   // right modules
   "modules-right": [
-    "wireplumber",
-    "bluetooth",
+    "cpu",
+    "temperature#cpu",
+    "memory",
+    "network",
   ],
 
   /***********
@@ -42,30 +44,10 @@
 
   // upload + download speeds
   "custom/speedtest": {
-    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh",
+    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh print",
     "interval": 10,
     "tooltip-format": "Download Speed / Upload Speed (middle mouse to refresh)",
     "on-click-middle": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh refresh",
-  },
-
-  // audio
-  "wireplumber": {
-    "format": "{icon} {volume:5}%",
-    "format-icons": ["", "", ""],
-    "format-muted": "  MUTED",
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "max-volume": 100,
-  },
-
-  // bluetooth
-  "bluetooth": {
-    "format": " {status}",
-    "format-disabled": "", // an empty format will hide the module
-    "format-connected": " {num_connections} connected",
-    "tooltip-format": "{controller_alias}\t{controller_address}",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "${BLUETOOTH_SELECTOR}",
   },
 
   // root disk
@@ -98,5 +80,38 @@
     "format": "󰚺  {specific_used:4.1f}TB / {specific_total:4.1f}TB",
     "tooltip-format": "{specific_used:0.1f}TB used out of {specific_total:0.1f}TB on /media ({percentage_used}%)",
     "unit": "TB",
+  },
+
+  // cpu usage
+  "cpu": {
+    "format": "  {usage:3}%",                                              // how information should be displayed
+    "tooltip": true,                                                        // Enable tooltip on hover
+  },
+
+  // cpu temperature
+  "temperature#cpu": {
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",                    // hwmon path
+    "warning-threshold": 65,                                                // The threshold before it is considered warning
+    "critical-threshold": 80,                                               // The threshold before it is considered critical
+    "format": " {temperatureC:3}°C",                                       // The format in which the temperature should be displayed
+    "tooltip": true,                                                        // Enable tooltip on hover
+    "tooltip-format": "CPU temperature at {temperatureC}°C"                 // The format in which the tooltip should be displayed
+  },
+
+  // memory usage
+  "memory": {
+    "format": "  {percentage:3}%",                                         // how information should be displayed
+    "tooltip": true,                                                        // Enable tooltip on hover
+    "tooltip-format": "{used:0.1f} of {total:0.1f} GiB memory used ({percentage}%)\n\n{swapUsed:0.1f} of {swapTotal:0.1f} GiB swap used ({swapPercentage}%)",
+  },
+
+  // network interface data
+  "network": {
+    "format-ethernet": "  {ifname}",
+    "format-wifi": "  {essid} ({signalStrength}%)",
+    "format-disconnected": "󰲛  Disconnected",
+    "tooltip": true,
+    "tooltip-format": "<big>INTERFACE INFORMATION</big>\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\n<big>SPEED</big>\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
+    "on-click": "${WIFI_SELECTOR}",
   },
 }

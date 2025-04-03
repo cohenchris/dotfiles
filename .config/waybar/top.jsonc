@@ -21,11 +21,12 @@
 
   // right modules
   "modules-right": [
-    "cpu",
-    "temperature",
-    "memory",
+    "wireplumber",
+    "bluetooth",
+    "custom/email",
+    "custom/calendar",
     "clock",
-    "custom/power"
+    "custom/power",
   ],
 
   /***********
@@ -42,35 +43,60 @@
     "format": "{title}",                  // how information should be displayed
     "icon": true,                         // whether or not the icon should be present
     "icon-size": 20,                      // size of the icon
-    "max-length": 100,
+    "max-length": 75,                     // max length of the window title
   },
 
-  // cpu usage
-  "cpu": {
-    "format": "  {usage:3}%",            // how information should be displayed
-    "tooltip": true                       // Enable tooltip on hover
+  // audio
+  "wireplumber": {
+    "format": "{icon} {volume:5}%",
+    "format-icons": ["", "", ""],
+    "format-muted": "  MUTED",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "max-volume": 100,
   },
 
-  // cpu temperature
-  "temperature": {
-    "warning-threshold": 65,              // The threshold before it is considered warning
-    "critical-threshold": 80,             // The threshold before it is considered critical
-    "format": " {temperatureC}°C",         // The format in which the temperature should be displayed
-    "tooltip": true // Enable tooltip on hover
+  // bluetooth
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "", // an empty format will hide the module
+    "format-connected": " {num_connections} connected",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "${BLUETOOTH_SELECTOR}",
   },
 
-  // memory usage
-  "memory": {
-    "format": "  {}%",                 // how information should be displayed
-    "tooltip": true                       // Enable tooltip on hover
+  // email
+  "custom/email": {
+    "format": "{}",
+    "tooltip": false,
+    "interval": 10,
+    "format-icons": {
+        "default": "󰇮",
+        "new_mail": "󰛏",
+    },
+    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/email.sh",
+    "on-click": "${MAIL_CLIENT}"
+  },
+
+  // calendar
+  "custom/calendar": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 300,
+    "format-icons": {
+        "default": ""
+    },
+    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/calendar.sh",
+    "return-type": "json"
   },
 
   // clock
   "clock": {
     "interval": 1,
-    "format": "󰥔  {:%B %d %Y @ %H:%M:%S}",
+    "format": "󰥔  {:%I:%M:%S %p}",
     "timezone": "America/Los_Angeles",
-    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip": false,
   },
 
   // power menu
@@ -85,5 +111,5 @@
       "shutdown": "poweroff",
       "reboot": "reboot",
     }
-  }
+  },
 }

@@ -44,6 +44,7 @@ export FILE_BROWSER="${TERMINAL} lf"                                        # fi
 export SCREENSHOT="grim -g $(slurp)"                                        # screenshot utility
 export TASK_MANAGER="${TERMINAL} glances"                                   # task manager
 export SCREEN_LOCKER="hyprlock"                                             # screen locker
+export DMENU_BLUETOOTH_LAUNCHER="fuzzel"                                    # use fuzzel instead of dmenu for dmenu-bluetooth
 export BLUETOOTH_SELECTOR="dmenu-bluetooth"                                 # bluetooth device selector
 export WIFI_SELECTOR="wifi-selector"                                        # wifi network selector
 export MAIL_CLIENT="${TERMINAL} neomutt -F ${NEOMUTT_CONFIG}"               # email client

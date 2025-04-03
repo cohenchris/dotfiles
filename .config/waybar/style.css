@@ -46,6 +46,9 @@ menu {
 #wireplumber,
 #bluetooth,
 #disk,
+#network,
+#custom-calendar,
+#custom-email,
 #custom-speedtest {
   background-color: @pill-color;
   border-radius: 10px;
@@ -63,6 +66,9 @@ menu {
 #wireplumber:hover,
 #bluetooth:hover,
 #disk:hover,
+#network:hover,
+#custom-calendar:hover,
+#custom-email:hover,
 #custom-speedtest:hover {
   background-color: @pill-color-hover;
 }
@@ -156,5 +162,8 @@ modules-left > widget:first-child > #workspaces {
 
 /********** BLUETOOTH **********/
 #bluetooth {
+}
+
+#network {
   margin-right: 5px;
 }
