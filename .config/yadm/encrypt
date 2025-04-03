@@ -1,7 +1,7 @@
 .ssh/*
 .local/share/gnupg/*
-.config/password-store/*
-.config/docker/config.json
 .config/Bitwarden\ CLI
+.config/docker/config.json
 .config/git
+.config/password-store/*
 .config/rclone

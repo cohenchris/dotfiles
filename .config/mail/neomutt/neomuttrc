@@ -1,6 +1,7 @@
 #=====================================================================#
 # Main Settings                                                       #
 #=====================================================================#
+                                                                      #
 set folder = "${MAILDIR}"                                             # folder where mail is located
 set smtp_url = "`pass email/smtp_url`"                                # url to smtp server
 set smtp_pass = "`pass email/password`"                               # get smtp server password from pass
@@ -49,6 +50,7 @@ source colors                                                         # custom c
 #=====================================================================#
 # GPG                                                                 #
 #=====================================================================#
+                                                                      #
 set crypt_use_gpgme = yes                                             # Use GPGME crypto backend
 set crypt_use_pka = yes                                               # Use PKA during signature verification
 set pgp_self_encrypt = yes                                            # PGP encrypted messages will also be encrypted using the pgp_default_key
@@ -81,6 +83,7 @@ bind index N search-opposite                                          # when sea
 #=====================================================================#
 # Sidebar                                                             #
 #=====================================================================#
+                                                                      #
 set sidebar_visible = yes                                             # sidebar visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"                      # format of the boxes in the sidebar
 set mail_check_stats                                                  # check the stats of mail to display on sidebar
@@ -98,6 +101,7 @@ bind index,pager \Cl sidebar-open                                     # ctrl+l (
 #=====================================================================#
 # NotMuch                                                             #
 #=====================================================================#
+                                                                      #
 set nm_default_url = "notmuch://${MAILDIR}"                           # Points to the notmuch directory
 set nm_query_type = "threads"                                         # Makes notmuch return threads rather than messages
 bind index / noop                                                     # Unbind default '/' search

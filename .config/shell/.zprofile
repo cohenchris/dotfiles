@@ -12,11 +12,7 @@ export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"                   # py
 export PASSWORD_STORE_DIR="${XDG_CONFIG_HOME}/password-store"               # pass
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"                            # docker
 export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"                              # wget
-                                                                            #
-# EMAIL CONFIGS                                                             #
-export MBSYNCRC="${XDG_CONFIG_HOME}/mail/mbsyncrc"                          # email remote sync
-export KHARD_CONFIG="${XDG_CONFIG_HOME}/mail/khard.conf"                    # contacts address book
-export VDIRSYNCER_CONFIG="${XDG_CONFIG_HOME}/mail/vdirsyncer.conf"          # contacts and calendar remote sync
+export MBSYNC_CONFIG="${XDG_CONFIG_HOME}/mail/mbsyncrc"                     # email remote sync
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME}/mail/notmuch.conf"                # email indexing
 export NEOMUTT_CONFIG="${XDG_CONFIG_HOME}/mail/neomutt/neomuttrc"           # neomutt email client
                                                                             #
@@ -41,6 +37,7 @@ export TERMINAL="foot"                                                      # te
 export BROWSER="zen-browser"                                                # web browser
 export SHELL="zsh"                                                          # terminal shell
 export LAUNCHER="fuzzel"                                                    # application launcher
+export CALENDAR="khal"                                                      # calendar
 export PDF_VIEWER="zathura"                                                 # pdf viewer
 export IMAGE_VIEWER="imv"                                                   # image viewer
 export FILE_BROWSER="${TERMINAL} lf"                                        # file browser

@@ -19,12 +19,15 @@ declare -a dotfiles=(
   ~/.config/foot/
   ~/.config/fuzzel/
   ~/.config/hypr/
+  ~/.config/khal/
+  ~/.config/khard/
   ~/.config/lf/
   ~/.config/mail/
   ~/.config/nvim/
   ~/.config/python/
   ~/.config/shell/
   ~/.config/user-dirs.dirs
+  ~/.config/vdirsyncer/
   ~/.config/waybar/
   ~/.config/wget/
   ~/.config/yadm/

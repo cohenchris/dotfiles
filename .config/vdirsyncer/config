@@ -1,0 +1,49 @@
+[general]
+# vdirsyncer cache path for status
+status_path = "~/.local/share/vdirsyncer/status/"
+
+############
+# CONTACTS #
+############
+# Create a new sync connection between two storages we will define
+[pair contacts]
+a = "contacts_local"
+b = "contacts_remote"
+collections = ["from a", "from b"]
+
+# Local storage
+[storage contacts_local]
+type = "filesystem"
+# Path to where to store the vcards
+path = "~/.local/share/vdirsyncer/contacts"
+fileext = ".vcf"
+
+# Remote storage
+[storage contacts_remote]
+type = "carddav"
+url.fetch = ["command", "pass", "nextcloud/contacts"]
+username.fetch = ["command", "pass", "nextcloud/username"]
+password.fetch = ["command", "pass", "nextcloud/password"]
+
+############
+# CALENDAR #
+############
+# Create a new sync connection between two storages we will define
+[pair calendar]
+a = "calendar_local"
+b = "calendar_remote"
+collections = ["from a", "from b"]
+
+# Local storage
+[storage calendar_local]
+type = "filesystem"
+# Path to where to store the vcards
+path = "~/.local/share/vdirsyncer/calendar"
+fileext = ".ics"
+
+# Remote storage
+[storage calendar_remote]
+type = "caldav"
+url.fetch = ["command", "pass", "nextcloud/calendar"]
+username.fetch = ["command", "pass", "nextcloud/username"]
+password.fetch = ["command", "pass", "nextcloud/password"]
