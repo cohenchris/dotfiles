@@ -34,17 +34,17 @@ for line in khal_output.split("\n"):
   elif len(split_line) == 1:
     # Found day-of-week header, make it larger and red
     line = line.replace(",", "")
-    formatted_line = f"\n<span color='#c84b4b'><b>{line}</b></span>"
+    formatted_line = f"\n<span color='#c84b4b'><b>  {line}</b></span>"
   elif split_line[0] == " ":
     # Found an all-day event
     # All-day events don't have a starting time, so the beginning of the line will be " -"
     # Clean this up by adding "All Day" where the time would normally be
-    formatted_line = f"<span color='#ffcc66'>All Day\t</span> {split_line[1]}"
+    formatted_line = f"<span color='#ffcc66'>󰔠  All Day</span>   {split_line[1]}"
   else:
     # Normal line, append with no change
     time = split_line[0]
     event = split_line[1]
-    formatted_line = f"<span color='#ffcc66'>{time}</span> {event}"
+    formatted_line = f"<span color='#ffcc66'>󰔠  {time}</span> {event}"
   
   tooltip_text.append(formatted_line)
 

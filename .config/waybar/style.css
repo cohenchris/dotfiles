@@ -101,7 +101,7 @@ modules-left > widget:first-child > #workspaces {
 
 /********** WINDOWS **********/
 #window {
-
+  margin-right: 250;
 }
 
 
