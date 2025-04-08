@@ -25,6 +25,9 @@ compinit -d ${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}
 # Keyboard fixes
 [ -f "${XDG_CONFIG_HOME}/shell/keyboardrc" ] && source ${XDG_CONFIG_HOME}/shell/keyboardrc
 
+# User-specific data
+[ -f "${XDG_CONFIG_HOME}/shell/userrc" ] && source ${XDG_CONFIG_HOME}/shell/userrc
+
 # Plugins
 source ${XDG_DATA_HOME}/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source ${XDG_DATA_HOME}/zsh/plugins/zsh-completions/zsh-completions.plugin.zsh

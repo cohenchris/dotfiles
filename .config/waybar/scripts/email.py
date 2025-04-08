@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import subprocess
 import datetime
@@ -31,22 +31,28 @@ for i, entry in enumerate(email_preview_json):
 
   formatted_entry = ""
 
-  # Parse sender
-  sender = entry["authors"]
+  # Sender
+  email_id = entry["query"][0]
+  sender = subprocess.check_output(f"notmuch address {email_id}", shell=True).decode("utf-8").strip()
+  sender = escape(sender)
 
-  # Parse and convert date and time received
-  received_at = entry["date_relative"]
-  received_date = received_at.split()[0]
-  received_time = received_at.split()[1]
-  dt = datetime.strptime(received_time, "%H:%M")
-  received_time = dt.strftime("%I:%M %p")
+  # Parse and convert email receipt date/time
+  try:
+      received_at = entry["date_relative"]
+      received_date = received_at.split()[0]
+      received_time = received_at.split()[1]
+      dt = datetime.strptime(received_time, "%H:%M")
+      received_time = dt.strftime("%I:%M %p")
+      receipt = f"{received_date} at {received_time}"
+  except:
+      receipt = entry["date_relative"]
 
   # Parse subject
-  subject = entry["subject"]
+  subject = entry["subject"] if entry["subject"] else "*No Subject*"
   
   # Format received data into something nicer to read
   formatted_entry += f"<span color='#c84b4b'><b>  {sender}</b></span>\n"
-  formatted_entry += f"<span color='#ffcc66'>󰛮  {received_date} at {received_time}</span>\n"
+  formatted_entry += f"<span color='#ffcc66'>󰛮  {receipt}</span>\n"
   formatted_entry += f"<span color='#ffffff'>󰇮  {subject}</span>\n\n"
   tooltip_text += formatted_entry
 
