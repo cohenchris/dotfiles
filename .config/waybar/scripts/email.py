@@ -3,7 +3,7 @@
 import subprocess
 import datetime
 import json
-from html import escape
+import html
 from datetime import datetime
 
 waybar_json_data = {}
@@ -34,7 +34,6 @@ for i, entry in enumerate(email_preview_json):
   # Sender
   email_id = entry["query"][0]
   sender = subprocess.check_output(f"notmuch address {email_id}", shell=True).decode("utf-8").strip()
-  sender = escape(sender)
 
   # Parse and convert email receipt date/time
   try:
@@ -49,6 +48,11 @@ for i, entry in enumerate(email_preview_json):
 
   # Parse subject
   subject = entry["subject"] if entry["subject"] else "*No Subject*"
+
+  # Escape special HTML characters to properly encode text
+  sender = html.escape(sender)
+  receipt = html.escape(receipt)
+  subject = html.escape(subject)
   
   # Format received data into something nicer to read
   formatted_entry += f"<span color='#c84b4b'><b>  {sender}</b></span>\n"

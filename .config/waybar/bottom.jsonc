@@ -46,8 +46,8 @@
   "custom/speedtest": {
     "exec": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh print",
     "interval": 10,
-    "tooltip-format": "Download Speed / Upload Speed (middle mouse to refresh)",
-    "on-click-middle": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh refresh",
+    "tooltip-format": "Download Speed / Upload Speed (right click to refresh)",
+    "on-click-right": "notify NORMAL 'Running Speedtest' 'Please wait...' && ${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh refresh && notify NORMAL 'Speedtest complete!'",
   },
 
   // root disk

@@ -5,3 +5,4 @@
 .config/git
 .config/password-store/*
 .config/rclone
+.config/user

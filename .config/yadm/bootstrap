@@ -11,6 +11,15 @@ yadm remote set-url origin git@github.com:cohenchris/dotfiles.git
 # Decrypt the sensitive files encrypted by YADM
 yadm decrypt
 
+# Name/email for general use (e.g. notmuch)
+read -p "Enter your full name: " NAME
+read -p "Enter your main email: " EMAIL
+
+cat <<EOF > ~/.config/user
+export NAME="${NAME}"
+export EMAIL="${EMAIL}"
+EOF
+
 ################################################################################
 #                        INSTALL PERSONAL PACKAGES                             #
 ################################################################################

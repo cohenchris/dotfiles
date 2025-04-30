@@ -7,10 +7,10 @@ alias vim="nvim"
 alias occ="docker exec -it -u www-data nextcloud php occ"
 alias swag-fail2ban="docker exec -it swag fail2ban-client"
 alias mailserver-fail2ban="docker exec -it mailserver fail2ban-client"
-alias lf="source lf-wrapper"
 alias tetris="tetriscurses"
 alias mutt="neomutt"
 alias neomutt="neomutt -F ${NEOMUTT_CONFIG}"
+alias lf="source lf-wrapper"
 
 # Scripts
 alias b2-fuse="/home/${USER}/scripts/system/b2-fuse.sh"

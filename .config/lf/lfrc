@@ -19,6 +19,132 @@ set autoquit true
 ################################################################################
 ############################### COMMAND HANDLERS ###############################
 ################################################################################
+# file open handler
+cmd open ${{
+
+  # image_scrolling(image_name)
+  #   image_name - image currently being viewed
+  #
+  # When I open an image from the file manager in my image viewer, I want
+  # to be able to press the next/previous keys to key through the rest of the
+  # images in the same directory. This script "rotates" the content of a
+  # directory based on the first chosen file, so that if I open the 15th image,
+  # if I press next, it will go to the 16th etc.
+  function image_scrolling() {
+    [ -z "$1" ] && echo "usage: image_scrolling [regex] 2>&1" && exit 1
+    base="$(basename "$1")"
+    ls "$PWD" | awk -v BASE="$base" 'BEGIN { lines = ""; m = 0; } { if ($0 == BASE) { m = 1; } } { if (!m) { if (lines) { lines = lines"\n"; } lines = lines""$0; } else { print $0; } } END { print lines; }'
+  }
+
+  # File handlers
+  case $(file --dereference --brief --mime-type -- "${f}") in
+
+    # XCF Image
+    image/x-xcf)
+      setsid -f gimp ${f} >/dev/null 2>&1
+    ;;
+
+    # Image
+    image/*)
+      image_scrolling ${f} |
+      grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|avif\|tif\|ico\)\(_large\)*$" |
+      setsid -f ${IMAGE_VIEWER} -l | while read file; do
+        # Highlight selected image on lf
+        [ -z "${file}" ] && continue
+        #lf -remote "send select \"${file}\""
+        #lf -remote "send toggle"
+      done &
+    ;;
+
+    # HTML
+    text/html)
+      ${BROWSER} ${fx}
+    ;;
+
+    # LaTeX
+    text/x-tex)
+      mytex edit ${f}
+    ;;
+
+    # text/*                  - all unhandled text files
+    # application/json        - JSON
+    # inode/x-empty           - empty files
+    # application/x-subrip    - SubRip video to subtitles text file
+    # application/x-pem-file  - SSH private key
+    text/* | application/json | inode/x-empty | application/x-subrip | application/x-pem-file)
+      ${EDITOR} ${fx}
+    ;;
+    
+    # Audio
+    audio/*)
+      mpv --audio-display=no ${f}
+    ;;
+    
+    # Video
+    video/*)
+      setsid -f mpv ${f} -quiet >/dev/null 2>&1
+    ;;
+    
+    # application/pdf                   - PDF
+    # application/epub+zip              - EPUB ebook format
+    # application/x-mobipocket-ebook    -  MOBI ebook format
+    application/pdf | application/epub+zip | application/x-mobipocket-ebook)
+      setsid -f ${PDF_VIEWER} ${fx} >/dev/null 2>&1
+    ;;
+
+    # Compressed archives
+    application/x-bzip-compressed-tar | application/gzip | application/x-xz | application/x-bzip2 | application/vnd.rar | application/x-tar | application/x-bzip-compressed-tar | application/zip | application/x-compress | application/x-7z-compressed | application/zstd | application/java-archive)
+      extract ${f}
+    ;;
+
+    # Torrent
+    application/x-bittorrent)
+      qbittorrent ${f}
+    ;;
+    
+    # PGP-encrypted
+    application/pgp-encrypted)
+      ${EDITOR} ${fx}
+    ;;
+
+    # Office documents
+    application/msword | application/vnd.ms-word* | application/vnd.ms-powerpoint* | application/vnd.ms-excel* | application/x-ole-storage | *opendocument* | *officedocument*)
+      setsid -f libreoffice ${fx} >/dev/null 2>&1
+    ;;
+
+    # Misc binary files, guess by file extension
+    application/octet-stream)
+      case ${f##*.} in
+
+        # Office documents
+        doc|docx|xls|xlsx|odt|ppt|pptx)
+          setsid -f libreoffice ${fx} >/dev/null 2>&1
+        ;;
+
+        # PDF
+        pdf)
+          setsid -f ${PDF_VIEWER} ${fx} >/dev/null 2>&1
+        ;;
+
+      esac
+    ;;
+
+    # No configured opener, throw an error
+    *)
+      clear; tput cup $(($(tput lines)/3)); tput bold
+      set -f
+      printf "ERROR: No configured opener\n"
+      printf "\nFile Path: \t%s\n" "${f}"
+      printf "Description: \t%s\n" $(file --dereference --brief -- ${f})
+      printf "Mime Type: \t%s\n" $(file --mime-type --dereference --brief -- ${f})
+      printf "\nPress enter to continue..."
+      read ans
+    ;;
+
+  esac
+}}
+
+
 # mkdir handler
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
@@ -55,116 +181,6 @@ cmd bulkrename ${{
     rm -f "${tmpfile_old}" "${tmpfile_new}"
     lf -remote "send ${id} unselect"
 }}
-
-
-# file open handler
-cmd open ${{
-
-  # image_scrolling(image_name)
-  #   image_name - image currently being viewed
-  #
-  # When I open an image from the file manager in my image viewer, I want
-  # to be able to press the next/previous keys to key through the rest of the
-  # images in the same directory. This script "rotates" the content of a
-  # directory based on the first chosen file, so that if I open the 15th image,
-  # if I press next, it will go to the 16th etc.
-  function image_scrolling() {
-    [ -z "$1" ] && echo "usage: image_scrolling [regex] 2>&1" && exit 1
-    base="$(basename "$1")"
-    ls "$PWD" | awk -v BASE="$base" 'BEGIN { lines = ""; m = 0; } { if ($0 == BASE) { m = 1; } } { if (!m) { if (lines) { lines = lines"\n"; } lines = lines""$0; } else { print $0; } } END { print lines; }'
-  }
-
-  # File handlers
-  case $(file --mime-type "$(readlink -f ${f})" -b) in
-
-    # Documents (including PDF, EPUB, etc.)
-    application/pdf|application/epub*|application/octet-stream|application/postscript)
-      setsid -f ${PDF_VIEWER} ${fx} >/dev/null 2>&1
-    ;;
-    
-    # HTML
-    text/html)
-      ${BROWSER} ${fx}
-    ;;
-    
-    # Text files (including plaintext, JSON, etc.)
-    text/*|application/json|inode/x-empty|application/x-subrip)
-      ${EDITOR} ${fx}
-    ;;
-    
-    # XCF Image
-    image/x-xcf)
-      setsid -f gimp ${f} >/dev/null 2>&1
-    ;;
-    
-    # SVG + XML Images
-    image/svg+xml)
-      display -- ${f}
-    ;;
-    
-    # Image
-    image/*)
-      image_scrolling ${f} |
-      grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|avif\|tif\|ico\)\(_large\)*$" |
-      setsid -f ${IMAGE_VIEWER} -l | while read file; do
-        # Highlight selected image on lf
-        [ -z "${file}" ] && continue
-        #lf -remote "send select \"${file}\""
-        #lf -remote "send toggle"
-      done &
-    ;;
-    
-    # Audio
-    audio/*|video/x-ms-asf)
-      mpv --audio-display=no ${f}
-    ;;
-    
-    # Video
-    video/*)
-      setsid -f mpv ${f} -quiet >/dev/null 2>&1
-    ;;
-    
-    # PGP-encrypted items
-    application/pgp-encrypted)
-      ${EDITOR} ${fx}
-    ;;
-    
-    # Office documents
-    application/vnd.openxmlformats-officedocument.wordprocessingml.document|application/vnd.oasis.opendocument.text|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|application/vnd.oasis.opendocument.spreadsheet|application/vnd.oasis.opendocument.spreadsheet-template|application/vnd.openxmlformats-officedocument.presentationml.presentation|application/vnd.oasis.opendocument.presentation-template|application/vnd.oasis.opendocument.presentation|application/vnd.ms-powerpoint|application/vnd.oasis.opendocument.graphics|application/vnd.oasis.opendocument.graphics-template|application/vnd.oasis.opendocument.formula|application/vnd.oasis.opendocument.database)
-      setsid -f libreoffice ${fx} >/dev/null 2>&1
-    ;;
-    
-    # Compressed archives
-    application/x-bzip-compressed-tar|application/gzip|application/x-xz|application/x-bzip2|application/vnd.rar|application/gzip|application/x-tar|application/x-bzip-compressed-tar|application/zip|application/x-compress|application/x-7z-compressed)
-      extract ${f}
-    ;;
-
-    # Binary files
-    application/octet-stream)
-      case ${f##*.} in
-
-        # Office documents
-        doc|docx|xls|xlsx|odt|ppt|pptx)
-          setsid -f libreoffice ${fx} >/dev/null 2>&1
-        ;;
-
-      esac
-    ;;
-
-    # If no configured opener, throw an error
-    *)
-      clear; tput cup $(($(tput lines)/3)); tput bold
-      set -f
-      printf "ERROR: No configured opener\n"
-      printf "\nFile: \t\t%s\n" "${f}"
-      printf "Mime Type: \t%s\n" $(file --mime-type "$(readlink -f ${f})" -b)
-      printf "\nPress enter to continue..."
-      read ans
-    ;;
-
-  esac
-}}
-
 
 ################################################################################
 #################################### BINDINGS ##################################

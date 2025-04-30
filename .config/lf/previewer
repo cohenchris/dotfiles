@@ -6,6 +6,7 @@
 set -C -f
 IFS="$(printf '%b_' '\n')"; IFS="${IFS%_}"
 
+DEFAULT_SIZE=2160
 
 # get_thumbnail_path(filepath)
 #   filepath - generate a unique thumbnail path for this file
@@ -28,18 +29,20 @@ get_thumbnail_path()
 
 # Display an thumbnail with ueberzug
 # Fallback to mediainfo if preview fails
+#
 # display_thumbnail(thumbnail_path,
 #                   pane_width,
 #                   pane_height,
 #                   pane_horizontal_pos,
 #                   pane_vertical_pos,
-#                   og_file_path)
-#   thumbnail_path - path to the thumbnail for this file
-#   pane_width - max preview image width
-#   pane_height - max preview image height
+#                   original_file_path)
+#
+#   thumbnail_path      - path to the thumbnail for this file
+#   pane_width          - max preview image width
+#   pane_height         - max preview image height
 #   pane_horizontal_pos - horizontal position of LF's preview pane
-#   pane_vertical_pos - vertical position of LF's preview pane
-#   og_file_path - path to the original file
+#   pane_vertical_pos   - vertical position of LF's preview pane
+#   original_file_path  - path to the original file
 #
 # This function uses ueberzug to display the provided thumbnail image path in the terminal
 display_thumbnail()
@@ -49,13 +52,19 @@ display_thumbnail()
   local pane_height="${3}"
   local pane_horizontal_pos="${4}"
   local pane_vertical_pos="${5}"
-  local og_file_path="${6}"
+  local original_file_path="${6}"
 
 	if [ -f "${thumbnail_path}" ] && [ -n "${WAYLAND_DISPLAY}" ]; then
-    # Display the image if the thumbnail exists and a GUI is running
+    # Thumbnail exists and a GUI is running
+
+    # Resize image
+    convert "${thumbnail_path}" -resize "x${DEFAULT_SIZE}" +distort Resize "${thumbnail_path}"
+    
+    # Display image with ueberzug
     printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y": "%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' "${pane_horizontal_pos}" "${pane_vertical_pos}" "$((${pane_width}-1))" "$((${pane_height}-1))" "${thumbnail_path}" > "${FIFO_UEBERZUG}"
 	else
-		mediainfo "${og_file_path}"
+    # Fall back to mediainfo
+		mediainfo "${original_file_path}"
 	fi
 }
 
@@ -70,17 +79,12 @@ VERTICAL_POS="${5}" # Vertical position of preview pane
 
 # Handle previews
 case "$(file --dereference --brief --mime-type -- "${FILE_PATH}")" in
-  # AVIF Image
-	image/avif)
-    THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}")
-    [ ! -f "${THUMBNAIL_PATH}" ] && convert "${FILE_PATH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
-    display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
-  ;;
 
   # Image
 	image/*)
-    echo ${THUMBNAIL_PATH}
-    display_thumbnail "${FILE_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}"
+    THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}")
+    [ ! -f "${THUMBNAIL_PATH}" ] && convert "${FILE_PATH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
+    display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
   ;;
 
   # HTML
@@ -88,57 +92,101 @@ case "$(file --dereference --brief --mime-type -- "${FILE_PATH}")" in
     lynx -width="$4" -display_charset=utf-8 -dump "${FILE_PATH}"
   ;;
 
-  # Text files (including plaintext, XML, JSON, etc.)
-	text/* | */xml | application/json | application/x-ndjson)
+  # text/*                  - all unhandled text files
+  # application/json        - JSON
+  # inode/x-empty           - empty files
+  # application/x-subrip    - SubRip video to subtitles text file
+  # application/x-pem-file  - SSH private key
+  text/* | application/json | inode/x-empty | application/x-subrip)
     bat --terminal-width "$(($4-2))" -f "${FILE_PATH}"
   ;;
 
   # Audio (spectrogram)
-  audio/* )
+  audio/*)
     THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
     [ ! -f "${THUMBNAIL_PATH}" ] && sox "${FILE_PATH}" -n spectrogram -o "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
     display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
   ;;
 
   # Video
-	video/* )
+	video/*)
     THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
     [ ! -f "${THUMBNAIL_PATH}" ] && ffmpegthumbnailer -i "${FILE_PATH}" -o "${THUMBNAIL_PATH}" -s 0 # Generate thumbnail if it does not yet exist
     display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
   ;;
 
   # PDF
-	*/pdf)
+	application/pdf)
     THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
     [ ! -f "${THUMBNAIL_PATH}" ] && pdftoppm -jpeg -f 1 -singlefile "${FILE_PATH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
     display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
   ;;
 
-  # EPUB + MOBI (e-books)
-	*/epub+zip|*/mobi*)
+  # EPUB and MOBI ebook formats
+	application/epub+zip | application/x-mobipocket-ebook)
     THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
-    [ ! -f "${THUMBNAIL_PATH}" ] && epub-thumbnailer "${FILE_PATH}" "${THUMBNAIL_PATH}" 1000 # Generate thumbnail if it does not yet exist
+    [ ! -f "${THUMBNAIL_PATH}" ] && epub-thumbnailer "${FILE_PATH}" "${THUMBNAIL_PATH}" "${DEFAULT_SIZE}" # Generate thumbnail if it does not yet exist
     display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
   ;;
 
+  # JAR
+  application/java-archive)
+    jar tvf "${FILE_PATH}"
+  ;;
+
   # Compressed archives
-	application/x-bzip-compressed-tar|application/gzip|application/x-xz|application/x-bzip2|application/vnd.rar|application/gzip|application/x-tar|application/x-bzip-compressed-tar|application/zip|application/x-compress|application/x-7z-compressed)
+	application/x-bzip-compressed-tar | application/gzip | application/x-xz | application/x-bzip2 | application/vnd.rar | application/x-tar | application/x-bzip-compressed-tar | application/zip | application/x-compress | application/x-7z-compressed | application/zstd)
     atool --list -- "${FILE_PATH}"
   ;;
 
-  # OpenDocument
-	*opendocument*)
-    odt2txt "${FILE_PATH}"
+  # Torrent
+  application/x-bittorrent)
+    transmission-show "${FILE_PATH}"
   ;;
 
-  # PGP-encrypted items
+  # PGP-encrypted
 	application/pgp-encrypted)
     gpg -d -- "${FILE_PATH}"
   ;;
 
-  # If no configured preview logic, throw an error
+  # Shared Library
+  application/x-sharedlib)
+    ldd "${FILE_PATH}"
+  ;;
+
+  # Office documents
+  application/msword | application/vnd.ms-word* | application/vnd.ms-powerpoint* | application/vnd.ms-excel* | application/x-ole-storage | *officedocument* | *opendocument*)
+    THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
+    [ ! -f "${THUMBNAIL_PATH}" ] && gsf-office-thumbnailer -i "${FILE_PATH}" -o "${THUMBNAIL_PATH}" -s "${DEFAULT_SIZE}" # Generate thumbnail if it does not yet exist
+    display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
+  ;;
+
+  # Misc binary files, guess by file extension
+  application/octet-stream)
+    case ${f##*.} in
+
+      # Office documents
+      doc|docx|xls|xlsx|odt|ppt|pptx)
+        THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
+        [ ! -f "${THUMBNAIL_PATH}" ] && gsf-office-thumbnailer -i "${FILE_PATH}" -o "${THUMBNAIL_PATH}" -s "${DEFAULT_SIZE}" # Generate thumbnail if it does not yet exist
+        display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
+      ;;
+
+      # PDF
+      pdf)
+        THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
+        [ ! -f "${THUMBNAIL_PATH}" ] && pdftoppm -jpeg -f 1 -singlefile "${FILE_PATH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
+        display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
+      ;;
+
+    esac
+  ;;
+
+  # No configured previewer, throw an error
   *)
-    printf "\e[1;91mSorry, no preview available...\e[0m\n"
+    printf "\e[1;91mSorry, no preview available...\n\e[0m\n\n"
+    printf "Description: \t%s\n" $(file --dereference --brief -- ${FILE_PATH})
+    printf "Mime Type: \t%s\n" $(file --mime-type --dereference --brief -- ${FILE_PATH})
   ;;
 
 esac

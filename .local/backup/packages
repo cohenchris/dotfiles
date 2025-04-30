@@ -58,10 +58,11 @@ lf                        # file browser
 
 # ---------------------------------- documents ---------------------------------
 odt2txt                   # opendocument preview
+libgsf                    # office document preview
 lynx                      # html
 zathura-pdf-mupdf         # pdf, epub, and XPS
 epub-thumbnailer-git      # epub preview
-sox                       # audio file quality preview
+sox                       # audio file spectrogram
 libmad                    # sox mp3 handling part 1
 twolame                   # sox mp3 handling part 2
 
@@ -74,14 +75,14 @@ imv                       # images
 ################################################################################
 #                                     email                                    #
 ################################################################################
-neomutt                   # cli email
+neomutt                   # email client
 pass                      # keystore
-isync                     # offline imap sync
-notmuch                   # full-body email search db
-urlscan                   # url scanner for neomutt emails
-khard                     # local address book
+isync                     # offline mailbox sync
+notmuch                   # email indexing, searching, and tagging
+urlscan                   # browse URLs in an email
+khard                     # local contacts
 khal                      # local calendar
-vdirsyncer                # caldav/carddav syncing
+vdirsyncer                # calendar/contacts syncing
 
 ################################################################################
 #                              general applications                            #
@@ -95,3 +96,5 @@ glances                   # task manager and resource monitor
 grim                      # screenshot capture
 slurp                     # screenshot area selection
 borg                      # borg backups
+qbittorrent               # qbittorrent client
+transmission-cli          # transmission cli torrent client
