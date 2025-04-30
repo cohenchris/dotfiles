@@ -61,7 +61,7 @@ odt2txt                   # opendocument preview
 libgsf                    # office document preview
 lynx                      # html
 zathura-pdf-mupdf         # pdf, epub, and XPS
-epub-thumbnailer-git      # epub preview
+calibre                   # epub/mobi preview
 sox                       # audio file spectrogram
 libmad                    # sox mp3 handling part 1
 twolame                   # sox mp3 handling part 2

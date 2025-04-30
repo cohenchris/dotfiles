@@ -119,13 +119,15 @@ case "$(file --dereference --brief --mime-type -- "${FILE_PATH}")" in
 	application/pdf)
     THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
     [ ! -f "${THUMBNAIL_PATH}" ] && pdftoppm -jpeg -f 1 -singlefile "${FILE_PATH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
+    # pdftoppm automatically generates a filename with a .jpg extension, we need to get rid of that
+    mv "${THUMBNAIL_PATH}.jpg" "${THUMBNAIL_PATH}"
     display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
   ;;
 
   # EPUB and MOBI ebook formats
 	application/epub+zip | application/x-mobipocket-ebook)
     THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
-    [ ! -f "${THUMBNAIL_PATH}" ] && epub-thumbnailer "${FILE_PATH}" "${THUMBNAIL_PATH}" "${DEFAULT_SIZE}" # Generate thumbnail if it does not yet exist
+    [ ! -f "${THUMBNAIL_PATH}" ] && ebook-meta "${FILE_PATH}" --get-cover "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
     display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
   ;;
 
