@@ -24,7 +24,6 @@ declare -a dotfiles=(
   ~/.config/lf/
   ~/.config/mail/
   ~/.config/nvim/
-  ~/.config/python/
   ~/.config/shell/
   ~/.config/user-dirs.dirs
   ~/.config/vdirsyncer/

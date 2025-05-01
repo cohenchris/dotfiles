@@ -8,7 +8,6 @@ export XDG_CACHE_HOME="${HOME}/.cache"                                      # ca
 export XDG_DATA_HOME="${HOME}/.local/share"                                 # application data
                                                                             #
 # CONFIGS                                                                   #
-export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"                   # python
 export PASSWORD_STORE_DIR="${XDG_CONFIG_HOME}/password-store"               # pass
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"                            # docker
 export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"                              # wget
@@ -19,7 +18,8 @@ export NEOMUTT_CONFIG="${XDG_CONFIG_HOME}/mail/neomutt/neomuttrc"           # ne
 # CACHE                                                                     #
 export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"                               # cuda nv cache
 export LESSHISTFILE="${XDG_CACHE_HOME}/less_history"                        # less command history
-export HISTFILE="${XDG_DATA_HOME}/history"                                  # shell history
+export HISTFILE="${XDG_DATA_HOME}/history"                                  # shell command history
+export PYTHON_HISTORY="${XDG_CACHE_HOME}/"                                  # python command history
                                                                             #
 # DATA                                                                      #
 export MAILDIR="${XDG_DATA_HOME}/mail"                                      # email data
@@ -41,7 +41,6 @@ export CALENDAR="khal"                                                      # ca
 export PDF_VIEWER="zathura"                                                 # pdf viewer
 export IMAGE_VIEWER="imv"                                                   # image viewer
 export FILE_BROWSER="${TERMINAL} lf-wrapper"                                # file browser
-export SCREENSHOT="grim -g $(slurp)"                                        # screenshot utility
 export TASK_MANAGER="${TERMINAL} glances"                                   # task manager
 export DMENU_BLUETOOTH_LAUNCHER="fuzzel"                                    # use fuzzel instead of dmenu for dmenu-bluetooth
 export BLUETOOTH_SELECTOR="dmenu-bluetooth"                                 # bluetooth device selector

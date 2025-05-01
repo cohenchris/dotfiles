@@ -58,15 +58,17 @@ display_thumbnail()
     # Thumbnail exists and a GUI is running
 
     # Resize image
-    convert "${thumbnail_path}" -resize "x${DEFAULT_SIZE}" +distort Resize "${thumbnail_path}"
+    magick convert "${thumbnail_path}" -resize "x${DEFAULT_SIZE}" +distort Resize "${thumbnail_path}"
     
     # Display image with ueberzug
-    printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y": "%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' "${pane_horizontal_pos}" "${pane_vertical_pos}" "$((${pane_width}-1))" "$((${pane_height}-1))" "${thumbnail_path}" > "${FIFO_UEBERZUG}"
+    printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y": "%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' "${pane_horizontal_pos}" "${pane_vertical_pos}" "${pane_width}" "${pane_height}" "${thumbnail_path}" > "${FIFO_UEBERZUG}"
 	else
     # Fall back to mediainfo
 		mediainfo "${original_file_path}"
 	fi
 }
+
+
 
 
 # Input args to this script
@@ -76,20 +78,19 @@ HEIGHT="${3}" # Height of preview pane
 HORIZONTAL_POS="${4}" # Horizontal position of preview pane
 VERTICAL_POS="${5}" # Vertical position of preview pane
 
-
 # Handle previews
 case "$(file --dereference --brief --mime-type -- "${FILE_PATH}")" in
 
   # Image
 	image/*)
     THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}")
-    [ ! -f "${THUMBNAIL_PATH}" ] && convert "${FILE_PATH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
+    [ ! -f "${THUMBNAIL_PATH}" ] && magick convert "${FILE_PATH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
     display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
   ;;
 
   # HTML
 	text/html)
-    lynx -width="$4" -display_charset=utf-8 -dump "${FILE_PATH}"
+    lynx -width="${WIDTH}" -display_charset=utf-8 -dump "${FILE_PATH}"
   ;;
 
   # text/*                  - all unhandled text files
@@ -98,7 +99,7 @@ case "$(file --dereference --brief --mime-type -- "${FILE_PATH}")" in
   # application/x-subrip    - SubRip video to subtitles text file
   # application/x-pem-file  - SSH private key
   text/* | application/json | inode/x-empty | application/x-subrip)
-    bat --terminal-width "$(($4-2))" -f "${FILE_PATH}"
+    bat --terminal-width "${WIDTH}" -f "${FILE_PATH}"
   ;;
 
   # Audio (spectrogram)
@@ -154,6 +155,11 @@ case "$(file --dereference --brief --mime-type -- "${FILE_PATH}")" in
   # Shared Library
   application/x-sharedlib)
     ldd "${FILE_PATH}"
+  ;;
+
+  # ISO
+  application/x-iso9660-image)
+    iso-info --no-header --iso9660 "${FILE_PATH}"
   ;;
 
   # Office documents

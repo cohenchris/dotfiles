@@ -1,20 +1,69 @@
 # https://github.com/gokcehan/lf/blob/master/doc.md
 
-# Note on Image Previews
-#  lf should be started through a wrapper script that creates a new
-#  environment for ueberzug. This command can be aliased in your
-#  aliasrc.
+################################################################################
+#################################### BINDINGS ##################################
+################################################################################
 
-# Basic variables
-set shellopts '-eu'
+# Default settings
 set ifs "\n"
 set scrolloff 10
-set icons
-set period 1
-set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
-set cleaner '~/.config/lf/cleaner'
-set previewer '~/.config/lf/previewer'
-set autoquit true
+set icons true                              # enable icons
+set period 1                                # interval, in seconds, for periodic checks of directory updates
+set cleaner '~/.config/lf/cleaner'          # cleanup script
+set previewer '~/.config/lf/previewer'      # script to generate and display preview information and thumbnails
+set autoquit true                           # automatically quit the server when there are no clients left connected
+
+
+
+# Delete a file or directory
+map D delete
+
+# Make a new directory in the cwd
+map <c-n> push :mkdir<space>
+
+# Reload cwd and previews
+map <c-r> reload
+
+# Simple shell prompt in the file manager
+map <enter> shell
+
+# Execute file in the the shell
+map x $${f}
+map X !${f}
+
+# Open file or directory
+map o open "${f}"
+
+# Renaming files
+map r :rename; # rename before extension
+map B bulkrename # rename in bulk
+map A :rename; cmd-end # rename at very end
+map R push A<c-u> # blank rename
+
+# Open terminal in path
+map W $setsid -f ${TERMINAL} >/dev/null 2>&1
+
+# Copy file path
+map Y $printf "%s" "${fx}" | waycopy
+
+# 
+map zh set hidden!
+map zr set reverse!
+map zn set info
+map zs set info size
+map zt set info time
+map za set info size:time
+
+# Sorting
+map sn :set sortby natural; set info
+map ss :set sortby size; set info size
+map st :set sortby time; set info time
+map sa :set sortby atime; set info atime
+map sc :set sortby ctime; set info ctime
+map se :set sortby ext; set info
+
+map gh cd ~
+
 
 ################################################################################
 ############################### COMMAND HANDLERS ###############################
@@ -181,37 +230,3 @@ cmd bulkrename ${{
     rm -f "${tmpfile_old}" "${tmpfile_new}"
     lf -remote "send ${id} unselect"
 }}
-
-################################################################################
-#################################### BINDINGS ##################################
-################################################################################
-# Delete a file or directory
-map D delete
-
-# Make a new directory in the cwd
-map <c-n> push :mkdir<space>
-
-# Reload cwd and previews
-map <c-r> reload
-
-# Simple shell prompt in the file manager
-map <enter> shell
-
-# Execute file in the the shell
-map x $${f}
-map X !${f}
-
-# Open file or directory
-map o open "${f}"
-
-# Renaming files
-map r :rename; # rename before extension
-map B bulkrename # rename in bulk
-map A :rename; cmd-end # rename at very end
-map R push A<c-u> # blank rename
-
-# Open terminal in path
-map W $setsid -f ${TERMINAL} >/dev/null 2>&1
-
-# Copy file path
-map Y $printf "%s" "${fx}" | waycopy
