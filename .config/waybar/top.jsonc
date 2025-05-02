@@ -77,7 +77,7 @@
     },
     "exec": "${XDG_CONFIG_HOME}/waybar/scripts/email.py",
     "return-type": "json",
-    "on-click": "${MAIL_CLIENT}",
+    "on-click": "mailsync & ${MAIL_CLIENT}",
     "on-click-right": "mailsync"
   },
 
