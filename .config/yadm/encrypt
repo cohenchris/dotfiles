@@ -6,3 +6,4 @@
 .config/password-store/*
 .config/rclone
 .config/user
+.config/wireguard

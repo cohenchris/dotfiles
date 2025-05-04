@@ -21,11 +21,10 @@
 
   // right modules
   "modules-right": [
-    "wireplumber",
-    "bluetooth",
     "custom/email",
     "clock",
     "custom/clock",
+    "idle_inhibitor",
     "custom/power",
   ],
 
@@ -44,26 +43,6 @@
     "icon": true,                         // whether or not the icon should be present
     "icon-size": 20,                      // size of the icon
     "max-length": 75,                     // max length of the window title
-  },
-
-  // audio
-  "wireplumber": {
-    "format": "{icon} {volume:5}%",
-    "format-icons": ["", "", ""],
-    "format-muted": "  MUTED",
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "max-volume": 100,
-  },
-
-  // bluetooth
-  "bluetooth": {
-    "format": " {status}",
-    "format-disabled": "", // an empty format will hide the module
-    "format-connected": " {num_connections} connected",
-    "tooltip-format": "{controller_alias}\t{controller_address}",
-    "tooltip-format-connected": "CONTROLLER\n{controller_alias}\t{controller_address}\n\nDEVICES\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "${BLUETOOTH_SELECTOR}",
   },
 
   // email
@@ -114,7 +93,8 @@
     "tooltip": true,
     "interval": 60,
     "exec": "${XDG_CONFIG_HOME}/waybar/scripts/clock.py",
-    "return-type": "json"
+    "return-type": "json",
+    "on-click": "${CALENDAR}",
   },
 
   // power menu
@@ -130,4 +110,15 @@
       "reboot": "reboot",
     }
   },
+
+  "idle_inhibitor": {
+    "format": "{icon} ",
+    "format-icons": {
+      "activated": "󰒳",
+      "deactivated": "󰒲",
+    },
+    "tooltip": true,
+    "tooltip-format-activated": "Idle inhibition is <span color='#00c000'><b>active</b></span>.\nScreen will not auto-lock.",
+    "tooltip-format-deactivated": "Idle inhibition is <span color='#c84b4b'><b>inactive</b></span>.\nScreen will auto-lock after 10 minutes.",
+  }
 }

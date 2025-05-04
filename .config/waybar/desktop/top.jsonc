@@ -1,0 +1,139 @@
+// -*- mode: jsonc -*-
+{
+  /***********
+   * GENERAL *
+   ***********/
+
+  "layer": "top",                         // waybar at top layer
+  "position": "top",                      // waybar position (top|bottom|left|right)
+  "height": 35,                           // waybar height (to be removed for auto height)
+  "spacing": 4,                           // gaps between modules in px
+
+  // left modules
+  "modules-left": [
+    "hyprland/workspaces",
+  ],
+
+  // center modules
+  "modules-center": [
+    "hyprland/window",
+  ],
+
+  // right modules
+  "modules-right": [
+    "custom/vpn",
+    "custom/email",
+    "clock",
+    "custom/clock",
+    "idle_inhibitor",
+    "custom/power_menu",
+  ],
+
+  /***********
+   * MODULES *
+   ***********/
+
+  // workspaces
+  "hyprland/workspaces": {
+    "format": "{name}",                   // how information should be displayed.
+  },
+
+  // focused window name
+  "hyprland/window": {
+    "format": "{title}",                  // how information should be displayed
+    "icon": true,                         // whether or not the icon should be present
+    "icon-size": 20,                      // size of the icon
+    "max-length": 75,                     // max length of the window title
+  },
+
+  // email
+  "custom/email": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 10,
+    "format-icons": {
+        "default": "󰇮",
+        "new_mail": "󰛏",
+    },
+    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/email.py",
+    "return-type": "json",
+    "on-click": "mailsync & ${MAIL_CLIENT}",
+    "on-click-right": "mailsync"
+  },
+
+  // vpn
+  "custom/vpn": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 10,
+    "format-icons": {
+        "default": "󱦚",
+        "new_mail": "󰦝",
+    },
+    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/vpn.sh info",
+    "return-type": "json",
+    "on-click": "vpn-selector"
+  },
+
+  // clock module but I'm only using the calendar
+  "clock": {
+    "interval": 1,
+    "format": "󰸘  {:%b %d %Y}",
+    "timezone": "America/Los_Angeles",
+    "tooltip": true,
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "mode"          : "month",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "format": {
+        "months": "<span color='#c84b4b'><b>{}</b></span>",
+        "days": "<span color='#ffffff'>{}</span>",
+        "weeks": "<span color='#c84b4b'>W{}</span>",
+        "weekdays": "<span color='#ffcc66'>{}</span>",
+        "today": "<span color='turquoise'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click": "mode",
+      "on-scroll-up": "shift_down",
+      "on-scroll-down": "shift_up"
+    }
+  },
+
+  // clock + appointments
+  "custom/clock": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 60,
+    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/clock.py",
+    "return-type": "json",
+    "on-click": "${CALENDAR}",
+  },
+
+  // power menu
+  "custom/power_menu": {
+    "format" : "󰤆",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "${XDG_CONFIG_HOME}/waybar/power_menu.xml", // Menu file in resources folder
+    "menu-actions": {
+      "lock": "hyprlock --immediate",
+      "logout": "hyprctl dispatch exit",
+      "shutdown": "poweroff",
+      "reboot": "reboot",
+    }
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon} ",
+    "format-icons": {
+      "activated": "󰒳",
+      "deactivated": "󰒲",
+    },
+    "tooltip": true,
+    "tooltip-format-activated": "Idle inhibition is <span color='#00c000'><b>active</b></span>.\nScreen will not auto-lock.",
+    "tooltip-format-deactivated": "Idle inhibition is <span color='#c84b4b'><b>inactive</b></span>.\nScreen will auto-lock after 10 minutes.",
+  }
+}

@@ -17,7 +17,7 @@
 
   // center modules
   "modules-center": [
-    "disk#root",
+    "disk#home",
     "disk#backups",
     "disk#files",
     "disk#media",
@@ -25,6 +25,8 @@
 
   // right modules
   "modules-right": [
+    "wireplumber",
+    "bluetooth",
     "cpu",
     "temperature#cpu",
     "memory",
@@ -50,11 +52,11 @@
     "on-click-right": "notify NORMAL 'Running Speedtest' 'Please wait...' && ${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh refresh && notify NORMAL 'Speedtest complete!'",
   },
 
-  // root disk
-  "disk#root": {
-    "path": "/",
+  // home disk
+  "disk#home": {
+    "path": "/home",
     "format": "󰣇  {specific_used:5.1f}GB / {specific_total:5.1f}GB",
-    "tooltip-format": "{specific_used:0.1f}GB used out of {specific_total:0.1f}GB on / ({percentage_used}%)",
+    "tooltip-format": "{specific_used:0.1f}GB used out of {specific_total:0.1f}GB on /home ({percentage_used}%)",
     "unit": "GB",
   },
 
@@ -113,5 +115,25 @@
     "tooltip": true,
     "tooltip-format": "<big>INTERFACE INFORMATION</big>\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\n<big>SPEED</big>\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
     "on-click": "${WIFI_SELECTOR}",
+  },
+
+  // audio
+  "wireplumber": {
+    "format": "{icon} {volume:5}%",
+    "format-icons": ["", "", ""],
+    "format-muted": "  MUTED",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "max-volume": 100,
+  },
+
+  // bluetooth
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "", // an empty format will hide the module
+    "format-connected": " {num_connections} connected",
+    "tooltip-format": "{controller_alias}\t\t\t{controller_address}",
+    "tooltip-format-connected": "CONTROLLER\n{controller_alias}\t\t\t{controller_address}\n\nDEVICES\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "${BLUETOOTH_SELECTOR}",
   },
 }

@@ -2,99 +2,103 @@
 #                                 system utilities                             #
 ################################################################################
 # ------------------------------------ core ------------------------------------
-zsh                       # shell
-man                       # manual
-cronie                    # cron jobs
-wget                      # web requests
-jq                        # json parser
-atool                     # archive/compression multitool
-unrar                     # rar compression tool
-unzip                     # zip compression tool
-7zip                      # 7zip compression tool
-neovim                    # text editor
-vim-plug                  # neovim plugin manager
-foot                      # terminal
+zsh                         # shell
+man                         # manual
+cronie                      # cron jobs
+wget                        # web requests
+jq                          # json parser
+atool                       # archive/compression multitool
+unrar                       # rar compression tool
+unzip                       # zip compression tool
+7zip                        # 7zip compression tool
+neovim                      # text editor
+vim-plug                    # neovim plugin manager
+foot                        # terminal
 
 # ----------------------------------- core++ -----------------------------------
-net-tools                 # networking multitool
-dunst                     # notification daemon
-nut                       # network ups tools
-fuzzel                    # multipurpose menu / launcher
-bat                       # syntax highlighting
-python3                   # python
-python-pip                # python package manager
-python-dotenv             # python support for dotenv
-docker                    # docker containerization
-docker-compose            # docker-compose
-inetutils                 # hostname command
-nmap-netcat               # nmap and netcat
-smartmontools             # drive SMART monitoring
-sshfs                     # Mount a filesystem over SSH
-msmtp                     # SMTP client
-msmtp-mta                 # creates sendmail alias for msmtp
+net-tools                   # networking multitool
+dunst                       # notification daemon
+nut                         # network ups tools
+fuzzel                      # multipurpose menu / launcher
+bat                         # syntax highlighting
+python3                     # python
+python-pip                  # python package manager
+python-dotenv               # python support for dotenv
+docker                      # docker containerization
+docker-compose              # docker-compose
+inetutils                   # hostname command
+nmap-netcat                 # nmap and netcat
+smartmontools               # drive SMART monitoring
+sshfs                       # Mount a filesystem over SSH
+msmtp                       # SMTP client
+msmtp-mta                   # creates sendmail alias for msmtp
+resolvconf                  # network resolver tool
 
 # ------------------------------------ gui -------------------------------------
-# applications
-hyprland                  # window manager
-hyprlock                  # lock screen
-hyprpaper                 # wallpaper
-hyprcursor                # cursor theme
-hypridle                  # idle management daemon
-hyprsunset                # blue light filter
-waybar                    # status bar
-wayclip                   # clipboard manager
+# hyprland environment
+hyprland                    # window manager
+hyprlock                    # lock screen
+hyprpaper                   # wallpaper
+hyprcursor                  # cursor theme
+hypridle                    # idle management daemon
+hyprsunset                  # blue light filter
+waybar                      # status bar
+wayclip                     # clipboard manager
+wireplumber                 # pipewire session manager
+xdg-desktop-portal-hyprland # desktop portal implementation (for screen sharing)
 
 # icons/themes
-noto-fonts-emoji          # emojis for lf
-papirus-icon-theme        # nice icon theme
-nerd-fonts                # many fonts
-rose-pine-cursor          # xcursor theme
-rose-pine-hyprcursor      # hyprcursor theme
+noto-fonts-emoji            # emojis for lf
+papirus-icon-theme          # nice icon theme
+nerd-fonts                  # many fonts
+rose-pine-cursor            # xcursor theme
+rose-pine-hyprcursor        # hyprcursor theme
 
 ################################################################################
 #                                     files                                    #
 ################################################################################
-lf                        # file browser
+lf                          # file browser
 
 # ---------------------------------- documents ---------------------------------
-odt2txt                   # opendocument preview
-libgsf                    # office document preview
-lynx                      # html
-zathura-pdf-mupdf         # pdf, epub, and XPS
-calibre                   # epub/mobi preview
-sox                       # audio file spectrogram
-libmad                    # sox mp3 handling part 1
-twolame                   # sox mp3 handling part 2
+odt2txt                     # opendocument preview
+libgsf                      # office document preview
+lynx                        # html
+zathura-pdf-mupdf           # pdf, epub, and XPS
+calibre                     # epub/mobi preview
+sox                         # audio file spectrogram
+libmad                      # sox mp3 handling part 1
+twolame                     # sox mp3 handling part 2
 
 # ----------------------------- images/audio/video -----------------------------
-ueberzugpp                # multimedia preview
-mpv                       # video/audio
-mediainfo                 # video/audio metadata
-imv                       # images
+ueberzugpp                  # multimedia preview
+mpv                         # video/audio
+mediainfo                   # video/audio metadata
+imv                         # images
 
 ################################################################################
 #                                     email                                    #
 ################################################################################
-neomutt                   # email client
-pass                      # keystore
-isync                     # offline mailbox sync
-notmuch                   # email indexing, searching, and tagging
-urlscan                   # browse URLs in an email
-khard                     # local contacts
-khal                      # local calendar
-vdirsyncer                # calendar/contacts syncing
+neomutt                     # email client
+pass                        # keystore
+isync                       # offline mailbox sync
+notmuch                     # email indexing, searching, and tagging
+urlscan                     # browse URLs in an email
+khard                       # local contacts
+khal                        # local calendar
+vdirsyncer                  # calendar/contacts syncing
 
 ################################################################################
 #                              general applications                            #
 ################################################################################
-zen-browser-bin           # web browser
-bitwarden-cli             # bitwarden cli
-backblaze-b2-bin          # backblaze b2 cli
-gimp                      # image editor
-dmenu-bluetooth           # bluetooth dmenu
-glances                   # task manager and resource monitor
-grim                      # screenshot capture
-slurp                     # screenshot area selection
-borg                      # borg backups
-qbittorrent               # qbittorrent client
-transmission-cli          # transmission cli torrent client
+zen-browser-bin             # web browser
+bitwarden-cli               # bitwarden cli
+backblaze-b2-bin            # backblaze b2 cli
+gimp                        # image editor
+dmenu-bluetooth             # bluetooth dmenu
+glances                     # task manager and resource monitor
+grim                        # screenshot capture
+slurp                       # screenshot area selection
+borg                        # borg backups
+qbittorrent                 # qbittorrent client
+transmission-cli            # transmission cli torrent client
+wireguard-tools             # wireguard VPN

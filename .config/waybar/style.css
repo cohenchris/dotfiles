@@ -47,8 +47,10 @@ menu {
 #bluetooth,
 #disk,
 #network,
+#idle_inhibitor,
 #custom-clock,
 #custom-email,
+#custom-vpn,
 #custom-speedtest {
   background-color: @pill-color;
   border-radius: 10px;
@@ -67,8 +69,10 @@ menu {
 #bluetooth:hover,
 #disk:hover,
 #network:hover,
+#idle_inhibitor:hover,
 #custom-clock:hover,
 #custom-email:hover,
+#custom-vpn:hover,
 #custom-speedtest:hover {
   background-color: @pill-color-hover;
 }
@@ -130,14 +134,14 @@ modules-left > widget:first-child > #workspaces {
 }
 
 
-/********** POWER **********/
-#custom-power {
+/******* POWER MENU ********/
+#custom-power_menu {
   margin-left: 10px;
   margin-right: 20px;
   font-size: 20px;
 }
 
-#custom-power:hover {
+#custom-power_menu:hover {
   color: @alert-color;
 }
 
