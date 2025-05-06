@@ -12,58 +12,48 @@ set period 1                                # interval, in seconds, for periodic
 set cleaner '~/.config/lf/cleaner'          # cleanup script
 set previewer '~/.config/lf/previewer'      # script to generate and display preview information and thumbnails
 set autoquit true                           # automatically quit the server when there are no clients left connected
+set info size:time                          # show size and timestamp for each file
+set mouse true                              # allow mouse interaction
 
-
-
-# Delete a file or directory
-map D delete
-
-# Make a new directory in the cwd
-map <c-n> push :mkdir<space>
-
-# Reload cwd and previews
-map <c-r> reload
-
-# Simple shell prompt in the file manager
-map <enter> shell
-
-# Execute file in the the shell
-map x $${f}
-map X !${f}
-
-# Open file or directory
-map o open "${f}"
+# Clipboard
+map D delete                                # prompt to delete file
+map y copy                                  # copy file
+map d cut                                   # cut file
+map p paste                                 # paste file
+map Y $printf "%s" "${fx}" | waycopy        # copy filename to clipboard
 
 # Renaming files
-map r :rename; # rename before extension
-map B bulkrename # rename in bulk
-map A :rename; cmd-end # rename at very end
-map R push A<c-u> # blank rename
+map r :rename;                              # cursor at the end of the filename, but before extension
+map A :rename; cmd-end                      # cursor at the very end of the filename
+map R push A<c-u>                           # rename starting with blank input field
+map B bulkrename                            # rename in bulk
 
-# Open terminal in path
-map W $setsid -f ${TERMINAL} >/dev/null 2>&1
-
-# Copy file path
-map Y $printf "%s" "${fx}" | waycopy
-
-# 
-map zh set hidden!
-map zr set reverse!
-map zn set info
-map zs set info size
-map zt set info time
-map za set info size:time
+# Show metadata
+map zh set hidden!                          # toggle hidden files
+map zr set reverse!                         # reverse file sorting
+map zn set info                             # clear all displayed file info
+map zs set info size                        # show size of each file
+map zt set info ctime                       # show last modified time of each file
+map za set info size:time                   # show both size and last modified time of each file
 
 # Sorting
-map sn :set sortby natural; set info
-map ss :set sortby size; set info size
-map st :set sortby time; set info time
-map sa :set sortby atime; set info atime
-map sc :set sortby ctime; set info ctime
-map se :set sortby ext; set info
+map sn :set sortby natural                  # default sorting order
+map ss :set sortby size; set info size      # sort by file size
+map sa :set sortby atime; set info atime    # sort by last access time
+map sc :set sortby ctime; set info ctime    # sort by last modified time
 
-map gh cd ~
+# File operations and navigation
+map <c-n> push :mkdir<space>                # mkdir
+map <c-t> push $touch<space>                # touch
+map x $${f}                                 # run command in a new shell
+map X !${f}                                 # run command in a new shell and wait for keypress at the end
+map o open "${f}"                           # open file
+map gh cd ~                                 # go home
 
+# Misc lf commands
+map <c-r> reload                            # reload cwd
+map <enter> shell                           # simple shell prompt in lf
+map W $setsid -f ${TERMINAL} 2>&1           # open terminal at cwd
 
 ################################################################################
 ############################### COMMAND HANDLERS ###############################
@@ -107,7 +97,7 @@ cmd open ${{
 
     # HTML
     text/html)
-      ${BROWSER} ${fx}
+      setsid -f ${BROWSER} ${fx}
     ;;
 
     # LaTeX
@@ -143,17 +133,17 @@ cmd open ${{
 
     # Compressed archives
     application/x-bzip-compressed-tar | application/gzip | application/x-xz | application/x-bzip2 | application/vnd.rar | application/x-tar | application/x-bzip-compressed-tar | application/zip | application/x-compress | application/x-7z-compressed | application/zstd | application/java-archive)
-      extract ${f}
+      setsid -f extract ${f}
     ;;
 
     # Torrent
     application/x-bittorrent)
-      qbittorrent ${f}
+      setsid -f qbittorrent ${f}
     ;;
     
     # PGP-encrypted
     application/pgp-encrypted)
-      ${EDITOR} ${fx}
+      setsid -f ${EDITOR} ${fx}
     ;;
 
     # Office documents
@@ -202,8 +192,9 @@ cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 cmd delete ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
-	printf "%s\n\t" "${fx}"
-	printf "delete? [y/N] "
+  printf "You are about to delete the following:\n\n"
+  printf "\t%s\n\n" "${fx}"
+  printf "Are you absolutely sure? This action cannot be undone. [y/N] "
 	read ans
 	[ $ans = "y" ] && rm -rf -- ${fx}
 }}
