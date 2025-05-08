@@ -131,9 +131,9 @@
     "format": " {status}",
     "format-disabled": "", // an empty format will hide the module
     "format-connected": " {num_connections} connected",
-    "tooltip-format": "{controller_alias}\t\t\t{controller_address}",
-    "tooltip-format-connected": "CONTROLLER\n{controller_alias}\t\t\t{controller_address}\n\nDEVICES\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format": "{controller_alias:25}\t{controller_address}",
+    "tooltip-format-connected": "CONTROLLER\n{controller_alias:25}\t{controller_address}\n\nDEVICES\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias:25}\t{device_address}",
     "on-click": "${BLUETOOTH_SELECTOR}",
   },
 }
