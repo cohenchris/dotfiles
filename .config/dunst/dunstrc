@@ -275,11 +275,13 @@
     # Context menu.
     context = ctrl+shift+period
 
+# IMPORTANT: colors have to be defined in quotation marks.
+# Otherwise the "#" and following would be interpreted as a comment.
+
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
+    background = "#006600"
+    foreground = "#ffffff"
+    frame_color = "#00c000"
     timeout = 10
 
 [urgency_normal]
@@ -292,3 +294,4 @@
     foreground = "#ffffff"
     frame_color = "#ff0000"
     timeout = 20
+

@@ -12,11 +12,15 @@ unread_messages_count = subprocess.check_output("notmuch search 'tag:unread' | w
 
 if unread_messages_count == "0":
   email_icon = "󰪱"
-  unread_messages_count = "No"
+  email_text = "No New Messages"
+if unread_messages_count == "1":
+  email_icon = "󰛏"
+  email_text = "1 New Message"
 else:
   email_icon = "󰛏"
+  email_text = "{unread_messages_count} New Messages"
 
-waybar_json_data['text'] = f"{email_icon}  {unread_messages_count} New Messages"
+waybar_json_data['text'] = f"{email_icon}  {email_text}"
 
 email_preview_output = subprocess.check_output("notmuch search --format=json 'tag:unread'", shell=True). decode("utf-8").strip()
 

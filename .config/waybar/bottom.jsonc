@@ -49,7 +49,7 @@
     "exec": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh print",
     "interval": 10,
     "tooltip-format": "Download Speed / Upload Speed\n(right click to refresh)",
-    "on-click-right": "notify NORMAL 'Running Speedtest' 'Please wait...' && ${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh refresh && notify NORMAL 'Speedtest complete!'",
+    "on-click-right": "notify NORMAL 'Running Speedtest' 'Please wait...' && ${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh refresh && notify GOOD 'Speedtest complete!'",
   },
 
   // home disk
