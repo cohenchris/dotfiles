@@ -25,6 +25,8 @@
     "custom/email",
     "clock",
     "custom/clock",
+    "power-profiles-daemon",
+    "upower",
     "idle_inhibitor",
     "custom/power_menu",
   ],
@@ -43,7 +45,21 @@
     "format": "{title}",                  // how information should be displayed
     "icon": true,                         // whether or not the icon should be present
     "icon-size": 20,                      // size of the icon
-    "max-length": 75,                     // max length of the window title
+    "max-length": 55,                     // max length of the window title
+  },
+
+  // vpn
+  "custom/vpn": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 10,
+    "format-icons": {
+        "default": "󱦚",
+        "new_mail": "󰦝",
+    },
+    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/vpn.sh info",
+    "return-type": "json",
+    "on-click": "vpn-selector"
   },
 
   // email
@@ -59,20 +75,6 @@
     "return-type": "json",
     "on-click": "mailsync & ${MAIL_CLIENT}",
     "on-click-right": "mailsync"
-  },
-
-  // vpn
-  "custom/vpn": {
-    "format": "{}",
-    "tooltip": true,
-    "interval": 10,
-    "format-icons": {
-        "default": "󱦚",
-        "new_mail": "󰦝",
-    },
-    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/vpn.sh info",
-    "return-type": "json",
-    "on-click": "vpn-selector"
   },
 
   // clock module but I'm only using the calendar
@@ -112,6 +114,39 @@
     "on-click": "${CALENDAR}",
   },
 
+  // cycle through power profiles
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+
+  // battery information
+  "upower": {
+    "icon-size": 20,
+    "hide-if-empty": true,
+    "tooltip": true,
+    "tooltip-spacing": 20
+  },
+
+  // toggle auto-lock
+  "idle_inhibitor": {
+    "format": "{icon} ",
+    "format-icons": {
+      "activated": "󰒳",
+      "deactivated": "󰒲",
+    },
+    "tooltip": true,
+    "tooltip-format-activated": "Idle inhibition is <span color='#00c000'><b>active</b></span>.\nScreen will not auto-lock.",
+    "tooltip-format-deactivated": "Idle inhibition is <span color='#c84b4b'><b>inactive</b></span>.\nScreen will auto-lock after 10 minutes.",
+  },
+
   // power menu
   "custom/power_menu": {
     "format" : "󰤆",
@@ -126,14 +161,4 @@
     }
   },
 
-  "idle_inhibitor": {
-    "format": "{icon} ",
-    "format-icons": {
-      "activated": "󰒳",
-      "deactivated": "󰒲",
-    },
-    "tooltip": true,
-    "tooltip-format-activated": "Idle inhibition is <span color='#00c000'><b>active</b></span>.\nScreen will not auto-lock.",
-    "tooltip-format-deactivated": "Idle inhibition is <span color='#c84b4b'><b>inactive</b></span>.\nScreen will auto-lock after 10 minutes.",
-  }
 }

@@ -33,6 +33,7 @@ sshfs                       # Mount a filesystem over SSH
 msmtp                       # SMTP client
 msmtp-mta                   # creates sendmail alias for msmtp
 resolvconf                  # network resolver tool
+power-profiles-daemon       # power state management profiles
 
 # ------------------------------------ gui -------------------------------------
 # hyprland environment

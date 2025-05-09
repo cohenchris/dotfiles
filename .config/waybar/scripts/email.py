@@ -10,12 +10,13 @@ waybar_json_data = {}
 
 unread_messages_count = subprocess.check_output("notmuch search 'tag:unread' | wc -l", shell=True).decode("utf-8").strip()
 
-if unread_messages_count == 0:
+if unread_messages_count == "0":
   email_icon = "󰪱"
+  unread_messages_count = "No"
 else:
   email_icon = "󰛏"
 
-waybar_json_data['text'] = f"{email_icon}  {unread_messages_count} unread messages"
+waybar_json_data['text'] = f"{email_icon}  {unread_messages_count} New Messages"
 
 email_preview_output = subprocess.check_output("notmuch search --format=json 'tag:unread'", shell=True). decode("utf-8").strip()
 
@@ -59,6 +60,9 @@ for i, entry in enumerate(email_preview_json):
   formatted_entry += f"<span color='#ffcc66'>󰛮  {receipt}</span>\n"
   formatted_entry += f"<span color='#ffffff'>󰇮  {subject}</span>\n\n"
   tooltip_text += formatted_entry
+
+if email_preview_json == []:
+  tooltip_text += f"Inbox is empty!"
 
 waybar_json_data['tooltip'] = tooltip_text.strip()
 

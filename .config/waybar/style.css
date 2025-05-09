@@ -37,6 +37,8 @@ menu {
   color: @accent-color;
 }
 
+/************************ COLOR AND SPACING - ALL BARS ************************/
+
 #custom-ip,
 #cpu,
 #temperature,
@@ -47,7 +49,6 @@ menu {
 #bluetooth,
 #disk,
 #network,
-#idle_inhibitor,
 #custom-clock,
 #custom-email,
 #custom-vpn,
@@ -70,11 +71,49 @@ menu {
 #disk:hover,
 #network:hover,
 #idle_inhibitor:hover,
+#upower:hover,
+#power-profiles-daemon:hover,
 #custom-clock:hover,
 #custom-email:hover,
 #custom-vpn:hover,
 #custom-speedtest:hover {
   background-color: @pill-color-hover;
+}
+
+#power-profiles-daemon {
+  background-color: @pill-color;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 16px;
+  padding-left: 15px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-right: 0px;
+}
+
+#upower {
+  background-color: @pill-color;
+  padding: 0 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: -4px;
+  margin-right: 0px;
+}
+
+#idle_inhibitor {
+  background-color: @pill-color;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 13px;
+  padding-left: 16px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: -4px;
+  margin-right: 0px;
 }
 
 
@@ -105,31 +144,47 @@ modules-left > widget:first-child > #workspaces {
 
 /********** WINDOWS **********/
 #window {
-}
-
-
-/********** CPU USAGE **********/
-#cpu {
 
 }
 
-/********** CPU TEMPERATURE **********/
-#temperature {
-}
+/********** VPN **********/
+#custom-vpn {
 
-#temperature.critical {
-  background-color: @alert-color;
 }
 
 
-/********** MEMORY USAGE **********/
-#memory {
+/********** EMAIL **********/
+#custom-email {
+
+}
+
+
+/********** CALENDAR **********/
+#clock {
 
 }
 
 
 /********** CLOCK **********/
-#clock {
+#custom-clock {
+
+}
+
+
+/********** POWER PROFILES **********/
+#power-profiles-daemon {
+
+}
+
+
+/********** BATTERY **********/
+#upower {
+
+}
+
+
+/********** IDLE INHIBITOR **********/
+#idle_inhibitor {
 
 }
 
@@ -158,10 +213,16 @@ modules-left > widget:first-child > #workspaces {
 
 }
 
+/********** DISKS **********/
+#disk {
+
+}
+
 /********** WIREPLUMBER **********/
 #wireplumber.muted {
   background-color: @alert-color;
 }
+
 
 /********** BLUETOOTH **********/
 #bluetooth {
@@ -170,6 +231,28 @@ modules-left > widget:first-child > #workspaces {
 #bluetooth.no-controller {
   background-color: @alert-color;
 }
+
+
+/********** CPU USAGE **********/
+#cpu {
+
+}
+
+
+/********** CPU TEMPERATURE **********/
+#temperature {
+}
+
+#temperature.critical {
+  background-color: @alert-color;
+}
+
+
+/********** MEMORY USAGE **********/
+#memory {
+
+}
+
 
 /********** NETWORK **********/
 #network {
