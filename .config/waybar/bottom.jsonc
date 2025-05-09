@@ -113,7 +113,8 @@
     "format-wifi": "  {essid} ({signalStrength}%)",
     "format-disconnected": "󰲛  Disconnected",
     "tooltip": true,
-    "tooltip-format": "<big>INTERFACE INFORMATION</big>\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\n<big>SPEED</big>\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
+    "tooltip-format-ethernet": "<big>INTERFACE</big>\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\n<big>SPEED</big>\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
+    "tooltip-format-wifi": "<big>INTERFACE</big>\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\n<big>WIRELESS</big>\nSSID:\t{essid}\nSignal Strength:\t{signalStrength}\nSignal dBm:\t{signaldBm}\nFrequency:\t{frequency}\n\n<big>SPEED</big>\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
     "on-click": "${WIFI_SELECTOR}",
   },
 
@@ -131,9 +132,9 @@
     "format": " {status}",
     "format-disabled": "", // an empty format will hide the module
     "format-connected": " {num_connections} connected",
-    "tooltip-format": "{controller_alias:25}\t{controller_address}",
-    "tooltip-format-connected": "CONTROLLER\n{controller_alias:25}\t{controller_address}\n\nDEVICES\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias:25}\t{device_address}",
+    "tooltip-format": "{controller_alias:20}\t{controller_address}",
+    "tooltip-format-connected": "CONTROLLER\n{controller_alias:20}\t{controller_address}\n\nDEVICES\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias:20}\t{device_address}",
     "on-click": "${BLUETOOTH_SELECTOR}",
   },
 }

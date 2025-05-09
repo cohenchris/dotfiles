@@ -167,6 +167,15 @@ modules-left > widget:first-child > #workspaces {
 #bluetooth {
 }
 
+#bluetooth.no-controller {
+  background-color: @alert-color;
+}
+
+/********** NETWORK **********/
 #network {
   margin-right: 5px;
+}
+
+#network.disconnected {
+  background-color: @alert-color;
 }
