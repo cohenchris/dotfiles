@@ -36,7 +36,7 @@ else
   connection_tooltip_status="<span color='#00c000'>${connection_status}</span>"
 fi
 
-waybar_text="${connection_icon}VPN ${connection_status}"
-waybar_tooltip="<big>Wireguard VPN ${connection_tooltip_status}</big>\n\nConnection Name\t${connection_name}\nIP Address\t${connection_ip}"
+waybar_text="${connection_icon}${connection_status}"
+waybar_tooltip="<big>Wireguard VPN ${connection_tooltip_status}</big>\n\nConnection Name:\t${connection_name}\nIP Address:\t${connection_ip}"
 
 echo "{\"text\": \"${waybar_icon}${waybar_text}\", \"tooltip\": \"${waybar_tooltip}\"}"

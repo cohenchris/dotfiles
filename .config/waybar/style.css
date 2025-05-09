@@ -6,6 +6,11 @@
 @define-color workspace-color-active    rgba(150, 150, 150, 0.6);
 @define-color workspace-color-hover     rgba(0, 0, 0, 0.2);
 @define-color alert-color               rgba(200, 75, 75, 1);
+@define-color warning-color             rgba(255, 150, 50, 1);
+@define-color notice-color              rgba(255, 255, 0, 1);
+@define-color decent-color              rgba(100, 255, 100, 1);
+@define-color good-color                rgba(0, 192, 0, 1);
+
 
 * {
   /* `otf-font-awesome` is required to be installed for icons */
@@ -71,7 +76,7 @@ menu {
 #disk:hover,
 #network:hover,
 #idle_inhibitor:hover,
-#upower:hover,
+#battery:hover,
 #power-profiles-daemon:hover,
 #custom-clock:hover,
 #custom-email:hover,
@@ -93,7 +98,7 @@ menu {
   margin-right: 0px;
 }
 
-#upower {
+#battery {
   background-color: @pill-color;
   padding: 0 10px;
   margin-top: 3px;
@@ -178,8 +183,24 @@ modules-left > widget:first-child > #workspaces {
 
 
 /********** BATTERY **********/
-#upower {
+#battery.critical {
+  color: @alert-color;
+}
 
+#battery.warning {
+  color: @warning-color;
+}
+
+#battery.notice {
+  color: @notice-color;
+}
+
+#battery.decent {
+  color: @decent-color;
+}
+
+#battery.good {
+  color: @good-color;
 }
 
 

@@ -26,7 +26,7 @@
     "clock",
     "custom/clock",
     "power-profiles-daemon",
-    "upower",
+    "battery",
     "idle_inhibitor",
     "custom/power_menu",
   ],
@@ -117,22 +117,35 @@
   // cycle through power profiles
   "power-profiles-daemon": {
     "format": "{icon}",
-    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-    "tooltip": true,
     "format-icons": {
-      "default": "",
+      "default": "",
       "performance": "",
       "balanced": "",
       "power-saver": ""
-    }
+    },
+    "tooltip-format": "POWER PROFILE\n\nProfile:\t{profile}\nDriver:\t\t{driver}",
+    "tooltip": true,
   },
 
   // battery information
-  "upower": {
-    "icon-size": 20,
-    "hide-if-empty": true,
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-Charging": "󰂄 {capacity}%",
+    "format-time": "{H}h {M}m",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "weighted-average": true,
+    "interval": 60,
+    "states": {
+      "critical": 20,
+      "warning": 40,
+      "notice": 60,
+      "decent": 80,
+      "full": 100,
+    },
+    "max-length": 3,
     "tooltip": true,
-    "tooltip-spacing": 20
+    "tooltip-format": "Battery is Discharging...\n\nCapacity:\t{capacity}%\nTo Empty:\t{time}\nPower Draw:\t{power}W\nCycles:\t{cycles}\nHealth:\t{health}",
+    "tooltip-format-Charging": "Battery is Charging...\n\nCapacity:\t{capacity}%\nTo Full:\t{time}\nPower Draw:\t{power}W\nCycles:\t{cycles}\nHealth:\t{health}",
   },
 
   // toggle auto-lock
@@ -150,7 +163,8 @@
   // power menu
   "custom/power_menu": {
     "format" : "󰤆",
-    "tooltip": false,
+    "tooltip": true,
+    "tooltip-format": "Power Menu",
     "menu": "on-click",
     "menu-file": "${XDG_CONFIG_HOME}/waybar/power_menu.xml", // Menu file in resources folder
     "menu-actions": {
