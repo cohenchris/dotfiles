@@ -102,11 +102,6 @@ rm -rfv ~/.viminfo
 rm -rf ~/.cargo
 sudo rm -rf ~/go # Don't know why this is created or why it's owned by root
 
-# Replace notmuch config database path with whoever the ${USER} is
-echo
-echo "Configuring notmuch..."
-sed -i "s/phrog/${USER}/g" ${HOME}/.config/notmuch/config
-
 # Start SSHD
 echo
 echo "Starting SSHD..."
