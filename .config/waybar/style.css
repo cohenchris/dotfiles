@@ -11,7 +11,6 @@
 @define-color decent-color              rgba(100, 255, 100, 1);
 @define-color good-color                rgba(0, 192, 0, 1);
 
-
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family: TerminessNerdFont, bold;

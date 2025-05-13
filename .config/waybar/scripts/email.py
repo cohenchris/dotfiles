@@ -18,7 +18,7 @@ if unread_messages_count == "1":
   email_text = "1 New Message"
 else:
   email_icon = "󰛏"
-  email_text = "{unread_messages_count} New Messages"
+  email_text = f"{unread_messages_count} New Messages"
 
 waybar_json_data['text'] = f"{email_icon}  {email_text}"
 
