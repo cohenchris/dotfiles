@@ -123,7 +123,7 @@
       "balanced": "",
       "power-saver": ""
     },
-    "tooltip-format": "POWER PROFILE\n\nProfile:\t{profile}\nDriver:\t\t{driver}",
+    "tooltip-format": "System is using the \"{profile}\" power mode.",
     "tooltip": true,
   },
 

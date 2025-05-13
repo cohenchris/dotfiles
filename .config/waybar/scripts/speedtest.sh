@@ -11,7 +11,15 @@ speedtest_cachefile="${XDG_CACHE_HOME}/speedtest_results.txt"
 
 function run_speedtest()
 {
+  notify NORMAL "Running speedtest" "Please wait..."
   results=$(speedtest-cli --simple)
+
+  if [[ $? -ne 0 ]]; then
+    notify CRITICAL "ERROR" "Speedtest failed :("
+    exit 1
+  fi
+
+  notify GOOD "Success!" "Speedtest complete"
   echo "${results}" > ${speedtest_cachefile}
 }
 
