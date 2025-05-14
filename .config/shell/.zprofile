@@ -43,8 +43,9 @@ export IMAGE_VIEWER="imv"                                                   # im
 export FILE_BROWSER="${TERMINAL} lf-wrapper"                                # file browser
 export TASK_MANAGER="${TERMINAL} glances"                                   # task manager
 export DMENU_BLUETOOTH_LAUNCHER="fuzzel"                                    # use fuzzel instead of dmenu for dmenu-bluetooth
-export BLUETOOTH_SELECTOR="dmenu-bluetooth"                                 # bluetooth device selector
-export WIFI_SELECTOR="wifi-selector"                                        # wifi network selector
+export BLUETOOTH_MENU="dmenu-bluetooth"                                     # bluetooth device selection menu
+export WIFI_MENU="wifi-selector"                                            # wifi selection menu
+export VPN_MENU="vpn-menu"                                                  # VPN selection menu
 export MAIL_CLIENT="${TERMINAL} neomutt -F ${NEOMUTT_CONFIG}"               # email client
                                                                             #
 #############################################################################

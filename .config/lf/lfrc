@@ -192,9 +192,16 @@ cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 cmd delete ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
+
   printf "You are about to delete the following:\n\n"
-  printf "\t%s\n\n" "${fx}"
+
+  while IFS= read -r file_to_delete; do
+    printf "\t%s\n" "${file_to_delete}"
+  done <<< "${fx}"
+  printf "\n"
+
   printf "Are you absolutely sure? This action cannot be undone. [y/N] "
+
 	read ans
 	[ $ans = "y" ] && rm -rf -- ${fx}
 }}

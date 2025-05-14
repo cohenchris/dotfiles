@@ -41,7 +41,7 @@
   "custom/ip": {
     "exec": "${XDG_CONFIG_HOME}/waybar/scripts/ip.sh",
     "interval": 3600,
-    "tooltip-format": "Public IP / Local IP",
+    "tooltip-format": "Public IP / Local IP"
   },
 
   // upload + download speeds
@@ -49,7 +49,7 @@
     "exec": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh print",
     "interval": 10,
     "tooltip-format": "Download Speed / Upload Speed\n(right click to refresh)",
-    "on-click-right": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh refresh",
+    "on-click-right": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh refresh"
   },
 
   // home disk
@@ -115,14 +115,14 @@
     "tooltip": true,
     "tooltip-format-ethernet": "<big>INTERFACE</big>\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\n<big>SPEED</big>\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
     "tooltip-format-wifi": "<big>INTERFACE</big>\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\n<big>WIRELESS</big>\nSSID:\t{essid}\nSignal Strength:\t{signalStrength}\nSignal dBm:\t{signaldBm}\nFrequency:\t{frequency}\n\n<big>SPEED</big>\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
-    "on-click": "${WIFI_SELECTOR}",
+    "on-click": "${WIFI_MENU}"
   },
 
   // audio
   "wireplumber": {
     "format": "{icon} {volume:5}%",
-    "format-icons": ["", "", ""],
-    "format-muted": "  MUTED",
+    "format-icons": ["󰕿", "󰖀", "󰕾"],
+    "format-muted": "󰝟  MUTED",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "max-volume": 100,
     "tooltip": true,
@@ -138,6 +138,6 @@
     "tooltip-format": "{controller_alias:20}\t{controller_address}",
     "tooltip-format-connected": "CONTROLLER\n{controller_alias:20}\t{controller_address}\n\nDEVICES\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias:20}\t{device_address}",
-    "on-click": "${BLUETOOTH_SELECTOR}",
-  },
+    "on-click": "${BLUETOOTH_MENU}"
+  }
 }

@@ -16,7 +16,7 @@
 
   // center modules
   "modules-center": [
-    "hyprland/window",
+    "hyprland/window" 
   ],
 
   // right modules
@@ -28,7 +28,7 @@
     "power-profiles-daemon",
     "battery",
     "idle_inhibitor",
-    "custom/power_menu",
+    "custom/power_menu" 
   ],
 
   /***********
@@ -37,7 +37,7 @@
 
   // workspaces
   "hyprland/workspaces": {
-    "format": "{name}",                   // how information should be displayed.
+    "format": "{name}"                    // how information should be displayed.
   },
 
   // focused window name
@@ -45,7 +45,7 @@
     "format": "{title}",                  // how information should be displayed
     "icon": true,                         // whether or not the icon should be present
     "icon-size": 20,                      // size of the icon
-    "max-length": 55,                     // max length of the window title
+    "max-length": 55                      // max length of the window title
   },
 
   // vpn
@@ -55,11 +55,11 @@
     "interval": 10,
     "format-icons": {
         "default": "󱦚",
-        "new_mail": "󰦝",
+        "new_mail": "󰦝" 
     },
     "exec": "${XDG_CONFIG_HOME}/waybar/scripts/vpn.sh info",
     "return-type": "json",
-    "on-click": "vpn-selector"
+    "on-click": "${VPN_MENU}"
   },
 
   // email
@@ -173,6 +173,5 @@
       "shutdown": "poweroff",
       "reboot": "reboot",
     }
-  },
-
+  } 
 }
