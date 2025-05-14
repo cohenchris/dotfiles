@@ -33,6 +33,7 @@ declare -a dotfiles=(
   ~/.config/zathura/
   ~/.local/backup/
   ~/.local/share/yadm/archive
+  ~/.local/share/chars/
 )
 
 for i in ${dotfiles[@]}
