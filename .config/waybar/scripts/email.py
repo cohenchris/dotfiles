@@ -13,7 +13,7 @@ unread_messages_count = subprocess.check_output("notmuch search 'tag:unread' | w
 if unread_messages_count == "0":
   email_icon = "󰪱"
   email_text = "No New Messages"
-if unread_messages_count == "1":
+elif unread_messages_count == "1":
   email_icon = "󰛏"
   email_text = "1 New Message"
 else:

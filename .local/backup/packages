@@ -70,6 +70,7 @@ calibre                     # epub/mobi preview
 sox                         # audio file spectrogram
 libmad                      # sox mp3 handling part 1
 twolame                     # sox mp3 handling part 2
+libreoffice-fresh           # document suite
 
 # ----------------------------- images/audio/video -----------------------------
 ueberzugpp                  # multimedia preview

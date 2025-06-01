@@ -92,7 +92,6 @@
 
   // cpu temperature
   "temperature#cpu": {
-    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",                    // hwmon path
     "warning-threshold": 65,                                                // The threshold before it is considered warning
     "critical-threshold": 80,                                               // The threshold before it is considered critical
     "format": " {temperatureC:3}°C",                                       // The format in which the temperature should be displayed
@@ -104,7 +103,7 @@
   "memory": {
     "format": "  {percentage:3}%",                                         // how information should be displayed
     "tooltip": true,                                                        // Enable tooltip on hover
-    "tooltip-format": "MEMORY USAGE\n\nMemory:\t\t{used:0.1f} / {total:0.1f} GiB ({percentage}%)\nSwap:\t\t{swapUsed:0.1f} / {swapTotal:0.1f} GiB ({swapPercentage}%)",
+    "tooltip-format": "MEMORY USAGE\n\nMemory:\t\t{used:0.1f} / {total:0.1f} GiB ({percentage}%)\nSwap:\t\t{swapUsed:0.1f} / {swapTotal:0.1f} GiB ({swapPercentage}%)"
   },
 
   // network interface data
