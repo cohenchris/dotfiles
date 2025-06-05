@@ -12,6 +12,10 @@ alias mutt="neomutt"
 alias neomutt="neomutt -F ${NEOMUTT_CONFIG}"
 alias lf="source lf-wrapper"
 
+# fail2ban
+alias mail-fail2ban="docker exec -it mailserver fail2ban-client"
+alias swag-fail2ban="docker exec -it swag fail2ban-client"
+
 # Scripts
 alias b2-fuse="/home/${USER}/scripts/system/b2-fuse.sh"
 alias batocera="/home/${USER}/scripts/system/batocera.sh"

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get external IP address using curl
-external_ip=$(wget -4 -qO - http://icanhazip.com)
+external_ip=$(wget -4 -qO - https://icanhazip.com)
 
 if [[ "${external_ip}" == "" ]]; then
   external_ip="?"

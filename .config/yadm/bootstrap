@@ -121,6 +121,12 @@ echo "Initializing password store..."
 GPG_ID=$(gpg --list-secret-keys | grep -oE '[A-F0-9]{40}')
 if [ -z "${GPG_ID}" ]; then
   echo "ERROR: no GPG key present, cannot initialize password store..."
+elif [ $(echo "${GPG_ID}" | wc -l) -gt 1 ]; then
+  echo "ERROR: multiple GPG keys detected, unsure which to use."
+  echo
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  echo "!!!!!!!!!! PLEASE INITIALIZE THE PASSWORD STORE MANUALLY !!!!!!!!!!"
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 else
   pass init ${GPG_ID}
 fi
