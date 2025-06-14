@@ -9,11 +9,11 @@ set ifs "\n"
 set scrolloff 10
 set icons true                              # enable icons
 set period 1                                # interval, in seconds, for periodic checks of directory updates
-set cleaner '~/.config/lf/cleaner'          # cleanup script
 set previewer '~/.config/lf/previewer'      # script to generate and display preview information and thumbnails
 set autoquit true                           # automatically quit the server when there are no clients left connected
 set info size:time                          # show size and timestamp for each file
 set mouse true                              # allow mouse interaction
+set sixel true                              # enable sixel images in preview
 
 # Clipboard
 map D delete                                # prompt to delete file

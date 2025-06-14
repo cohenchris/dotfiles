@@ -18,6 +18,7 @@ Plug 'tpope/vim-commentary'                       " Commenting
 Plug 'chrisbra/Colorizer'                         " CSS color highlighting
 Plug 'luochen1990/rainbow'                        " Parantheses Color Coordination
 Plug 'ms-jpq/coq_nvim'                            " Code completion
+Plug 'tpope/vim-fugitive'                         " Git integration
 call plug#end()
 
 " Run PlugInstall if there are missing plugins

@@ -27,7 +27,7 @@ get_thumbnail_path()
 }
 
 
-# Display an thumbnail with ueberzug
+# Display an thumbnail with sixel
 # Fallback to mediainfo if preview fails
 #
 # display_thumbnail(thumbnail_path,
@@ -44,7 +44,7 @@ get_thumbnail_path()
 #   pane_vertical_pos   - vertical position of LF's preview pane
 #   original_file_path  - path to the original file
 #
-# This function uses ueberzug to display the provided thumbnail image path in the terminal
+# This function uses sixel (via chafa) to display the provided thumbnail image path in the terminal
 display_thumbnail()
 {
   local thumbnail_path="${1}"
@@ -54,14 +54,14 @@ display_thumbnail()
   local pane_vertical_pos="${5}"
   local original_file_path="${6}"
 
+  # Thumbnail exists and a GUI is running
 	if [ -f "${thumbnail_path}" ] && [ -n "${WAYLAND_DISPLAY}" ]; then
-    # Thumbnail exists and a GUI is running
-
     # Resize image
     magick convert "${thumbnail_path}" -resize "x${DEFAULT_SIZE}" +distort Resize "${thumbnail_path}"
     
-    # Display image with ueberzug
-    printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y": "%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' "${pane_horizontal_pos}" "${pane_vertical_pos}" "${pane_width}" "${pane_height}" "${thumbnail_path}" > "${FIFO_UEBERZUG}"
+    # Display image on the terminal with chafa using sixel
+    preview_pane_size="$((${pane_width}-2))x${pane_height}"
+    chafa "${thumbnail_path}" -f sixel -s "${preview_pane_size}"
 	else
     # Fall back to mediainfo
 		mediainfo "${original_file_path}"

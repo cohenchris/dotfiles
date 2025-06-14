@@ -19,7 +19,7 @@ export NEOMUTT_CONFIG="${XDG_CONFIG_HOME}/mail/neomutt/neomuttrc"           # ne
 export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"                               # cuda nv cache
 export LESSHISTFILE="${XDG_CACHE_HOME}/less_history"                        # less command history
 export HISTFILE="${XDG_DATA_HOME}/history"                                  # shell command history
-export PYTHON_HISTORY="${XDG_CACHE_HOME}/"                                  # python command history
+export PYTHON_HISTORY="${XDG_CACHE_HOME}/python_history"                    # python command history
                                                                             #
 # DATA                                                                      #
 export MAILDIR="${XDG_DATA_HOME}/mail"                                      # email data
