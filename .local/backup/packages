@@ -62,8 +62,6 @@ rose-pine-hyprcursor        # hyprcursor theme
 lf                          # file browser
 
 # ---------------------------------- documents ---------------------------------
-odt2txt                     # opendocument preview
-libgsf                      # office document preview
 lynx                        # html
 zathura-pdf-mupdf           # pdf, epub, and XPS
 calibre                     # epub/mobi preview
@@ -77,6 +75,7 @@ chafa                       # multimedia preview directly in terminal
 mpv                         # video/audio
 mediainfo                   # video/audio metadata
 imv                         # images
+ffmpegthumbnailer           # video preview
 
 ################################################################################
 #                                     email                                    #

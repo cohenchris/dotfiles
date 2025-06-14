@@ -6,7 +6,12 @@
 set -C -f
 IFS="$(printf '%b_' '\n')"; IFS="${IFS%_}"
 
-DEFAULT_SIZE=2160
+# Default width for generated image previews
+# This is NOT the width that will be displayed when actually previewing,
+# but rather the width of the thumbnail that is generated
+DEFAULT_WIDTH=600
+
+THUMBNAIL_CACHE_DIR="${XDG_CACHE_HOME}/lf"
 
 # get_thumbnail_path(filepath)
 #   filepath - generate a unique thumbnail path for this file
@@ -14,16 +19,16 @@ DEFAULT_SIZE=2160
 # This function fingerprints the provided file, then returns a path to the
 # cache directory for the caller to use.
 #
-# e.g. - Fingerprint is computed as "thumb.abcdef123456789"
-#        This function might return "~/.cache/lf/thumb/thumb.abcdef123456789"
+# e.g. - SHA256 fingerprint is computed to be "abcdef123456789"
+#        This function will return "~/.cache/lf/thumb/thumb.abcdef123456789"
 get_thumbnail_path()
 {
   local filepath="${1}"
 
   # Generate unique cache file name based on the SHA256 hash of the file.
-  # Since the cache file name is a function of file information, an image which
+  # Since the cache file name is computed as a function of file information, an image which
   # appears in multiple places across the machine will use the same cache file.
-  echo "${XDG_CACHE_HOME}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "${filepath}")" | sha256sum | cut -d' ' -f1)"
+  echo "${THUMBNAIL_CACHE_DIR}/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "${filepath}")" | sha256sum | cut -d' ' -f1)"
 }
 
 
@@ -54,13 +59,10 @@ display_thumbnail()
   local pane_vertical_pos="${5}"
   local original_file_path="${6}"
 
-  # Thumbnail exists and a GUI is running
-	if [ -f "${thumbnail_path}" ] && [ -n "${WAYLAND_DISPLAY}" ]; then
-    # Resize image
-    magick convert "${thumbnail_path}" -resize "x${DEFAULT_SIZE}" +distort Resize "${thumbnail_path}"
-    
+  # Thumbnail exists and user is in a graphical environment
+	if [ -f "${thumbnail_path}" ]; then
     # Display image on the terminal with chafa using sixel
-    preview_pane_size="$((${pane_width}-2))x${pane_height}"
+    preview_pane_size="$((${pane_width}-1))x${pane_height}"
     chafa "${thumbnail_path}" -f sixel -s "${preview_pane_size}"
 	else
     # Fall back to mediainfo
@@ -84,7 +86,7 @@ case "$(file --dereference --brief --mime-type -- "${FILE_PATH}")" in
   # Image
 	image/*)
     THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}")
-    [ ! -f "${THUMBNAIL_PATH}" ] && magick convert "${FILE_PATH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
+    [ ! -f "${THUMBNAIL_PATH}" ] && magick "${FILE_PATH}" -resize "x${DEFAULT_WIDTH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
     display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
   ;;
 
@@ -112,14 +114,14 @@ case "$(file --dereference --brief --mime-type -- "${FILE_PATH}")" in
   # Video
 	video/*)
     THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
-    [ ! -f "${THUMBNAIL_PATH}" ] && ffmpegthumbnailer -i "${FILE_PATH}" -o "${THUMBNAIL_PATH}" -s 0 # Generate thumbnail if it does not yet exist
+    [ ! -f "${THUMBNAIL_PATH}" ] && ffmpegthumbnailer -i "${FILE_PATH}" -o "${THUMBNAIL_PATH}" -s "${DEFAULT_WIDTH}" -q 10 -f # Generate thumbnail if it does not yet exist
     display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
   ;;
 
   # PDF
 	application/pdf)
     THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
-    [ ! -f "${THUMBNAIL_PATH}" ] && pdftoppm -jpeg -f 1 -singlefile "${FILE_PATH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
+    [ ! -f "${THUMBNAIL_PATH}" ] && pdftoppm -jpeg -f 1 -singlefile -scale-to-x "${DEFAULT_WIDTH}" -scale-to-y -1 "${FILE_PATH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
     # pdftoppm automatically generates a filename with a .jpg extension, we need to get rid of that
     mv "${THUMBNAIL_PATH}.jpg" "${THUMBNAIL_PATH}"
     display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
@@ -165,7 +167,16 @@ case "$(file --dereference --brief --mime-type -- "${FILE_PATH}")" in
   # Office documents
   application/msword | application/vnd.ms-word* | application/vnd.ms-powerpoint* | application/vnd.ms-excel* | application/x-ole-storage | *officedocument* | *opendocument*)
     THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
-    [ ! -f "${THUMBNAIL_PATH}" ] && gsf-office-thumbnailer -i "${FILE_PATH}" -o "${THUMBNAIL_PATH}" -s "${DEFAULT_SIZE}" # Generate thumbnail if it does not yet exist
+
+    if [ ! -f "${THUMBNAIL_PATH}" ]; then
+      libreoffice --headless --convert-to jpg --outdir "${THUMBNAIL_CACHE_DIR}" "${FILE_PATH}" # Generate thumbnail if it does not yet exist
+      # libreoffice image generator does not allow for a custom output filename
+      # It will spit out the preview in the --outdir directory with the same name as the source file (except with a .jpg extension)
+      # Manually rename it
+      old_thumbnail_path="${THUMBNAIL_CACHE_DIR}/$(basename ${FILE_PATH%.*}).jpg"
+      mv "${old_thumbnail_path}" "${THUMBNAIL_PATH}"
+    fi
+    
     display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
   ;;
 
@@ -176,14 +187,23 @@ case "$(file --dereference --brief --mime-type -- "${FILE_PATH}")" in
       # Office documents
       doc|docx|xls|xlsx|odt|ppt|pptx)
         THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
-        [ ! -f "${THUMBNAIL_PATH}" ] && gsf-office-thumbnailer -i "${FILE_PATH}" -o "${THUMBNAIL_PATH}" -s "${DEFAULT_SIZE}" # Generate thumbnail if it does not yet exist
+
+        if [ ! -f "${THUMBNAIL_PATH}" ]; then
+          libreoffice --headless --convert-to jpg --outdir "${THUMBNAIL_CACHE_DIR}" "${FILE_PATH}" # Generate thumbnail if it does not yet exist
+          # libreoffice image generator does not allow for a custom output filename
+          # It will spit out the preview in the --outdir directory with the same name as the source file
+          # Manually rename it
+          old_thumbnail_path="${THUMBNAIL_CACHE_DIR}/$(basename ${FILE_PATH%.*}).jpg"
+          mv "${old_thumbnail_path}" "${THUMBNAIL_PATH}"
+        fi
+        
         display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
       ;;
 
       # PDF
       pdf)
         THUMBNAIL_PATH=$(get_thumbnail_path "${FILE_PATH}") # Get path to thumbnail
-        [ ! -f "${THUMBNAIL_PATH}" ] && pdftoppm -jpeg -f 1 -singlefile "${FILE_PATH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
+        [ ! -f "${THUMBNAIL_PATH}" ] && pdftoppm -jpeg -f 1 -singlefile -scale-to-x "${DEFAULT_WIDTH}" -scale-to-y -1 "${FILE_PATH}" "${THUMBNAIL_PATH}" # Generate thumbnail if it does not yet exist
         display_thumbnail "${THUMBNAIL_PATH}" "${WIDTH}" "${HEIGHT}" "${HORIZONTAL_POS}" "${VERTICAL_POS}" "${FILE_PATH}" # Display thumbnail
       ;;
 

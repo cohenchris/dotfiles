@@ -25,6 +25,7 @@ declare -a dotfiles=(
   ~/.config/mail/
   ~/.config/nvim/
   ~/.config/shell/
+  ~/.config/swayimg/
   ~/.config/user-dirs.dirs
   ~/.config/vdirsyncer/
   ~/.config/waybar/
