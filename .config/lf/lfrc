@@ -60,81 +60,6 @@ map W $setsid -f ${TERMINAL} 2>&1           # open terminal at cwd
 ################################################################################
 # file open handler
 cmd open ${{
-
-  # image_carriage(current_img)
-  #   current_img - image currently being viewed
-  #
-  # When I open an image from the file manager in my image viewer, I want
-  # to be able to press the next/previous keys to key through the rest of the
-  # images in the same directory. This script "rotates" the content of a
-  # directory based on the first chosen file, so that if I open the 15th image,
-  # if I press next, it will go to the 16th etc.
-  function image_carriage() {
-    if [[ -z "${1}" ]]; then
-      notify CRITICAL "ERROR" "Usage: image_carriage [current_img]"
-      exit 1
-    fi
-
-    local current_img="${1}"
-    local image_extensions="\.\(png\|jpg\|jpeg\|gif\|webp\|avif\|tif\|ico\)\(_large\)*$"
-
-    ls "$(pwd)" |                                     \
-    awk -v BASE_FILE="$(basename "${current_img}")"   \
-           'BEGIN                                     \
-            {                                         \
-              carriage = "";                          \
-            }                                         \
-            {                                         \
-              if ($0 == BASE_FILE)                    \
-              {                                       \
-                last_file = $0;                       \
-              }                                       \
-              else                                    \
-              {                                       \
-                if (carriage)                         \
-                {                                     \
-                  carriage = carriage"\n";            \
-                }                                     \
-                carriage = carriage""$0;              \
-              }                                       \
-            }                                         \
-            END                                       \
-            {                                         \
-              print carriage;                         \
-              if (last_file) print last_file;         \
-            }' |                                      \
-    grep -i "${image_extensions}"
-  }
-
-  # image_viewer_wrapper(current_img)
-  #   current_img - image to view
-  #
-  # This function opens the default image viewing program and monitors for when
-  # the process is killed. When it is killed, it will print the last viewed file
-  # to stdout.
-  # This is used to help lf highlight the last viewed file on exit.
-  function image_viewer_wrapper() {
-    local current_img="${1}"
-    local carriage_file="${XDG_CACHE_HOME}/lf/image_carriage"
-
-    # Create carriage file
-    image_carriage "${current_img}" > "${carriage_file}"
-
-    # Start image viewing program and save PID
-    ${IMAGE_VIEWER} -F "${carriage_file}" &
-    ${IMAGE_VIEWER} "${current_img}" . &
-    IMAGE_VIEWER_PID=$!
-
-    # Monitor for when image viewer process is killed
-    while kill -0 $IMAGE_VIEWER_PID 2>/dev/null; do
-        LAST_FILE=$(pgrep -a ${IMAGE_VIEWER} | awk '{print $NF}')
-        sleep 0.5
-    done
-
-    echo "${LAST_FILE}"
-  }
-
-  # File handlers
   case $(file --dereference --brief --mime-type -- "${f}") in
 
     # XCF Image
@@ -144,7 +69,7 @@ cmd open ${{
 
     # Image
     image/*)
-      ${IMAGE_VIEWER} "${f}" .
+      setsid -f ${IMAGE_VIEWER} "${f}" .
     ;;
 
     # HTML
