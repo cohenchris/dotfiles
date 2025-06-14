@@ -73,7 +73,7 @@ twolame                     # sox mp3 handling part 2
 libreoffice-fresh           # document suite
 
 # ----------------------------- images/audio/video -----------------------------
-ueberzugpp                  # multimedia preview
+chafa                       # multimedia preview directly in terminal
 mpv                         # video/audio
 mediainfo                   # video/audio metadata
 imv                         # images

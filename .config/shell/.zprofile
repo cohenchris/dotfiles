@@ -39,7 +39,7 @@ export SHELL="zsh"                                                          # te
 export LAUNCHER="fuzzel"                                                    # application launcher
 export CALENDAR="${TERMINAL} khal interactive"                              # calendar
 export PDF_VIEWER="zathura"                                                 # pdf viewer
-export IMAGE_VIEWER="imv"                                                   # image viewer
+export IMAGE_VIEWER="swayimg"                                               # image viewer
 export FILE_BROWSER="${TERMINAL} lf-wrapper"                                # file browser
 export TASK_MANAGER="${TERMINAL} glances"                                   # task manager
 export DMENU_BLUETOOTH_LAUNCHER="fuzzel"                                    # use fuzzel instead of dmenu for dmenu-bluetooth
@@ -61,7 +61,7 @@ CUSTOM_PATHS=$(IFS=:; echo "${paths[*]}")
 export PATH="${CUSTOM_PATHS}:${PATH}"
 
 # Source zshrc
-[[ -f ~/.config/shell/.zshrc ]] && . ~/.config/shell/.zshrc
+[[ -f "${XDG_CONFIG_HOME}/shell/.zshrc" ]] && . "${XDG_CONFIG_HOME}/shell/.zshrc"
 
 # Start hyprland WM
 [[ -z ${WAYLAND_DISPLAY} && ${XDG_VTNR} -eq 1 ]] && exec /usr/bin/hyprland
