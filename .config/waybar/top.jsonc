@@ -79,7 +79,7 @@
 
   // clock module but I'm only using the calendar
   "clock": {
-    "interval": 1,
+    "interval": 60,
     "format": "󰸘  {:%b %d %Y}",
     "timezone": "America/Los_Angeles",
     "tooltip": true,
@@ -108,7 +108,7 @@
   "custom/clock": {
     "format": "{}",
     "tooltip": true,
-    "interval": 60,
+    "interval": 1,
     "exec": "${XDG_CONFIG_HOME}/waybar/scripts/clock.py",
     "return-type": "json",
     "on-click": "${CALENDAR}",
