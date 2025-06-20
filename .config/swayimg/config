@@ -153,6 +153,8 @@ j = next_file
 h = prev_file
 l = next_file
 r = rand_file
+n = next_file
+p = prev_file
 
 ########## ZOOM ##########
 # Zoom in/out
@@ -168,12 +170,14 @@ Shift+z = zoom fill
 BackSpace = zoom optimal
 
 ########## EDIT ##########
-# Rotation
-bracketleft = rotate_left
-bracketright = rotate_right
-# Flip
-m = flip_vertical
-Shift+m = flip_horizontal
+# Rotate left
+bracketleft = exec magick '%' -rotate -90 '%'
+# Rotate right
+bracketright = exec magick '%' -rotate 90 '%'
+# Flip vertical
+m = exec magick '%' -flip '%'
+# Flip horizontal
+Shift+m = exec magick '%' -flop '%'
 # Cycle through anti-aliasing modes
 a = antialiasing next
 Shift+a = antialiasing prev

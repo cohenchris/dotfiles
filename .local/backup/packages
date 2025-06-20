@@ -101,6 +101,7 @@ glances                     # task manager and resource monitor
 grim                        # screenshot capture
 slurp                       # screenshot area selection
 borg                        # borg backups
+python-pyfuse3              # FUSE python library for borg mount
 qbittorrent                 # qbittorrent client
 transmission-cli            # transmission cli torrent client
 wireguard-tools             # wireguard VPN
