@@ -44,5 +44,17 @@ do
 done
 
 curr_date=$(date +"%m-%d-%Y_%T")
-yadm commit -m "backup $curr_date"
+
+read -p "Would you like to enter a custom commit message? [y/N] " yn
+
+case ${yn} in
+  [Yy]* )
+    read -p "Commit message: " commit_msg
+  ;;
+  * )
+    commit_msg="backup $curr_date"
+  ;;
+esac
+
+yadm commit -m "${commit_msg}"
 yadm push origin main
