@@ -57,7 +57,7 @@
         "default": "󱦚",
         "new_mail": "󰦝" 
     },
-    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/vpn.sh info",
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/vpn.sh info",
     "return-type": "json",
     "on-click": "${VPN_MENU}"
   },
@@ -71,7 +71,7 @@
         "default": "󰇮",
         "new_mail": "󰛏",
     },
-    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/email.py",
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/email.py",
     "return-type": "json",
     "on-click": "mailsync & ${MAIL_CLIENT}",
     "on-click-right": "mailsync"
@@ -109,7 +109,7 @@
     "format": "{}",
     "tooltip": true,
     "interval": 1,
-    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/clock.py",
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/clock.py",
     "return-type": "json",
     "on-click": "${CALENDAR}",
   },
@@ -166,7 +166,7 @@
     "tooltip": true,
     "tooltip-format": "Power Menu",
     "menu": "on-click",
-    "menu-file": "${XDG_CONFIG_HOME}/waybar/power_menu.xml", // Menu file in resources folder
+    "menu-file": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/power_menu.xml", // Menu file in resources folder
     "menu-actions": {
       "lock": "hyprlock --immediate",
       "logout": "hyprctl dispatch exit",

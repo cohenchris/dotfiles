@@ -8,7 +8,7 @@ connection_ip=""
 # Check for an active Wireguard VPN connection
 while read -r name uuid type device
 do
-  if [[ ${type} == "wireguard" ]]
+  if [[ "${type}" == "wireguard" ]]
   then
     while read -r key value
     do
@@ -16,7 +16,7 @@ do
         connection_name="${name}"
         connection_ip="${value}"
       fi
-    done < <(nmcli connection show $name)
+    done < <(nmcli connection show "${name}")
   fi
 done < <(nmcli connection show)
 

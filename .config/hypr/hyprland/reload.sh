@@ -5,7 +5,7 @@ hyprctl reload
 
 # Waybar
 pkill waybar
-${XDG_CONFIG_HOME}/waybar/scripts/waybar.sh
+${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/waybar.sh
 
 # Hyprsunset
 pkill hyprsunset

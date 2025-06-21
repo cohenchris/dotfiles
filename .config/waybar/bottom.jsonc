@@ -39,17 +39,17 @@
 
   // internal + external IP
   "custom/ip": {
-    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/ip.sh",
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/ip.sh",
     "interval": 3600,
     "tooltip-format": "Public IP / Local IP"
   },
 
   // upload + download speeds
   "custom/speedtest": {
-    "exec": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh print",
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/speedtest.sh print",
     "interval": 10,
     "tooltip-format": "Download Speed / Upload Speed\n(right click to refresh)",
-    "on-click-right": "${XDG_CONFIG_HOME}/waybar/scripts/speedtest.sh refresh"
+    "on-click-right": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/speedtest.sh refresh"
   },
 
   // home disk

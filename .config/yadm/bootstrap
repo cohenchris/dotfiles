@@ -15,7 +15,7 @@ yadm decrypt
 read -p "Enter your full name: " NAME
 read -p "Enter your main email: " EMAIL
 
-cat <<EOF > ~/.config/user
+cat <<EOF > ${HOME}/.config/user
 export NAME="${NAME}"
 export EMAIL="${EMAIL}"
 EOF
@@ -29,7 +29,7 @@ echo "I Love Candy!"
 sudo sed '/ParallelDownloads/s/^#/ILoveCandy\n/g' -i /etc/pacman.conf
 
 paru -Syu --noconfirm
-packages_list=~/.local/backup/packages
+packages_list=${HOME}/.local/backup/packages
 
 # install all personal packages
 
@@ -42,7 +42,7 @@ curr_pkg=1
 while read pkg_name
 do
   # Omit lines that are blank or commented out
-  if [[ -n ${pkg_name} ]] && ! [[ ${pkg_name} =~ ^#.* ]]; then
+  if [[ -n ${pkg_name} ]] && ! [[ ${pkg_name} =${HOME} ^#.* ]]; then
 
     # Chop off descriptive comment, now left with only the name of the package
     pkg_name=$(echo ${pkg_name} | cut -d "#" -f 1)
@@ -53,7 +53,7 @@ do
 
     if [[ $? -ne 0 ]]
     then
-      echo ${pkg_name} >> ~/FAILED_INSTALLS.TXT
+      echo ${pkg_name} >> ${HOME}/FAILED_INSTALLS.TXT
     fi
 
     # Increment counter
@@ -72,11 +72,11 @@ echo "ZDOTDIR=${HOME}/.config/shell" > zshenv
 sudo mv zshenv /etc/zsh/
 
 # Change default shell to zsh for ${USER}
-sudo chsh -s $(which zsh) ${USER}
+sudo chsh -s $(which zsh) "${USER}"
 
 # Install zsh plugins
-mkdir -p ~/.local/share/zsh/plugins
-cd ~/.local/share/zsh/plugins
+mkdir -p "${HOME}/.local/share/zsh/plugins"
+cd "${HOME}/.local/share/zsh/plugins"
 git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions
@@ -88,19 +88,19 @@ git clone https://github.com/zsh-users/zsh-history-substring-search
 # Download wallpapers
 echo
 echo "Downloading wallpapers..."
-git clone git@github.com:cohenchris/wallpapers ~/.local/share/wallpapers
+git clone git@github.com:cohenchris/wallpapers "${HOME}/.local/share/wallpapers"
 
-# Delete extraneous files in ~/
+# Delete extraneous files in ${HOME}/
 echo
 echo "Deleting extraneous XDG directories..."
 cd
 rm -rfv Desktop Documents Music Pictures Public Templates Videos
-echo "Deleting extraneous files in ~/..."
-rm -rfv ~/.bash*
-rm -rfv ~/.gnupg
-rm -rfv ~/.viminfo
-rm -rf ~/.cargo
-sudo rm -rf ~/go # Don't know why this is created or why it's owned by root
+echo "Deleting extraneous files in ${HOME}/..."
+rm -rfv "${HOME}/.bash*"
+rm -rfv "${HOME}/.gnupg"
+rm -rfv "${HOME}/.viminfo"
+rm -rf "${HOME}/.cargo"
+sudo rm -rf "${HOME}/go" # Don't know why this is created or why it's owned by root
 
 # Start SSHD
 echo
@@ -111,7 +111,7 @@ sudo systemctl start sshd
 # Start Docker
 echo
 echo "Starting and Configuring Docker..."
-sudo usermod -aG docker ${USER}
+sudo usermod -aG docker "${USER}"
 sudo systemctl enable docker
 sudo systemctl start docker
 
@@ -128,17 +128,17 @@ elif [ $(echo "${GPG_ID}" | wc -l) -gt 1 ]; then
   echo "!!!!!!!!!! PLEASE INITIALIZE THE PASSWORD STORE MANUALLY !!!!!!!!!!"
   echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 else
-  pass init ${GPG_ID}
+  pass init "${GPG_ID}"
 fi
 
-if [ -f "/home/${USER}/FAILED_INSTALLS.TXT" ]; then
+if [ -f "${HOME}/FAILED_INSTALLS.TXT" ]; then
   echo
   echo "**************************************************"
   echo "**                  WARNING!!!                  **"
   echo "** INSTALLATION FAILED THE FOLLOWING PACKAGES   **"
   echo "**************************************************"
   echo
-  cat "/home/${USER}/FAILED_INSTALLS.TXT"
+  cat "${HOME}/FAILED_INSTALLS.TXT"
   echo
   echo "**************************************************"
   echo

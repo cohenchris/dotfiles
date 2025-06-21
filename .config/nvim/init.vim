@@ -3,12 +3,12 @@ let mapleader = "\<Space>"
 
 """""""""" PLUGINS """"""""""
 " Install vim-plug if not found
-if empty(glob(expand('${XDG_DATA_HOME}/nvim/autoload/plug.vim')))
-  silent !curl -fLo ${XDG_DATA_HOME}/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if ! filereadable(system('echo -n "${XDG_DATA_HOME:-${HOME}/.local/share}/nvim/autoload/plug.vim"'))
+  silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > "${XDG_DATA_HOME:-${HOME}/.local/share}/nvim/autoload/plug.vim"
 endif
 
 " Plugin list
-call plug#begin(expand('$XDG_DATA_HOME/nvim/plugged'))
+call plug#begin(system('echo -n "${XDG_DATA_HOME:-${HOME}/.local/share}/nvim/plugged"'))
 Plug 'tpope/vim-surround'                         " Surrounding characters
 Plug 'preservim/nerdtree'                         " File tree
 Plug 'ryanoasis/vim-devicons'                     " File tree icons

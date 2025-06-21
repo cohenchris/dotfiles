@@ -14,7 +14,7 @@ set record = "+Sent"                                                            
 set trash = "+Trash"                                                                # send any deleted emails to "Trash" box
 set postponed = "+Drafts"                                                           # send any incomplete emails to "Drafts" box
                                                                                     #
-set header_cache = "${XDG_CACHE_HOME}/neomutt"                                      # header cache
+set header_cache = "${XDG_CACHE_HOME:-${HOME}/.cache}/neomutt"                      # header cache
 set editor = "${EDITOR}"                                                            # use ${EDITOR} env var as default editor
 set sort = "threads"                                                                # sort messages by threads
 set sort_aux = "reverse-last-date-received"                                         # sort by most recent first
@@ -30,7 +30,7 @@ set reverse_name                                                                
 set include                                                                         # include message in replies
                                                                                     #
 # non-plaintext email                                                               #
-set mailcap_path = "${XDG_CONFIG_HOME}/neomutt/mailcap"                             # viewer/parser for non-plaintext email
+set mailcap_path = "${XDG_CONFIG_HOME:-${HOME}/.config}/neomutt/mailcap"            # viewer/parser for non-plaintext email
 auto_view text/html                                                                 # automatically parse html
 auto_view application/pgp-encrypted                                                 # automatically parse pgp encrypted mail
 alternative_order text/plain text/enriched text/html                                # prefer viewing email in plaintext, then enriched, then html
