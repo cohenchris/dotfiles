@@ -144,6 +144,7 @@ Return = mode
 Shift+r = reload
 i = info viewer
 Shift+i = info off
+Shift+F = exec mkdir favorites && mv '%' favorites/
 
 ########## NAVIGATION ##########
 Home = first_file

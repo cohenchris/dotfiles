@@ -45,7 +45,7 @@
     "format": "{title}",                  // how information should be displayed
     "icon": true,                         // whether or not the icon should be present
     "icon-size": 20,                      // size of the icon
-    "max-length": 55                      // max length of the window title
+    "max-length": 35                      // max length of the window title
   },
 
   // vpn
@@ -80,7 +80,7 @@
   // clock module but I'm only using the calendar
   "clock": {
     "interval": 60,
-    "format": "󰸘  {:%b %d %Y}",
+    "format": "󰸘  {:%A, %B %d %Y}",
     "timezone": "America/Los_Angeles",
     "tooltip": true,
     "tooltip-format": "{calendar}",

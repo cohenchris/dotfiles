@@ -29,12 +29,12 @@ echo "I Love Candy!"
 sudo sed '/ParallelDownloads/s/^#/ILoveCandy\n/g' -i /etc/pacman.conf
 
 paru -Syu --noconfirm
-packages_list=${HOME}/.local/backup/packages
+packages_list="${HOME}/.local/backup/packages"
 
-# install all personal packages
+# Install all personal packages
 
 # Count all lines that start with a letter (baically, omit commented lines)
-total_pkgs=$(grep '^[a-zA-Z]' ${packages_list} | wc -l)
+total_pkgs=$(grep '^[a-zA-Z]' "${packages_list}" | wc -l)
 echo
 echo "Downloading ${total_pkgs} personal packages..."
 curr_pkg=1
@@ -42,24 +42,24 @@ curr_pkg=1
 while read pkg_name
 do
   # Omit lines that are blank or commented out
-  if [[ -n ${pkg_name} ]] && ! [[ ${pkg_name} =${HOME} ^#.* ]]; then
+  if [[ -n "${pkg_name}" ]] && ! [[ "${pkg_name}" =~ ^#.* ]]; then
 
     # Chop off descriptive comment, now left with only the name of the package
-    pkg_name=$(echo ${pkg_name} | cut -d "#" -f 1)
+    pkg_name=$(echo "${pkg_name}" | cut -d "#" -f 1)
 
     # Install package
     echo "Installing package ${curr_pkg}/${total_pkgs} - ${pkg_name}"
-    paru -S --noconfirm ${pkg_name} > /dev/null 2>&1
+    paru -S --noconfirm "${pkg_name}" > /dev/null 2>&1
 
     if [[ $? -ne 0 ]]
     then
-      echo ${pkg_name} >> ${HOME}/FAILED_INSTALLS.TXT
+      echo "${pkg_name}" >> "${HOME}/FAILED_INSTALLS.TXT"
     fi
 
     # Increment counter
     curr_pkg=$((curr_pkg+1))
   fi
-done < ${packages_list}
+done < "${packages_list}"
 cd
 
 ################################################################################
