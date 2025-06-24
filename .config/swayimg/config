@@ -144,7 +144,8 @@ Return = mode
 Shift+r = reload
 i = info viewer
 Shift+i = info off
-Shift+F = exec mkdir favorites && mv '%' favorites/
+Shift+F = exec mkdir -p favorites && mv '%' favorites/
+Shift+d = exec mkdir -p trash && mv '%' trash/
 
 ########## NAVIGATION ##########
 Home = first_file
