@@ -17,7 +17,7 @@ waybar_json_data['text'] = f"󰥔  {time_now}"
 # Tooltip text should display 1 week's worth of appointments
 today = datetime.date.today().strftime("%m/%d/%Y")
 
-khal_command="khal list --format '{start-time} - {title}' " + today + " 7d"
+khal_command="khal list --format '{start-time} - {title} - {location}' " + today + " 5d"
 khal_output = subprocess.check_output(khal_command, shell=True).decode("utf-8")
 
 tooltip_text = []
@@ -28,24 +28,36 @@ for line in khal_output.split("\n"):
 
   split_line = line.split("-")
   
-  if len(split_line) == 0 or split_line[0] == "":
-    # Blank line, do nothing
-    pass
-  elif len(split_line) == 1:
-    # Found day-of-week header, make it larger and red
-    line = line.replace(",", "")
-    formatted_line = f"\n<span color='#c84b4b'><b>  {line}</b></span>"
-  elif split_line[0] == " ":
+  if len(split_line) == 1:
+    if any(dow in line for dow in dow_headers):
+      # Found day-of-week header, make it larger and red
+      line = line.replace(",", " -")
+      formatted_line = f"\n<span color='#c84b4b'><b> {line}</b></span>"
+    else:
+     # Location data extended across lines, exclude this extra data
+     continue
+  else:
     # Found an all-day event
     # All-day events don't have a starting time, so the beginning of the line will be " -"
     # Clean this up by adding "All Day" where the time would normally be
-    formatted_line = f"<span color='#ffcc66'>󰔠  All Day</span>   {split_line[1]}"
-  else:
-    # Normal line, append with no change
-    time = split_line[0]
+
+    # Time string
+    if split_line[0] == " ":
+      time = f"<span color='#ffcc66'>󰔠 All Day</span>  "
+    else:
+      time = f"<span color='#ffcc66'>󰔠 {split_line[0]}</span>"
+
+    # Event string
     event = split_line[1]
-    formatted_line = f"<span color='#ffcc66'>󰔠  {time}</span> {event}"
-  
+
+    # Location string
+    if split_line[2] == " ":
+      location = ""
+    else:
+      location = f"\n            <span color='turquoise'>{split_line[2]}</span>"
+
+    formatted_line = f"{time}{event}{location}"
+
   tooltip_text.append(formatted_line)
 
 waybar_json_data['tooltip'] = "\n".join(tooltip_text).strip()
