@@ -55,7 +55,7 @@ size = 300
 # Max number of invisible thumbnails stored in memory cache
 cache = 100
 # Load not only visible but also adjacent thumbnails
-preload = no
+preload = yes
 # Enable/disable storing thumbnails in persistent storage (yes/no)
 pstore = yes
 # Fill the entire tile with thumbnail (yes/no)
@@ -125,10 +125,10 @@ bottom_right = exif
 
 # Display scheme for gallery mode (position = content)
 [info.gallery]
-top_left = name,status
-top_right = none
+top_left = name
+top_right = index,status
 bottom_left = none
-bottom_right = index
+bottom_right = none
 
 ################################################################################
 # Viewer mode key binding configuration: key = action [parameters]
@@ -204,6 +204,8 @@ Return = mode
 Shift+r = reload
 i = info gallery
 Shift+i = info off
+Shift+F = exec mkdir -p favorites && mv '%' favorites/
+Shift+d = exec mkdir -p trash && mv '%' trash/
 
 ########## NAVIGATION ##########
 Home = first_file
