@@ -14,3 +14,7 @@ hyprsunset &
 # Hypridle
 pkill hypridle
 hypridle &
+
+# Hyprpaper
+pkill hyprpaper
+hyprpaper &

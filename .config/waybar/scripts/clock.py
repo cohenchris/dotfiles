@@ -31,7 +31,8 @@ for line in khal_output.split("\n"):
   if len(split_line) == 1:
     if any(dow in line for dow in dow_headers):
       # Found day-of-week header, make it larger and red
-      line = line.replace(",", " -")
+      split_line = line.split(',')
+      line = split_line[0].ljust(11, ' ') + split_line[1]
       formatted_line = f"\n<span color='#c84b4b'><b> {line}</b></span>"
     else:
      # Location data extended across lines, exclude this extra data
@@ -43,9 +44,9 @@ for line in khal_output.split("\n"):
 
     # Time string
     if split_line[0] == " ":
-      time = f"<span color='#ffcc66'>󰔠 All Day</span>  "
+      time = f"<span color='#ffcc66'>󰔠 All Day</span>    "
     else:
-      time = f"<span color='#ffcc66'>󰔠 {split_line[0]}</span>"
+      time = f"<span color='#ffcc66'>󰔠 {split_line[0]}</span>  "
 
     # Event string
     event = split_line[1]
@@ -54,7 +55,7 @@ for line in khal_output.split("\n"):
     if split_line[2] == " ":
       location = ""
     else:
-      location = f"\n            <span color='turquoise'>{split_line[2]}</span>"
+      location = f"\n              <span color='turquoise'>{split_line[2]}</span>"
 
     formatted_line = f"{time}{event}{location}"
 
