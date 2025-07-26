@@ -11,6 +11,7 @@ alias tetris="tetriscurses"
 alias mutt="neomutt"
 alias neomutt="neomutt -F ${NEOMUTT_CONFIG}"
 alias lf="source lf-wrapper"
+alias passreset="gpgconf --kill gpg-agent && faillock --reset"
 
 # fail2ban
 alias mail-fail2ban="docker exec -it mailserver fail2ban-client"

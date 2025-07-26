@@ -39,9 +39,6 @@ alternative_order text/plain text/enriched text/html                            
 set query_command = "email-lookup %s"                                               # search contacts to autocomplete email addresses
 bind editor <Tab> complete-query                                                    # TAB to autocomplete email addresses
                                                                                     #
-macro index,pager \cu "<pipe-message> urlscan<Enter>"                               # ctrl+u to view list of selectable URLs - in mailbox view list
-macro attach,compose \cu "<pipe-entry> urlscan<Enter>"                              # ctrl+u to view list of selectable URLs - in compose message or attach file screen
-                                                                                    #
 # External config files                                                             #
 source mailboxes                                                                    # mailboxes config
 source colors                                                                       # custom colors config
@@ -64,7 +61,7 @@ set pgp_check_gpg_decrypt_status_fd                                             
 set postpone_encrypt = yes                                                          # When set, postponed messages that are marked for encryption will be self-encrypted
 set pgp_default_key = "`pass email/pgp_pubkey`"                                     # Default PGP Key
 bind index,pager \Cx extract-keys                                                   # extract pub keys from email with ctrl-x
-macro compose y "<attach-key>`pass email/pgp_pubkey`<enter><enter><send-message>"   # automatically attach PGP pub key to every message
+macro compose \cy "<attach-key>`pass email/pgp_pubkey`<enter><enter><send-message>" # ctl+y to attach PGP pub key and send email
                                                                                     #
 #===================================================================================#
 # General Bindings                                                                  #
@@ -79,6 +76,10 @@ bind index l display-message                                                    
 bind index gg first-entry                                                           # when viewing a box, use gg to skip to the first entry
 bind index G last-entry                                                             # when viewing a box, use G to skip to the last entry
 bind index N search-opposite                                                        # when searching in a box, press N to go to the previous found entry
+bind compose y send-message                                                         # send email
+macro index,pager \cu "<pipe-message> urlscan<Enter>"                               # ctrl+u to view list of selectable URLs - in mailbox view list
+macro attach,compose \cu "<pipe-entry> urlscan<Enter>"                              # ctrl+u to view list of selectable URLs - in compose message or attach file screen
+                                                                                    #
                                                                                     #
 #===================================================================================#
 # Sidebar                                                                           #

@@ -28,6 +28,7 @@
     "power-profiles-daemon",
     "battery",
     "idle_inhibitor",
+    "custom/trash",
     "custom/power_menu" 
   ],
 
@@ -48,15 +49,21 @@
     "max-length": 35                      // max length of the window title
   },
 
+  // trash
+  "custom/trash": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 3600,
+    "return-type": "json",
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/trash.sh info",
+    "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/trash.sh clear",
+  },
+
   // vpn
   "custom/vpn": {
     "format": "{}",
     "tooltip": true,
     "interval": 10,
-    "format-icons": {
-        "default": "󱦚",
-        "new_mail": "󰦝" 
-    },
     "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/vpn.sh info",
     "return-type": "json",
     "on-click": "${VPN_MENU}"
@@ -67,10 +74,6 @@
     "format": "{}",
     "tooltip": true,
     "interval": 10,
-    "format-icons": {
-        "default": "󰇮",
-        "new_mail": "󰛏",
-    },
     "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/email.py",
     "return-type": "json",
     "on-click": "mailsync & ${MAIL_CLIENT}",

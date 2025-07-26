@@ -3,7 +3,7 @@ autoload -U colors && colors  # Load colors
 PS1="%B%{$fg[red]%}%n%{$fg[white]%}@%{$fg[white]%}%M:%~%{$fg[white]%}%{$reset_color%}$%b "
 
 # Lines configured by zsh-newuser-install
-HISTFILE=${XDG_DATA_HOME}/zsh/zhist
+HISTFILE=${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/zhist
 HISTSIZE=1000
 SAVEHIST=1000
 setopt autocd beep extendedglob nomatch notify
@@ -12,24 +12,24 @@ bindkey -v
 bindkey '^R' history-incremental-search-backward
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '${XDG_CONFIG_HOME}/shell/.zshrc'
+zstyle :compinstall filename '${XDG_CONFIG_HOME:-${HOME}/.config}/shell/.zshrc'
 
 autoload -Uz compinit
 autoload -Uz tetriscurses # :)
-compinit -d ${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}
+compinit -d ${XDG_CACHE_HOME:-${HOME}/.local/cache}/zsh/zcompdump-${ZSH_VERSION}
 # End of lines added by compinstall
 
 # Aliases
-[ -f "${XDG_CONFIG_HOME}/shell/aliasrc" ] && source ${XDG_CONFIG_HOME}/shell/aliasrc
+[ -f "${XDG_CONFIG_HOME:-${HOME}/.config}/shell/aliasrc" ] && source ${XDG_CONFIG_HOME:-${HOME}/.config}/shell/aliasrc
 
 # Keyboard fixes
-[ -f "${XDG_CONFIG_HOME}/shell/keyboardrc" ] && source ${XDG_CONFIG_HOME}/shell/keyboardrc
+[ -f "${XDG_CONFIG_HOME:-${HOME}/.config}/shell/keyboardrc" ] && source ${XDG_CONFIG_HOME:-${HOME}/.config}/shell/keyboardrc
 
 # User-specific data
-[ -f "${XDG_CONFIG_HOME}/user" ] && source ${XDG_CONFIG_HOME}/user
+[ -f "${XDG_CONFIG_HOME:-${HOME}/.config}/user" ] && source ${XDG_CONFIG_HOME:-${HOME}/.config}/user
 
 # Plugins
-source ${XDG_DATA_HOME}/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source ${XDG_DATA_HOME}/zsh/plugins/zsh-completions/zsh-completions.plugin.zsh
-source ${XDG_DATA_HOME}/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-source ${XDG_DATA_HOME}/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+source ${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/plugins/zsh-completions/zsh-completions.plugin.zsh
+source ${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source ${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh

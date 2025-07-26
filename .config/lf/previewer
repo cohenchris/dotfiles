@@ -11,7 +11,7 @@ IFS="$(printf '%b_' '\n')"; IFS="${IFS%_}"
 # but rather the width of the thumbnail that is generated
 DEFAULT_WIDTH=600
 
-THUMBNAIL_CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/lf"
+THUMBNAIL_CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.local/cache}/lf"
 
 # get_thumbnail_path(filepath)
 #   filepath - generate a unique thumbnail path for this file

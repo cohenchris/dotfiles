@@ -6,7 +6,7 @@ if [ -z "${WAYLAND_DISPLAY}" ]; then
 fi
 
 
-speedtest_cachefile="${XDG_CACHE_HOME:-${HOME}/.cache}/speedtest_results.txt"
+speedtest_cachefile="${XDG_CACHE_HOME:-${HOME}/.local/cache}/speedtest_results.txt"
 
 
 function run_speedtest()

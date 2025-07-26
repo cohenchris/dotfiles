@@ -4,7 +4,9 @@ let mapleader = "\<Space>"
 """""""""" PLUGINS """"""""""
 " Install vim-plug if not found
 if ! filereadable(system('echo -n "${XDG_DATA_HOME:-${HOME}/.local/share}/nvim/autoload/plug.vim"'))
-  silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > "${XDG_DATA_HOME:-${HOME}/.local/share}/nvim/autoload/plug.vim"
+  echo "Plugin manager not found! Installing now..."
+  silent !sh -c 'sleep 2'
+  silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-${HOME}/.local/share}/nvim/autoload/plug.vim" --create-dirs "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
 endif
 
 " Plugin list
@@ -32,25 +34,25 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 """""""""" DEFAULT SETTINGS """"""""""
 filetype plugin indent on
 syntax on
-filetype on             " required
-set nocompatible        " be iMproved, required
-set background=dark	    " dark background
-set showcmd             " Show (partial) command in status line.
-set showmatch           " Show matching brackets.
-set ignorecase          " Do case insensitive matching
-set smartcase           " Do smart case matching
-set incsearch           " Incremental search
-set autowrite           " Automatically save before commands like :next and :make
-set hidden              " Hide buffers when they are abandoned
-set mouse=a             " Enable mouse usage (all modes)
-set number              " Line numbers
-set noshowmode          " ...
-set nospell             " ...
-set shellcmdflag=-ic    " ...
-set termguicolors       " ...
-set encoding=utf8       " ...
-set laststatus=2        " ...
-set spell               " Spell checking
+filetype on             														" required
+set nocompatible        														" be iMproved, required
+set background=dark	    														" dark background
+set showcmd             														" show (partial) command in status line.
+set showmatch           														" show matching brackets.
+set ignorecase          														" do case insensitive matching
+set smartcase           														" do smart case matching
+set incsearch           														" incremental search
+set autowrite           														" automatically save before commands like :next and :make
+set hidden              														" hide buffers when they are abandoned
+set mouse=a             														" enable mouse usage (all modes)
+set number              														" line numbers
+set noshowmode          														" ...
+set nospell             														" ...
+set shellcmdflag=-ic    														" ...
+set termguicolors       														" ...
+set encoding=utf8       														" ...
+set laststatus=2        														" ...
+set spell               														" spell checking
 
 " Disable auto-commenting on newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -67,8 +69,11 @@ set shiftwidth=2 smarttab
 :map <leader>c :execute '!mytex compile%'<CR><CR>   " <leader> + c    --> compile LaTeX
 
 " NERDTree
-autocmd VimEnter * NERDTree | wincmd p              " Open NERDTree by default
+" Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+
+autocmd VimEnter * NERDTree | wincmd p              " open NERDTree by default
+let NERDTreeShowHidden=1                            " show hidden files in NERDTree by default
 nnoremap <C-n> :NERDTreeFocus<CR>                   " CTRL + n        --> focus to tree
 nnoremap <C-t> :NERDTreeToggle<CR>                  " CTRL + t        --> toggle tree view
 nnoremap <C-f> :NERDTreeFind<CR>                    " CTRL + f        --> find in tree
@@ -83,12 +88,12 @@ g:coq_settings = { 'auto_start': 'shut-up' }
 let g:colorizer_auto_filetype='*'
 
 " VIM Surround
-" cs"'  --> replace surrounding double quotes with single quotes
+                                                    " cs"'  --> replace surrounding double quotes with single quotes
 
 " VIM Commentary
-" gcc   --> comment out a line
-" gc    --> comment out the target of a selection
-" gcgc  --> comment out a set of adjacent commented lines
+                                                    " gcc   --> comment out a line
+                                                    " gc    --> comment out the target of a selection
+                                                    " gcgc  --> comment out a set of adjacent commented lines
 
 " For vim-rainbow plugin
 let g:rainbow_active = 1

@@ -4,8 +4,9 @@
                                                                             #
 # https://wiki.archlinux.org/title/XDG_Base_Directory                       #
 export XDG_CONFIG_HOME="${HOME}/.config"                                    # config files
-export XDG_CACHE_HOME="${HOME}/.cache"                                      # cached data
+export XDG_CACHE_HOME="${HOME}/.local/cache"                                # cached data
 export XDG_DATA_HOME="${HOME}/.local/share"                                 # application data
+export TRASH_DIR="${HOME}/.local/trash"                                     # trash
                                                                             #
 # CONFIGS                                                                   #
 export PASSWORD_STORE_DIR="${XDG_CONFIG_HOME}/password-store"               # pass
