@@ -27,8 +27,7 @@ function run_speedtest()
 if [[ "$1" == "refresh" ]]; then
   # Refresh the speedtest results
   run_speedtest
-
-elif [[ "$1" == "print" ]]; then
+else
   # If cached results file does not exist, run speedtest
   [[ ! -f "${speedtest_cachefile}" ]] && run_speedtest
 
@@ -45,10 +44,5 @@ elif [[ "$1" == "print" ]]; then
   fi
 
   echo "󰇚 ${download} Mb/s / 󰕒 ${upload} Mb/s"
-
-else
-  # Invalid argument passed
-  echo "Usage: speedtest.sh [refresh,print]"
-  exit
 fi
 
