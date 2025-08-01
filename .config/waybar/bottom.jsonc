@@ -27,9 +27,9 @@
   "modules-right": [
     "wireplumber",
     "bluetooth",
-    "cpu",
-    "temperature#cpu",
-    "memory",
+    "custom/cpu",
+    "custom/gpu",
+    "custom/memory",
     "network",
   ],
 
@@ -84,26 +84,31 @@
     "unit": "TB",
   },
 
-  // cpu usage
-  "cpu": {
-    "format": "  {usage:3}%",                                              // how information should be displayed
-    "tooltip": true,                                                        // Enable tooltip on hover
+  // cpu
+  "custom/cpu": {
+    "interval": 5,
+    "format": "{}",
+    "tooltip": true,
+    "return-type": "json",
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/cpu.sh",
   },
 
-  // cpu temperature
-  "temperature#cpu": {
-    "warning-threshold": 65,                                                // The threshold before it is considered warning
-    "critical-threshold": 80,                                               // The threshold before it is considered critical
-    "format": " {temperatureC:3}°C",                                       // The format in which the temperature should be displayed
-    "tooltip": true,                                                        // Enable tooltip on hover
-    "tooltip-format": "CPU temperature at {temperatureC}°C"                 // The format in which the tooltip should be displayed
+  // gpu
+  "custom/gpu": {
+    "interval": 5,
+    "format": "{}",
+    "tooltip": true,
+    "return-type": "json",
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/gpu.sh",
   },
 
-  // memory usage
-  "memory": {
-    "format": "  {percentage:3}%",                                         // how information should be displayed
-    "tooltip": true,                                                        // Enable tooltip on hover
-    "tooltip-format": "MEMORY USAGE\n\nMemory:\t\t{used:0.1f} / {total:0.1f} GiB ({percentage}%)\nSwap:\t\t{swapUsed:0.1f} / {swapTotal:0.1f} GiB ({swapPercentage}%)"
+  // memory
+  "custom/memory": {
+    "interval": 5,
+    "format": "{}",
+    "tooltip": true,
+    "return-type": "json",
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/memory.sh",
   },
 
   // network interface data
@@ -112,8 +117,8 @@
     "format-wifi": "  {essid} ({signalStrength}%)",
     "format-disconnected": "󰲛  Disconnected",
     "tooltip": true,
-    "tooltip-format-ethernet": "<big>INTERFACE</big>\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\n<big>SPEED</big>\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
-    "tooltip-format-wifi": "<big>INTERFACE</big>\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\n<big>WIRELESS</big>\nSSID:\t{essid}\nSignal Strength:\t{signalStrength}\nSignal dBm:\t{signaldBm}\nFrequency:\t{frequency}\n\n<big>SPEED</big>\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
+    "tooltip-format-ethernet": "<big>NETWORK</big>\n\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
+    "tooltip-format-wifi": "<big>NETWORK</big>\n\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\nSSID:\t{essid}\nSignal Strength:\t{signalStrength}\nSignal dBm:\t{signaldBm}\nFrequency:\t{frequency}\n\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
     "on-click": "${WIFI_MENU}"
   },
 
