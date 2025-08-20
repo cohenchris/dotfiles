@@ -2,7 +2,6 @@ mailboxes \
 +'INBOX' \
 +'INBOX/Admin' \
 +'INBOX/Burner' \
-+'INBOX/DMARC' \
 +'INBOX/Finance' \
 +'INBOX/Media' \
 +'INBOX/Shopping' \
