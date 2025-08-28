@@ -71,9 +71,11 @@ get_cpu_temps() {
   # CPU usage per core
   # Extract all "Core N:" lines and grab core ID and temperature
   mapfile -t cpu_temp_lines < <(sensors | awk '/^Core [0-9]+:/ {
-    match($0, /^Core ([0-9]+):[[:space:]]+\+([0-9.]+)°C/, m)
-    if (m[1] && m[2]) {
-      print m[1] "\t" m[2]
+    gsub(/[^0-9.+]/, " ")
+    if (match($0, /([0-9]+) +\+([0-9.]+)/)) {
+      core = substr($0, RSTART, RLENGTH)
+      split(core, parts, /[^0-9.]+/)
+      print parts[1] "\t" parts[2]
     }
   }')
   
@@ -127,7 +129,7 @@ num_cores=$((num_cores_usage < num_cores_temps ? num_cores_usage : num_cores_tem
 # Build tooltip lines in the requested format
 tooltip_lines=()
 for ((i=0; i<num_cores; i++)); do
-  core_num=$((i + 1))
+  core_num=$((i))
   usage=${cpu_usages[i]}
   temp=${cpu_temps[i]}
   
@@ -142,9 +144,19 @@ for ((i=0; i<num_cores; i++)); do
   tooltip_lines+=("Core $(printf "%2d" ${core_num}):    $(printf "%3d" ${usage})% / $(printf "%2s" ${temp_formatted})°C")
 done
 
+# Add header
+tooltip_lines="<u><b>CORE         USE \/ TEMP</b></u>\n"${tooltip_lines}
+
+# Temperature-based classes
+if [ "${cpu_temp_average}" -ge "90" ]; then
+  waybar_class="critical"
+elif [ "${cpu_temp_average}" -ge "80" ]; then
+  waybar_class="warning"
+fi
+
 cpu_icon=" "
 # Final waybar text/tooltip
-waybar_text="${cpu_icon} $(printf '%3d' ${cpu_use_average})% / $(printf '%2s' ${cpu_temp_average})°C"
+waybar_text="${cpu_icon} $(printf '%2d' ${cpu_use_average})% / $(printf '%2s' ${cpu_temp_average})°C"
 
 waybar_tooltip="<big>CPU</big>\n\n"$(printf "%s\n" "${tooltip_lines[@]}" | sed ':a;N;$!ba;s/\n/\\n/g')
-echo "{\"text\": \"${waybar_text}\", \"tooltip\": \"${waybar_tooltip}\"}"
+echo "{\"text\": \"${waybar_text}\", \"tooltip\": \"${waybar_tooltip}\", \"class\": \"${waybar_class}\"}"

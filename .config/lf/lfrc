@@ -14,11 +14,9 @@ set autoquit true                           # automatically quit the server when
 set info size:time                          # show size and timestamp for each file
 set mouse true                              # allow mouse interaction
 set sixel true                              # enable sixel images in preview
-set hidden true                             # show hidden files
-set reverse true                            # sort files in reverse by default (dotfiles last)
 
 # Clipboard
-map <c-d> delete                            # prompt to delete file
+map <c-d> delete                            # permanently delete file
 map D trash                                 # move file to trash
 map y copy                                  # copy file
 map d cut                                   # cut file
@@ -38,6 +36,7 @@ map zn set info                             # clear all displayed file info
 map zs set info size                        # show size of each file
 map zt set info ctime                       # show last modified time of each file
 map za set info size:time                   # show both size and last modified time of each file
+map sz $ncdu                                # show ranked disk usage
 
 # Sorting
 map sn :set sortby natural                  # default sorting order
@@ -168,12 +167,12 @@ cmd open ${{
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
 
-# rm handler
+# permanently delete files
 cmd delete ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
 
-  printf "You are about to PERMANENTLY delete the following:\n\n"
+  printf "You are about to \e[31mPERMANENTLY\e[0m delete the following:\n\n"
 
   while IFS= read -r file_to_delete; do
     printf "\t%s\n" "${file_to_delete}"
@@ -185,9 +184,10 @@ cmd delete ${{
 	read ans
 	if [ $ans = "y" ]; then
     rm -rf -- ${fx}
-    notify NORMAL "Permanently deleted files" "${fx}"
+    notify NORMAL "  Permanently deleted files" "${fx}"
   fi
 }}
+
 
 # move files to trash
 cmd trash ${{
@@ -196,19 +196,38 @@ cmd trash ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
 
-  printf "Would you like to trash these files?\n\n"
+  if [[ "${PWD}" = "${TRASH_DIR}" ]]; then
+    # Already in trash, prompt to permanently delete
+    printf "Would you like to \e[31mPERMANENTLY\e[0m delete this file from the trash?\n\n"
 
-  while IFS= read -r file_to_delete; do
-    printf "\t%s\n" "${file_to_delete}"
-  done <<< "${fx}"
-  printf "\n"
+    while IFS= read -r file_to_delete; do
+      printf "\t%s\n" "${file_to_delete}"
+    done <<< "${fx}"
+    printf "\n"
 
-  printf "Are you sure? Trash directory is located at ${TRASH_DIR}. [y/N] "
+    printf "Are you absolutely sure? This action cannot be undone. [y/N] "
 
-	read ans
-	if [ $ans = "y" ]; then
-    IFS="$(printf '\n\t')"; mv $fx "${TRASH_DIR}"
-    notify NORMAL "Moved files to trash" "${fx}"
+    read ans
+    if [ $ans = "y" ]; then
+      rm -rf -- ${fx}
+      notify NORMAL "  Permanently deleted files" "${fx}"
+    fi
+  else
+    # Default handling
+    printf "Would you like to trash these files?\n\n"
+
+    while IFS= read -r file_to_delete; do
+      printf "\t%s\n" "${file_to_delete}"
+    done <<< "${fx}"
+    printf "\n"
+
+    printf "Are you sure? Trash directory is located at ${TRASH_DIR}. [y/N] "
+
+    read ans
+    if [ $ans = "y" ]; then
+      IFS="$(printf '\n\t')"; mv $fx "${TRASH_DIR}"
+      notify NORMAL "  Moved files to trash" "${fx}"
+    fi
   fi
 }}
 

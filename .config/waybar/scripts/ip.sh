@@ -15,4 +15,4 @@ if [[ "${internal_ip}" == "" ]]; then
 fi
 
 # Format and print
-echo "󱂇  ${external_ip} / 󰦉  ${internal_ip}"
+echo "  ${external_ip} /   ${internal_ip}"

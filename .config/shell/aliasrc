@@ -12,6 +12,7 @@ alias mutt="neomutt"
 alias neomutt="neomutt -F ${NEOMUTT_CONFIG}"
 alias lf="source lf-wrapper"
 alias passreset="gpgconf --kill gpg-agent && faillock --reset"
+alias flushdns="sudo systemd-resolve --flush-caches"
 
 # fail2ban
 alias mail-fail2ban="docker exec -it mailserver fail2ban-client"

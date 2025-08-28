@@ -153,9 +153,10 @@ modules-left > widget:first-child > #workspaces {
 
 }
 
-/********** VPN **********/
-#custom-vpn {
 
+/********** PRIVACY **********/
+#privacy {
+  margin-right: 5px;
 }
 
 
@@ -211,6 +212,12 @@ modules-left > widget:first-child > #workspaces {
 }
 
 
+/******* TRASH ********/
+#custom-trash {
+
+}
+
+
 /******* POWER MENU ********/
 #custom-power_menu {
   margin-left: 10px;
@@ -261,15 +268,40 @@ modules-left > widget:first-child > #workspaces {
 
 }
 
+#custom-cpu.warning {
+  background-color: @warning-color;
+}
+
+#custom-cpu.critical {
+  background-color: @alert-color;
+}
+
 
 /********** GPU USAGE **********/
 #custom-gpu {
 
 }
 
+#custom-gpu.warning {
+  background-color: @warning-color;
+}
+
+#custom-gpu.critical {
+  background-color: @alert-color;
+}
 
 /********** MEMORY USAGE **********/
 #custom-memory {
+
+}
+
+#custom-memory.critical {
+  background-color: @alert-color;
+}
+
+
+/********** VPN **********/
+#custom-vpn {
 
 }
 

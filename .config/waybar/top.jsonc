@@ -16,12 +16,12 @@
 
   // center modules
   "modules-center": [
+    "privacy",
     "hyprland/window" 
   ],
 
   // right modules
   "modules-right": [
-    "custom/vpn",
     "custom/email",
     "clock",
     "custom/clock",
@@ -38,35 +38,36 @@
 
   // workspaces
   "hyprland/workspaces": {
-    "format": "{name}"                    // how information should be displayed.
+    "format": "{name}"
+  },
+
+  // monitor applications which are playing audio, capturing audio, or sharing the screen
+  "privacy": {
+    "icon-spacing": 5,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "audio-out",
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "screenshare",
+        "tooltip-icon-size": 24
+      },
+    ],
   },
 
   // focused window name
   "hyprland/window": {
-    "format": "{title}",                  // how information should be displayed
-    "icon": true,                         // whether or not the icon should be present
-    "icon-size": 20,                      // size of the icon
-    "max-length": 35                      // max length of the window title
-  },
-
-  // trash
-  "custom/trash": {
-    "format": "{}",
-    "tooltip": true,
-    "interval": 3600,
-    "return-type": "json",
-    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/trash.sh info",
-    "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/trash.sh clear",
-  },
-
-  // vpn
-  "custom/vpn": {
-    "format": "{}",
-    "tooltip": true,
-    "interval": 10,
-    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/vpn.sh info",
-    "return-type": "json",
-    "on-click": "${VPN_MENU}"
+    "format": "{title}",
+    "icon": true,
+    "icon-size": 20,
+    "max-length": 50,
   },
 
   // email
@@ -161,6 +162,17 @@
     "tooltip": true,
     "tooltip-format-activated": "Idle inhibition is <span color='#00c000'><b>active</b></span>.\nScreen will not auto-lock.",
     "tooltip-format-deactivated": "Idle inhibition is <span color='#c84b4b'><b>inactive</b></span>.\nScreen will auto-lock after 10 minutes.",
+  },
+
+  // trash
+  "custom/trash": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 3600,
+    "return-type": "json",
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/trash.sh info",
+    "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/trash.sh open",
+    "on-click-right": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/trash.sh clear",
   },
 
   // power menu

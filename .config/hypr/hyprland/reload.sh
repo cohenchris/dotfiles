@@ -18,3 +18,5 @@ hypridle &
 # Hyprpaper
 pkill hyprpaper
 hyprpaper &
+
+set-wallpaper random

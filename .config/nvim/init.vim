@@ -59,8 +59,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " redefine tabs as 2 spaces
 set tabstop=2
-set softtabstop=0 expandtab
-set shiftwidth=2 smarttab
+set shiftwidth=2
+set expandtab
 
 
 """""""""" KEY BINDINGS  AND PLUGIN SETTINGS """"""""""
@@ -72,7 +72,7 @@ set shiftwidth=2 smarttab
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
 
-autocmd VimEnter * NERDTree | wincmd p              " open NERDTree by default
+"autocmd VimEnter * NERDTree | wincmd p              " open NERDTree by default
 let NERDTreeShowHidden=1                            " show hidden files in NERDTree by default
 nnoremap <C-n> :NERDTreeFocus<CR>                   " CTRL + n        --> focus to tree
 nnoremap <C-t> :NERDTreeToggle<CR>                  " CTRL + t        --> toggle tree view

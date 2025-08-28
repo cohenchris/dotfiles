@@ -14,15 +14,16 @@ gpu_cuda_version=$(nvidia-smi --version | awk -F': ' '/CUDA Version/ {print $2}'
 
 # Power
 gpu_power_used="$(nvidia-smi --query-gpu=power.draw --format=noheader,nounits)"
+gpu_power_used=$(awk "BEGIN {printf \"%.1f\", ${gpu_power_used}}")
 gpu_power_total="$(nvidia-smi --query-gpu=power.max_limit --format=noheader,nounits)"
+gpu_power_total=$(awk "BEGIN {printf \"%.1f\", ${gpu_power_total}}")
 gpu_power_use_percent=$(awk "BEGIN {printf \"%.1f\", (${gpu_power_used} / ${gpu_power_total}) * 100}")
-
 
 # VRAM
 gpu_vram_total="$(nvidia-smi --query-gpu=memory.total --format=noheader,nounits)"
-gpu_vram_total=$(awk "BEGIN {printf \"%.2f\", ${gpu_vram_total} / 1024}")
+gpu_vram_total=$(awk "BEGIN {printf \"%.1f\", ${gpu_vram_total} / 1024}")
 gpu_vram_used="$(nvidia-smi --query-gpu=memory.used --format=noheader,nounits)"
-gpu_vram_used=$(awk "BEGIN {printf \"%.2f\", ${gpu_vram_used} / 1024}")
+gpu_vram_used=$(awk "BEGIN {printf \"%.1f\", ${gpu_vram_used} / 1024}")
 gpu_vram_use_percent="$(nvidia-smi --query-gpu=utilization.memory --format=noheader,nounits)"
 
 # GPU Usage
@@ -39,9 +40,15 @@ temperature_tooltip="Temp:\t${gpu_temp}°C"
 vram_tooltip="VRAM:\t${gpu_vram_used} GB / ${gpu_vram_total} GB  (${gpu_vram_use_percent}%)"
 power_tooltip="Power:\t${gpu_power_used} W / ${gpu_power_total} W  (${gpu_power_use_percent}%)"
 
+# Temperature-based classes
+if [ "${gpu_temp}" -ge "90" ]; then
+  waybar_class="critical"
+elif [ "${gpu_temp}" -ge "80" ]; then
+  waybar_class="warning"
+fi
 
 # Final waybar text/tooltip
-waybar_text="${gpu_icon} $(printf '%3d' ${gpu_use_percent})% / $(printf '%2s' ${gpu_temp})°C"
+waybar_text="${gpu_icon}  $(printf '%2d' ${gpu_use_percent})% / $(printf '%2s' ${gpu_temp})°C"
 waybar_tooltip="<big>GPU</big>\n\n${info_tooltip}\n\n${usage_tooltip}\n${temperature_tooltip}\n${vram_tooltip}\n${power_tooltip}"
 
-echo "{\"text\": \"${waybar_text}\", \"tooltip\": \"${waybar_tooltip}\"}"
+echo "{\"text\": \"${waybar_text}\", \"tooltip\": \"${waybar_tooltip}\", \"class\": \"${waybar_class}\"}"
