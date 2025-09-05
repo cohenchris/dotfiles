@@ -141,11 +141,11 @@ for ((i=0; i<num_cores; i++)); do
       printf "%.1f", t
   }')
   
-  tooltip_lines+=("Core $(printf "%2d" ${core_num}):    $(printf "%3d" ${usage})% / $(printf "%2s" ${temp_formatted})°C")
+  tooltip_lines+=("Core $(printf "%02d" ${core_num}):    $(printf "%3d" ${usage})% / $(printf "%2s" ${temp_formatted})°C")
 done
 
 # Add header
-tooltip_lines="<u><b>CORE         USE \/ TEMP</b></u>\n"${tooltip_lines}
+tooltip_lines="CORE ##:     USE \/ TEMP\n───────────────────────\n"${tooltip_lines}
 
 # Temperature-based classes
 if [ "${cpu_temp_average}" -ge "90" ]; then

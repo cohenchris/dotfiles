@@ -1,4 +1,59 @@
-text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput;
-application/pdf; ${PDF_VIEWER} %s
-image/*; ${IMAGE_VIEWER} %s
-video/*; mpv %s
+# XCF image
+image/x-xcf;                          gimp %s
+
+# Images
+image/*;                              ${IMAGE_VIEWER} %s
+
+# HTML
+text/html;                            ${BROWSER} %s
+
+# LaTeX document
+text/x-tex;                           mytex edit %s
+
+# Plaintext files
+text/*;                               ${EDITOR} %s
+application/json;                     ${EDITOR} %s
+inode/x-empty;                        ${EDITOR} %s
+application/x-subrip;                 ${EDITOR} %s
+application/x-pem-file;               ${EDITOR} %s
+message/rfc822;                       ${EDITOR} %s
+
+# Audio
+audio/*;                              mpv %s
+
+# Video
+video/*;                              mpv %s
+
+# Read-only documents
+application/pdf;                      ${PDF_VIEWER} %s
+application/epub+zip;                 ${PDF_VIEWER} %s
+application/x-mobipocket-ebook;       ${PDF_VIEWER} %s
+
+# Compressed archives
+application/x-bzip-compressed-tar;    extract %s
+application/gzip;                     extract %s
+application/x-xz;                     extract %s
+application/x-bzip2;                  extract %s
+application/vnd.rar;                  extract %s
+application/x-tar;                    extract %s
+application/x-bzip-compressed-tar;    extract %s
+application/zip;                      extract %s
+application/x-compress;               extract %s
+application/x-7z-compressed;          extract %s
+application/zstd;                     extract %s
+application/java-archive;             extract %s
+
+# Torrent
+application/x-bittorrent;             qbittorrent %s
+
+# PGP-encrypted
+application/pgp-encrypted;            ${EDITOR} %s
+
+# Office documents
+application/msword;                   libreoffice %s
+application/vnd.ms-word*;             libreoffice %s
+application/vnd.ms-powerpoint*;       libreoffice %s
+application/vnd.ms-excel*;            libreoffice %s
+application/x-ole-storage;            libreoffice %s
+application/*opendocument*;           libreoffice %s
+application/*officedocument*;         libreoffice %s

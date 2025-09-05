@@ -62,6 +62,18 @@ map W $setsid -f ${TERMINAL} 2>&1           # open terminal at cwd
 ################################################################################
 # file open handler
 cmd open ${{
+
+  # File is not readable by the current user
+  if ! [[ -r ${file} ]]; then
+    clear; tput cup $(($(tput lines)/3)); tput bold
+    printf "\e[1;91mERROR: File is not readable by the current user\n\e[0m"
+    printf "\nFile Path: \t%s\n" "${f}"
+    printf "Description: \t%s\n" $(file --dereference --brief -- ${f})
+    printf "Mime Type: \t%s\n" $(file --mime-type --dereference --brief -- ${f})
+    printf "\nPress enter to continue..."
+    read ans
+  fi
+
   case $(file --dereference --brief --mime-type -- "${f}") in
 
     # XCF Image
@@ -89,13 +101,14 @@ cmd open ${{
     # inode/x-empty           - empty files
     # application/x-subrip    - SubRip video to subtitles text file
     # application/x-pem-file  - SSH private key
-    text/* | application/json | inode/x-empty | application/x-subrip | application/x-pem-file)
+    # message/rfc822          - SMTP mail, ASCII text
+    text/* | application/json | inode/x-empty | application/x-subrip | application/x-pem-file | message/rfc822)
       ${EDITOR} ${fx}
     ;;
     
     # Audio
     audio/*)
-      mpv --audio-display=no ${f}
+      mpv ${f}
     ;;
     
     # Video
@@ -151,7 +164,7 @@ cmd open ${{
     *)
       clear; tput cup $(($(tput lines)/3)); tput bold
       set -f
-      printf "ERROR: No configured opener\n"
+      printf "\e[1;91mERROR: No configured opener\n\e[0m"
       printf "\nFile Path: \t%s\n" "${f}"
       printf "Description: \t%s\n" $(file --dereference --brief -- ${f})
       printf "Mime Type: \t%s\n" $(file --mime-type --dereference --brief -- ${f})

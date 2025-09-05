@@ -102,8 +102,8 @@
     "format-disabled": "", // an empty format will hide the module
     "format-connected": " {num_connections}",
     "format-no-controller": " No Controller",
-    "tooltip-format-connected": "             -- CONTROLLER --            \n{controller_alias:20}\t{controller_address}\n\n\n              -- DEVICES --              \n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias:20}\t{device_address}",
+    "tooltip-format-connected": "───────────── BLUETOOTH CONTROLLER ────────────\n\nName:\t{controller_alias:20}\nMAC:\t{controller_address}\n\n────────────── CONNECTED DEVICES ──────────────\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "Name:\t{device_alias:20}\nMAC:\t{device_address}\n",
     "on-click": "${BLUETOOTH_MENU}"
   },
 
@@ -122,7 +122,8 @@
     "format": "{}",
     "tooltip": true,
     "return-type": "json",
-    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/gpu.sh",
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/gpu.sh waybar",
+    "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/gpu.sh watch"
   },
 
   // memory
