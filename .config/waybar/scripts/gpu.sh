@@ -83,6 +83,7 @@ if [[ "${1}" == "waybar" ]]; then
 elif [[ "${1}" == "watch" ]]; then
   # Open a centered nvidia-smi window to monitor GPU
   export -f centered_nvidia_smi
+  notify NORMAL "󰨇  Watching GPU..."
   ${TERMINAL} --title "Watching GPU" bash -c 'watch --no-title centered_nvidia_smi'
 else
   echo "USAGE: gpu.sh [waybar,watch]"
