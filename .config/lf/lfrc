@@ -197,7 +197,11 @@ cmd delete ${{
 	read ans
 	if [ $ans = "y" ]; then
     rm -rf -- ${fx}
-    notify NORMAL "  Permanently deleted files" "${fx}"
+    if [[ "$?" -eq 0 ]]; then
+      notify NORMAL "  Permanently deleted files" "${fx}"
+    else
+      notify CRITICAL "  ERROR" "Unable to delete all files"
+    fi
   fi
 }}
 
@@ -223,7 +227,11 @@ cmd trash ${{
     read ans
     if [ $ans = "y" ]; then
       rm -rf -- ${fx}
-      notify NORMAL "  Permanently deleted files" "${fx}"
+      if [[ "$?" -eq 0 ]]; then
+        notify NORMAL "  Permanently deleted files" "${fx}"
+      else
+        notify CRITICAL "  ERROR" "Unable to delete all files"
+      fi
     fi
   else
     # Default handling
@@ -239,7 +247,11 @@ cmd trash ${{
     read ans
     if [ $ans = "y" ]; then
       IFS="$(printf '\n\t')"; mv $fx "${TRASH_DIR}"
-      notify NORMAL "  Moved files to trash" "${fx}"
+      if [[ "$?" -eq 0 ]]; then
+        notify NORMAL "  Moved files to trash" "${fx}"
+      else
+        notify CRITICAL "  ERROR" "Unable to trash all files"
+      fi
     fi
   fi
 }}
@@ -258,7 +270,7 @@ cmd bulkrename ${{
 
     [ "$(wc -l < "${tmpfile_old}")" -eq "$(wc -l < "${tmpfile_new}")" ] || { rm -f "${tmpfile_old}" "${tmpfile_new}"; exit 1; }
 
-    paste "${tmpfile_old}" "${tmpfile_new}" | while IFS="$(printf '\t')" read -r src dst
+    paste "${tmpfile_old}" "${tmpfile_new}" | while delete IFS="$(printf '\t')" read -r src dst
     do
         [ "${src}" = "${dst}" ] || [ -e "${dst}" ] || mv -- "${src}" "${dst}"
     done
