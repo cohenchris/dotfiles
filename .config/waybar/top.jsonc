@@ -115,7 +115,7 @@
     "interval": 1,
     "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/clock.py",
     "return-type": "json",
-    "on-click": "${CALENDAR}",
+    "on-click": "${CALENDAR}"
   },
 
   // cycle through power profiles

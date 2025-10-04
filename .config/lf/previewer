@@ -80,11 +80,19 @@ HEIGHT="${3}" # Height of preview pane
 HORIZONTAL_POS="${4}" # Horizontal position of preview pane
 VERTICAL_POS="${5}" # Vertical position of preview pane
 
-# File is not readable
-if ! [[ -r ${FILE_PATH} ]]; then
-  printf "\e[1;91mFile is not readable by the current user\n\e[0m\n\n"
-  printf "Description: \t%s\n" $(file --dereference --brief -- ${FILE_PATH})
-  printf "Mime Type: \t%s\n" $(file --mime-type --dereference --brief -- ${FILE_PATH})
+# Permissions issue
+if [[ ! -w "${FILE_PATH}" ]] || [[ ! -r "${FILE_PATH}" ]]; then
+  # If not writeable, display a warning, but does not prevent preview
+  if [[ ! -w "${FILE_PATH}" ]]; then
+    printf "\e[1;91mWARNING: File is not writeable by the current user\n\e[0m"
+  fi
+
+  # If not readable, display a warning AND prevent preview
+  if [[ ! -r "${FILE_PATH}" ]]; then
+    printf "\e[1;91mWARNING: File is not readable by the current user\n\e[0m"
+  fi
+
+  printf "\n"
 fi
 
 # Handle previews

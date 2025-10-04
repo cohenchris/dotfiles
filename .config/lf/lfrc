@@ -63,13 +63,18 @@ map W $setsid -f ${TERMINAL} 2>&1           # open terminal at cwd
 # file open handler
 cmd open ${{
 
-  # File is not readable by the current user
-  if ! [[ -r ${file} ]]; then
+  # File is not readable or writeable by the current user
+  if [[ ! -r "${f}" ]] || [[ ! -w "${f}" ]]; then
     clear; tput cup $(($(tput lines)/3)); tput bold
-    printf "\e[1;91mERROR: File is not readable by the current user\n\e[0m"
+    if [[ ! -r "${f}" ]]; then
+      printf "\e[1;91mWARNING: File is not readable by the current user\n\e[0m"
+    fi
+    if [[ ! -w "${f}" ]]; then
+      printf "\e[1;91mWARNING: File is not writeable by the current user\n\e[0m"
+    fi
     printf "\nFile Path: \t%s\n" "${f}"
-    printf "Description: \t%s\n" $(file --dereference --brief -- ${f})
-    printf "Mime Type: \t%s\n" $(file --mime-type --dereference --brief -- ${f})
+    printf "Description: \t%s\n" $(file --dereference --brief -- "${f}")
+    printf "Mime Type: \t%s\n" $(file --mime-type --dereference --brief -- "${f}")
     printf "\nPress enter to continue..."
     read ans
   fi
