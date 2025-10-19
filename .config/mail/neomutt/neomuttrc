@@ -39,7 +39,7 @@ alternative_order text/plain text/enriched text/html                            
 set query_command = "email-lookup %s"                                               # search contacts to autocomplete email addresses
 bind editor <Tab> complete-query                                                    # TAB to autocomplete email addresses
                                                                                     #
-# External config files                                                             #
+# external config files                                                             #
 source mailboxes                                                                    # mailboxes config
 source colors                                                                       # custom colors config
                                                                                     #

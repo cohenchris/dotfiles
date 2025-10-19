@@ -112,7 +112,7 @@
   "custom/clock": {
     "format": "{}",
     "tooltip": true,
-    "interval": 1,
+    "interval": 5,
     "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/clock.py",
     "return-type": "json",
     "on-click": "${CALENDAR}"

@@ -49,6 +49,7 @@ export WIFI_MENU="wifi-menu"                                                    
 export VPN_MENU="vpn-menu"                                                          # VPN selection menu
 export MAIL_CLIENT="${TERMINAL} neomutt -F ${NEOMUTT_CONFIG}"                       # email client
 export TRASH_BROWSER="${TERMINAL} --title \"Trash\" lf-wrapper ${TRASH_DIR}"        # browse trash directory
+export AUDIO_MANAGER="pavucontrol"                                                  # audio management
                                                                                     #
 #####################################################################################
 

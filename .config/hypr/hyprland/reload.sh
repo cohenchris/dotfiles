@@ -20,3 +20,5 @@ pkill hyprpaper
 hyprpaper &
 
 set-wallpaper random
+
+${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/speedtest.sh refresh

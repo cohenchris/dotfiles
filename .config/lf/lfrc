@@ -98,7 +98,7 @@ cmd open ${{
 
     # LaTeX
     text/x-tex)
-      mytex edit ${f}
+      my-tex edit ${f}
     ;;
 
     # text/*                  - all unhandled text files
@@ -106,8 +106,9 @@ cmd open ${{
     # inode/x-empty           - empty files
     # application/x-subrip    - SubRip video to subtitles text file
     # application/x-pem-file  - SSH private key
+    # application/pgp-keys    - PGP key
     # message/rfc822          - SMTP mail, ASCII text
-    text/* | application/json | inode/x-empty | application/x-subrip | application/x-pem-file | message/rfc822)
+    text/* | application/json | inode/x-empty | application/x-subrip | application/x-pem-file | application/pgp-keys | message/rfc822)
       ${EDITOR} ${fx}
     ;;
     

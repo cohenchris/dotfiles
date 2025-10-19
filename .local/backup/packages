@@ -76,6 +76,7 @@ mpv                         # video/audio
 mediainfo                   # video/audio metadata
 imv                         # images
 ffmpegthumbnailer           # video preview
+libwebp-utils               # webp
 
 ################################################################################
 #                                     email                                    #

@@ -94,6 +94,7 @@
     "max-volume": 100,
     "tooltip": true,
     "tooltip-format": "\"{node_name}\" volume at {volume}%",
+    "on-click-right": "${AUDIO_MANAGER}"
   },
 
   // bluetooth

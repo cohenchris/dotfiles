@@ -6,6 +6,10 @@
 # Custom waybar modules requires input as JSON
 function gpu_waybar()
 {
+  # No GPU, no waybar module
+  nvidia-smi > /dev/null 2>&1
+  [[ $? -ne 0 ]] && exit 1
+
   # General Information
   gpu_icon="󰨇"
   gpu_name="$(nvidia-smi --query-gpu=name --format=noheader,nounits)"

@@ -19,8 +19,5 @@ alias mail-fail2ban="docker exec -it mailserver fail2ban-client"
 alias swag-fail2ban="docker exec -it swag fail2ban-client"
 
 # Scripts
-alias b2-fuse="/home/${USER}/scripts/system/b2-fuse.sh"
-alias batocera="/home/${USER}/scripts/system/batocera.sh"
-alias media-scan="/home/${USER}/scripts/system/scan-media-files.sh"
-alias docker-restart="/home/${USER}/scripts/system/server/docker-restart.sh"
-alias nextcloud-scan="/home/${USER}/scripts/system/server/nextcloud/nextcloud-scan-files.sh"
+alias restart-docker="/home/${USER}/scripts/system/server/docker-restart.sh"
+alias scan-nextcloud="/home/${USER}/scripts/system/server/nextcloud/nextcloud-scan-files.sh"
