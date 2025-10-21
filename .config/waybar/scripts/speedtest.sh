@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Must be running in a graphical environment
-if [ -z "${WAYLAND_DISPLAY}" ]; then
+if [[ -n "${SSH_TTY}" ]] || [[ -z "${WAYLAND_DISPLAY}" ]]; then
   exit
 fi
 

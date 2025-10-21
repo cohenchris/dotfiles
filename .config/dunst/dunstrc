@@ -8,9 +8,9 @@ monitor = 0
 width = (100, 1000)
 
 # The origin of the notification window on the screen
-# Move the toast from the origin using offset
+# Move the toast from the origin using offset (horizontal, vertical)
 origin = top-right
-offset = (75, 75)
+offset = (50, 50)
 
 # Size of gap to display between notifications
 gap_size = 5
