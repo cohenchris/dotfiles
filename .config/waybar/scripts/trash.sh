@@ -60,7 +60,7 @@ function trash_clear() {
 function trash_open() {
   notify NORMAL "${trash_icon}  Opening the trash..."
 
-  "${FILE_BROWSER}" "${TRASH_DIR}"
+  eval "${FILE_BROWSER}" "${TRASH_DIR}"
 }
 
 if [[ "$1" == "info" ]]; then
