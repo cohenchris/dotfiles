@@ -107,3 +107,4 @@ qbittorrent                 # qbittorrent client
 transmission-cli            # transmission cli torrent client
 wireguard-tools             # wireguard VPN
 minicom                     # COM client
+texlive                     # LaTeX

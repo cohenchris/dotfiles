@@ -51,8 +51,8 @@ function trash_clear() {
   notify NORMAL "${trash_icon}  Clearing the trash, please wait..."
 
   # Clear normal and hidden files
-  rm -rf ${TRASH_DIR}/*
-  rm -rf ${TRASH_DIR}/.*
+  rm -rf "${TRASH_DIR}"/*
+  rm -rf "${TRASH_DIR}"/.*
 
   notify GOOD "${trash_icon}  Trash cleared!" "Freed ${trash_size} of disk space"
 }
@@ -60,7 +60,7 @@ function trash_clear() {
 function trash_open() {
   notify NORMAL "${trash_icon}  Opening the trash..."
 
-  ${TRASH_BROWSER}
+  "${FILE_BROWSER}" "${TRASH_DIR}"
 }
 
 if [[ "$1" == "info" ]]; then

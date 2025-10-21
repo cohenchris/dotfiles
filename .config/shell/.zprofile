@@ -41,14 +41,13 @@ export LAUNCHER="fuzzel"                                                        
 export CALENDAR="${TERMINAL} --title \"Calendar\" khal interactive"                 # calendar
 export PDF_VIEWER="zathura"                                                         # pdf viewer
 export IMAGE_VIEWER="swayimg"                                                       # image viewer
-export FILE_BROWSER="${TERMINAL} lf-wrapper"                                        # file browser
+export FILE_BROWSER="${TERMINAL} --title \"File Browser\" lf-wrapper"               # file browser
 export TASK_MANAGER="${TERMINAL} glances"                                           # task manager
 export DMENU_BLUETOOTH_LAUNCHER="fuzzel"                                            # use fuzzel instead of dmenu for dmenu-bluetooth
 export BLUETOOTH_MENU="dmenu-bluetooth"                                             # bluetooth device selection menu
 export WIFI_MENU="wifi-menu"                                                        # wifi selection menu
 export VPN_MENU="vpn-menu"                                                          # VPN selection menu
 export MAIL_CLIENT="${TERMINAL} neomutt -F ${NEOMUTT_CONFIG}"                       # email client
-export TRASH_BROWSER="${TERMINAL} --title \"Trash\" lf-wrapper ${TRASH_DIR}"        # browse trash directory
 export AUDIO_MANAGER="pavucontrol"                                                  # audio management
                                                                                     #
 #####################################################################################

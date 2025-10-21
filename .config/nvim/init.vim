@@ -66,7 +66,7 @@ set expandtab
 """""""""" KEY BINDINGS  AND PLUGIN SETTINGS """"""""""
 " General
 :map <leader>s :setlocal spell!<CR>                 " <leader> + s    --> toggle spell checker
-:map <leader>c :execute '!mytex compile%'<CR><CR>   " <leader> + c    --> compile LaTeX
+:map <leader>c :execute '!my-tex compile %'<CR><CR>   " <leader> + c   --> compile LaTeX
 
 " NERDTree
 " Exit Vim if NERDTree is the only window remaining in the only tab.
