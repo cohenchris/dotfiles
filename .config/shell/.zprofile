@@ -34,6 +34,8 @@ export GNUPGHOME="${XDG_DATA_HOME}/gnupg"                                       
 #####################################################################################
                                                                                     #
 export EDITOR="nvim"                                                                # text editor 
+export DMENU_BLUETOOTH_LAUNCHER="fuzzel"                                            # use fuzzel instead of dmenu for dmenu-bluetooth
+
 export TERMINAL="foot"                                                              # terminal emulator
 export BROWSER="zen-browser"                                                        # web browser
 export SHELL="zsh"                                                                  # terminal shell
@@ -43,7 +45,6 @@ export PDF_VIEWER="zathura"                                                     
 export IMAGE_VIEWER="swayimg"                                                       # image viewer
 export FILE_BROWSER="eval ${TERMINAL} --title \"File Browser\" lf-wrapper"          # file browser
 export TASK_MANAGER="${TERMINAL} glances"                                           # task manager
-export DMENU_BLUETOOTH_LAUNCHER="fuzzel"                                            # use fuzzel instead of dmenu for dmenu-bluetooth
 export BLUETOOTH_MENU="dmenu-bluetooth"                                             # bluetooth device selection menu
 export WIFI_MENU="wifi-menu"                                                        # wifi selection menu
 export VPN_MENU="vpn-menu"                                                          # VPN selection menu
@@ -62,7 +63,7 @@ declare -a paths=(
 CUSTOM_PATHS=$(IFS=:; echo "${paths[*]}")
 export PATH="${CUSTOM_PATHS}:${PATH}"
 
-# Source zshrc
+# Source ZSH config file
 [[ -f "${XDG_CONFIG_HOME}/shell/.zshrc" ]] && . "${XDG_CONFIG_HOME}/shell/.zshrc"
 
 # Start hyprland WM

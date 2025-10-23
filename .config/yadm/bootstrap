@@ -78,7 +78,6 @@ sudo chsh -s $(which zsh) "${USER}"
 mkdir -p "${HOME}/.local/share/zsh/plugins"
 cd "${HOME}/.local/share/zsh/plugins"
 git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-history-substring-search
 

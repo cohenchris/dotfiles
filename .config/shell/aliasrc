@@ -2,22 +2,17 @@
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vim="nvim"
-
-# Misc
-alias occ="docker exec -it -u www-data nextcloud php occ"
-alias swag-fail2ban="docker exec -it swag fail2ban-client"
-alias mailserver-fail2ban="docker exec -it mailserver fail2ban-client"
 alias tetris="tetriscurses"
-alias mutt="neomutt"
 alias neomutt="neomutt -F ${NEOMUTT_CONFIG}"
 alias lf="source lf-wrapper"
+
+# System Administration
 alias lockkeyring="gpgconf --kill gpg-agent && faillock --reset"
 alias flushdns="sudo systemd-resolve --flush-caches"
 
-# fail2ban
+# Server
+alias occ="docker exec -it -u www-data nextcloud php occ"
 alias mail-fail2ban="docker exec -it mailserver fail2ban-client"
 alias swag-fail2ban="docker exec -it swag fail2ban-client"
-
-# Scripts
 alias restart-docker="/home/${USER}/scripts/system/server/docker-restart.sh"
 alias scan-nextcloud="/home/${USER}/scripts/system/server/nextcloud/nextcloud-scan-files.sh"
