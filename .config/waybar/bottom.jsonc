@@ -94,7 +94,7 @@
     "max-volume": 100,
     "tooltip": true,
     "tooltip-format": "\"{node_name}\" volume at {volume}%",
-    "on-click-right": "${AUDIO_MANAGER}"
+    "on-click-right": "AUDIO_MANAGER"
   },
 
   // bluetooth
@@ -105,7 +105,7 @@
     "format-no-controller": " No Controller",
     "tooltip-format-connected": "───────────── BLUETOOTH CONTROLLER ────────────\n\nName:\t{controller_alias:20}\nMAC:\t{controller_address}\n\n────────────── CONNECTED DEVICES ──────────────\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "Name:\t{device_alias:20}\nMAC:\t{device_address}\n",
-    "on-click": "${BLUETOOTH_MENU}"
+    "on-click": "BLUETOOTH_MENU"
   },
 
   // cpu
@@ -143,7 +143,7 @@
     "interval": 10,
     "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/vpn.sh info",
     "return-type": "json",
-    "on-click": "${VPN_MENU}"
+    "on-click": "VPN_MENU"
   },
 
   // network interface data
@@ -154,6 +154,6 @@
     "tooltip": true,
     "tooltip-format-ethernet": "<big>NETWORK</big>\n\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
     "tooltip-format-wifi": "<big>NETWORK</big>\n\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\nSSID:\t{essid}\nSignal Strength:\t{signalStrength}\nSignal dBm:\t{signaldBm}\nFrequency:\t{frequency}\n\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
-    "on-click": "${WIFI_MENU}"
+    "on-click": "WIFI_MENU"
   }
 }

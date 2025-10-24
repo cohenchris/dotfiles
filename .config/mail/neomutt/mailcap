@@ -2,21 +2,21 @@
 image/x-xcf;                          gimp %s
 
 # Images
-image/*;                              ${IMAGE_VIEWER} %s
+image/*;                              IMAGE_VIEWER %s
 
 # HTML
-text/html;                            ${BROWSER} %s
+text/html;                            BROWSER %s
 
 # LaTeX document
 text/x-tex;                           mytex edit %s
 
 # Plaintext files
-text/*;                               ${EDITOR} %s
-application/json;                     ${EDITOR} %s
-inode/x-empty;                        ${EDITOR} %s
-application/x-subrip;                 ${EDITOR} %s
-application/x-pem-file;               ${EDITOR} %s
-message/rfc822;                       ${EDITOR} %s
+text/*;                               EDITOR %s
+application/json;                     EDITOR %s
+inode/x-empty;                        EDITOR %s
+application/x-subrip;                 EDITOR %s
+application/x-pem-file;               EDITOR %s
+message/rfc822;                       EDITOR %s
 
 # Audio
 audio/*;                              mpv %s
@@ -25,9 +25,9 @@ audio/*;                              mpv %s
 video/*;                              mpv %s
 
 # Read-only documents
-application/pdf;                      ${PDF_VIEWER} %s
-application/epub+zip;                 ${PDF_VIEWER} %s
-application/x-mobipocket-ebook;       ${PDF_VIEWER} %s
+application/pdf;                      PDF_VIEWER %s
+application/epub+zip;                 PDF_VIEWER %s
+application/x-mobipocket-ebook;       PDF_VIEWER %s
 
 # Compressed archives
 application/x-bzip-compressed-tar;    extract %s
@@ -47,7 +47,7 @@ application/java-archive;             extract %s
 application/x-bittorrent;             qbittorrent %s
 
 # PGP-encrypted
-application/pgp-encrypted;            ${EDITOR} %s
+application/pgp-encrypted;            EDITOR %s
 
 # Office documents
 application/msword;                   libreoffice %s

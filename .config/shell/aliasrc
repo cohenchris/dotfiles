@@ -3,7 +3,6 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vim="nvim"
 alias tetris="tetriscurses"
-alias neomutt="neomutt -F ${NEOMUTT_CONFIG}"
 alias lf="source lf-wrapper"
 
 # System Administration

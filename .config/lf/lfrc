@@ -55,7 +55,7 @@ map gh cd ~                                 # go home
 # Misc lf commands
 map <c-r> reload                            # reload cwd
 map <enter> shell                           # simple shell prompt in lf
-map W $setsid -f ${TERMINAL} 2>&1           # open terminal at cwd
+map W $setsid -f TERMINAL 2>&1              # open terminal at cwd
 
 ################################################################################
 ############################### COMMAND HANDLERS ###############################
@@ -88,12 +88,12 @@ cmd open ${{
 
     # Image
     image/*)
-      setsid -f ${IMAGE_VIEWER} "${f}"
+      setsid -f IMAGE_VIEWER "${f}"
     ;;
 
     # HTML
     text/html)
-      setsid -f ${BROWSER} ${fx}
+      setsid -f BROWSER ${fx}
     ;;
 
     # LaTeX
@@ -109,7 +109,7 @@ cmd open ${{
     # application/pgp-keys    - PGP key
     # message/rfc822          - SMTP mail, ASCII text
     text/* | application/json | inode/x-empty | application/x-subrip | application/x-pem-file | application/pgp-keys | message/rfc822)
-      ${EDITOR} ${fx}
+      EDITOR ${fx}
     ;;
     
     # Audio
@@ -126,7 +126,7 @@ cmd open ${{
     # application/epub+zip              - EPUB ebook format
     # application/x-mobipocket-ebook    -  MOBI ebook format
     application/pdf | application/epub+zip | application/x-mobipocket-ebook)
-      setsid -f ${PDF_VIEWER} ${fx} >/dev/null 2>&1
+      setsid -f PDF_VIEWER ${fx} >/dev/null 2>&1
     ;;
 
     # Compressed archives
@@ -141,7 +141,7 @@ cmd open ${{
     
     # PGP-encrypted
     application/pgp-encrypted)
-      setsid -f ${EDITOR} ${fx}
+      setsid -f EDITOR ${fx}
     ;;
 
     # Office documents
@@ -160,7 +160,7 @@ cmd open ${{
 
         # PDF
         pdf)
-          setsid -f ${PDF_VIEWER} ${fx} >/dev/null 2>&1
+          setsid -f PDF_VIEWER ${fx} >/dev/null 2>&1
         ;;
 
       esac
@@ -214,12 +214,12 @@ cmd delete ${{
 
 # move files to trash
 cmd trash ${{
-  mkdir -p "${TRASH_DIR}"
+  mkdir -p "${XDG_TRASH_DIR}"
 
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
 
-  if [[ "${PWD}" = "${TRASH_DIR}" ]]; then
+  if [[ "${PWD}" = "${XDG_TRASH_DIR}" ]]; then
     # Already in trash, prompt to permanently delete
     printf "Would you like to \e[31mPERMANENTLY\e[0m delete this file from the trash?\n\n"
 
@@ -248,11 +248,11 @@ cmd trash ${{
     done <<< "${fx}"
     printf "\n"
 
-    printf "Are you sure? Trash directory is located at ${TRASH_DIR}. [y/N] "
+    printf "Are you sure? Trash directory is located at ${XDG_TRASH_DIR}. [y/N] "
 
     read ans
     if [ $ans = "y" ]; then
-      IFS="$(printf '\n\t')"; mv $fx "${TRASH_DIR}"
+      IFS="$(printf '\n\t')"; mv $fx "${XDG_TRASH_DIR}"
       if [[ "$?" -eq 0 ]]; then
         notify NORMAL "  Moved files to trash" "${fx}"
       else
@@ -272,7 +272,7 @@ cmd bulkrename ${{
 
     echo "${fs}" > "${tmpfile_old}"
     echo "${fs}" > "${tmpfile_new}"
-    ${EDITOR} "${tmpfile_new}"
+    EDITOR "${tmpfile_new}"
 
     [ "$(wc -l < "${tmpfile_old}")" -eq "$(wc -l < "${tmpfile_new}")" ] || { rm -f "${tmpfile_old}" "${tmpfile_new}"; exit 1; }
 

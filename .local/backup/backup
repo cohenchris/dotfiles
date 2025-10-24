@@ -33,6 +33,7 @@ declare -a dotfiles=(
   ~/.config/yadm/
   ~/.config/zathura/
   ~/.local/backup/
+  ~/.local/defaults/
   ~/.local/share/yadm/archive
   ~/.local/share/chars/
 )

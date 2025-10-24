@@ -26,9 +26,6 @@ bindkey '^R' history-incremental-search-backward
 # tetris!!
 autoload -Uz tetriscurses
 
-# load default programs
-[ -f "${XDG_CONFIG_HOME:-${HOME}/.config}/shell/defaultsrc" ] && source ${XDG_CONFIG_HOME:-${HOME}/.config}/shell/defaultsrc
-
 # load shell aliases
 [ -f "${XDG_CONFIG_HOME:-${HOME}/.config}/shell/aliasrc" ] && source ${XDG_CONFIG_HOME:-${HOME}/.config}/shell/aliasrc
 

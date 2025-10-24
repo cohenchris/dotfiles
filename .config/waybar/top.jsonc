@@ -77,7 +77,7 @@
     "interval": 10,
     "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/email.py",
     "return-type": "json",
-    "on-click": "mailsync & ${MAIL_CLIENT}",
+    "on-click": "MAIL_CLIENT",
     "on-click-right": "mailsync"
   },
 
@@ -115,7 +115,7 @@
     "interval": 5,
     "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/clock.py",
     "return-type": "json",
-    "on-click": "${CALENDAR}"
+    "on-click": "CALENDAR"
   },
 
   // cycle through power profiles

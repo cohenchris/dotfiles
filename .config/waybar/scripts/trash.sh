@@ -1,15 +1,15 @@
 #!/bin/bash
 
-if [[ -z "${TRASH_DIR}" ]]; then
-  notify CRITICAL "  ERROR" "\${TRASH_DIR} not set in your environment!"
+if [[ -z "${XDG_TRASH_DIR}" ]]; then
+  notify CRITICAL "  ERROR" "\${XDG_TRASH_DIR} not set in your environment!"
   exit
 fi
 
 trash_icon=""
-trash_num_files=$(find "${TRASH_DIR}" -type f | wc -l)
-trash_size=$(du -hs "${TRASH_DIR}" | cut -f 1)
+trash_num_files=$(find "${XDG_TRASH_DIR}" -type f | wc -l)
+trash_size=$(du -hs "${XDG_TRASH_DIR}" | cut -f 1)
 
-if [ -z "$(ls -A ${TRASH_DIR})" ]; then
+if [ -z "$(ls -A ${XDG_TRASH_DIR})" ]; then
   # Trash is empty
   trash_size="-"
 fi
@@ -20,7 +20,7 @@ function trash_info() {
   if [[ "${trash_size}" == "-" ]]; then
     local waybar_tooltip="Nothing to see here :)"
   else
-    local waybar_tooltip="There are <span color='turquoise'>${trash_num_files}</span> files in the trash totaling <span color='turquoise'>${trash_size}</span>\n\nTrash is located at ${TRASH_DIR}\n(click to open, right click to clear)"
+    local waybar_tooltip="There are <span color='turquoise'>${trash_num_files}</span> files in the trash totaling <span color='turquoise'>${trash_size}</span>\n\nTrash is located at ${XDG_TRASH_DIR}\n(click to open, right click to clear)"
   fi
 
   echo "{\"text\": \"${waybar_text}\", \"tooltip\": \"${waybar_tooltip}\"}"
@@ -51,8 +51,8 @@ function trash_clear() {
   notify NORMAL "${trash_icon}  Clearing the trash, please wait..."
 
   # Clear normal and hidden files
-  rm -rf "${TRASH_DIR}"/*
-  rm -rf "${TRASH_DIR}"/.*
+  rm -rf "${XDG_TRASH_DIR}"/*
+  rm -rf "${XDG_TRASH_DIR}"/.*
 
   notify GOOD "${trash_icon}  Trash cleared!" "Freed ${trash_size} of disk space"
 }
@@ -60,7 +60,7 @@ function trash_clear() {
 function trash_open() {
   notify NORMAL "${trash_icon}  Opening the trash..."
 
-  eval "${FILE_BROWSER}" "${TRASH_DIR}"
+  FILE_BROWSER "${XDG_TRASH_DIR}"
 }
 
 if [[ "$1" == "info" ]]; then

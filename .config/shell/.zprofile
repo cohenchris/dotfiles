@@ -6,7 +6,7 @@
 export XDG_CONFIG_HOME="${HOME}/.config"                                            # config files
 export XDG_CACHE_HOME="${HOME}/.local/cache"                                        # cached data
 export XDG_DATA_HOME="${HOME}/.local/share"                                         # application data
-export TRASH_DIR="${HOME}/.local/trash"                                             # trash
+export XDG_TRASH_DIR="${HOME}/.local/trash"                                         # trash
                                                                                     #
 # CONFIGS                                                                           #
 export PASSWORD_STORE_DIR="${XDG_CONFIG_HOME}/password-store"                       # pass
@@ -29,27 +29,10 @@ export CARGO_HOME="${XDG_DATA_HOME}/cargo"                                      
 export GOPATH="${XDG_DATA_HOME}/go"                                                 # go files
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"                                           # GPG data
                                                                                     #
-#####################################################################################
-#                            DEFAULT PROGRAMS                                       #
-#####################################################################################
-                                                                                    #
+# HANDLERS                                                                          #
 export EDITOR="nvim"                                                                # text editor 
-export DMENU_BLUETOOTH_LAUNCHER="fuzzel"                                            # use fuzzel instead of dmenu for dmenu-bluetooth
-
-export TERMINAL="foot"                                                              # terminal emulator
-export BROWSER="zen-browser"                                                        # web browser
 export SHELL="zsh"                                                                  # terminal shell
-export LAUNCHER="fuzzel"                                                            # application launcher
-export CALENDAR="eval ${TERMINAL} --title \"Calendar\" khal interactive"            # calendar
-export PDF_VIEWER="zathura"                                                         # pdf viewer
-export IMAGE_VIEWER="swayimg"                                                       # image viewer
-export FILE_BROWSER="eval ${TERMINAL} --title \"File Browser\" lf-wrapper"          # file browser
-export TASK_MANAGER="${TERMINAL} glances"                                           # task manager
-export BLUETOOTH_MENU="dmenu-bluetooth"                                             # bluetooth device selection menu
-export WIFI_MENU="wifi-menu"                                                        # wifi selection menu
-export VPN_MENU="vpn-menu"                                                          # VPN selection menu
-export MAIL_CLIENT="${TERMINAL} neomutt -F ${NEOMUTT_CONFIG}"                       # email client
-export AUDIO_MANAGER="pavucontrol"                                                  # audio management
+export DMENU_BLUETOOTH_LAUNCHER="fuzzel"                                            # use fuzzel instead of dmenu for dmenu-bluetooth
                                                                                     #
 #####################################################################################
 
@@ -58,7 +41,7 @@ declare -a paths=(
   "${HOME}/.local/backup"
   "${HOME}/scripts/bin"
   "${HOME}/scripts/system"
-  "${HOME}/.local/bin"
+  "${HOME}/.local/defaults"
 )
 CUSTOM_PATHS=$(IFS=:; echo "${paths[*]}")
 export PATH="${CUSTOM_PATHS}:${PATH}"
