@@ -1,1 +1,1 @@
-TERMINAL neomutt -f "${NEOMUTT_CONFIG}" "$@"
+TERMINAL neomutt -F "${NEOMUTT_CONFIG}" "$@"
