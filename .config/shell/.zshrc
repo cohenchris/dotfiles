@@ -29,6 +29,9 @@ autoload -Uz tetriscurses
 # load shell aliases
 [ -f "${XDG_CONFIG_HOME:-${HOME}/.config}/shell/aliasrc" ] && source ${XDG_CONFIG_HOME:-${HOME}/.config}/shell/aliasrc
 
+# load keyboard modifications
+[ -f "${XDG_CONFIG_HOME:-${HOME}/.config}/shell/keyboardrc" ] && source ${XDG_CONFIG_HOME:-${HOME}/.config}/shell/keyboardrc
+
 # load shell plugins
 source ${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source ${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
