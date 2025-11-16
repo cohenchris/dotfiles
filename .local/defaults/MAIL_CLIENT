@@ -1,1 +1,1 @@
-TERMINAL neomutt -F "${NEOMUTT_CONFIG}" "$@"
+TERMINAL --title "Email" neomutt -F "${NEOMUTT_CONFIG}" "$@"

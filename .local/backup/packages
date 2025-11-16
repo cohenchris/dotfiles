@@ -97,7 +97,9 @@ zen-browser-bin             # web browser
 bitwarden-cli               # bitwarden cli
 backblaze-b2-bin            # backblaze b2 cli
 gimp                        # image editor
-dmenu-bluetooth             # bluetooth dmenu
+bluetui                     # bluetooth TUI
+wiremix                     # audio management TUI
+wifitui-bin                 # wifi management TUI
 glances                     # task manager and resource monitor
 grim                        # screenshot capture
 slurp                       # screenshot area selection

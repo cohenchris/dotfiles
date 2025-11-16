@@ -1,1 +1,1 @@
-wifi-menu "$@"
+TERMINAL --title "WiFi" wifitui "$@"

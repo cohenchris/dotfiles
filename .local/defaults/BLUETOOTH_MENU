@@ -1,1 +1,1 @@
-dmenu-bluetooth "$@"
+TERMINAL --title "Bluetooth" bluetui "$@"

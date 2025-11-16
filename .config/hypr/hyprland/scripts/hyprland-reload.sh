@@ -1,11 +1,13 @@
 #!/bin/bash
+# Custom hyprland-related scripts directory
+HYPRLAND_SCRIPTS_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts"
 
 # Hyprland
 hyprctl reload
 
 # Waybar
 pkill waybar
-${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/waybar.sh
+${HYPRLAND_SCRIPTS_DIR}/waybar.sh
 
 # Hyprsunset
 pkill hyprsunset
@@ -21,4 +23,4 @@ hyprpaper &
 
 set-wallpaper random
 
-${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/speedtest.sh refresh
+${HYPRLAND_SCRIPTS_DIR}/speedtest.sh refresh

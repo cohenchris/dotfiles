@@ -7,6 +7,7 @@ export XDG_CONFIG_HOME="${HOME}/.config"                                        
 export XDG_CACHE_HOME="${HOME}/.local/cache"                                        # cached data
 export XDG_DATA_HOME="${HOME}/.local/share"                                         # application data
 export XDG_TRASH_DIR="${HOME}/.local/trash"                                         # trash
+export XDG_DOWNLOAD_DIR="${HOME}/Downloads"                                         # downloads
                                                                                     #
 # CONFIGS                                                                           #
 export PASSWORD_STORE_DIR="${XDG_CONFIG_HOME}/password-store"                       # pass
@@ -32,7 +33,6 @@ export GNUPGHOME="${XDG_DATA_HOME}/gnupg"                                       
 # HANDLERS                                                                          #
 export EDITOR="nvim"                                                                # text editor 
 export SHELL="zsh"                                                                  # terminal shell
-export DMENU_BLUETOOTH_LAUNCHER="fuzzel"                                            # use fuzzel instead of dmenu for dmenu-bluetooth
                                                                                     #
 #####################################################################################
 

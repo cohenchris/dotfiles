@@ -57,11 +57,14 @@ format = "<b>%s</b>\n%b"
 
 
 ########## BEHAVIOR ##########
+# Maximum number of notification (0 means no limit)
+notification_limit = 10
+
 # Notifications that have been recalled from history will not timeout
 sticky_history = true
 
 # Max number of notifications that will be kept in history
-history_length = 20
+history_length = 10
 
 # Duplicate notification handling
 stack_duplicates = true
