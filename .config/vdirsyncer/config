@@ -9,7 +9,8 @@ status_path = "~/.local/share/vdirsyncer/status/"
 [pair contacts]
 a = "contacts_local"
 b = "contacts_remote"
-collections = ["from a", "from b"]
+collections = ["from b"]
+conflict_resolution = "b wins"
 
 # Local storage
 [storage contacts_local]
@@ -21,6 +22,7 @@ fileext = ".vcf"
 # Remote storage
 [storage contacts_remote]
 type = "carddav"
+read_only = true
 url.fetch = ["command", "pass", "nextcloud/contacts"]
 username.fetch = ["command", "pass", "nextcloud/username"]
 password.fetch = ["command", "pass", "nextcloud/password"]
@@ -32,7 +34,8 @@ password.fetch = ["command", "pass", "nextcloud/password"]
 [pair calendar]
 a = "calendar_local"
 b = "calendar_remote"
-collections = ["from a", "from b"]
+collections = ["from b"]
+conflict_resolution = "b wins"
 
 # Local storage
 [storage calendar_local]
@@ -44,6 +47,7 @@ fileext = ".ics"
 # Remote storage
 [storage calendar_remote]
 type = "caldav"
+read_only = true
 url.fetch = ["command", "pass", "nextcloud/calendar"]
 username.fetch = ["command", "pass", "nextcloud/username"]
 password.fetch = ["command", "pass", "nextcloud/password"]

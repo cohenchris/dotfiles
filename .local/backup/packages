@@ -93,8 +93,11 @@ vdirsyncer                  # calendar/contacts syncing
 ################################################################################
 #                              general applications                            #
 ################################################################################
-zen-browser-bin             # web browser
-bitwarden-cli               # bitwarden cli
+qutebrowser                 # web browser
+rbw                         # unofficial bitwarden cli
+fuzzel-rbw                  # fuzzel frontend for rbw
+wtype                       # xdotool type for wayland (used with fuzzel-rbw)
+python-tldextract           # TLD extraction (qutebrowser bitwarden add-on)
 backblaze-b2-bin            # backblaze b2 cli
 gimp                        # image editor
 bluetui                     # bluetooth TUI

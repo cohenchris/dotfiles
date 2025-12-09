@@ -1,16 +1,21 @@
-let mapleader = "\<Space>"
-
-
 """""""""" PLUGINS """"""""""
-" Install vim-plug if not found
-if ! filereadable(system('echo -n "${XDG_DATA_HOME:-${HOME}/.local/share}/nvim/autoload/plug.vim"'))
+" Define base paths
+let s:data = empty($XDG_DATA_HOME) ? $HOME . '/.local/share' : $XDG_DATA_HOME
+let s:plug_autoload = s:data . '/nvim/autoload/plug.vim'
+let s:plug_dir = s:data . '/nvim/plugged'
+
+" Install vim-plug if missing
+if !filereadable(s:plug_autoload)
   echo "Plugin manager not found! Installing now..."
-  silent !sh -c 'sleep 2'
-  silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-${HOME}/.local/share}/nvim/autoload/plug.vim" --create-dirs "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
+  silent execute '!curl -fLo ' . shellescape(s:plug_autoload) .
+        \ ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 
+" Source vim-plug
+execute 'source ' . fnameescape(s:plug_autoload)
+
 " Plugin list
-call plug#begin(system('echo -n "${XDG_DATA_HOME:-${HOME}/.local/share}/nvim/plugged"'))
+call plug#begin(s:plug_dir)
 Plug 'tpope/vim-surround'                         " Surrounding characters
 Plug 'preservim/nerdtree'                         " File tree
 Plug 'ryanoasis/vim-devicons'                     " File tree icons
@@ -28,7 +33,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync
   \| execute 'COQdeps'
 \| endif
-
 
 
 """""""""" DEFAULT SETTINGS """"""""""
@@ -64,6 +68,7 @@ set expandtab
 
 
 """""""""" KEY BINDINGS  AND PLUGIN SETTINGS """"""""""
+let mapleader = "\<Space>"
 " General
 :map <leader>s :setlocal spell!<CR>                 " <leader> + s    --> toggle spell checker
 :map <leader>c :execute '!my-tex compile %'<CR><CR>   " <leader> + c   --> compile LaTeX
