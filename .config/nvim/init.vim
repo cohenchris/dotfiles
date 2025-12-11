@@ -16,16 +16,23 @@ execute 'source ' . fnameescape(s:plug_autoload)
 
 " Plugin list
 call plug#begin(s:plug_dir)
-Plug 'tpope/vim-surround'                         " Surrounding characters
-Plug 'preservim/nerdtree'                         " File tree
-Plug 'ryanoasis/vim-devicons'                     " File tree icons
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'    " File tree syntax highlighting
-Plug 'vim-airline/vim-airline'                    " Status bar
-Plug 'tpope/vim-commentary'                       " Commenting
-Plug 'chrisbra/Colorizer'                         " CSS color highlighting
-Plug 'luochen1990/rainbow'                        " Parantheses Color Coordination
-Plug 'ms-jpq/coq_nvim'                            " Code completion
-Plug 'tpope/vim-fugitive'                         " Git integration
+  " File tree
+  Plug 'preservim/nerdtree'                         " File tree (https://github.com/preservim/nerdtree)
+"  Plug 'Xuyuanp/nerdtree-git-plugin'                " File tree git status flags (https://github.com/Xuyuanp/nerdtree-git-plugin)
+  Plug 'ryanoasis/vim-devicons'                     " File tree icons (https://github.com/ryanoasis/vim-devicons)
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'    " File tree syntax highlighting (https://github.com/tiagofumo/vim-nerdtree-syntax-highlight)
+  " Programming keyboard-related shortcuts
+  Plug 'tpope/vim-surround'                         " Surrounding characters (https://github.com/tpope/vim-surround)
+  Plug 'tpope/vim-commentary'                       " Commenting (https://github.com/tpope/vim-commentary)
+  " Visual
+  Plug 'vim-airline/vim-airline'                    " Status bar (https://github.com/vim-airline/vim-airline)
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'chrisbra/Colorizer'                         " CSS color highlighting (https://github.com/chrisbra/Colorizer)
+  " Plug 'luochen1990/rainbow'                        " Parantheses Color Coordination
+  " Programming integrations
+  Plug 'sheerun/vim-polyglot'                       " Language pack (https://github.com/sheerun/vim-polyglot)
+  Plug 'ms-jpq/coq_nvim'                            " Code completion
+  Plug 'tpope/vim-fugitive'                         " Git integration (https://github.com/tpope/vim-fugitive)
 call plug#end()
 
 " Run PlugInstall if there are missing plugins
@@ -82,9 +89,11 @@ let NERDTreeShowHidden=1                            " show hidden files in NERDT
 nnoremap <C-n> :NERDTreeFocus<CR>                   " CTRL + n        --> focus to tree
 nnoremap <C-t> :NERDTreeToggle<CR>                  " CTRL + t        --> toggle tree view
 nnoremap <C-f> :NERDTreeFind<CR>                    " CTRL + f        --> find in tree
+"let g:NERDTreeGitStatusUseNerdFonts = 1             " Have NERDTree git plugin use NERDFonts
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='molokai'
 
 " COQ
 g:coq_settings = { 'auto_start': 'shut-up' }
@@ -110,3 +119,7 @@ let g:rainbow_load_separately = [
     \ ]
 let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
 let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
+
+
+
+
