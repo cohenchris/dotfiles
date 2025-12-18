@@ -120,13 +120,13 @@ menu {
 /* NETWORK MANAGEMENT CONTINUOUS BAR */
 #custom-vpn {
   border-radius: 10px 0px 0px 10px; /* top left/top right/bottom right/bottom left */
-  padding-right: 12px;
+  padding-right: 16px;
+  padding-left: 12px;
 }
 
 #network {
   border-radius: 0px 10px 10px 0px; /* top left/top right/bottom right/bottom left */
-  padding-left: 14px;
-  margin-left: -4px;
+  margin-left: 0px;
 }
 
 
@@ -157,7 +157,6 @@ modules-left > widget:first-child > #workspaces {
 
 /********** WINDOWS **********/
 #window {
-
 }
 
 

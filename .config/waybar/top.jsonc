@@ -84,7 +84,7 @@
   // clock module but I'm only using the calendar
   "clock": {
     "interval": 60,
-    "format": "  {:%A, %B %d %Y}",
+    "format": "  {:%a, %B %d %Y}",
     "timezone": "America/Los_Angeles",
     "tooltip": true,
     "tooltip-format": "{calendar}",
@@ -133,8 +133,10 @@
 
   // battery information
   "battery": {
+    "bat": "BAT1",
     "format": "{icon} {capacity}%",
-    "format-Charging": "󰂄 {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-full": "󱟢 {capacity}%",
     "format-time": "{H}h {M}m",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "weighted-average": true,
@@ -147,8 +149,9 @@
       "full": 100,
     },
     "tooltip": true,
-    "tooltip-format": "Battery is Discharging...\n\nCapacity:\t{capacity}%\nTo Empty:\t{time}\nPower Draw:\t{power}W\nCycles:\t{cycles}\nHealth:\t{health}",
-    "tooltip-format-Charging": "Battery is Charging...\n\nCapacity:\t{capacity}%\nTo Full:\t{time}\nPower Draw:\t{power}W\nCycles:\t{cycles}\nHealth:\t{health}",
+    "tooltip-format": "Battery is Discharging...\n\nCapacity:\t{capacity}%\nTo Empty:\t{time}\nPower Draw:\t{power}W\nCycles:\t\t{cycles}\nHealth:\t\t{health}%",
+    "tooltip-format-charging": "Battery is Charging...\n\nCapacity:\t{capacity}%\nTo Full:\t{time}\nPower Draw:\t{power}W\nCycles:\t\t{cycles}\nHealth:\t\t{health}%",
+    "tooltip-format-full": "Battery is Full\n\nCapacity:\t{capacity}%\nPower Draw:\t{power}W\nCycles:\t\t{cycles}\nHealth:\t\t{health}%",
   },
 
   // toggle auto-lock

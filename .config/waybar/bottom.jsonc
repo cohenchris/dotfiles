@@ -7,7 +7,7 @@
   "layer": "top",                                                             // waybar at top layer
   "position": "bottom",                                                       // waybar position (top|bottom|left|right)
   "height": 35,                                                               // waybar height (to be removed for auto height)
-  "spacing": 4,                                                               // gaps between modules in px
+  "spacing": 0,                                                               // gaps between modules in px (this is handled in style.css)
 
   // left modules
   "modules-left": [
