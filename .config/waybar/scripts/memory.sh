@@ -9,20 +9,33 @@ ram_use_percent=$(awk "BEGIN {printf \"%.1f\", ($used / $total) * 100}")
 rounded_ram_use_percent=$(awk "BEGIN {printf \"%d\", ($used / $total) * 100}")
 
 # RAM temperature (optional, may require lm-sensors and a supported system)
-mapfile -t ram_temps < <(sensors | awk '
-/^jc42/ {in_jc42=1; next}
-in_jc42 && /^Adapter:/ {next}
-in_jc42 && /temp1:/ {
-  match($2, /\+([0-9.]+)°C/, m)
-  if (m[1] != "") print m[1]
-  in_jc42=0
-}')
+mapfile -t ram_temps < <(
+  sensors | awk '
+    # --- jc42 RAM sensors ---
+    /^jc42/ { in_jc42 = 1; next }
+    in_jc42 && /^Adapter:/ { next }
+    in_jc42 && /temp1:/ {
+      if (match($2, /\+([0-9.]+)°C/, m)) {
+        print m[1]
+      }
+      in_jc42 = 0
+    }
 
-ram_temp_dimm1="${ram_temps[0]}"
-ram_temp_dimm2="${ram_temps[1]}"
-ram_temp_dimm3="${ram_temps[2]}"
-ram_temp_dimm4="${ram_temps[3]}"
-rounded_ram_temp_average=$(awk "BEGIN {printf \"%d\", (${ram_temp_dimm1} + ${ram_temp_dimm2} + ${ram_temp_dimm3} + ${ram_temp_dimm4}) / 4}")
+    # --- cros_ec RAM sensor ---
+    /^ddr_/ {
+      if (match($2, /\+([0-9.]+)°C/, m)) {
+        print m[1]
+      }
+    }
+  '
+)
+
+rounded_ram_temp_average=$(
+  printf '%s\n' "${ram_temps[@]}" |
+  awk '{ sum += $1; count++ }
+       END { if (count > 0) printf "%d", sum / count }'
+)
+
 
 # Swap usage
 read -r _ sw_total sw_used _ <<< $(free -m | awk '/^Swap:/ {print $1, $2, $3, $4}')
@@ -37,7 +50,11 @@ fi
 
 # Tooltip formatting
 ram_usage_tooltip="RAM Usage:    ${ram_used} GB / ${ram_total} GB  (${ram_use_percent}%)"
-ram_temp_tooltip="DIMM1 Temp:   ${ram_temp_dimm1}°C\nDIMM2 Temp:   ${ram_temp_dimm2}°C\nDIMM3 Temp:   ${ram_temp_dimm3}°C\nDIMM4 Temp:   ${ram_temp_dimm4}°C"
+ram_temp_tooltip=$(
+  for i in "${!ram_temps[@]}"; do
+    printf "DIMM%d Temp:   %s°C\n" "$((i + 1))" "${ram_temps[i]}"
+  done
+)
 swap_usage_tooltip="Swap Usage:   ${swap_used} GB / ${swap_total} GB  (${swap_use_percent}%)"
 
 # Temperature-based classes
