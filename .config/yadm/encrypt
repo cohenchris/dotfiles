@@ -1,4 +1,3 @@
-.ssh/*
 .local/share/gnupg/*
 .config/Bitwarden\ CLI
 .config/docker/config.json
