@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Get external IP address using curl
-external_ip=$(wget -4 -qO - https://icanhazip.com)
+external_ip=$(dig +short txt ch whoami.cloudflare @1.0.0.1)
+
+# Remove quotes from external IP string
+external_ip=${external_ip//\"/}
 
 if [[ "${external_ip}" == "" ]]; then
   external_ip="?"

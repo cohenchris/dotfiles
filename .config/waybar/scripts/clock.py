@@ -27,7 +27,7 @@ for line in khal_output.split("\n"):
   formatted_line = ""
 
   split_line = line.split("-")
-  
+
   if len(split_line) == 1:
     if any(dow in line for dow in dow_headers):
       # Found day-of-week header, make it larger and red
@@ -38,26 +38,33 @@ for line in khal_output.split("\n"):
      # Location data extended across lines, exclude this extra data
      continue
   else:
+    parsed_event_time = split_line[0] if len(split_line) >= 1 else ""
+    parsed_event_name = split_line[1] if len(split_line) >= 2 else ""
+    parsed_event_location = split_line[2] if len(split_line) >= 3 else ""
+
     # Found an all-day event
     # All-day events don't have a starting time, so the beginning of the line will be " -"
     # Clean this up by adding "All Day" where the time would normally be
 
     # Time string
-    if split_line[0] == " ":
-      time = f"<span color='#ffcc66'>󰔠 All Day</span>    "
+    if not parsed_event_time.strip():
+      display_event_time = f"<span color='#ffcc66'>󰔠 All Day</span>    "
     else:
-      time = f"<span color='#ffcc66'>󰔠 {split_line[0]}</span>  "
+      display_event_time = f"<span color='#ffcc66'>󰔠 {parsed_event_time}</span>  "
 
     # Event string
-    event = split_line[1]
+    if not parsed_event_name.strip():
+      display_event_name = "<No Event Name>"
+    else:
+      display_event_name = parsed_event_name.strip()
 
     # Location string
-    if split_line[2] == " ":
-      location = ""
+    if not parsed_event_location.strip():
+      display_event_location = ""
     else:
-      location = f"\n              <span color='turquoise'>{split_line[2]}</span>"
+      display_event_location = f"\n              <span color='turquoise'>{parsed_event_location}</span>"
 
-    formatted_line = f"{time}{event}{location}"
+    formatted_line = f"{display_event_time}{display_event_name}{display_event_location}"
 
   tooltip_text.append(formatted_line)
 
