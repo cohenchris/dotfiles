@@ -26,9 +26,9 @@ EOF
 # Add a PacMan visual + enable parallel downloads
 echo
 echo "I Love Candy!"
-sudo sed '/ParallelDownloads/s/^#/ILoveCandy\n/g' -i /etc/pacman.conf
+sudo sed -i '/ParallelDownloads/i ILoveCandy' /etc/pacman.conf
 
-paru -Syu --noconfirm
+paru -Syyu --noconfirm
 packages_list="${HOME}/.local/backup/packages"
 
 # Install all personal packages
