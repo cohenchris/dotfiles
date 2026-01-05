@@ -49,7 +49,7 @@ do
 
     # Install package
     echo "Installing package ${curr_pkg}/${total_pkgs} - ${pkg_name}"
-    paru -S --noconfirm "${pkg_name}" > /dev/null 2>&1
+    paru -S --noconfirm ${pkg_name} > /dev/null 2>&1
 
     if [[ $? -ne 0 ]]
     then
