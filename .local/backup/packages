@@ -23,7 +23,7 @@ bat                         # syntax highlighting
 python3                     # python
 python-pip                  # python package manager
 python-dotenv               # python support for dotenv
-python3-venv                # python virtual environments
+python-virtualenv           # python virtual environments
 docker                      # docker containerization
 docker-compose              # docker-compose
 inetutils                   # hostname command
