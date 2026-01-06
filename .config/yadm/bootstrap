@@ -95,10 +95,10 @@ echo "Deleting extraneous XDG directories..."
 cd
 rm -rfv Desktop Documents Music Pictures Public Templates Videos
 echo "Deleting extraneous files in ${HOME}/..."
-rm -rfv "${HOME}/.bash*"
-rm -rfv "${HOME}/.gnupg"
-rm -rfv "${HOME}/.viminfo"
-rm -rf "${HOME}/.cargo"
+rm -rfv ${HOME}/.bash*
+rm -rfv ${HOME}/.gnupg
+rm -rfv ${HOME}/.viminfo
+rm -rf ${HOME}/.cargo
 sudo rm -rf "${HOME}/go" # Don't know why this is created or why it's owned by root
 
 # Start SSHD

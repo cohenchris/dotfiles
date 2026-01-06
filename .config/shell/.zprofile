@@ -50,4 +50,4 @@ export PATH="${CUSTOM_PATHS}:${PATH}"
 [[ -f "${XDG_CONFIG_HOME}/shell/.zshrc" ]] && . "${XDG_CONFIG_HOME}/shell/.zshrc"
 
 # Start hyprland WM
-[[ -z "${WAYLAND_DISPLAY}" && "${XDG_VTNR}" -eq 1 ]] && exec /usr/bin/hyprland
+[[ -z "${WAYLAND_DISPLAY}" && "${XDG_VTNR}" -eq 1 ]] && exec start-hyprland

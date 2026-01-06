@@ -1,7 +1,7 @@
-.local/share/gnupg/*
+.local/share/gnupg
 .config/Bitwarden\ CLI
 .config/docker/config.json
 .config/git
-.config/password-store/*
+.config/password-store
 .config/rclone
 .config/wireguard

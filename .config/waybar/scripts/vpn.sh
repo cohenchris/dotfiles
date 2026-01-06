@@ -25,18 +25,20 @@ waybar_text=""
 waybar_tooltip=""
 
 if [[ "${connection_name}" == "" ]]; then
-  connection_icon="󱦚  "
+#  connection_icon=" 󱦚 "
+  connection_icon=" "
   connection_status="Disconnected"
   connection_tooltip_status="<span color='#c84b4b'>${connection_status}</span>"
   connection_name="N/A"
   connection_ip="N/A"
 else
-  connection_icon="󰦝  "
+#  connection_icon=" 󰦝 "
+  connection_icon=""
   connection_status="Connected"
   connection_tooltip_status="<span color='#00c000'>${connection_status}</span>"
 fi
 
-waybar_text="${connection_icon}${connection_status}"
+waybar_text="${connection_icon}"
 waybar_tooltip="<big>Wireguard VPN ${connection_tooltip_status}</big>\n\nConnection Name:\t${connection_name}\nIP Address:\t${connection_ip}"
 
 echo "{\"text\": \"${waybar_icon}${waybar_text}\", \"tooltip\": \"${waybar_tooltip}\"}"
