@@ -133,8 +133,8 @@
 
   // battery information
   "battery": {
-    "format": "{icon} {capacity}%",
-    "format-Charging": "󰂄 {capacity}%",
+    "format": " {icon} {capacity}%",
+    "format-Charging": " 󰂄 {capacity}%",
     "format-time": "{H}h {M}m",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "weighted-average": true,

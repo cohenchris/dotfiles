@@ -12,13 +12,10 @@ unread_messages_count = subprocess.check_output("notmuch search 'tag:unread' | w
 
 if unread_messages_count == "0":
   email_icon = "󰪱"
-  email_text = "No New Messages"
-elif unread_messages_count == "1":
-  email_icon = "󰛏"
-  email_text = "1 New Message"
+  email_text = "No Messages"
 else:
   email_icon = "󰛏"
-  email_text = f"{unread_messages_count} New Messages"
+  email_text = f"{unread_messages_count} New"
 
 waybar_json_data['text'] = f"{email_icon}  {email_text}"
 

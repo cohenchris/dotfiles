@@ -16,6 +16,7 @@ foot                        # terminal
 
 # ----------------------------------- core++ -----------------------------------
 net-tools                   # networking multitool
+dnsutils                    # more networking tools
 dunst                       # notification daemon
 nut                         # network ups tools
 fuzzel                      # multipurpose menu / launcher
