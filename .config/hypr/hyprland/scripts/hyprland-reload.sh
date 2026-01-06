@@ -21,6 +21,7 @@ hypridle &
 pkill hyprpaper
 hyprpaper &
 
+sleep 0.1
 set-wallpaper random
 
 ${HYPRLAND_SCRIPTS_DIR}/speedtest.sh refresh

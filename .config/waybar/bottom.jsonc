@@ -149,11 +149,11 @@
   // network interface data
   "network": {
     "format-ethernet": "  {ifname}",
-    "format-wifi": "  {essid} ({signalStrength}%)",
+    "format-wifi": "  {essid}",
     "format-disconnected": "󰲛  Disconnected",
     "tooltip": true,
     "tooltip-format-ethernet": "<big>NETWORK</big>\n\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
-    "tooltip-format-wifi": "<big>NETWORK</big>\n\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\nSSID:\t{essid}\nSignal Strength:\t{signalStrength}\nSignal dBm:\t{signaldBm}\nFrequency:\t{frequency}\n\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
+    "tooltip-format-wifi": "<big>NETWORK</big>\n\nName:\t\t{ifname}\nGateway:\t{gwaddr}\nIP:\t\t{ipaddr}/{cidr}\nNetmask:\t{netmask}\n\nSSID:\t\t{essid}\nSignal Strength:\t{signalStrength}\nSignal dBm:\t{signaldBm}\nFrequency:\t{frequency}\n\nUpload:\t\t{bandwidthUpBytes}\nDownload:\t{bandwidthDownBytes}\nTotal:\t\t{bandwidthTotalBytes}",
     "on-click": "WIFI_MENU"
   }
 }

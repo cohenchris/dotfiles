@@ -34,6 +34,8 @@ msmtp                       # SMTP client
 msmtp-mta                   # creates sendmail alias for msmtp
 resolvconf                  # network resolver tool
 power-profiles-daemon       # power state management profiles
+libnotify                   # notification handler
+speedtest-cli               # command-line network speed tester
 
 # ------------------------------------ gui -------------------------------------
 # hyprland environment

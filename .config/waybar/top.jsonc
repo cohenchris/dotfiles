@@ -146,7 +146,7 @@
       "decent": 80,
       "full": 100,
     },
-    "max-length": 3,
+    "max-length": 6,
     "tooltip": true,
     "tooltip-format": "Battery is Discharging...\n\nCapacity:\t{capacity}%\nTo Empty:\t{time}\nPower Draw:\t{power}W\nCycles:\t{cycles}\nHealth:\t{health}",
     "tooltip-format-Charging": "Battery is Charging...\n\nCapacity:\t{capacity}%\nTo Full:\t{time}\nPower Draw:\t{power}W\nCycles:\t{cycles}\nHealth:\t{health}",
