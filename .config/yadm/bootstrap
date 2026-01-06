@@ -63,7 +63,7 @@ done < "${packages_list}"
 cd
 
 ################################################################################
-#                             SHELL                                            #
+#                                   SHELL                                      #
 ################################################################################
 # Set location for zsh configuration files
 echo
@@ -113,6 +113,10 @@ echo "Starting and Configuring Docker..."
 sudo usermod -aG docker "${USER}"
 sudo systemctl enable docker
 sudo systemctl start docker
+
+# Initialize GPG
+sed -i "s/phrog/${USER}/g" ${HOME}/.local/share/gnupg/gpg-agent.conf
+gpgconf --kill gpg-agent
 
 # Initialize password store
 echo
