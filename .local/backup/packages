@@ -36,6 +36,7 @@ resolvconf                  # network resolver tool
 power-profiles-daemon       # power state management profiles
 libnotify                   # notification handler
 speedtest-cli               # command-line network speed tester
+brightnessctl               # display brightness control
 
 # ------------------------------------ gui -------------------------------------
 # hyprland environment

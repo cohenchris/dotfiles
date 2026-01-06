@@ -27,7 +27,6 @@ bind      = $mainMod, d, exec, LAUNCHER                                         
 bind      = $mainMod, w, exec, BROWSER                                                                              # web browser
 bind      = $mainMod, n, exec, FILE_BROWSER                                                                         # file browser
 bind      = $mainMod SHIFT, p, exec, SCREENSHOT                                                                     # screenshot utility
-bind      = ,Print, exec, SCREENSHOT                                                                     # screenshot utility
 bind      = $mainMod, e, exec, MAIL_CLIENT                                                                          # mail client
 bind      = $mainMod SHIFT, e, exec, mailsync                                                                       # sync mail
 bind      = $mainMod, Return, exec, TERMINAL                                                                        # terminal
@@ -63,9 +62,15 @@ bindle    = ,XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5
 bindle    = ,XF86AudioPrev, exec, playerctl previous                                                                # previous track
 bindle    = ,XF86AudioPlay, exec, playerctl play-pause                                                              # play/pause track
 bindle    = ,XF86AudioNext, exec, playerctl next                                                                    # next track
-bindle    = ,XF86MonBrightnessDown, exec, brightnessctl s 10-                                                       # display brightness down
-bindle    = ,XF86MonBrightnessUp, exec, brightnessctl s 10+                                                         # display brightness up
-bindle    = ,XF86RFKill, exec, AIRPLANE_MODE                                                                        # kill network connectivity
+#bindle    = ,XF86MonBrightnessDown, exec, <brightnessDown>                                                          # display brightness down
+#bindle    = ,XF86MonBrightnessUp, exec, <brightnessUp>                                                              # display brightness up
+
+XF86RFKill
+Print
+XF86AudioMedia
+bind      = ,XF86WLAN, exec, WIFI_MENU                                                                              # open WiFi connection menu
+bind      = ,XF86Bluetooth, exec, BLUETOOTH_MENU                                                                    # open bluetooth connection menu
+bind      = ,XF86Favorites, exec, VPN_MENU                                                                          # open VPN connection menu
 
 # ELECOM HUGE FUNCTION KEYS
 bindle    = ,mouse:277, exec, playerctl next                                                                        # Fn1 - next track
