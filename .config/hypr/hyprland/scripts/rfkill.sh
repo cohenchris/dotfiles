@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
 
-rfkill --output TYPE,SOFT | grep wlan
-has_wlan=$?
-
-if [[ "${has_wlan}" -eq 1 ]]; then
-  # No WLAN device, continue
-  notify CRITICAL "󰀝  No WLAN device found" "Cannot toggle airplane mode"
-  exit 1
-fi
-
-rfkill --output TYPE,SOFT | grep wlan | grep unblocked
-is_unblocked=$?
-
-if [[ "${is_unblocked}" -eq 0 ]]; then
-  notify CRITICAL "󰀝  Airplane mode enabled" "Network connectivity killed"
-else
-  notify GOOD "󰀝  Airplane mode disabled" "Network connectivity restored"
-fi
-
-rfkill toggle wlan
+ rfkill --output TYPE,SOFT | grep -q wlan
+ has_wlan=$?
+ 
+ if [[ "${has_wlan}" -eq 1 ]]; then
+   # No WLAN device, continue
+   notify CRITICAL "󰀝  No WLAN device found" "Cannot toggle airplane mode"
+   exit 1
+ fi
+ 
+ rfkill --output TYPE,SOFT | grep wlan | grep -q unblocked
+ is_unblocked=$?
+ 
+ if [[ "${is_unblocked}" -eq 0 ]]; then
+   notify CRITICAL "󰀝  Airplane mode enabled" "Network connectivity killed"
+ else
+   notify GOOD "󰀝  Airplane mode disabled" "Network connectivity restored"
+ fi
+ 
+ rfkill toggle wlan
