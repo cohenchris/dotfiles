@@ -5,7 +5,7 @@ if [[ -z "${XDG_TRASH_DIR}" ]]; then
   exit
 fi
 
-trash_icon=""
+trash_icon=" "
 trash_num_files=$(find "${XDG_TRASH_DIR}" -type f | wc -l)
 trash_size=$(du -hs "${XDG_TRASH_DIR}" | cut -f 1)
 

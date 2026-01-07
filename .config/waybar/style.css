@@ -27,7 +27,8 @@ button {
   box-shadow: inset 0 -3px transparent;
   /* Avoid rounded borders under each button name */
   border: none;
-  border-radius: 0;
+  border-radius: 0px 0px 0px 0px; /* top left/top right/bottom right/bottom left */
+
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
@@ -49,20 +50,22 @@ menu {
 #wireplumber,
 #bluetooth,
 #disk,
-#network,
 #custom-clock,
 #custom-email,
-#custom-vpn,
 #custom-trash,
 #custom-cpu,
 #custom-gpu,
 #custom-memory,
+#power-profiles-daemon,
+#battery,
+#idle_inhibitor,
+#custom-vpn,
+#network,
 #custom-speedtest {
   background-color: @pill-color;
-  border-radius: 10px;
-  padding: 0 10px;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  border-radius: 10px 10px 10px 10px; /* top left/top right/bottom right/bottom left */
+  padding: 0px 10px 0px 10px; /* top/right/bottom/left */
+  margin: 3px 0px 3px 4px; /* top/right/bottom/left */
 }
 
 #custom-ip:hover,
@@ -86,40 +89,35 @@ menu {
   background-color: @pill-color-hover;
 }
 
+
+/* POWER MANAGEMENT CONTINUOUS BAR */
 #power-profiles-daemon {
-  background-color: @pill-color;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  padding-right: 16px;
-  padding-left: 15px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  margin-right: 0px;
+  border-radius: 10px 0px 0px 10px; /* top left/top right/bottom right/bottom left */
+  padding-right: 11px;
 }
 
 #battery {
-  background-color: @pill-color;
-  padding: 0 10px;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  border-radius: 0px 0px 0px 0px; /* top left/top right/bottom right/bottom left */
   margin-left: -4px;
-  margin-right: 0px;
 }
 
 #idle_inhibitor {
-  background-color: @pill-color;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  padding-right: 13px;
-  padding-left: 16px;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  border-radius: 0px 10px 10px 0px; /* top left/top right/bottom right/bottom left */
   margin-left: -4px;
-  margin-right: 0px;
+  padding-left: 14px;
+}
+
+
+/* NETWORK MANAGEMENT CONTINUOUS BAR */
+#custom-vpn {
+  border-radius: 10px 0px 0px 10px; /* top left/top right/bottom right/bottom left */
+  padding-right: 12px;
+}
+
+#network {
+  border-radius: 0px 10px 10px 0px; /* top left/top right/bottom right/bottom left */
+  padding-left: 14px;
+  margin-left: -4px;
 }
 
 

@@ -25,14 +25,12 @@ waybar_text=""
 waybar_tooltip=""
 
 if [[ "${connection_name}" == "" ]]; then
-#  connection_icon=" 󱦚 "
-  connection_icon=" "
+  connection_icon=""
   connection_status="Disconnected"
   connection_tooltip_status="<span color='#c84b4b'>${connection_status}</span>"
   connection_name="N/A"
   connection_ip="N/A"
 else
-#  connection_icon=" 󰦝 "
   connection_icon=""
   connection_status="Connected"
   connection_tooltip_status="<span color='#00c000'>${connection_status}</span>"

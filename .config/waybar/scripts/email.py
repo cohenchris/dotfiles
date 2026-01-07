@@ -10,12 +10,8 @@ waybar_json_data = {}
 
 unread_messages_count = subprocess.check_output("notmuch search 'tag:unread' | wc -l", shell=True).decode("utf-8").strip()
 
-if unread_messages_count == "0":
-  email_icon = "󰪱"
-  email_text = "No Messages"
-else:
-  email_icon = "󰛏"
-  email_text = f"{unread_messages_count} New"
+email_icon = "󰪱" if unread_messages_count == "0" else "󰛏"
+email_text = f"{unread_messages_count} New"
 
 waybar_json_data['text'] = f"{email_icon}  {email_text}"
 

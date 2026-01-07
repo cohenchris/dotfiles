@@ -7,7 +7,7 @@
   "layer": "top",                         // waybar at top layer
   "position": "top",                      // waybar position (top|bottom|left|right)
   "height": 35,                           // waybar height (to be removed for auto height)
-  "spacing": 4,                           // gaps between modules in px
+  "spacing": 0,                           // gaps between modules in px (this is handled in style.css)
 
   // left modules
   "modules-left": [
@@ -84,7 +84,7 @@
   // clock module but I'm only using the calendar
   "clock": {
     "interval": 60,
-    "format": "󰸘  {:%A, %B %d %Y}",
+    "format": "  {:%A, %B %d %Y}",
     "timezone": "America/Los_Angeles",
     "tooltip": true,
     "tooltip-format": "{calendar}",
