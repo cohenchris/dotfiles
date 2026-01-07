@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 is_floating=$(hyprctl activewindow -j | jq -r '.floating')
 

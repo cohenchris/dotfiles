@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Function to get CPU usage per core
 get_cpu_usage() {
   # Initialize the array

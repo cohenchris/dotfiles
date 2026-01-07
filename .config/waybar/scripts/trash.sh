@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [[ -z "${XDG_TRASH_DIR}" ]]; then
   notify CRITICAL "  ERROR" "\${XDG_TRASH_DIR} not set in your environment!"

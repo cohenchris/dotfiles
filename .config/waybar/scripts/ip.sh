@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Get external IP address using curl
 external_ip=$(dig +short txt ch whoami.cloudflare @1.0.0.1)

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Custom hyprland-related scripts directory
 HYPRLAND_SCRIPTS_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts"
 
@@ -22,6 +22,6 @@ pkill hyprpaper
 hyprpaper &
 
 sleep 0.1
-set-wallpaper random
+SET_WALLPAPER random
 
 ${HYPRLAND_SCRIPTS_DIR}/speedtest.sh refresh

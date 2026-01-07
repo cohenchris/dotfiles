@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Based on https://github.com/HarHarLinks/wireguard-rofi-waybar/tree/main
 
