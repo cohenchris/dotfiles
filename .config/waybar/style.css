@@ -93,18 +93,27 @@ menu {
 /* POWER MANAGEMENT CONTINUOUS BAR */
 #power-profiles-daemon {
   border-radius: 10px 0px 0px 10px; /* top left/top right/bottom right/bottom left */
-  padding-right: 11px;
+}
+
+#power-profiles-daemon.power-saver,
+#power-profiles-daemon.balanced {
+  padding-right: 16px;
+  padding-left: 10px;
+}
+
+#power-profiles-daemon.performance {
+  padding-right: 14px;
+  padding-left: 12px;
 }
 
 #battery {
   border-radius: 0px 0px 0px 0px; /* top left/top right/bottom right/bottom left */
-  margin-left: -4px;
+  margin-left: 0px;
 }
 
 #idle_inhibitor {
   border-radius: 0px 10px 10px 0px; /* top left/top right/bottom right/bottom left */
-  margin-left: -4px;
-  padding-left: 14px;
+  margin-left: 0px;
 }
 
 
