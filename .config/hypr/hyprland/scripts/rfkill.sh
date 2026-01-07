@@ -13,9 +13,9 @@ rfkill --output TYPE,SOFT | grep wlan | grep unblocked
 is_unblocked=$?
 
 if [[ "${is_unblocked}" -eq 0 ]]; then
-  notify GOOD "󰀝  Airplane mode disabled" "Network connectivity restored"
-else
   notify CRITICAL "󰀝  Airplane mode enabled" "Network connectivity killed"
+else
+  notify GOOD "󰀝  Airplane mode disabled" "Network connectivity restored"
 fi
 
 rfkill toggle wlan
