@@ -17,6 +17,7 @@
 
   // center modules
   "modules-center": [
+    "disk#root",
     "disk#home",
     "disk#backups",
     "disk#files",
@@ -53,10 +54,18 @@
     "on-click-right": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/speedtest.sh refresh"
   },
 
-  // home disk
+  // root
+  "disk#root": {
+    "path": "/",
+    "format": "󰣇  {percentage_used}%",
+    "tooltip-format": "DISK INFORMATION\n\nName:\t/home\nUsage:\t{specific_used:0.1f}GB / {specific_total:0.1f}GB ({percentage_used}%)",
+    "unit": "GB",
+  },
+
+  // user home
   "disk#home": {
     "path": "/home",
-    "format": "󰣇  {percentage_used}%",
+    "format": "󰋜  {percentage_used}%",
     "tooltip-format": "DISK INFORMATION\n\nName:\t/home\nUsage:\t{specific_used:0.1f}GB / {specific_total:0.1f}GB ({percentage_used}%)",
     "unit": "GB",
   },
@@ -80,7 +89,7 @@
   // media disk
   "disk#media": {
     "path": "/media",
-    "format": "󰚺  {percentage_used}%",
+    "format": "󰿎  {percentage_used}%",
     "tooltip-format": "DISK INFORMATION\n\nName:\t/media\nUsage:\t{specific_used:0.1f}TB / {specific_total:0.1f}TB ({percentage_used}%)",
     "unit": "TB",
   },
