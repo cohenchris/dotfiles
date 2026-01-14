@@ -58,7 +58,7 @@
   "disk#root": {
     "path": "/",
     "format": "󰣇  {percentage_used}%",
-    "tooltip-format": "DISK INFORMATION\n\nName:\t/home\nUsage:\t{specific_used:0.1f}GB / {specific_total:0.1f}GB ({percentage_used}%)",
+    "tooltip-format": "DISK INFORMATION\n\nName:\t/\nUsage:\t{specific_used:0.1f}GB / {specific_total:0.1f}GB ({percentage_used}%)",
     "unit": "GB",
   },
 

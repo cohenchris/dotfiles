@@ -84,7 +84,7 @@
   // clock module but I'm only using the calendar
   "clock": {
     "interval": 60,
-    "format": "  {:%a, %B %d %Y}",
+    "format": "  {:%a, %b %d %Y}",
     "timezone": "America/Los_Angeles",
     "tooltip": true,
     "tooltip-format": "{calendar}",

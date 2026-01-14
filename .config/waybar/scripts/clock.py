@@ -17,7 +17,7 @@ waybar_json_data['text'] = f"󰥔  {time_now}"
 # Tooltip text should display 1 week's worth of appointments
 today = datetime.date.today().strftime("%m/%d/%Y")
 
-khal_command="khal list --format '{start-time} - {title} - {location}' " + today + " 5d"
+khal_command="khal list --format '{start-time} - {title} - {location}' " + today + " 4d"
 khal_output = subprocess.check_output(khal_command, shell=True).decode("utf-8")
 
 tooltip_text = []
