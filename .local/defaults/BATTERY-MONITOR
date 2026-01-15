@@ -1,0 +1,16 @@
+batsignal \
+-e \
+-b \
+-f 80 \
+-F "FULL" \
+-w 63 \
+-W "NOTICE" \
+-c 62 \
+-C "WARNING" \
+-d 61 \
+-D 'notify CRITICAL "󱃍 DANGER" "BATTERY CRITICALLY LOW"' \
+-p \
+-P "󰂄 Battery Charging!" \
+-U "󱟞 Battery Discharging..." \
+-m 15 \
+-M 'notify %s "NOTICE" "Battery Level: %s%"'

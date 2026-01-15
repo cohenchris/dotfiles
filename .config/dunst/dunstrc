@@ -76,26 +76,48 @@ idle_threshold = 120
 # Display notifications with higher urgency over the others
 sort = true
 
+# Urgency levels
+[urgency_low]
+  timeout = 10
+
+[urgency_normal]
+  timeout = 15
+
+[urgency_critical]
+  timeout = 20
 
 
 ########## STYLE ##########
 # IMPORTANT: colors have to be defined in quotation marks.
 # Otherwise the "#" and following would be interpreted as a comment.
-
-[urgency_low]
+[category_good]
+  category = "good"
   background = "#006600a0"
   foreground = "#ffffff"
   frame_color = "#00c000"
-  timeout = 10
 
-[urgency_normal]
-  background = "#000000a0"
+[category_normal]
+  category = "normal"
+  #background = "#000000a0"
+  background = "#4d4d4da0"
   foreground = "#ffffff"
-  frame_color = "#787878"
-  timeout = 15
+  #frame_color = "#787878"
+  frame_color = "#d3d3d3"
 
-[urgency_critical]
+[category_notice]
+  category = "notice"
+  background = "#ffd700a0"
+  foreground = "#ffffff"
+  frame_color = "#ffff00"
+
+[category_warning]
+  category = "warning"
+  background = "#ff6900a0"
+  foreground = "#ffffff"
+  frame_color = "#ff9500"
+
+[category_critical]
+  category = "critical"
   background = "#900000a0"
   foreground = "#ffffff"
   frame_color = "#ff0000"
-  timeout = 20

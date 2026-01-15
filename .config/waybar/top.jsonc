@@ -149,9 +149,9 @@
       "full": 100,
     },
     "tooltip": true,
-    "tooltip-format": "Battery is Discharging...\n\nCapacity:\t{capacity}%\nTo Empty:\t{time}\nPower Draw:\t{power}W\nCycles:\t\t{cycles}\nHealth:\t\t{health}%",
-    "tooltip-format-charging": "Battery is Charging...\n\nCapacity:\t{capacity}%\nTo Full:\t{time}\nPower Draw:\t{power}W\nCycles:\t\t{cycles}\nHealth:\t\t{health}%",
-    "tooltip-format-full": "Battery is Full\n\nCapacity:\t{capacity}%\nPower Draw:\t{power}W\nCycles:\t\t{cycles}\nHealth:\t\t{health}%",
+    "tooltip-format": "Battery is discharging...\n\nCapacity:\t{capacity}%\nTo Empty:\t{time}\nPower Draw:\t{power:.2f}W\nCycles:\t\t{cycles}\nHealth:\t\t{health}%",
+    "tooltip-format-charging": "Battery is charging...\n\nCapacity:\t{capacity}%\nTo Full:\t{time}\nPower Draw:\t{power}W\nCycles:\t\t{cycles}\nHealth:\t\t{health}%",
+    "tooltip-format-full": "Battery is full\n\nCapacity:\t{capacity}%\nPower Draw:\t{power}W\nCycles:\t\t{cycles}\nHealth:\t\t{health}%",
   },
 
   // toggle auto-lock
