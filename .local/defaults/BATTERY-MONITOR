@@ -3,11 +3,11 @@ batsignal \
 -b \
 -f 80 \
 -F "FULL" \
--w 63 \
+-w 25 \
 -W "NOTICE" \
--c 62 \
+-c 15 \
 -C "WARNING" \
--d 61 \
+-d 10 \
 -D 'notify CRITICAL "󱃍 DANGER" "BATTERY CRITICALLY LOW"' \
 -p \
 -P "󰂄 Battery Charging!" \

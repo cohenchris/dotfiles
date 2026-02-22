@@ -38,6 +38,8 @@ power-profiles-daemon       # power state management profiles
 libnotify                   # notification handler
 speedtest-cli               # command-line network speed tester
 brightnessctl               # display brightness control
+rclone                      # cloud storage connector
+rsync                       # remote and local file copying tool
 
 # ------------------------------------ gui -------------------------------------
 # hyprland environment
@@ -77,7 +79,7 @@ libreoffice-fresh           # document suite
 chafa                       # multimedia preview directly in terminal
 mpv                         # video/audio
 mediainfo                   # video/audio metadata
-imv                         # images
+swayimg                     # images
 ffmpegthumbnailer           # video preview
 libwebp-utils               # webp
 
@@ -96,12 +98,11 @@ vdirsyncer                  # calendar/contacts syncing
 ################################################################################
 #                              general applications                            #
 ################################################################################
-qutebrowser                 # web browser
+firefox                     # web browser
 rbw                         # unofficial bitwarden cli
 fuzzel-rbw                  # fuzzel frontend for rbw
 wtype                       # xdotool type for wayland (used with fuzzel-rbw)
 python-tldextract           # TLD extraction (qutebrowser bitwarden add-on)
-backblaze-b2-bin            # backblaze b2 cli
 gimp                        # image editor
 bluetui                     # bluetooth TUI
 wiremix                     # audio management TUI
