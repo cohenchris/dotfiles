@@ -133,7 +133,7 @@
     "tooltip": true,
     "return-type": "json",
     "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/gpu.sh waybar",
-    "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/gpu.sh watch"
+    "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/gpu.sh monitor"
   },
 
   // memory

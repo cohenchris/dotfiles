@@ -1,10 +1,34 @@
 #!/usr/bin/env bash
 
-# gpu_waybar()
+
+# detect_gpu_type()
 #
-# This function will capture various GPU information for use in a waybar module
+# This function detects the type of GPU that you have in your system
+# If there is an Nvidia GPU, it will print "nvidia".
+# If there is an AMD GPU, it will print "amd".
+# If there is some other type of GPU or no GPU at all, it will print "none".
+detect_gpu_type() {
+  # Nvidia
+  if command -v nvidia-smi >/dev/null 2>&1; then
+    echo "nvidia"
+    return
+  fi
+
+  # AMD (modern + older drivers)
+  if lspci | grep -Eiq 'AMD|ATI'; then
+    echo "amd"
+    return
+  fi
+
+  echo "none"
+}
+
+
+# nvidia_gpu_waybar()
+#
+# This function will capture various Nvidia GPU information for use in a waybar module
 # Custom waybar modules requires input as JSON
-function gpu_waybar()
+function nvidia_gpu_waybar()
 {
   # No GPU, no waybar module
   nvidia-smi > /dev/null 2>&1
@@ -58,10 +82,20 @@ function gpu_waybar()
 }
 
 
-# centered_nvidia_smi()
+# amd_gpu_waybar()
+#
+# This function will capture various AMD GPU information for use in a waybar module
+# Custom waybar modules requires input as JSON
+function amd_gpu_waybar()
+{
+  echo "WARNING: NOT IMPLEMENTED"
+}
+
+
+# nvidia_gpu_monitor()
 #
 # This function will capture the output of the command "nvidia-smi" and print it horizontally and vertically centered.
-function centered_nvidia_smi()
+function nvidia_gpu_monitor()
 {
   # Capture nvidia-smi output into an array
   mapfile -t output < <(nvidia-smi | tail -n +2)
@@ -81,15 +115,55 @@ function centered_nvidia_smi()
 }
 
 
+# amd_gpu_monitor()
+#
+# TODO: implement this function
+# This function will capture the output of the command "???" and print it horizontally and vertically centered.
+function amd_gpu_monitor()
+{
+  echo "WARNING: NOT IMPLEMENTED"
+}
+
+
 if [[ "${1}" == "waybar" ]]; then
   # Return waybar widget/tooltip JSON
-  gpu_waybar
-elif [[ "${1}" == "watch" ]]; then
-  # Open a centered nvidia-smi window to monitor GPU
-  export -f centered_nvidia_smi
-  notify NORMAL "󰨇  Watching GPU..."
-  TERMINAL --title "GPU" bash -c 'watch --no-title centered_nvidia_smi'
+  if [[ "$(detect_gpu_type)" == "nvidia" ]]; then
+    # Nvidia GPU
+    nvidia_gpu_waybar
+
+  elif [[ "$(detect_gpu_type)" == "amd" ]]; then
+    # AMD GPU
+    amd_gpu_waybar
+
+  else
+    # Either an unsupported GPU or no GPU at all
+    exit 0
+
+  fi
+
+elif [[ "${1}" == "monitor" ]]; then
+  # Open a centered GPU stats window
+  if [[ "$(detect_gpu_type)" == "nvidia" ]]; then
+    # Nvidia GPU
+    export -f nvidia_gpu_monitor
+    notify NORMAL "󰨇  Monitoring GPU..."
+    TERMINAL --title "GPU" bash -c 'watch --no-title nvidia_gpu_monitor'
+
+  elif [[ "$(detect_gpu_type)" == "amd" ]]; then
+    # AMD GPU
+    export -f amd_gpu_monitor
+    notify NORMAL "󰨇  Monitoring GPU..."
+    TERMINAL --title "GPU" bash -c 'watch --no-title amd_gpu_monitor'
+
+  else
+    # Either an unsupported GPU or no GPU at all
+    exit 0
+  fi
+
 else
-  echo "USAGE: gpu.sh [waybar,watch]"
+
+  # Invalid command, print help message
+  echo "USAGE: gpu.sh [waybar,monitor]"
   exit 1
+
 fi
