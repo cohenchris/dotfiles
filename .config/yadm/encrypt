@@ -5,4 +5,3 @@
 .config/password-store
 .config/rclone
 .config/wireguard
-.config/mozilla
