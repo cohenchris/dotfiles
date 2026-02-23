@@ -1,16 +1,1 @@
-batsignal \
--e \
--b \
--f 80 \
--F "FULL" \
--w 25 \
--W "NOTICE" \
--c 15 \
--C "WARNING" \
--d 10 \
--D 'notify CRITICAL "󱃍 DANGER" "BATTERY CRITICALLY LOW"' \
--p \
--P "󰂄 Battery Charging!" \
--U "󱟞 Battery Discharging..." \
--m 15 \
--M 'notify %s "NOTICE" "Battery Level: %s%"'
+battery-monitor "$@"
