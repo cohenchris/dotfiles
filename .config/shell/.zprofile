@@ -38,7 +38,6 @@ export SHELL="zsh"                                                              
 
 # Define custom PATH
 declare -a paths=(
-  "${HOME}/.local/backup"
   "${HOME}/scripts/bin"
   "${HOME}/scripts/system"
   "${HOME}/.local/defaults"

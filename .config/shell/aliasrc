@@ -10,6 +10,7 @@ alias lockkeyring="gpgconf --kill gpg-agent && faillock --reset"
 alias flushdns="sudo systemd-resolve --flush-caches"
 
 # Server
+alias backup-dotfiles="${XDG_CONFIG_HOME}/yadm/backup"
 alias occ="docker exec -it -u www-data nextcloud php occ"
 alias mail-fail2ban="docker exec -it mailserver fail2ban-client"
 alias swag-fail2ban="docker exec -it swag fail2ban-client"

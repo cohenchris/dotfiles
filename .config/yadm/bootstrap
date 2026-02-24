@@ -29,7 +29,7 @@ echo "I Love Candy!"
 sudo sed -i '/ParallelDownloads/i ILoveCandy' /etc/pacman.conf
 
 paru -Syyu --noconfirm
-packages_list="${HOME}/.local/backup/packages"
+packages_list="${HOME}/.config/yadm/packages"
 
 # Install all personal packages
 

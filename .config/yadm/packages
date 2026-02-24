@@ -100,10 +100,7 @@ vdirsyncer                  # calendar/contacts syncing
 #                              general applications                            #
 ################################################################################
 firefox                     # web browser
-rbw                         # unofficial bitwarden cli
-fuzzel-rbw                  # fuzzel frontend for rbw
-wtype                       # xdotool type for wayland (used with fuzzel-rbw)
-python-tldextract           # TLD extraction (qutebrowser bitwarden add-on)
+bitwarden-cli               # bitwarden CLI
 gimp                        # image editor
 bluetui                     # bluetooth TUI
 wiremix                     # audio management TUI
