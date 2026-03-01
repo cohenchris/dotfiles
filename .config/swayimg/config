@@ -72,8 +72,6 @@ cache = 100
 preload = yes
 # Enable/disable storing thumbnails in persistent storage (yes/no)
 pstore = yes
-# Fill the entire tile with thumbnail (yes/no)
-fill = yes
 # Anti-aliasing mode for thumbnails (none/box/bilinear/bicubic/mks13)
 antialiasing = mks13
 # Background color of the window (RGBA)
@@ -82,10 +80,6 @@ window = #00000000
 background = #202020ff
 # Background color of the selected tile (RGBA)
 select = #404040ff
-# Border color of the selected tile (RGBA)
-border = #000000ff
-# Shadow color of the selected tile (RGBA)
-shadow = #000000ff
 
 ################################################################################
 # Image list configuration
@@ -156,8 +150,8 @@ bottom_right = none
 F1 = help
 Home = first_file
 End = last_file
-Prior = prev_file
-Next = next_file
+p = prev_file
+n = next_file
 Space = next_file
 Shift+r = rand_file
 Shift+d = prev_dir
@@ -166,7 +160,7 @@ Shift+o = prev_frame
 o = next_frame
 c = skip_file
 s = mode slideshow
-n = animation
+a = animation
 f = fullscreen
 Return = mode gallery
 Left = step_left 10
@@ -208,6 +202,8 @@ Alt+ScrollDown = next_frame
 MouseLeft = drag
 MouseSide = prev_file
 MouseExtra = next_file
+Ctrl+f  = exec mkdir -p ./favorites && mv % ./favorites;
+Ctrl+t = exec mkdir -p ./trash && mv % ./trash;
 
 ################################################################################
 # Slideshow mode key binding configuration: key = action [parameters]
