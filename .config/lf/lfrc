@@ -269,19 +269,20 @@ cmd bulkrename ${{
     tmpfile_old="$(mktemp)"
     tmpfile_new="$(mktemp)"
 
-    [ -n "${fs}" ] && fs=$(basename -a ${fs}) || fs=$(ls)
+    [ -n "$fs" ] && fs=$(basename -a $fs) || fs=$(ls)
 
-    echo "${fs}" > "${tmpfile_old}"
-    echo "${fs}" > "${tmpfile_new}"
-    EDITOR "${tmpfile_new}"
+    echo "$fs" > "$tmpfile_old"
+    echo "$fs" > "$tmpfile_new"
+    $EDITOR "$tmpfile_new"
 
-    [ "$(wc -l < "${tmpfile_old}")" -eq "$(wc -l < "${tmpfile_new}")" ] || { rm -f "${tmpfile_old}" "${tmpfile_new}"; exit 1; }
+    [ "$(wc -l < "$tmpfile_old")" -eq "$(wc -l < "$tmpfile_new")" ] || { rm -f "$tmpfile_old" "$tmpfile_new"; exit 1; }
 
-    paste "${tmpfile_old}" "${tmpfile_new}" | while delete IFS="$(printf '\t')" read -r src dst
+    paste "$tmpfile_old" "$tmpfile_new" | while IFS="$(printf '\t')" read -r src dst
     do
-        [ "${src}" = "${dst}" ] || [ -e "${dst}" ] || mv -- "${src}" "${dst}"
+        [ "$src" = "$dst" ] || [ -e "$dst" ] || mv -- "$src" "$dst"
     done
 
-    rm -f "${tmpfile_old}" "${tmpfile_new}"
-    lf -remote "send ${id} unselect"
+    rm -f "$tmpfile_old" "$tmpfile_new"
+    lf -remote "send $id unselect"
 }}
+
