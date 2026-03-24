@@ -114,3 +114,4 @@ transmission-cli            # transmission cli torrent client
 wireguard-tools             # wireguard VPN
 minicom                     # COM client
 texlive                     # LaTeX
+whipper                     # cd/dvd ripping
