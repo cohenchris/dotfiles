@@ -15,6 +15,7 @@ alias occ="docker exec -it -u www-data nextcloud php occ"
 alias mail-fail2ban="docker exec -it mailserver fail2ban-client"
 alias swag-fail2ban="docker exec -it swag fail2ban-client"
 alias logs="docker logs -f"
+alias rcon="docker exec -it minecraft rcon-cli"
 
 attach() {
   if docker exec "$1" which bash > /dev/null 2>&1; then
