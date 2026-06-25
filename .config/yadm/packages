@@ -28,7 +28,6 @@ python-virtualenv           # python virtual environments
 docker                      # docker containerization
 docker-compose              # docker-compose
 inetutils                   # hostname command
-nmap-netcat                 # nmap and netcat
 smartmontools               # drive SMART monitoring
 sshfs                       # Mount a filesystem over SSH
 msmtp                       # SMTP client
@@ -50,7 +49,7 @@ hyprcursor                  # cursor theme
 hypridle                    # idle management daemon
 hyprsunset                  # blue light filter
 waybar                      # status bar
-wayclip                     # clipboard manager
+wl-clipboard                # clipboard manager
 wireplumber                 # pipewire session manager
 xdg-desktop-portal-hyprland # desktop portal implementation (for screen sharing)
 
@@ -115,3 +114,4 @@ wireguard-tools             # wireguard VPN
 minicom                     # COM client
 texlive                     # LaTeX
 whipper                     # cd/dvd ripping
+aur-scanner                 # AUR package security scanner
