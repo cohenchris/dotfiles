@@ -89,6 +89,21 @@ echo
 echo "Downloading wallpapers..."
 git clone git@github.com:cohenchris/wallpapers "${HOME}/.local/share/wallpapers"
 
+# Install cursor themes
+CURSORS_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}/icons"
+mkdir "${CURSORS_DIR}"
+cd "${CURSORS_DIR}"
+# hyprcursor
+mkdir rose-pine-hyprcursor
+cd rose-pine-hyprcursor
+wget https://github.com/ndom91/rose-pine-hyprcursor/releases/latest/download/rose-pine-cursor-hyprcursor_0.3.2.tar.gz
+tar -xvf *.gz
+rm *.gz
+cd ../
+# xcursor
+wget https://github.com/rose-pine/cursors/releases/latest/download/BreezeX-RosePine-Linux.tar.xz
+rm *.xz
+
 # Delete extraneous files in ${HOME}/
 echo
 echo "Deleting extraneous XDG directories..."
