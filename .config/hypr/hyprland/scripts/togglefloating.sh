@@ -3,10 +3,10 @@
 is_floating=$(hyprctl activewindow -j | jq -r '.floating')
 
 # Toggle floating mode
-hyprctl dispatch togglefloating
+hyprctl dispatch 'hl.dsp.window.float()'
 
 # Resize + center window if it is now floating (was not initially floating)
 if [ "${is_floating}" = "false" ]; then
-  hyprctl dispatch resizeactive exact 1400 800
-  hyprctl dispatch centerwindow
+  hyprctl dispatch 'hl.dsp.window.resize({ x = 1400, y = 800 })'
+  hyprctl dispatch 'hl.dsp.window.center()'
 fi
