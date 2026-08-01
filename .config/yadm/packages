@@ -48,6 +48,7 @@ hyprpaper                   # wallpaper
 hyprcursor                  # cursor theme
 hypridle                    # idle management daemon
 hyprsunset                  # blue light filter
+hyprshutdown                # graceful exit
 waybar                      # status bar
 wl-clipboard                # clipboard manager
 wireplumber                 # pipewire session manager
