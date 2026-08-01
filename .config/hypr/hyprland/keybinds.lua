@@ -35,7 +35,7 @@ hl.bind(mainMod .. " + SHIFT + b", hl.dsp.exec_cmd("PASSWORD_MENU"))            
 
 -- DESKTOP ENVIRONMENT
 hl.bind(mainMod .. " + SHIFT + r", hl.dsp.exec_cmd(hyprlandScriptsDir .. "/hyprland-reload.sh"))                                    -- reload hyprland and waybar
-hl.bind(mainMod .. " + SHIFT + x", hl.dsp.exit())                                                                                   -- exit hyprland
+hl.bind(mainMod .. " + SHIFT + x", hl.dsp.exec_cmd("hyprshutdown"))                                                                 -- exit hyprland
 hl.bind(mainMod .. " + CONTROL + Delete", hl.dsp.exec_cmd("hyprlock --grace 0"))                                                    -- lock screen
 hl.bind(mainMod .. " + SHIFT + u", hl.dsp.exec_cmd("SET_WALLPAPER random"))                                                         -- random wallpaper
 
