@@ -4,8 +4,8 @@
 # Hyprland startup (see hyprland.lua) since the hardware doesn't change mid-session.
 set -euo pipefail
 
-hyprlock_dir"${XDG_CONFIG_HOME:-${HOME}/.config}/hypr/hyprlock"
-hyprlock_auth_conf_link="$HOME/.config/hypr/hyprlock-auth.conf"
+hyprlock_dir="${XDG_CONFIG_HOME:-${HOME}/.config}/hypr/hyprlock"
+hyprlock_auth_conf="${XDG_CACHE_HOME:-${HOME}/.local/cache}/hyprlock-auth.conf"
 
 device_count=0
 if command -v busctl &>/dev/null; then
@@ -16,7 +16,7 @@ if command -v busctl &>/dev/null; then
 fi
 
 if [[ "$device_count" -gt 0 ]]; then
-  ln -sf "$hyprlock_dir/auth-fingerprint.conf" "$hyprlock_auth_conf_link"
+  ln -sf "$hyprlock_dir/auth-fingerprint.conf" "$hyprlock_auth_conf"
 else
-  ln -sf "$hyprlock_dir/auth-password.conf" "$hyprlock_auth_conf_link"
+  ln -sf "$hyprlock_dir/auth-password.conf" "$hyprlock_auth_conf"
 fi
