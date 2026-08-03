@@ -131,6 +131,19 @@ menu {
 
 
 /*********************************** TOP BAR **********************************/
+/********** MY COMPUTER **********/
+#custom-mycomputer {
+  margin-left: 10px;
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+#custom-mycomputer:hover {
+  color: @alert-color;
+}
+
+
+
 /********** WORKSPACES **********/
 #workspaces * {
   font-size: 17px;

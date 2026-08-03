@@ -11,6 +11,7 @@
 
   // left modules
   "modules-left": [
+    "custom/mycomputer",
     "hyprland/workspaces",
   ],
 
@@ -35,6 +36,15 @@
   /***********
    * MODULES *
    ***********/
+
+  // my computer
+  "custom/mycomputer": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 10,
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/mycomputer.sh",
+    "return-type": "json",
+  },
 
   // workspaces
   "hyprland/workspaces": {
