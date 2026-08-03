@@ -1,59 +1,42 @@
 #!/usr/bin/env bash
+# Memory/swap waybar module, sourced from glances (machine-agnostic; works on
+# any system glances supports instead of parsing `free`/`sensors` directly).
 
 memory_icon=" "
 
-read -r _ total used _ <<< $(free -m | awk '/^Mem:/ {print $1, $2, $3, $4}')
-ram_total=$(awk "BEGIN {printf \"%.1f\", $total / 1024}")
-ram_used=$(awk "BEGIN {printf \"%.1f\", $used / 1024}")
-ram_use_percent=$(awk "BEGIN {printf \"%.1f\", ($used / $total) * 100}")
-rounded_ram_use_percent=$(awk "BEGIN {printf \"%d\", ($used / $total) * 100}")
+json=$(glances --stdout-json mem,memswap,sensors \
+  --disable-plugin all --enable-plugin mem,memswap,sensors \
+  -t 0.1 --stop-after 1 2>/dev/null)
 
-# RAM temperature (optional, may require lm-sensors and a supported system)
-mapfile -t ram_temps < <(
-  sensors | awk '
-    # --- jc42 RAM sensors ---
-    /^jc42/ { in_jc42 = 1; next }
-    in_jc42 && /^Adapter:/ { next }
-    in_jc42 && /temp1:/ {
-      if (match($2, /\+([0-9.]+)°C/, m)) {
-        print m[1]
-      }
-      in_jc42 = 0
-    }
+ram_total=$(jq -r '.mem.total / 1073741824 * 10 | round / 10' <<< "${json}")
+ram_used=$(jq -r '.mem.used / 1073741824 * 10 | round / 10' <<< "${json}")
+ram_use_percent=$(jq -r '.mem.percent' <<< "${json}")
+rounded_ram_use_percent=$(jq -r '.mem.percent | round' <<< "${json}")
 
-    # --- cros_ec RAM sensor ---
-    /^ddr_/ {
-      if (match($2, /\+([0-9.]+)°C/, m)) {
-        print m[1]
-      }
-    }
-  '
-)
+# RAM temperature (optional; jc42 DIMM sensors or cros_ec ddr_ sensors, if present)
+mapfile -t ram_temps < <(jq -r '
+  [.sensors[] | select(.label | test("jc42"; "i") or test("ddr"; "i"))]
+  | .[].value
+' <<< "${json}")
 
 rounded_ram_temp_average=$(
   printf '%s\n' "${ram_temps[@]}" |
   awk '{ sum += $1; count++ }
        END { if (count > 0) printf "%d", sum / count }'
 )
-
+rounded_ram_temp_average=${rounded_ram_temp_average:-0}
 
 # Swap usage
-read -r _ sw_total sw_used _ <<< $(free -m | awk '/^Swap:/ {print $1, $2, $3, $4}')
-swap_total=$(awk "BEGIN {printf \"%.1f\", $sw_total / 1024}")
-swap_used=$(awk "BEGIN {printf \"%.1f\", $sw_used / 1024}")
-swap_use_percent=$(awk "BEGIN {printf \"%.1f\", ($sw_used / $sw_total) * 100}")
-
-# Handle division by zero (e.g., no swap)
-if [ "${sw_total}" -eq 0 ]; then
-  swap_use_percent="0.0"
-fi
+swap_total=$(jq -r '.memswap.total / 1073741824 * 10 | round / 10' <<< "${json}")
+swap_used=$(jq -r '.memswap.used / 1073741824 * 10 | round / 10' <<< "${json}")
+swap_use_percent=$(jq -r '.memswap.percent' <<< "${json}")
 
 # Tooltip formatting
 ram_usage_tooltip="RAM Usage:    ${ram_used} GB / ${ram_total} GB  (${ram_use_percent}%)"
 ram_temp_tooltip=$(
   for i in "${!ram_temps[@]}"; do
     printf "DIMM%d Temp:   %s°C\n" "$((i + 1))" "${ram_temps[i]}"
-  done
+  done | sed ':a;N;$!ba;s/\n/\\n/g'
 )
 swap_usage_tooltip="Swap Usage:   ${swap_used} GB / ${swap_total} GB  (${swap_use_percent}%)"
 
