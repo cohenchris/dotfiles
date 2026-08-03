@@ -53,6 +53,7 @@ waybar                      # status bar
 wl-clipboard                # clipboard manager
 wireplumber                 # pipewire session manager
 xdg-desktop-portal-hyprland # desktop portal implementation (for screen sharing)
+swayosd											# visual volume control indicator
 
 # icons/themes
 noto-fonts-emoji            # emojis for lf

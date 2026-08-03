@@ -15,6 +15,7 @@ set trash = "+Trash"                                                            
 set postponed = "+Drafts"                                                           # send any incomplete emails to "Drafts" box
                                                                                     #
 set header_cache = "${XDG_CACHE_HOME}/neomutt"                                      # header cache
+set attach_save_dir = "${XDG_DOWNLOAD_DIR}/"                                        # default directory to save attachments to
 set editor = "EDITOR"                                                               # use EDITOR env var as default editor
 set sort = "threads"                                                                # sort messages by threads
 set sort_aux = "reverse-last-date-received"                                         # sort by most recent first

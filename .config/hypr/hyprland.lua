@@ -16,6 +16,7 @@ require("hyprland/rules")                                  -- window and workspa
 -- Startup Programs
 -- https://wiki.hypr.land/Configuring/Basics/Autostart/
 hl.on("hyprland.start", function()
+  hl.exec_cmd("~/.config/hypr/hyprlock/detect-auth.sh")    -- point hyprlock-auth.conf at the fingerprint or password variant
   hl.exec_cmd("dunst")                                     -- notification daemon
   hl.exec_cmd("hyprpaper")                                 -- wallpaper manager
   hl.exec_cmd("hypridle")                                  -- idle management (auto-lock screen)
@@ -24,6 +25,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("sleep 0.5 && SET_WALLPAPER random")         -- set random wallpaper
   hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent")  -- polkit agent for fingerprint login
   hl.exec_cmd("BATTERY_MONITOR")                           -- battery monitor daemon
+  hl.exec_cmd("swayosd-server")                            -- visual volume control indicator daemon
 end)
 
 -- https://wiki.hyprland.org/Configuring/Basics/Variables/#misc

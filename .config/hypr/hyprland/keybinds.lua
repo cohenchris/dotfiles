@@ -46,15 +46,15 @@ hl.bind(mainMod .. " + Bracketleft", hl.dsp.exec_cmd(hyprlandScriptsDir .. "/nig
 hl.bind(mainMod .. " + SHIFT + Bracketleft", hl.dsp.exec_cmd(hyprlandScriptsDir .. "/night-light.sh reset"), { locked = true })     -- reset night light filter to default temperature
 
 -- VOLUME
-hl.bind(mainMod .. " + Backspace", hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"), { locked = true })                 -- volume mute toggle
-hl.bind(mainMod .. " + Equal", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"), { repeating = true })                   -- volume down
-hl.bind(mainMod .. " + Minus", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"), { repeating = true })                   -- volume up
+hl.bind(mainMod .. " + Backspace", hl.dsp.exec_cmd("VOLUMECTL mute"), { locked = true })                                            -- volume mute toggle
+hl.bind(mainMod .. " + Equal", hl.dsp.exec_cmd("VOLUMECTL up"), { repeating = true })                                               -- volume up
+hl.bind(mainMod .. " + Minus", hl.dsp.exec_cmd("VOLUMECTL down"), { repeating = true })                                             -- volume down
 hl.bind(mainMod .. " + SHIFT + Backspace", hl.dsp.exec_cmd("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), { locked = true })     -- microphone mute toggle
 
 -- LAPTOP KEYS
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"), { locked = true })                           -- volume mute toggle
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"), { repeating = true })                  -- volume down
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"), { repeating = true })                  -- volume up
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("VOLUMECTL mute"), { locked = true })                                                      -- volume mute toggle
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("VOLUMECTL down"), { repeating = true })                                            -- volume down
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("VOLUMECTL up"), { repeating = true })                                              -- volume up
 
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { repeating = true })                                               -- previous track
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { repeating = true })                                             -- play/pause track

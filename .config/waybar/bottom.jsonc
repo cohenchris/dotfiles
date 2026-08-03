@@ -43,7 +43,9 @@
   "custom/ip": {
     "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/ip.sh",
     "interval": 3600,
-    "tooltip-format": "Public IP / Local IP"
+    "signal": 8,
+    "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/ip.sh toggle",
+    "tooltip-format": "  Public IP /   Local IP (click to toggle)"
   },
 
   // upload + download speeds

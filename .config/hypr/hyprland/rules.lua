@@ -19,7 +19,7 @@ hl.window_rule({
 -- small floating generic waybar popups
 hl.window_rule({
   name = "small_floating_popup",
-  match = { title = "^(GPU|Audio|Bluetooth|WiFi)$" },
+  match = { title = "^(GPU|Audio|Bluetooth|WiFi|VPN)$" },
   float = true,
   size = { 900, 600 },
   center = true,
@@ -28,7 +28,7 @@ hl.window_rule({
 -- large floating generic waybar popups
 hl.window_rule({
   name = "large_floating_popup",
-  match = { title = "^(File Browser|Qutebrowser Popup)" },
+  match = { title = "^(File Browser)" },
   float = true,
   size = { 1400, 800 },
   center = true,
@@ -49,15 +49,6 @@ hl.window_rule({
   match = { title = "^(Calendar)$" },
   float = true,
   size = { 1000, 900 },
-  center = true,
-})
-
--- floating qutebrowser keybinds helper popup
-hl.window_rule({
-  name = "keybinds_help_popup_size",
-  match = { title = "^(swayimg: keybinds.png)$" },
-  float = true,
-  size = { 1200, 800 },
   center = true,
 })
 

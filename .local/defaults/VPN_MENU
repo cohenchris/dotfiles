@@ -1,1 +1,1 @@
-vpn-menu "$@"
+TERMINAL --title "VPN" vpn-menu "$@"
