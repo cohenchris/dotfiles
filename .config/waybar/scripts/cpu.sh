@@ -6,6 +6,7 @@ cpu_icon=" "
 
 json=$(glances --stdout-json cpu,percpu,sensors \
   --disable-plugin all --enable-plugin cpu,percpu,sensors \
+  --disable-check-update \
   -t 0.1 --stop-after 1 2>/dev/null)
 
 cpu_use_average=$(jq -r '.cpu.total | round' <<< "${json}")
@@ -19,13 +20,23 @@ mapfile -t cpu_temps < <(jq -r '
 ' <<< "${json}")
 
 # Prefer the package-level sensor for the average; fall back to the mean of
-# the per-core sensors if a machine doesn't expose one.
+# the per-core sensors, then to AMD's package sensor (Tctl), if a machine
+# doesn't expose "Package id 0" (Intel-only label).
 cpu_temp_average=$(jq -r '
   ([.sensors[] | select(.label == "Package id 0")] | .[0].value) //
-  ([.sensors[] | select(.label | test("^Core [0-9]+$")) | .value] | if length > 0 then (add / length) else null end)
+  ([.sensors[] | select(.label | test("^Core [0-9]+$")) | .value] | if length > 0 then (add / length) else null end) //
+  ([.sensors[] | select(.label == "Tctl")] | .[0].value)
   // 0
   | (. + 0.5 | floor)
 ' <<< "${json}")
+
+# Machines without per-core temp sensors (e.g. AMD, no coretemp-style
+# "Core N" labels) get the package-level average repeated for every core.
+if [ "${#cpu_temps[@]}" -eq 0 ]; then
+  for ((i=0; i<${#cpu_usages[@]}; i++)); do
+    cpu_temps+=("${cpu_temp_average}")
+  done
+fi
 
 # Determine the number of cores to display (minimum of usage and temp arrays)
 num_cores_usage=${#cpu_usages[@]}
