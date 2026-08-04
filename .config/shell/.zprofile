@@ -16,6 +16,7 @@ export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"                                  
 export MBSYNC_CONFIG="${XDG_CONFIG_HOME}/mail/mbsyncrc"                             # email remote sync
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME}/mail/notmuch.conf"                        # email indexing
 export NEOMUTT_CONFIG="${XDG_CONFIG_HOME}/mail/neomutt/neomuttrc"                   # neomutt email client
+export CLAUDE_CONFIG_DIR="${XDG_CONFIG_HOME}/claude"                                # claude code
                                                                                     #
 # CACHE                                                                             #
 export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"                                       # cuda nv cache
