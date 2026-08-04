@@ -4,8 +4,14 @@
 
 memory_icon=" "
 
+mode_file="${XDG_CACHE_HOME:-${HOME}/.local/cache}/system-monitor-mode"
+
+mode=$(cat "${mode_file}" 2>/dev/null)
+[[ "${mode}" != "usage" ]] && mode="temp"
+
 json=$(glances --stdout-json mem,memswap,sensors \
   --disable-plugin all --enable-plugin mem,memswap,sensors \
+  --disable-check-update \
   -t 0.1 --stop-after 1 2>/dev/null)
 
 ram_total=$(jq -r '.mem.total / 1073741824 * 10 | round / 10' <<< "${json}")
@@ -45,8 +51,17 @@ if [ "${rounded_ram_temp_average}" -ge "55" ]; then
   waybar_class="critical"
 fi
 
-# Final waybar text/tooltip
-waybar_text="${memory_icon} $(printf '%2d' ${rounded_ram_use_percent})% / $(printf '%2s' ${rounded_ram_temp_average})°C"
-waybar_tooltip="<big>MEMORY</big>\n\n${ram_usage_tooltip}\n${ram_temp_tooltip}\n\n${swap_usage_tooltip}"
+# Final waybar text/tooltip (mode toggled via system-monitor.sh)
+if [[ "${mode}" == "temp" ]]; then
+  waybar_text="${memory_icon} $(printf '%2s' ${rounded_ram_temp_average})°C"
+  if [ "${#ram_temps[@]}" -gt 0 ]; then
+    waybar_tooltip="<big>MEMORY</big>\n\n${ram_temp_tooltip}"
+  else
+    waybar_tooltip="<big>MEMORY</big>\n\nNo RAM temperature sensors found"
+  fi
+else
+  waybar_text="${memory_icon} $(printf '%2d' ${rounded_ram_use_percent})%"
+  waybar_tooltip="<big>MEMORY</big> (click to toggle)\n\n${ram_usage_tooltip}\n${swap_usage_tooltip}"
+fi
 
 echo "{\"text\": \"${waybar_text}\", \"tooltip\": \"${waybar_tooltip}\", \"class\": \"${waybar_class}\"}"

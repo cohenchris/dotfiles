@@ -125,7 +125,9 @@
     "format": "{}",
     "tooltip": true,
     "return-type": "json",
+    "signal": 9,
     "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/cpu.sh",
+    "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/system-monitor.sh toggle",
   },
 
   // gpu
@@ -134,8 +136,9 @@
     "format": "{}",
     "tooltip": true,
     "return-type": "json",
-    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/gpu.sh waybar",
-    "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/gpu.sh monitor"
+    "signal": 9,
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/gpu.sh",
+    "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/system-monitor.sh toggle"
   },
 
   // memory
@@ -144,7 +147,9 @@
     "format": "{}",
     "tooltip": true,
     "return-type": "json",
+    "signal": 9,
     "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/memory.sh",
+    "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/system-monitor.sh toggle",
   },
 
   // vpn

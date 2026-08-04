@@ -19,7 +19,7 @@ hl.window_rule({
 -- small floating generic waybar popups
 hl.window_rule({
   name = "small_floating_popup",
-  match = { title = "^(GPU|Audio|Bluetooth|WiFi|VPN)$" },
+  match = { title = "^(GPU|Audio|Bluetooth|WiFi|VPN|System Monitor)$" },
   float = true,
   size = { 900, 600 },
   center = true,

@@ -116,6 +116,20 @@ menu {
   margin-left: 0px;
 }
 
+/* SYSTEM MONITOR CONTINUOUS BAR */
+#custom-cpu{
+  border-radius: 10px 0px 0px 10px; /* top left/top right/bottom right/bottom left */
+}
+
+#custom-gpu {
+  border-radius: 0px 0px 0px 0px; /* top left/top right/bottom right/bottom left */
+  margin-left: 0px;
+}
+
+#custom-memory {
+  border-radius: 0px 10px 10px 0px; /* top left/top right/bottom right/bottom left */
+  margin-left: 0px;
+}
 
 /* NETWORK MANAGEMENT CONTINUOUS BAR */
 #custom-vpn {

@@ -42,8 +42,9 @@
     "format": "{}",
     "tooltip": true,
     "interval": 10,
-    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/mycomputer.sh",
+    "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/mycomputer.sh info",
     "return-type": "json",
+    "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/mycomputer.sh monitor",
   },
 
   // workspaces

@@ -4,6 +4,11 @@
 
 cpu_icon=" "
 
+mode_file="${XDG_CACHE_HOME:-${HOME}/.local/cache}/system-monitor-mode"
+
+mode=$(cat "${mode_file}" 2>/dev/null)
+[[ "${mode}" != "usage" ]] && mode="temp"
+
 json=$(glances --stdout-json cpu,percpu,sensors \
   --disable-plugin all --enable-plugin cpu,percpu,sensors \
   --disable-check-update \
@@ -43,26 +48,37 @@ num_cores_usage=${#cpu_usages[@]}
 num_cores_temps=${#cpu_temps[@]}
 num_cores=$((num_cores_usage < num_cores_temps ? num_cores_usage : num_cores_temps))
 
-# Build tooltip lines in the requested format
+# Build per-core tooltip lines for the active mode
 tooltip_lines=()
 for ((i=0; i<num_cores; i++)); do
   core_num=$((i))
-  usage=${cpu_usages[i]}
-  temp=${cpu_temps[i]}
 
-  # Format temperature to remove decimal if it's a whole number
-  temp_formatted=$(awk -v t="${temp}" 'BEGIN {
-    if (t == int(t))
-      printf "%.0f", t
-    else
-      printf "%.1f", t
-  }')
+  if [[ "${mode}" == "temp" ]]; then
+    temp=${cpu_temps[i]}
 
-  tooltip_lines+=("Core $(printf "%02d" ${core_num}):    $(printf "%3d" ${usage})% / $(printf "%2s" ${temp_formatted})°C")
+    # Format temperature to remove decimal if it's a whole number
+    temp_formatted=$(awk -v t="${temp}" 'BEGIN {
+      if (t == int(t))
+        printf "%.0f", t
+      else
+        printf "%.1f", t
+    }')
+
+    tooltip_lines+=("Core $(printf "%02d" ${core_num}):    $(printf "%2s" ${temp_formatted})°C")
+  else
+    usage=${cpu_usages[i]}
+
+    tooltip_lines+=("Core $(printf "%02d" ${core_num}):    $(printf "%3d" ${usage})%")
+  fi
 done
 
 # Add header
-tooltip_lines="CORE ##:     USE \/ TEMP\n───────────────────────\n"${tooltip_lines}
+if [[ "${mode}" == "temp" ]]; then
+  tooltip_header="CORE ##:     TEMP\n──────────────────\n"
+else
+  tooltip_header="CORE ##:     USE\n──────────────────\n"
+fi
+tooltip_lines="${tooltip_header}"${tooltip_lines}
 
 # Temperature-based classes
 if [ "${cpu_temp_average}" -ge "90" ]; then
@@ -71,8 +87,12 @@ elif [ "${cpu_temp_average}" -ge "80" ]; then
   waybar_class="warning"
 fi
 
-# Final waybar text/tooltip
-waybar_text="${cpu_icon} $(printf '%2d' ${cpu_use_average})% / $(printf '%2s' ${cpu_temp_average})°C"
+# Final waybar text/tooltip (mode toggled via system-monitor.sh)
+if [[ "${mode}" == "temp" ]]; then
+  waybar_text="${cpu_icon} $(printf '%2s' ${cpu_temp_average})°C"
+else
+  waybar_text="${cpu_icon} $(printf '%2d' ${cpu_use_average})%"
+fi
 
-waybar_tooltip="<big>CPU</big>\n\n"$(printf "%s\n" "${tooltip_lines[@]}" | sed ':a;N;$!ba;s/\n/\\n/g')
+waybar_tooltip="<big>CPU</big> (click to toggle)\n\n"$(printf "%s\n" "${tooltip_lines[@]}" | sed ':a;N;$!ba;s/\n/\\n/g')
 echo "{\"text\": \"${waybar_text}\", \"tooltip\": \"${waybar_tooltip}\", \"class\": \"${waybar_class}\"}"
