@@ -21,7 +21,7 @@ map D trash                                 # move file to trash
 map y copy                                  # copy file
 map d cut                                   # cut file
 map p paste                                 # paste file
-map Y $printf "%s" "${fx}" | waycopy        # copy filename to clipboard
+map Y $printf "%s" "${fx}" | copy           # copy filename to clipboard
 
 # Renaming files
 map r :rename;                              # cursor at the end of the filename, but before extension

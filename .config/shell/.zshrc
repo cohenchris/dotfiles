@@ -4,6 +4,7 @@ PS1="%B%{$fg[red]%}%n%{$fg[white]%}@%{$fg[white]%}%M:%~%{$fg[white]%}%{$reset_co
 
 # history management
 HISTFILE=${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/zhist
+[ -d "${HISTFILE:h}" ] || mkdir -p "${HISTFILE:h}"
 HISTSIZE=1000
 SAVEHIST=1000
 
@@ -32,7 +33,20 @@ autoload -Uz tetriscurses
 # load keyboard modifications
 [ -f "${XDG_CONFIG_HOME:-${HOME}/.config}/shell/keyboardrc" ] && source ${XDG_CONFIG_HOME:-${HOME}/.config}/shell/keyboardrc
 
-# load shell plugins
-source ${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source ${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-source ${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+# load shell plugins (install if missing)
+() {
+  local plugin_dir="${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/plugins"
+  local -A plugin_repos=(
+    fast-syntax-highlighting     https://github.com/zdharma-continuum/fast-syntax-highlighting.git
+    zsh-autosuggestions          https://github.com/zsh-users/zsh-autosuggestions.git
+    zsh-history-substring-search https://github.com/zsh-users/zsh-history-substring-search.git
+  )
+  local name
+  for name in "${(@k)plugin_repos}"; do
+    [ -d "${plugin_dir}/${name}" ] || git clone --quiet --depth=1 "${plugin_repos[$name]}" "${plugin_dir}/${name}"
+  done
+
+  source "${plugin_dir}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+  source "${plugin_dir}/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+  source "${plugin_dir}/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh"
+}

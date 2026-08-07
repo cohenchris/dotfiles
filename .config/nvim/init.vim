@@ -28,17 +28,14 @@ call plug#begin(s:plug_dir)
   Plug 'vim-airline/vim-airline'                    " Status bar (https://github.com/vim-airline/vim-airline)
   Plug 'vim-airline/vim-airline-themes'
   Plug 'chrisbra/Colorizer'                         " CSS color highlighting (https://github.com/chrisbra/Colorizer)
-  " Plug 'luochen1990/rainbow'                        " Parantheses Color Coordination
   " Programming integrations
   Plug 'sheerun/vim-polyglot'                       " Language pack (https://github.com/sheerun/vim-polyglot)
-  Plug 'ms-jpq/coq_nvim'                            " Code completion
   Plug 'tpope/vim-fugitive'                         " Git integration (https://github.com/tpope/vim-fugitive)
 call plug#end()
 
 " Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync
-  \| execute 'COQdeps'
 \| endif
 
 
@@ -95,9 +92,6 @@ nnoremap <C-f> :NERDTreeFind<CR>                    " CTRL + f        --> find i
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='molokai'
 
-" COQ
-g:coq_settings = { 'auto_start': 'shut-up' }
-
  " Colorizer
 let g:colorizer_auto_filetype='*'
 
@@ -108,18 +102,3 @@ let g:colorizer_auto_filetype='*'
                                                     " gcc   --> comment out a line
                                                     " gc    --> comment out the target of a selection
                                                     " gcgc  --> comment out a set of adjacent commented lines
-
-" For vim-rainbow plugin
-let g:rainbow_active = 1
-let g:rainbow_load_separately = [
-    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-    \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
-    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-    \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
-    \ ]
-let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
-let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
-
-
-
-
