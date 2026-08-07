@@ -83,5 +83,4 @@ hl.window_rule({
 -- the general gapsIn / gapsOut definitions)
 local specialGapsOut = 80
 
-hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true })         -- set default workspace, pinned to the real desktop display so the PiKVM mirror can never claim it on startup
 hl.workspace_rule({ workspace = "special:special", gaps_out = specialGapsOut })  -- custom outer gap size on special workspace
