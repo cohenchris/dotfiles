@@ -7,10 +7,17 @@
 -- Display and Visual Settings for Hyprland
 
 -- https://wiki.hyprland.org/Configuring/Basics/Monitors/
+local desktopDisplay = "DP-1"
+local piKVMDisplay = "HDMI-A-1"
+local laptopDisplay = "eDP-1"
 
--- These dotfiles are shared between a desktop and a laptop with very
--- different screens, so only configure each display block (and its
--- associated mirrors) when that machine's real output is actually detected.
+-- Desktop monitor config
+hl.monitor({ output = desktopDisplay, mode = "2560x1440@59.95", position = "auto", scale = 1.25 })                      -- desktop display
+hl.monitor({ output = piKVMDisplay, mode = "1920x1080@60.00", position = "auto", scale = 1, mirror = desktopDisplay })  -- pikvm virtual display
+
+-- Laptop monitor config
+hl.monitor({ output = laptopDisplay, mode = "2880x1920@120.00", position = "auto", scale = "auto" })   -- laptop display
+
 local function is_monitor_connected(name)
   for _, m in ipairs(hl.get_monitors()) do
     if m.name == name then
@@ -25,19 +32,11 @@ local function first_monitor_name()
   return monitors[1] and monitors[1].name or ""
 end
 
-local desktopDisplay = "DP-1"
-local piKVMDisplay = "HDMI-A-1"
-local laptopDisplay = "eDP-1"
-
+-- automatically mirror new secondary monitors in their highest resolution and refresh rate
 if is_monitor_connected(desktopDisplay) then
-  -- Desktop monitor config
-  hl.monitor({ output = desktopDisplay, mode = "2560x1440@59.95", position = "auto", scale = 1.25 })                      -- desktop display
-  hl.monitor({ output = piKVMDisplay, mode = "1920x1080@60.00", position = "auto", scale = 1, mirror = desktopDisplay })  -- pikvm virtual display
-  hl.monitor({ output = "", mode = "highres@highrr", position = "auto", scale = 1, mirror = desktopDisplay })                  -- automatically mirror new random monitors in their preferred resolution
+  hl.monitor({ output = "", mode = "highres@highrr", position = "auto", scale = 1, mirror = desktopDisplay })
 elseif is_monitor_connected(laptopDisplay) then
-  -- Laptop monitor config
-  hl.monitor({ output = laptopDisplay, mode = "2880x1920@120.00", position = "auto", scale = "auto" })   -- laptop display
-  hl.monitor({ output = "", mode = "highres@highrr", position = "auto", scale = 1, mirror = laptopDisplay })  -- automatically mirror new random monitors in their highest resolution and refresh rate
+  hl.monitor({ output = "", mode = "highres@highrr", position = "auto", scale = 1, mirror = laptopDisplay })
 else
   -- Unknown machine: neither known display is connected. Configure whichever
   -- monitor comes up first directly, and mirror any others to it.
