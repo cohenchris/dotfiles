@@ -101,7 +101,7 @@
     "format": "{icon} {volume:5}%",
     "format-icons": ["󰕿", "󰖀", "󰕾"],
     "format-muted": "󰝟  MUTED",
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click": "HWCTL volume mute",
     "max-volume": 100,
     "tooltip": true,
     "tooltip-format": "\"{node_name}\" volume at {volume}%",
