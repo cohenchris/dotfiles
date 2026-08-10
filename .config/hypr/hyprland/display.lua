@@ -32,18 +32,28 @@ local function first_monitor_name()
   return monitors[1] and monitors[1].name or ""
 end
 
--- automatically mirror new secondary monitors in their highest resolution and refresh rate
+-- Determine the machine's primary display
+local primaryDisplay
 if is_monitor_connected(desktopDisplay) then
-  hl.monitor({ output = "", mode = "highres@highrr", position = "auto", scale = 1, mirror = desktopDisplay })
+  primaryDisplay = desktopDisplay
 elseif is_monitor_connected(laptopDisplay) then
-  hl.monitor({ output = "", mode = "highres@highrr", position = "auto", scale = 1, mirror = laptopDisplay })
+  primaryDisplay = laptopDisplay
 else
-  -- Unknown machine: neither known display is connected. Configure whichever
-  -- monitor comes up first directly, and mirror any others to it.
-  local primaryDisplay = first_monitor_name()
-  hl.monitor({ output = primaryDisplay, mode = "highres@highrr", position = "auto", scale = 1 })
-  hl.monitor({ output = "", mode = "highres@highrr", position = "auto", scale = 1, mirror = primaryDisplay })
+  primaryDisplay = first_monitor_name()
 end
+
+-- Neither known display is connected, configure whichever monitor comes up first
+if not (is_monitor_connected(desktopDisplay) or is_monitor_connected(laptopDisplay)) then
+  hl.monitor({ output = primaryDisplay, mode = "highres@highrr", position = "auto", scale = 1 })
+end
+
+-- Pin every workspace to the primary monitor
+for i = 1, 10 do
+  hl.workspace_rule({ workspace = tostring(i), monitor = primaryDisplay, default = (i == 1) })
+end
+
+-- Automatically mirror new secondary monitors in their highest resolution and refresh rate
+hl.monitor({ output = "", mode = "highres@highrr", position = "auto", scale = 1, mirror = primaryDisplay })
 
 
 -- Color Definitions
