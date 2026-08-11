@@ -14,17 +14,17 @@ hl.env("HYPRCURSOR_THEME", "rose-pine-hyprcursor")
 hl.config({
   input = {
     -- https://wiki.hyprland.org/Configuring/Basics/Variables/#follow-mouse-cursor
-    follow_mouse = 1,          -- cursor movement affects window focus
-    sensitivity = -0.4,        -- cursor sensitivity [-1.0 - 1.0]
+    follow_mouse = 1,                       -- cursor movement affects window focus
+    sensitivity = -0.4,                     -- cursor sensitivity [-1.0 - 1.0]
   },
 })
 
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#cursor
 hl.config({
   cursor = {
-    sync_gsettings_theme = true,  -- sync xcursor theme with gsettings
-    enable_hyprcursor = true,     -- whether to enable hyprcursor support
-    use_cpu_buffer = 1,           -- makes HW cursors use a CPU buffer
+    sync_gsettings_theme = true,            -- sync xcursor theme with gsettings
+    enable_hyprcursor = true,               -- whether to enable hyprcursor support
+    use_cpu_buffer = 1,                     -- makes HW cursors use a CPU buffer
   },
 })
 

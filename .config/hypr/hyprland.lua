@@ -9,7 +9,8 @@
 
 -- Configs for various parts of hyprland
 require("hyprland/keybinds")                               -- key bindings
-require("hyprland/display")                                -- display settings
+require("hyprland/monitors")                               -- monitor settings
+require("hyprland/style")                                  -- style settings
 require("hyprland/input")                                  -- input settings
 require("hyprland/rules")                                  -- window and workspace rules
 

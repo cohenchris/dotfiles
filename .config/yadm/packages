@@ -39,6 +39,7 @@ speedtest-cli               # command-line network speed tester
 brightnessctl               # display brightness control
 rclone                      # cloud storage connector
 rsync                       # remote and local file copying tool
+gum													# tui tool
 
 # ------------------------------------ gui -------------------------------------
 # hyprland environment
