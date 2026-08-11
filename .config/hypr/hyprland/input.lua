@@ -34,3 +34,17 @@ hl.device({
   natural_scroll = true,                    -- invert scrolling
   accel_profile = "flat",
 })
+
+-- https://wiki.hypr.land/Configuring/Advanced-and-Cool/Gestures
+hl.gesture({
+  fingers = 3,                              -- 3 finger swipe
+  direction = "horizontal",                 -- horizontally
+  action = "workspace"                      -- switches the active workspace
+})
+
+hl.gesture({
+  fingers = 3,                              -- 3 finger swipe
+  direction = "vertical",                   -- vertically
+  action = "special",                       -- toggles the special workspace
+  workspace_name = "special"
+})
