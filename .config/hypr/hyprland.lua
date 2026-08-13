@@ -54,9 +54,10 @@ hl.config({
 })
 
 -- https://wiki.hypr.land/Configuring/Advanced-and-Cool/XWayland/
+local steam_installed = io.popen("command -v steam 2>/dev/null"):read("*a") ~= ""
 hl.config({
   xwayland = {
-    enabled = false,                                       -- pure wayland - no xwayland compatibility layer!
+    enabled = steam_installed,                            -- xwayland only enabled when steam is installed
   },
 })
 
