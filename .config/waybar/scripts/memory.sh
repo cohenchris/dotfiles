@@ -61,7 +61,7 @@ if [[ "${mode}" == "temp" ]]; then
   fi
 else
   waybar_text="${memory_icon} $(printf '%2d' ${rounded_ram_use_percent})%"
-  waybar_tooltip="<big>MEMORY</big> (click to toggle)\n\n${ram_usage_tooltip}\n${swap_usage_tooltip}"
+  waybar_tooltip="<big>MEMORY</big> (click to toggle view)\n\n${ram_usage_tooltip}\n${swap_usage_tooltip}"
 fi
 
 echo "{\"text\": \"${waybar_text}\", \"tooltip\": \"${waybar_tooltip}\", \"class\": \"${waybar_class}\"}"
