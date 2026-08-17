@@ -39,7 +39,8 @@ speedtest-cli               # command-line network speed tester
 brightnessctl               # display brightness control
 rclone                      # cloud storage connector
 rsync                       # remote and local file copying tool
-gum													# tui tool
+gum                          # tui tool
+nmap                        # network mapping tool
 
 # ------------------------------------ gui -------------------------------------
 # hyprland environment
@@ -54,7 +55,7 @@ waybar                      # status bar
 wl-clipboard                # clipboard manager
 wireplumber                 # pipewire session manager
 xdg-desktop-portal-hyprland # desktop portal implementation (for screen sharing)
-swayosd											# visual volume control indicator
+swayosd                      # visual volume control indicator
 
 # icons/themes
 noto-fonts-emoji            # emojis for lf
@@ -104,7 +105,6 @@ gimp                        # image editor
 bluetui                     # bluetooth TUI
 wiremix                     # audio management TUI
 wifitui-bin                 # wifi management TUI
-glances                     # task manager and resource monitor
 grim                        # screenshot capture
 slurp                       # screenshot area selection
 borg                        # borg backups
@@ -116,3 +116,10 @@ minicom                     # COM client
 texlive                     # LaTeX
 whipper                     # cd/dvd ripping
 aur-scanner                 # AUR package security scanner
+glances                     # task manager and resource monitor
+python-fastapi              # web UI for glances
+uvicorn                     # web UI for glances
+hddtemp                     # HDD temperature monitoring for glances
+python-docker               # docker monitoring for glances
+python-matplotlib           # charts for glances
+python-netifaces2           # ip plugin for glances
