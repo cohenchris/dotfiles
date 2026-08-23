@@ -1,4 +1,5 @@
 # Basics
+alias aliases='cat ${XDG_CONFIG_HOME:-${HOME}/.config}/shell/aliasrc'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vim="nvim"

@@ -18,7 +18,6 @@ foot                        # terminal
 net-tools                   # networking multitool
 dnsutils                    # more networking tools
 dunst                       # notification daemon
-nut                         # network ups tools
 fuzzel                      # multipurpose menu / launcher
 bat                         # syntax highlighting
 python3                     # python
@@ -39,8 +38,9 @@ speedtest-cli               # command-line network speed tester
 brightnessctl               # display brightness control
 rclone                      # cloud storage connector
 rsync                       # remote and local file copying tool
-gum                          # tui tool
+gum                         # tui tool
 nmap                        # network mapping tool
+reflector                   # Arch mirror configuration
 
 # ------------------------------------ gui -------------------------------------
 # hyprland environment

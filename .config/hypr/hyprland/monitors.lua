@@ -12,7 +12,7 @@ local piKVMDisplay = "HDMI-A-1"
 local laptopDisplay = "eDP-1"
 
 -- Desktop display
-hl.monitor({
+local desktopDisplayCfg = ({
   output = desktopDisplay,
   mode = "2560x1440@59.95",
   position = "auto",
@@ -20,7 +20,7 @@ hl.monitor({
 })
 
 -- PiKVM virtual display
-hl.monitor({
+local piKVMDisplayCfg = ({
   output = piKVMDisplay,
   mode = "1920x1080@60.00",
   position = "auto",
@@ -29,12 +29,34 @@ hl.monitor({
 })
 
 -- Laptop display
-hl.monitor({
+local laptopDisplayCfg = {
   output = laptopDisplay,
   mode = "2880x1920@120.00",
   position = "auto",
   scale = "auto"
-})
+}
+
+hl.monitor(desktopDisplayCfg)
+hl.monitor(piKVMDisplayCfg)
+hl.monitor(laptopDisplayCfg)
+
+
+-- When laptop lid is closed with an external monitor connected, disable the
+-- laptop display so the external monitor becomes the main display.
+hl.bind("switch:on:Lid Switch", function()
+  for _, m in ipairs(hl.get_monitors()) do
+    if m.name ~= laptopDisplay then
+      hl.monitor({ output = laptopDisplay, disabled = true })
+    end
+  end
+end, { locked = true })
+
+-- Re-enable the laptop display when the lid is opened.
+hl.bind("switch:off:Lid Switch", function()
+  hl.monitor(laptopDisplayCfg)
+end, { locked = true })
+
+
 
 -- Workaround for mirror-at-startup race condition:
 -- https://github.com/hyprwm/Hyprland/discussions/15695
