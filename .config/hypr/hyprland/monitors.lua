@@ -7,9 +7,9 @@
 -- Monitor configuration for Hyprland
 
 -- https://wiki.hyprland.org/Configuring/Basics/Monitors/
-local desktopDisplay = "DP-1"
-local piKVMDisplay = "HDMI-A-1"
-local laptopDisplay = "eDP-1"
+local desktopDisplay = "desc:Dell Inc. DELL U2722DE F7JMX83"
+local piKVMDisplay = "desc:The Linux Foundation PiKVM V4 Mini CAFEBABE"
+local laptopDisplay = "desc:BOE NE135A1M-NY1"
 
 -- Desktop display
 local desktopDisplayCfg = ({
@@ -36,13 +36,21 @@ local laptopDisplayCfg = {
   scale = "auto"
 }
 
+-- Unknown display
+local miscDisplayCfg = {
+  output = "",
+  mode = "preferred",
+  position = "auto",
+  scale = "auto"
+}
+
 hl.monitor(desktopDisplayCfg)
 hl.monitor(piKVMDisplayCfg)
 hl.monitor(laptopDisplayCfg)
+hl.monitor(miscDisplayCfg)
 
-
--- When laptop lid is closed with an external monitor connected, disable the
--- laptop display so the external monitor becomes the main display.
+-- Laptop lid CLOSED
+-- Disable the laptop display
 hl.bind("switch:on:Lid Switch", function()
   for _, m in ipairs(hl.get_monitors()) do
     if m.name ~= laptopDisplay then
@@ -51,7 +59,8 @@ hl.bind("switch:on:Lid Switch", function()
   end
 end, { locked = true })
 
--- Re-enable the laptop display when the lid is opened.
+-- Laptop lid OPENED
+-- Re-enable the laptop display
 hl.bind("switch:off:Lid Switch", function()
   hl.monitor(laptopDisplayCfg)
 end, { locked = true })
