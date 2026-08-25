@@ -45,14 +45,14 @@
     "interval": 3600,
     "signal": 8,
     "on-click": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/ip.sh toggle",
-    "tooltip-format": "  Public IP /   Local IP (click to toggle)"
+    "tooltip-format": "  Public IP /   Local IP\n(click to toggle view)"
   },
 
   // upload + download speeds
   "custom/speedtest": {
     "exec": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/speedtest.sh",
     "interval": 10,
-    "tooltip-format": "Download Speed / Upload Speed\n(right click to refresh)",
+    "tooltip-format": "󰇚 Download Speed / 󰕒 Upload Speed\n(right click to refresh)",
     "on-click-right": "${XDG_CONFIG_HOME:-${HOME}/.config}/waybar/scripts/speedtest.sh refresh"
   },
 

@@ -74,9 +74,9 @@ done
 
 # Add header
 if [[ "${mode}" == "temp" ]]; then
-  tooltip_header="CORE ##:     TEMP\n──────────────────\n"
+  tooltip_header="  (󰳽 for Usage)\n\nCORE ##:    TEMP\n──────────────────\n"
 else
-  tooltip_header="CORE ##:     USE\n──────────────────\n"
+  tooltip_header="  (󰳽 for Temp)\n\nCORE ##:     USE\n──────────────────\n"
 fi
 tooltip_lines="${tooltip_header}"${tooltip_lines}
 
@@ -94,5 +94,5 @@ else
   waybar_text="${cpu_icon} $(printf '%2d' ${cpu_use_average})%"
 fi
 
-waybar_tooltip="<big>CPU</big> (click to toggle view)\n\n"$(printf "%s\n" "${tooltip_lines[@]}" | sed ':a;N;$!ba;s/\n/\\n/g')
+waybar_tooltip="<big>CPU</big>"$(printf "%s\n" "${tooltip_lines[@]}" | sed ':a;N;$!ba;s/\n/\\n/g')
 echo "{\"text\": \"${waybar_text}\", \"tooltip\": \"${waybar_tooltip}\", \"class\": \"${waybar_class}\"}"

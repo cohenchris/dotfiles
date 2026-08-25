@@ -29,8 +29,8 @@ gpu_fan_speed=$(jq -r '.gpu[0].fan_speed | select(. != null) | round' <<< "${jso
 waybar_tooltip_info="Name:\t${gpu_name}"
 usage_tooltip="\nUsage:\t${gpu_use_percent:-NA}%"
 temp_tooltip="\nTemp:\t${gpu_temp:-NA}°C"
-mem_tooltip="\nMem:\t${gpu_mem_percent:-NA}%"
-fan_tooltip="\nFan:\t${gpu_fan_speed:-NA}%"
+mem_tooltip="\nVRAM:\t${gpu_mem_percent:-NA}%"
+fan_tooltip="\nFans:\t${gpu_fan_speed:-NA}%"
 
 # Threshold-based class, matching whichever metric is currently displayed
 if [[ "${mode}" == "temp" ]]; then
@@ -53,12 +53,14 @@ fi
 
 # Final waybar text/tooltip (mode toggled via system-monitor.sh)
 if [[ "${mode}" == "temp" ]]; then
+  toggle_message="Usage"
   if [[ -n "${gpu_temp}" ]]; then
     waybar_text="${gpu_icon}  $(printf '%2s' ${gpu_temp})°C"
   else
     waybar_text="${gpu_icon}  NA°C"
   fi
 else
+  toggle_message="Temp"
   if [[ -n "${gpu_use_percent}" ]]; then
     waybar_text="${gpu_icon}  $(printf '%2d' ${gpu_use_percent})%"
   else
@@ -66,6 +68,6 @@ else
   fi
 fi
 
-waybar_tooltip="<big>GPU</big> (click to toggle view)\n\n${waybar_tooltip_info}${usage_tooltip}${temp_tooltip}${mem_tooltip}${fan_tooltip}"
+waybar_tooltip="<big>GPU</big>\t(󰳽 for ${toggle_message})\n\n${waybar_tooltip_info}${usage_tootip}${temp_tooltip}${mem_tooltip}${fan_tooltip}"
 
 echo "{\"text\": \"${waybar_text}\", \"tooltip\": \"${waybar_tooltip}\", \"class\": \"${waybar_class}\"}"
