@@ -3,11 +3,13 @@
 #####################################################################################
                                                                                     #
 # https://wiki.archlinux.org/title/XDG_Base_Directory                               #
-export XDG_CONFIG_HOME="${HOME}/.config"                                            # config files
-export XDG_CACHE_HOME="${HOME}/.local/cache"                                        # cached data
-export XDG_DATA_HOME="${HOME}/.local/share"                                         # application data
-export XDG_TRASH_DIR="${HOME}/.local/trash"                                         # trash
-export XDG_DOWNLOAD_DIR="${HOME}/Downloads"                                         # downloads
+export XDG_CONFIG_HOME="${HOME}/.config"                                            # user-specific configuration files
+export XDG_CACHE_HOME="${HOME}/.local/cache"                                        # non-essential cached data
+export XDG_DATA_HOME="${HOME}/.local/share"                                         # user-specific data files
+export XDG_STATE_HOME="${HOME}/.local/state"                                        # persistent but low-priority state data
+export XDG_TRASH_DIR="${HOME}/.local/trash"                                         # trashed files
+export XDG_DOWNLOAD_DIR="${HOME}/Downloads"                                         # downloaded files
+export XDG_RUNTIME_DIR="/run/user/${UID}"                                           # non-essential runtime files (sockets, pids)
                                                                                     #
 # CONFIGS                                                                           #
 export PASSWORD_STORE_DIR="${XDG_CONFIG_HOME}/password-store"                       # pass
