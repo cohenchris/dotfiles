@@ -16,6 +16,7 @@ alias occ="docker exec -it -u www-data nextcloud php occ"
 alias mail-fail2ban="docker exec -it mailserver fail2ban-client"
 alias swag-fail2ban="docker exec -it swag fail2ban-client"
 alias logs="docker logs -f"
+alias rcon="~/server/games/scripts/minecraft-rcon.sh"
 alias rcon="docker exec -it minecraft rcon-cli"
 alias run="docker exec -it"
 
