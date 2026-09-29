@@ -70,6 +70,10 @@
         "type": "screenshare",
         "tooltip-icon-size": 24
       },
+      {
+        "type": "location",
+        "icon-name": "location-services-active-symbolic",
+      }
     ],
   },
 
