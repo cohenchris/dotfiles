@@ -83,26 +83,3 @@ end, { locked = true })
 hl.bind("switch:off:Lid Switch", function()
   hl.monitor(laptop)
 end, { locked = true })
-
-
-
-
--- Workaround for mirror-at-startup race condition:
--- https://github.com/hyprwm/Hyprland/discussions/15695
--- The mirror target lookup happens once, synchronously, at connect time, so
--- if PiKVM_Virtual_Display enumerates before Dell_Ultrasharp_27in_Monitor, the mirror silently
--- fails to resolve. Re-apply it once Dell_Ultrasharp_27in_Monitor is actually present.
-hl.on("hyprland.start", function()
-  local function apply_mirror()
-    hl.timer(function()
-      hl.monitor({ output = PiKVM_Virtual_Display, disabled = true })
-      hl.timer(function()
-        hl.monitor({ output = PiKVM_Virtual_Display, disabled = false, mirror = Dell_Ultrasharp_27in_Monitor })
-      end, { timeout = 500, type = "oneshot" })
-    end, { timeout = 500, type = "oneshot" })
-  end
-  if hl.get_monitor(Dell_Ultrasharp_27in_Monitor) ~= nil then apply_mirror() end
-  hl.on("monitor.added", function(m)
-    if m.name == Dell_Ultrasharp_27in_Monitor then apply_mirror() end
-  end)
-end)
