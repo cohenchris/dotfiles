@@ -123,3 +123,4 @@ hddtemp                     # HDD temperature monitoring for glances
 python-docker               # docker monitoring for glances
 python-matplotlib           # charts for glances
 python-netifaces2           # ip plugin for glances
+plezy                       # plex desktop player
